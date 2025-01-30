@@ -17,10 +17,15 @@
 ^_raw_data/
 ^_raw_data$
 ^_projr\.yml$
+^_quarto\.yml$
+^index\.qmd$
 ^README\.Rmd$
+^SlidesDayOne\.qmd$
 ^_dependencies\.R$
 ^codemeta\.json$
 ^LICENSE\.md$
+^\.quarto/
+^\.quarto$
 # End of projr section
 ^LICENSE\.md$
 ^CITATION\.cff$

@@ -12,5 +12,9 @@ _tmp/**
 _output/**
 docs/**
 _raw_data/**
+.quarto/**
 # End of projr section
+
+
+/.quarto/
 

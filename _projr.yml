@@ -10,10 +10,15 @@ directories:
 build:
   git: yes
   github:
-    input:
-      content: data-raw
-    output:
+    latest:
+      content:
+      - data-raw
+      - output
+      - docs
+      structure: latest
+    archive:
       content:
       - output
       - docs
+      - data-raw
 
