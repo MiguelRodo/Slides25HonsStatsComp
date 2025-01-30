@@ -8,7 +8,7 @@ message: 'To cite package "Slides25HonsStatsComp" in publications use:'
 type: software
 license: CC-BY-4.0
 title: 'Slides25HonsStatsComp: Slides'
-version: 0.0.0-1
+version: 0.0.1
 abstract: Slides
 authors:
 - family-names: Rodo

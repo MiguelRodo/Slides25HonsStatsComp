@@ -1,6 +1,6 @@
 project:
   type: website
-  output-dir: _tmp/projr/v0.0.0-1/docs
+  output-dir: docs
 website:
   title: Your Slide Deck Title
   navbar:
