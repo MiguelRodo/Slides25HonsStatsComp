@@ -1,0 +1,11 @@
+citHeader("To cite `Slides25HonsStatsComp` in publications use:")
+
+bibentry(bibtype = "Misc",
+         key = "rodo",
+         title = "Slides25HonsStatsComp: Slides",
+         author = person(given = "Miguel",
+                         family = "Rodo",
+                         email = "miguel.rodo@uct.ac.za"),
+         url = "https://github.com/MiguelRodo/Slides25HonsStatsComp/#readme",
+         abstract = "Slides",
+         version = "0.0.0-1")

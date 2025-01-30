@@ -1,0 +1,13 @@
+Package: Slides25HonsStatsComp
+Title: Slides
+Version: 0.0.0-1
+Authors@R: 
+    person("Miguel", "Rodo", , "miguel.rodo@uct.ac.za", role = c("aut", "cre"))
+Maintainer: Miguel Rodo <miguel.rodo@uct.ac.za>
+Description: Slides
+License: CC BY 4.0
+URL: https://github.com/MiguelRodo/Slides25HonsStatsComp/#readme
+BugReports: https://github.com/MiguelRodo/Slides25HonsStatsComp/issues
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.2

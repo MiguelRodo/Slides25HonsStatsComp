@@ -1,0 +1,27 @@
+^renv$
+^renv\.lock$
+^README\.Rmd$
+^.*\.Rproj$
+^\.Rproj\.user$
+^_projr-local\.yml$
+
+# Start of projr section: do not edit by hand (update with projr_ignore_auto())
+^_data_raw/
+^_data_raw$
+^_tmp/
+^_tmp$
+^_output/
+^_output$
+^docs/
+^docs$
+^_raw_data/
+^_raw_data$
+^_projr\.yml$
+^README\.Rmd$
+^_dependencies\.R$
+^codemeta\.json$
+^LICENSE\.md$
+# End of projr section
+^LICENSE\.md$
+^CITATION\.cff$
+

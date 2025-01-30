@@ -1,0 +1,33 @@
+# --------------------------------------------
+# CITATION file created with {cffr} R package
+# See also: https://docs.ropensci.org/cffr/
+# --------------------------------------------
+ 
+cff-version: 1.2.0
+message: 'To cite package "Slides25HonsStatsComp" in publications use:'
+type: software
+license: CC-BY-4.0
+title: 'Slides25HonsStatsComp: Slides'
+version: 0.0.0-1
+abstract: Slides
+authors:
+- family-names: Rodo
+  given-names: Miguel
+  email: miguel.rodo@uct.ac.za
+preferred-citation:
+  type: generic
+  title: 'Slides25HonsStatsComp: Slides'
+  authors:
+  - family-names: Rodo
+    given-names: Miguel
+    email: miguel.rodo@uct.ac.za
+  url: https://github.com/MiguelRodo/Slides25HonsStatsComp/#readme
+  abstract: Slides
+  version: 0.0.0-1
+repository-code: https://github.com/MiguelRodo/Slides25HonsStatsComp
+url: https://github.com/MiguelRodo/Slides25HonsStatsComp/#readme
+contact:
+- family-names: Rodo
+  given-names: Miguel
+  email: miguel.rodo@uct.ac.za
+
