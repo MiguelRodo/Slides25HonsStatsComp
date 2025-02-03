@@ -18,12 +18,17 @@
 ^_raw_data$
 ^_projr\.yml$
 ^_quarto\.yml$
+^git\.qmd$
 ^index\.qmd$
+^qa\.qmd$
+^quarto\.qmd$
+^r\.qmd$
 ^README\.Rmd$
-^SlidesDayOne\.qmd$
 ^_dependencies\.R$
+^CHANGELOG\.md$
 ^codemeta\.json$
 ^LICENSE\.md$
+^manifest\.csv$
 ^\.quarto/
 ^\.quarto$
 # End of projr section

@@ -1,12 +1,25 @@
 project:
   type: website
-  output-dir: docs
+  render:
+  - index.qmd
+  output-dir: _tmp/projr/v0.0.1-1/docs
 website:
-  title: Your Slide Deck Title
+  title: Statistical Computing
   navbar:
     left:
     - href: index.qmd
       text: Home
-    - href: SlidesDayOne.qmd
-      text: Slides
+    - href: r.qmd
+      text: R and RStudio
+    - href: quarto.qmd
+      text: Quarto
+    - href: git.qmd
+      text: Git and GitHub
+    - href: markdown.qmd
+      text: Markdown
+format:
+  html:
+    toc: true
+    toc-depth: 3
+    toc-location: left
 
