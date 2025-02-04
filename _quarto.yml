@@ -1,24 +1,34 @@
 project:
-  type: website
+  type: book
   render:
   - index.qmd
+  - r.qmd
+  - projects.qmd
+  - quarto.qmd
+  - git.qmd
+  - projrsimple.qmd
+  - prac1.qmd
   output-dir: _tmp/projr/v0.0.1-1/docs
-website:
+book:
   title: Statistical Computing
+  sidebar:
+    border: true
+    background: light
+    position: right
   navbar:
-    left:
-    - href: index.qmd
-      text: Home
-    - href: r.qmd
-      text: R and RStudio
-    - href: quarto.qmd
-      text: Quarto
-    - href: git.qmd
-      text: Git and GitHub
-    - href: markdown.qmd
-      text: Markdown
+    search: true
+    background: light
+  chapters:
+  - index.qmd
+  - r.qmd
+  - projects.qmd
+  - quarto.qmd
+  - git.qmd
+  - projrsimple.qmd
+  - prac1.qmd
 format:
   html:
+    theme: cosmo
     toc: true
     toc-depth: 3
     toc-location: left

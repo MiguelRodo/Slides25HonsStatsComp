@@ -1,274 +1,138 @@
-# Course outline
+# R and RStudio
 
-## Welcome  
+## Welcome
 
-We have **a LOT** to do.
+We have a lot to cover in this bootcamp-style course. By the end, you should be able to **write acceptable assignments faster**. One of the biggest time sinks in Honours statistics is the process of writing up your analyses, which is often slowed down by two major issues:
 
-### What’s the Goal?
+1. Poor structure in R files and projects.
+2. Slowness in reading and writing R code.
 
-Think of this as a **bootcamp**, rather than easing into honours.
-
-By the end of this, you should be able to **write acceptable assignments faster**.  
-
-One of the biggest time sinks in Honours stats is just writing up your analyses.
-Two major reasons for this:
-
-1. **Bad structure** in R files and projects.  
-2. **Slowness** in reading and writing R code.  
-
-We’re here to **fix both**.
-
-We also want to drive home that this course is for **statistical** computing, so much of the tasks will be statistical in nature.
+Our goal is to address both of these challenges. This course focuses on statistical computing, so many tasks will be statistical in nature.
 
 ### What Will We Cover by the Start of Day Two?
 
-Brace yourself—we're covering **a lot**:
-
-- **Set up R and RStudio**.  
-- **Install Git, set up a GitHub account, create a local Git repo, and connect it to RStudio**.  
-- **Learn Quarto and Markdown** (so you can write reports properly).  
-- **Discuss how to structure projects**.  
-- **Discuss how to structure files**.  
-- **Read in data** (both from an R package and from a file).  
-- **Work with vectors, matrices, and dataframes**.  
+- Setting up R and RStudio.
+- Working with vectors, matrices, and data frames.
+- Discussing how to structure projects and organize files.
+- Installing Git, setting up a GitHub account, creating a local Git repository, and connecting it to RStudio.
+- Learning Quarto and Markdown to write reports.
 
 ### What About Assignments?
 
-- **First prac test**:  
-  - 📅 **13 February, 9–11 AM**  
-- **What will it include?**  
-  - Not 100% sure yet, but expect to:  
-    - **Identify bugs in code**.  
-    - **Write code**.  
-    - **Critique file and folder structures**.  
+I won't detail all the assignments, but before term "starts", you will have:
 
-Now, let’s get started.  
+- **Peer-reviewed assessment:**
+  - Date: towards the end of next week
+  - Format:
+    - Collate selected practical work from the first two weeks into a Quarto project, with the code available on GitHub (Quarto and GitHub to be explained later).
+    - You will each anonymously mark one other person's work.
+    - We will provide a marking rubric.
 
----
+- **First practical test:**  
+  - Date: 13 February, 9–11 AM.
+  - Format:
+    - In-class test, I believe open-book but no internet.
+    - Will center on writing `R` code and interpreting results. 
 
-## Resource Links  
+### What is the outcome for today?
 
-This is where you'll find key resources referenced throughout the course, so everything is easy to locate in one place.  
+Answer the questions in Practical One, and place the answers into its own qmd file into a Quarto project on GitHub.
 
-### Setting Up Your Computer for R Analysis 
-
-- **Download R**: [CRAN](https://cran.rstudio.com/)  
-- **Download RStudio**: [Posit](https://posit.co/download/rstudio-desktop/)  
-
-More links will be added here as we go.
+Now, let’s get started.
 
 ---
 
-## Setting Up Your Computer for Analyses in R  
+## Resource Links
 
-Before diving into R, make sure your system is set up properly:  
+This section contains key resources referenced throughout the course:
 
-1. **Install the latest version of R** → [Download here](https://cran.r-project.org/)  
-2. **Install RStudio (recommended IDE for R)** → [Download here](https://posit.co/download/rstudio-desktop/)  
-3. **Open RStudio** and you’re ready to begin.
+- **Download R:** [CRAN](https://cran.rstudio.com/)
+- **Download RStudio:** [Posit](https://posit.co/download/rstudio-desktop/)
 
-### Configure `RStudio` settings
+More links will be added as we progress.
 
-See the video `rstudio_settings.mp4` for how to configure `RStudio` settings.
+## Setting Up Your Computer for Analyses in R
 
-To set up RStudio with recommended settings, follow these steps.
+Before diving into R, make sure your system is set up properly:
 
-#### **1. General Settings**
+1. **Install the latest version of R** – [Download here](https://cran.r-project.org/)
+2. **Install RStudio (recommended IDE for R)** – [Download here](https://posit.co/download/rstudio-desktop/)
+3. Open RStudio and you’re ready to begin.
 
-Go to **`Tools` → `Global Options` → `General`**.
+### Configure RStudio Settings
 
-- **Workspace subsection**:
+Refer to the video `rstudio_settings.mp4` for a visual guide. Follow these steps to configure your RStudio settings:
+
+#### 1. General Settings
+
+Navigate to **Tools → Global Options → General**.
+
+- **Workspace subsection:**
   - **Uncheck** `Restore .RData into workspace at startup`  
-    - This prevents old objects from being automatically loaded when opening RStudio, ensuring a clean and reproducible environment. If old data loads automatically, it can lead to unexpected results when running code.
+    Prevents old objects from automatically loading when opening RStudio, ensuring a clean and reproducible environment.
   - **Set** `Save workspace to .RData on exit` to **Never**  
-    - By default, RStudio asks whether to save the workspace, but we don’t want that. Saving the workspace can lead to hidden dependencies, making scripts less reproducible.
+    This avoids saving hidden dependencies that can make your scripts less reproducible.
 
-#### **2. Code Editing Settings**
-Go to **`Code` → `Editing`** (within `Tools` → `Global Options`).
+#### 2. Code Editing Settings
 
-- **Enable "Use Native Pipe Operator (`|>`)"**  
-  - Since you’ll be using a later version of R, it’s useful to enable the native pipe operator. It improves readability and reduces the need for additional dependencies like `{magrittr}`.
-- **Enable "Soft-wrap R source files"**  
-  - This ensures that long lines of code wrap inside the editor instead of requiring horizontal scrolling. Ideally, lines should be short, but this setting ensures that even if a line is long, you can still see the full content without breaking its readability.
+Go to **Tools → Global Options → Code → Editing**.
 
-#### **3. Code Display Settings**
-Go to **`Code` → `Display`**.
+- **Enable "Use Native Pipe Operator (`|>`)":**  
+  Since you’ll be using a later version of R, this setting improves readability and reduces dependency on packages like `{magrittr}`.
+- **Enable "Soft-wrap R source files":**  
+  This ensures that long lines wrap within the editor, so you don’t have to scroll horizontally even if the code line is long.
 
-- **Enable "Rainbow Parentheses"**  
-  - This helps with matching parentheses by displaying them in different colors. It makes nested expressions easier to read and reduces errors when working with complex code structures.
+#### 3. Code Display Settings
 
-#### **4. Appearance Settings**
-Go to **`Appearance`**.
+Under **Tools → Global Options → Code → Display**:
 
-- **Editor Font**: Change to a **monospaced font** (e.g., `JetBrains Mono`)  
-  - A monospaced font ensures that each character takes up the same amount of space, which improves readability and makes it easier to align text across multiple lines, reducing errors.
-- **Editor Theme**: Change to a **dark theme**  
-  - The default light theme isn’t great for extended use. Dark themes reduce eye strain and are commonly used in programming environments.  
-  - A few good choices:
-    - **Cobalt** (my preference)
-    - **Monokai**
-    - **Solarized Dark**
-    - **Twilight**  
-  - You can choose whichever theme feels best for you.
+- **Enable "Rainbow Parentheses":**  
+  Displays matching parentheses in different colors, making nested expressions easier to read and reducing errors.
+
+#### 4. Appearance Settings
+
+Finally, go to **Tools → Global Options → Appearance**.
+
+- **Editor Font:** Change to a monospaced font (for example, JetBrains Mono). A monospaced font ensures each character takes up the same width, improving alignment and readability.
+- **Editor Theme:** Choose a dark theme instead of the default light theme to reduce eye strain. Good options include:
+  - Cobalt (recommended)
+  - Monokai
+  - Solarized Dark
+  - Twilight
 
 These settings help improve usability, maintainability, and comfort while coding in RStudio.
 
----
+## Overview of the RStudio Interface
 
-### Overview of the RStudio Interface
+Refer to the video `rstudio_interface.mp4` for a detailed overview. RStudio is divided into four main panes:
 
-See the video `rstudio_interface.mp4` for an overview of the RStudio interface.
+### 1. Script Editor (Top Left)
 
-RStudio is divided into four main panes, each serving a specific purpose to help you interact with R efficiently.
+This is where you write and edit your scripts (files ending in `.R`, `.Rmd`, or `.qmd`). A script is essentially a record of instructions that R executes. Use `Ctrl + Enter` (Windows/Linux) or `Cmd + Enter` (Mac) to run code from the script; the command output will appear in the Console.
 
-#### 1. Script Editor (Top Left)
+### 2. Console and Terminal (Bottom Left)
 
-- This is where you write and edit your scripts (`.R`, `.Rmd` or `.qmd` files).  
-- A script is essentially a recorded set of instructions that you want R to execute.  
-- You can write code here and run it by pressing `Ctrl + Enter` (Windows/Linux) or `Cmd + Enter` (Mac), which will send the command to the **Console pane** below.  
+- **Console:**  
+  Where R executes commands. You can run code from your script or type directly into the Console to test ideas.
+- **Terminal:**  
+  Adjacent to the Console, this pane runs system shell commands. It shares the same working directory as R but interprets commands using your system shell (PowerShell on Windows, Bash on Linux, or Zsh/Bash on Mac).
 
-#### 2. Console & Terminal (Bottom Left)
+### 3. Environment and History (Top Right)
 
-- **Console**: This is where R executes commands.  
-  - When you run a command from a script, the result appears here.  
-  - You can also type commands directly into the Console to test or prototype something before recording it in a script.
-- **Terminal** (next to Console):  
-  - Unlike the Console, which runs R code, the Terminal runs system shell commands.  
-  - It shares the same **working directory** as R but interprets commands differently:
-    - On Windows, it typically uses **PowerShell**.
-    - On Linux, it defaults to **Bash** (unless configured otherwise).
-    - On Mac, the default shell depends on your setup (often **Zsh** or **Bash**).
+- **Environment Tab:**  
+  Lists all objects (variables, data, functions) currently loaded in your R session.
+- **History Tab:**  
+  Displays a record of all commands you have executed.
 
-#### 3. Environment & History (Top Right)
+### 4. Files, Plots, Packages, and Help (Bottom Right)
 
-- **Environment Tab**: Shows all objects (data, variables, functions, etc.) that are currently loaded in your R session.  
-- **History Tab**: Keeps a record of all the commands you have run previously.
+- **Files Tab:**  
+  Shows files and folders in your current working directory.
+- **Plots Tab:**  
+  Displays any generated plots; you can zoom in, export (to PNG, PDF, JPEG, etc.), and clear old plots.
+- **Packages Tab:**  
+  Lists installed R packages and offers management options.
+- **Help Tab:**  
+  Provides documentation for functions and packages. You can search for help topics here or use the `?function_name` command in the Console.
 
-#### 4. Files, Plots, Packages & Help (Bottom Right)
-
-- **Files Tab**: Displays files and folders in your current **working directory**.  
-- **Plots Tab**: Displays any plots you generate.  
-  - You can **zoom**, **export** (save as PNG, PDF, JPEG, etc.), and **clear** old plots from here.  
-- **Packages Tab**: Lists installed R packages and allows you to manage them.  
-- **Help Tab**: Displays documentation for functions and packages.  
-  - You can search for function documentation here or use `?function_name` in the Console to pull up help.
-
-This setup makes it easy to write, test, and manage your R code efficiently.
-
----
-
-## Tackling projects in `RStudio`
-
-See the video `projects.mp4` for a video overview.
-
-When working on projects in RStudio, it’s important to maintain structure and organization to improve efficiency, reproducibility, and collaboration. Here are three key principles to follow:
-
----
-
-### **4.1 Using RStudio Projects**
-
-To create a new project in RStudio:  
-- Click on **"New Project"** in the **top-right corner** of RStudio.  
-- This allows you to create an **RStudio Project**, which is essentially a directory containing all the code, data, and outputs relevant to a specific analysis, tutorial, or other related work.  
-- When you open an RStudio project, the **working directory** is automatically set to that project folder.  
-
-#### **Why use RStudio Projects?**
-- **Consistent relative paths**: If you use absolute paths (e.g., `"C:/Users/YourName/Documents/Project"`), they will differ across devices and users. By working within an RStudio Project, all relative paths remain the same regardless of where the project is stored.  
-- **Easier collaboration**: Since everyone working on the project will have the same relative paths, sharing and running scripts across different machines becomes seamless.  
-- **Quick access**: Recently opened projects appear in the **top-right dropdown menu**, allowing you to switch between projects easily.  
-
----
-
-### **4.2 Organizing Project Files and Directories**
-
-A well-structured project prevents clutter and makes it easier to locate specific components. A simple, effective folder structure includes:
-
-| **Folder Name**     | **Purpose** |
-|----------------------|------------|
-| `_raw_data/`        | Stores unmodified datasets to be read into R. |
-| `_output/`          | Contains figures, reports, and final documents that may be shared with others. |
-| `_tmp/`            | Holds intermediate files or test outputs that are generated but not intended for sharing. |
-| `_reference/`       | Keeps supplementary materials such as papers, assignment details, or documentation. |
-
-#### **Why use this structure?**
-
-- **Prevents a cluttered project directory**: Without designated folders, everything (data, figures, outputs) ends up in the main directory, making it harder to distinguish important files.  
-- **Separates different file types**: Raw data is separate from generated outputs, making it clear what data was original and what was produced by the analysis.  
-- **Maintains organization for large projects**: As projects grow, structured folders help keep files manageable.  
-
-💡 **Scripts (`.R`, `.Rmd`, `.qmd`) should remain in the main project directory** rather than inside a `scripts/` or `source/` folder. R Markdown and Quarto assume the working directory is where the script is (e.g. `scripts/` if the file is `scripts/analysis.qmd`), leading to confusion when referencing paths.
-
-The actual folder names can vary, but the key is that there is a clear structure to the project.
-
----
-
-### **4.3 Structuring R Scripts for Readability**
-
-A well-structured script improves maintainability and reduces errors. 
-There are many style guides available that discuss many details, but here are what I consider the most important best practices:
-
-#### **1. Organize Scripts Logically**
-
-- Start with a **setup section**:
-  - **Attach libraries (`library()`)**
-  - **Load data (`read.csv()`, `readRDS()`, etc.)**  
-  - Avoid attaching packages or loading data in the middle of the script—this ensures that **everything needed to run the script is set up at the beginning**.  
-- Follow with the **analysis and processing steps**, keeping them logically grouped.
-
-#### **2. Improve Readability**
-
-- **Keep lines at a reasonable length**  
-  - Even with word wrapping enabled, excessively long lines make code harder to read and debug.  
-- **Use informative variable names**  
-  - Avoid generic names like `x`, `y`, or `my_data`. Instead, use names like `air_pollution_data`, `congestion_model_fit`, or `intercept_only_model`.  
-  - **Never reuse variable names**, even if they are descriptive. Reusing names can lead to unexpected behavior and debugging difficulties.
-
-#### **3. Use Section Headings for Organization**
-
-- Use **hash separators (`# ----`)** to visually segment scripts into sections.
-- RStudio recognizes these separators and allows code folding between them.
-
-##### **Example of Structured Script:**
-
-```r
-# ============================
-# Setup
-# ============================
-library(ggplot2)  # Attach required packages
-data_raw <- read.csv("_raw_data/air_pollution.csv")  # Load dataset
-
-# ============================
-# Data Cleaning
-# ============================
-data_cleaned <- data_raw |> 
-  dplyr::filter(!is.na(pm2.5)) |>  # Remove missing values
-  dplyr::mutate(log_pm = log(pm2.5))  # Create a transformed variable
-
-# ============================
-# Visualization
-# ============================
-ggplot(data_cleaned, aes(x = temperature, y = log_pm)) +
-  geom_point() +
-  geom_smooth(method = "lm")
-
-# ============================
-# Model Fitting
-# ============================
-model <- lm(log_pm ~ temperature + humidity, data = data_cleaned)
-```
-
----
-
-### **Summary of Best Practices**
-
-✅ **Use RStudio Projects** to ensure a consistent working directory and simplify collaboration.  
-✅ **Organize files into directories** (`_raw_data/`, `_output/`, `_temp/`, `_reference/`) to keep the project clean.  
-✅ **Structure R scripts well** by:
-   - Setting up everything at the top (libraries, data loading).  
-   - Using clear variable names.  
-   - Keeping lines readable.  
-   - Using structured headings (e.g `#==== Section Name ====`) to segment code.  
-
-By following these guidelines, you’ll create **more maintainable and reproducible** R projects.
-
-
+This interface layout makes it easy to write, test, and manage your R code.

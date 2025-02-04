@@ -1,0 +1,81 @@
+# Tackling Projects in RStudio
+
+Refer to the video `projects.mp4` for an overview of working on projects. Here are some principles for keeping your work organized and reproducible.
+
+## Using RStudio Projects
+
+- Click on **New Project** in the top-right corner of RStudio to create an RStudio Project.
+- This creates a directory containing all the code, data, and outputs for your analysis.
+- When you open a project, the working directory is automatically set to that project folder.
+
+**Benefits:**
+
+- **Consistent relative paths:** Avoids issues with absolute paths that vary across devices.
+- **Easier collaboration:** Consistent paths make sharing scripts seamless.
+- **Quick access:** Recently opened projects are available in the top-right dropdown menu.
+
+## Organizing Project Files and Directories
+
+A well-structured project prevents clutter and helps you locate files easily. A common folder structure might include:
+
+| Folder Name   | Purpose                                                       |
+|---------------|---------------------------------------------------------------|
+| `_raw_data/`  | Stores unmodified datasets                                   |
+| `_output/`    | Contains figures, reports, and final documents                |
+| `_tmp/`       | Holds intermediate files not intended for sharing             |
+| `_reference/` | Keeps supplementary materials such as papers and assignment details |
+
+*Note:* Keep scripts (e.g., `.R`, `.Rmd`, `.qmd`) in the main project directory to avoid issues with relative paths.
+
+## Structuring R Scripts for Readability
+
+Good script structure improves maintainability and reduces errors. Consider these guidelines:
+
+1. **Organize Scripts Logically**
+   - Begin with a setup section (load libraries and data).
+   - Follow with analysis and processing steps, grouped logically.
+
+2. **Improve Readability**
+   - Keep lines at a reasonable length (even with word wrapping).
+   - Use informative variable names instead of generic ones like `x` or `y`.
+   - Avoid reusing variable names to prevent confusion.
+
+3. **Use Section Headings**
+   - Separate your code into sections with comment dividers (e.g., `# ---- Setup ----`).
+   - RStudio recognizes these dividers and allows for code folding.
+
+**Example of a Structured Script:**
+
+```r
+# ============================
+# Setup
+# ============================
+library(ggplot2)              # Load required packages
+data_raw <- read.csv("_raw_data/air_pollution.csv")  # Load dataset
+
+# ============================
+# Data Cleaning
+# ============================
+data_cleaned <- data_raw |>
+  dplyr::filter(!is.na(pm2.5)) |>
+  dplyr::mutate(log_pm = log(pm2.5))
+
+# ============================
+# Visualization
+# ============================
+ggplot(data_cleaned, aes(x = temperature, y = log_pm)) +
+  geom_point() +
+  geom_smooth(method = "lm")
+
+# ============================
+# Model Fitting
+# ============================
+model <- lm(log_pm ~ temperature + humidity, data = data_cleaned)
+```
+
+## Summary of Best Practices
+
+- Use RStudio Projects for consistent working directories and collaboration.
+- Organize files into clearly named directories to avoid clutter.
+- Structure your R scripts with a logical order, clear variable names, and well-defined sections.
+

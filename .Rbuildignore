@@ -20,7 +20,9 @@
 ^_quarto\.yml$
 ^git\.qmd$
 ^index\.qmd$
-^qa\.qmd$
+^prac1\.qmd$
+^projects\.qmd$
+^projrsimple\.qmd$
 ^quarto\.qmd$
 ^r\.qmd$
 ^README\.Rmd$

@@ -1,0 +1,15 @@
+# Practical One
+
+1. Find all rows in “airquality” that have missing values.
+2. Find mean, sd, min, max for each of temperature and ozone
+level.
+3. For linear regression, parameter estimates can be found as
+follows.
+$\hat{\beta} = (X^TX)^{-1}X^TY$
+Here, Y is the response variable, and X is the design matrix.
+The cars data (an R data set) contains two variables: speed and
+distance to stop. Fit a simple linear regression model to these data,
+i.e. find the $\beta$ estimates, using the equation above, and matrix
+calcuations in R.
+4. Check that you get the same $\beta$ estimates as when fitting the
+linear regression model using lm() in R.

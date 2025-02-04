@@ -1,4 +1,0 @@
-# Question & answer section
-
-# Fundamental `R` objects and functions
-

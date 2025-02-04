@@ -1,5 +1,54 @@
-# Git
+# Git and GitHub
 
-```{r}
-plot(1, 1)
+See the video `git.mp4`.
+
+## Prerequites
+
+1. Create a GitHub account: [GitHub](https://www.github.com).
+2. Install Git: [Git](https://git-scm.com/downloads).
+
+## Setting Up Git
+
+In `RStudio`, open your project. 
+
+Then, run the following code:
+
+```r
+if (!requireNamespace("usethis", quietly = TRUE)) {
+  install.packages("usethis")
+}
+usethis::use_git()
 ```
+
+When it asks you whether you want to commit the extra files, say yes.
+
+## Connecting Git to GitHub
+
+Run the following code:
+
+```r
+usethis::create_github_token()
+```
+
+Name the token, set the expiry date and click on `Create`.
+Then copy the token (it looks like `ghp_akerjlwk4j5qlk45j`).
+
+Then, run the following code:
+
+```r
+gitcreds::gitcreds_set()
+```
+
+and paste your token.
+
+## Further resources
+
+- Happy Git with R:
+  - Set up guidance:
+    - [Why Git? Why GitHub?](https://happygitwithr.com/big-picture)
+    - [Register a GitHub account](https://happygitwithr.com/github-acct)
+    - [Install Git](https://happygitwithr.com/install-git)
+    - [Introduce Yourself to Git](https://happygitwithr.com/hello-git)
+    - [Personal Access tokens for HTTPS](https://happygitwithr.com/https-pat)
+  - Description of how Git works and how to use it:
+    - [Some Git Basics](https://happygitwithr.com/git-intro), and then the next few sections

@@ -1,0 +1,192 @@
+# Literate Programming
+
+See the video `quarto.mp4` for a visual explanation of this document.
+
+## What is Literate Programming? 
+
+LIterate programming combines **code** (e.g., R or Python) with **text** to create documents that are both readable and executable. The text itself is written in **Markdown**, a lightweight formatting language that allows us to structure documents with headings, bullet points, bold and italic text, and more.  
+
+Two key tools for literate programming in R are `R Markdown` and `Quarto`.  
+
+---
+
+# R Markdown  
+
+## What is R Markdown?
+
+`R Markdown` was the original tool for embedding code within documents. It allows users to write reports, create presentations, and generate formatted documents that include both text and code outputs.  
+
+## Structure of an R Markdown File 
+
+An **R Markdown file (`.Rmd`)** consists of three main components:  
+
+### 1. YAML Front Matter  
+The **YAML front matter** is the metadata at the top of the document. It controls the output format (e.g., HTML, PDF, Word).  
+
+Example:  
+```yaml
+---
+title: "My Report"
+output: html_document
+---
+```
+This tells R Markdown to generate an **HTML** document. Other options include `pdf_document` and `word_document`.  
+
+### 2. Code Chunks
+
+Code chunks are sections of executable code, enclosed by triple backticks (```) with a specified language. In our case, it will be **R**:  
+
+> ```{r, eval=FALSE}
+> summary(cars)
+> ```  
+
+- Backticks (`) are usually found next to the number 1 key on the keyboard.
+- By default, all code in chunks is executed when the document is rendered.  
+
+**Chunk Options:**  
+- **`echo = FALSE`** → Hides the code but still runs it.  
+- **`echo = TRUE`** → Displays both the code and its output.  
+- **Other options** can control figure size, message display, and more.  
+
+Example:
+
+> ```{r, echo=FALSE}
+> summary(cars)
+> ```
+
+The summary will appear in the final document, but the code itself won’t be displayed.  
+
+### 3. Markdown Formatting  
+
+Markdown is used for structuring text.  
+
+- **Headings:** Use `#` for headings (`##` for subheadings, `###` for deeper levels).  
+- **Bullet points:** Use `-` or `*`.  
+- **Numbered lists:** Use `1.`, `2.`, etc.  
+- **Bold text:** `**bold**` → **bold**  
+- **Italic text:** `*italic*` → *italic*  
+
+## Output  
+R Markdown can **embed plots, tables, and formatted text** into a document. When you include code that generates a plot, the plot will be displayed in the final output.  
+
+---
+
+# Quarto  
+
+## What is Quarto? 
+
+Quarto is the **successor to R Markdown**. It is very similar but:  
+- Has a different YAML front matter structure.  
+- Supports more programming languages (via Jupyter).  
+- Provides a **more unified** workflow for reports, websites, and books.  
+
+## Differences in YAML
+
+Instead of specifying `output: html_document` like in R Markdown, Quarto uses:  
+
+```yaml
+---
+title: "My Report"
+format: html
+---
+```
+
+Quarto uses `format` instead of `output`, making it more flexible.  
+
+## Code Chunks in Quarto  
+Quarto code chunks function similarly to R Markdown, but chunk options can be specified in a cleaner way:
+  
+```{r}
+#| echo: fenced
+#| eval: false
+summary(cars)
+```
+
+Using `#| option: value` inside the chunk makes options easier to read and manage.  
+
+---
+
+# Quarto Projects  
+
+## Why Use Quarto Projects? 
+
+One limitation of R Markdown was that while you could generate individual reports (`.html`, `.pdf`, etc.), managing multiple files in a project (e.g., a website) required extra tools like `bookdown`.  
+
+**Quarto solves this by providing built-in support for project structures.**  
+
+## Defining a Quarto Project 
+
+A **Quarto project** is defined by a `quarto.yml` file, which specifies how multiple `.qmd` files should be compiled together.  
+
+Example of a `quarto.yml` file for a website:  
+```yaml
+project:
+  type: website
+
+format:
+  html:
+    toc: true
+    toc-depth: 3
+```
+
+This tells Quarto:  
+- The project is a **website**.  .  
+- A **table of contents** should be generated (`toc: true`) for headings up to level 3 (`toc-depth: 3`).
+
+## Website vs. Book
+
+- **Website (`type: website`)**  
+  - Only outputs HTML.  
+  - Has a navigation bar linking different pages.  
+- **Book (`type: book`)**  
+  - Can output HTML, PDF, or Word.  
+  - Uses a `chapters:` key to define sections.  
+
+Example `quarto.yml` for a book:  
+```yaml
+project:
+  type: book
+
+book:
+  chapters:
+    - index.qmd
+    - intro.qmd
+    - analysis.qmd
+
+format:
+  pdf: 
+    documentclass: book
+```
+
+Here:  
+- The **chapters** define the book structure.  
+- The **format** section customizes the outputs.
+
+## Rendering a Quarto Project
+
+To build the entire project, use the **`quarto` R package**:  
+
+```r
+install.packages("quarto")
+quarto::quarto_render()
+```
+
+- This **renders all files** in the project according to `quarto.yml`.  
+- For **websites**, output is saved in `_site/`.  
+- For **books**, output is saved in `_book/`.  
+
+## Important Notes
+ 
+- To start a new Quarto project, go to **RStudio → New Project → Quarto Project**.  
+- If creating a website, ensure you have an `index.qmd` file—websites require an `index.html` as the main entry point.
+- Clicking the `Knit` button in RStudio will render the current `.qmd` file, but **`quarto::quarto_render()` is needed for the entire project**.
+
+---
+
+# Summary
+
+- `R Markdown` is an older tool for combining code and text, using `.Rmd` files.  
+- `Quarto` is the modern alternative, offering more flexibility and better multi-file management.  
+- **Quarto Projects** allow multiple `.qmd` files to be rendered together, creating websites or books.  
+
+By using Quarto, we can **write reports, build websites, and generate books—all from the same toolset!**
