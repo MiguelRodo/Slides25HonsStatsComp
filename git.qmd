@@ -11,12 +11,32 @@ See the video `git.mp4`.
 
 In `RStudio`, open your project. 
 
-Then, run the following code:
+Then, run the following code.
+
+Firstly, ensure `usethis` is installed:
 
 ```r
 if (!requireNamespace("usethis", quietly = TRUE)) {
   install.packages("usethis")
 }
+```
+
+Then, if you have not set Git up before, you'll need to run the following.
+Note that by "not set up Git", I do not mean whether you've installed Git, but rather
+whether you've given Git basic authorship information.
+If you're not sure, you can run the following:
+
+```r
+gert::git_config_global()
+```
+
+I am not exactly sure what it looks like if you've not set up Git authorship information,
+but the key thing is that it will not have a row where the first column is `user.name` and the second column is your name, and a row where the first column is `user.email` and the second column is your email address.
+
+If you can see you've not set `user.name` and `user.email`, then run the following, 
+swopping `NULL` with your name and email address:
+
+```r
 # set your username and your email address
 username <- NULL  # replace NULL with e.g. "Miguel Rodo" (be sure to include the quotes)
 email <- NULL # replace NULL with e.g. "miguel.rodo@uct.ac.za"
@@ -24,13 +44,20 @@ stopifnot(!is.null(username)) # just checking you set this
 stopifnot(!is.null(email))
 gert::git_config_global_set("user.name",  username)
 gert::git_config_global_set("user.email", email)
+```
+
+Finally, you are ready to initialise `git` for that project:
+
+```r
 usethis::use_git()
 ```
 
 When it asks you whether you want to commit the extra files, say yes.
-Note that you don't type "Absolutely" or "Definitely" or whatever corresponds to "yes", you just type the number that corresponds to `yes`.
+Be aware that you don't type "Absolutely" or "Definitely" or whatever corresponds to "yes", you just type the number that corresponds to `yes`.
 
 After running the above, to get the `Git` pane to appear in the top right corner (alongside `Environment` and `History`), you need to close and re-open `RStudio`.
+
+You will not need to install `usethis` and set `Git` authorship information for each project, but you will need to initialise `Git` for each project.
 
 ## Connecting Git to GitHub
 

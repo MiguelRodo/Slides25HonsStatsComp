@@ -31,4 +31,11 @@ remotes::install_github("MiguelRodo/projrsimple")
 
 ## Usage
 
+1. Install `projrsimple` (see above).
+2. Open an R session in your project directory (folder where you want to work).
+3. Run `projr_init()` to initialise your project (set up Git, GitHub, project directories and a README; simpler than the other instructions for doing this).
+4. Write code in scripts (`.R`, `.Rmd`, `.qmd` and/or Quarto projects) in the project directory.
+5. Run `projr_run` to execute all scripts. Within those scripts, save outputs to `_output` directory.
+6. View rendered documents in the `docs` directory.
+
 See the package website for more information: [projrsimple](https://miguelrodo.github.io/projrsimple/).
