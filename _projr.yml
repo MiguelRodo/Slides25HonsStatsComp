@@ -7,18 +7,7 @@ directories:
     path: _output
   docs:
     path: docs
+    ignore: no
 build:
   git: yes
-  github:
-    latest:
-      content:
-      - data-raw
-      - output
-      - docs
-      structure: latest
-    archive:
-      content:
-      - output
-      - docs
-      - data-raw
 
