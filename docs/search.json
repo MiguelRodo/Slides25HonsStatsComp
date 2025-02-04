@@ -320,11 +320,21 @@
     ]
   },
   {
+    "objectID": "quarto.html#starting-a-quarto-project",
+    "href": "quarto.html#starting-a-quarto-project",
+    "title": "4  Literate Programming",
+    "section": "7.2 Starting a Quarto Project",
+    "text": "7.2 Starting a Quarto Project\n\n7.2.1 Via RStudio GUI\nUnfortunately, in RStudio one cannot start a Quart project via the New File menu. Instead, you have to start a new RStudio project entirely. The change is that you must select Quarto Project from the New Project menu.\n\n\n7.2.2 By adding a quarto.yml file\nAlternatively, what you can do is simply add a _quarto.yml file. Here is an example _quarto.yml file:\nproject:\n  type: book\n  render:\n  - index.qmd\n  output-dir: docs\nbook:\n  title: Statistical Computing\n  sidebar:\n    border: true\n    background: light\n    position: right\n  navbar:\n    search: true\n    background: light\n  chapters:\n  - index.qmd\nformat:\n  html:\n    theme: cosmo\n    toc: true\n    toc-depth: 3\n    toc-location: left\nA brief explanation of this file:\n\nindex.qmd is the “base” qmd. It is the first file that will be rendered. Always include it.\n\nIf you want to include other files, then specify them in the chapters and render keys.\n\noutput-dir specifies where the output will be saved. In this case, it will be saved in a docs folder.\nbook specifies the title of the book, the sidebar, the navbar, and the chapters.\nformat specifies specific formatting options for the html outputL\n\nThe theme defines the overall appearance of the website.\ntoc specifies whether a table of contents should be generated, and the toc-depth specifies how many levels of headings should be included.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Literate Programming</span>"
+    ]
+  },
+  {
     "objectID": "quarto.html#defining-a-quarto-project",
     "href": "quarto.html#defining-a-quarto-project",
     "title": "4  Literate Programming",
-    "section": "7.2 Defining a Quarto Project",
-    "text": "7.2 Defining a Quarto Project\nA Quarto project is defined by a quarto.yml file, which specifies how multiple .qmd files should be compiled together.\nExample of a quarto.yml file for a website:\nproject:\n  type: website\n\nformat:\n  html:\n    toc: true\n    toc-depth: 3\nThis tells Quarto:\n- The project is a website. .\n- A table of contents should be generated (toc: true) for headings up to level 3 (toc-depth: 3).",
+    "section": "7.3 Defining a Quarto Project",
+    "text": "7.3 Defining a Quarto Project\nA Quarto project is defined by a quarto.yml file, which specifies how multiple .qmd files should be compiled together.\nExample of a quarto.yml file for a website:\nproject:\n  type: website\n\nformat:\n  html:\n    toc: true\n    toc-depth: 3\nThis tells Quarto:\n- The project is a website. .\n- A table of contents should be generated (toc: true) for headings up to level 3 (toc-depth: 3).",
     "crumbs": [
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>Literate Programming</span>"
     ]
@@ -333,8 +343,8 @@
     "objectID": "quarto.html#website-vs.-book",
     "href": "quarto.html#website-vs.-book",
     "title": "4  Literate Programming",
-    "section": "7.3 Website vs. Book",
-    "text": "7.3 Website vs. Book\n\nWebsite (type: website)\n\nOnly outputs HTML.\n\nHas a navigation bar linking different pages.\n\n\nBook (type: book)\n\nCan output HTML, PDF, or Word.\n\nUses a chapters: key to define sections.\n\n\nExample quarto.yml for a book:\nproject:\n  type: book\n\nbook:\n  chapters:\n    - index.qmd\n    - intro.qmd\n    - analysis.qmd\n\nformat:\n  pdf: \n    documentclass: book\nHere:\n- The chapters define the book structure.\n- The format section customizes the outputs.",
+    "section": "7.4 Website vs. Book",
+    "text": "7.4 Website vs. Book\n\nWebsite (type: website)\n\nOnly outputs HTML.\n\nHas a navigation bar linking different pages.\n\n\nBook (type: book)\n\nCan output HTML, PDF, or Word.\n\nUses a chapters: key to define sections.\n\n\nExample quarto.yml for a book:\nproject:\n  type: book\n\nbook:\n  chapters:\n    - index.qmd\n    - intro.qmd\n    - analysis.qmd\n\nformat:\n  pdf: \n    documentclass: book\nHere:\n- The chapters define the book structure.\n- The format section customizes the outputs.",
     "crumbs": [
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>Literate Programming</span>"
     ]
@@ -343,8 +353,8 @@
     "objectID": "quarto.html#rendering-a-quarto-project",
     "href": "quarto.html#rendering-a-quarto-project",
     "title": "4  Literate Programming",
-    "section": "7.4 Rendering a Quarto Project",
-    "text": "7.4 Rendering a Quarto Project\nTo build the entire project, use the quarto R package:\ninstall.packages(\"quarto\")\nquarto::quarto_render()\n\nThis renders all files in the project according to quarto.yml.\n\nFor websites, output is saved in _site/.\n\nFor books, output is saved in _book/.",
+    "section": "7.5 Rendering a Quarto Project",
+    "text": "7.5 Rendering a Quarto Project\nTo build the entire project, use the quarto R package:\ninstall.packages(\"quarto\")\nquarto::quarto_render()\n\nThis renders all files in the project according to quarto.yml.\n\nFor websites, output is saved in _site/.\n\nFor books, output is saved in _book/.",
     "crumbs": [
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>Literate Programming</span>"
     ]
@@ -353,8 +363,8 @@
     "objectID": "quarto.html#important-notes",
     "href": "quarto.html#important-notes",
     "title": "4  Literate Programming",
-    "section": "7.5 Important Notes",
-    "text": "7.5 Important Notes\n\nTo start a new Quarto project, go to RStudio → New Project → Quarto Project.\n\nIf creating a website, ensure you have an index.qmd file—websites require an index.html as the main entry point.\nClicking the Knit button in RStudio will render the current .qmd file, but quarto::quarto_render() is needed for the entire project.",
+    "section": "7.6 Important Notes",
+    "text": "7.6 Important Notes\n\nTo start a new Quarto project, go to RStudio → New Project → Quarto Project.\n\nIf creating a website, ensure you have an index.qmd file—websites require an index.html as the main entry point.\nClicking the Knit button in RStudio will render the current .qmd file, but quarto::quarto_render() is needed for the entire project.",
     "crumbs": [
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>Literate Programming</span>"
     ]

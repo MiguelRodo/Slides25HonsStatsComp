@@ -208,10 +208,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#quarto-projects" id="toc-quarto-projects" class="nav-link" data-scroll-target="#quarto-projects"><span class="header-section-number">7</span> Quarto Projects</a>
   <ul class="collapse">
   <li><a href="#why-use-quarto-projects" id="toc-why-use-quarto-projects" class="nav-link" data-scroll-target="#why-use-quarto-projects"><span class="header-section-number">7.1</span> Why Use Quarto Projects?</a></li>
-  <li><a href="#defining-a-quarto-project" id="toc-defining-a-quarto-project" class="nav-link" data-scroll-target="#defining-a-quarto-project"><span class="header-section-number">7.2</span> Defining a Quarto Project</a></li>
-  <li><a href="#website-vs.-book" id="toc-website-vs.-book" class="nav-link" data-scroll-target="#website-vs.-book"><span class="header-section-number">7.3</span> Website vs.&nbsp;Book</a></li>
-  <li><a href="#rendering-a-quarto-project" id="toc-rendering-a-quarto-project" class="nav-link" data-scroll-target="#rendering-a-quarto-project"><span class="header-section-number">7.4</span> Rendering a Quarto Project</a></li>
-  <li><a href="#important-notes" id="toc-important-notes" class="nav-link" data-scroll-target="#important-notes"><span class="header-section-number">7.5</span> Important Notes</a></li>
+  <li><a href="#starting-a-quarto-project" id="toc-starting-a-quarto-project" class="nav-link" data-scroll-target="#starting-a-quarto-project"><span class="header-section-number">7.2</span> Starting a Quarto Project</a>
+  <ul class="collapse">
+  <li><a href="#via-rstudio-gui" id="toc-via-rstudio-gui" class="nav-link" data-scroll-target="#via-rstudio-gui"><span class="header-section-number">7.2.1</span> Via <code>RStudio</code> GUI</a></li>
+  <li><a href="#by-adding-a-quarto.yml-file" id="toc-by-adding-a-quarto.yml-file" class="nav-link" data-scroll-target="#by-adding-a-quarto.yml-file"><span class="header-section-number">7.2.2</span> By adding a <code>quarto.yml</code> file</a></li>
+  </ul></li>
+  <li><a href="#defining-a-quarto-project" id="toc-defining-a-quarto-project" class="nav-link" data-scroll-target="#defining-a-quarto-project"><span class="header-section-number">7.3</span> Defining a Quarto Project</a></li>
+  <li><a href="#website-vs.-book" id="toc-website-vs.-book" class="nav-link" data-scroll-target="#website-vs.-book"><span class="header-section-number">7.4</span> Website vs.&nbsp;Book</a></li>
+  <li><a href="#rendering-a-quarto-project" id="toc-rendering-a-quarto-project" class="nav-link" data-scroll-target="#rendering-a-quarto-project"><span class="header-section-number">7.5</span> Rendering a Quarto Project</a></li>
+  <li><a href="#important-notes" id="toc-important-notes" class="nav-link" data-scroll-target="#important-notes"><span class="header-section-number">7.6</span> Important Notes</a></li>
   </ul></li>
   <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">8</span> Summary</a></li>
   </ul>
@@ -361,23 +366,70 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>One limitation of R Markdown was that while you could generate individual reports (<code>.html</code>, <code>.pdf</code>, etc.), managing multiple files in a project (e.g., a website) required extra tools like <code>bookdown</code>.</p>
 <p><strong>Quarto solves this by providing built-in support for project structures.</strong></p>
 </section>
-<section id="defining-a-quarto-project" class="level2" data-number="7.2">
-<h2 data-number="7.2" class="anchored" data-anchor-id="defining-a-quarto-project"><span class="header-section-number">7.2</span> Defining a Quarto Project</h2>
+<section id="starting-a-quarto-project" class="level2" data-number="7.2">
+<h2 data-number="7.2" class="anchored" data-anchor-id="starting-a-quarto-project"><span class="header-section-number">7.2</span> Starting a Quarto Project</h2>
+<section id="via-rstudio-gui" class="level3" data-number="7.2.1">
+<h3 data-number="7.2.1" class="anchored" data-anchor-id="via-rstudio-gui"><span class="header-section-number">7.2.1</span> Via <code>RStudio</code> GUI</h3>
+<p>Unfortunately, in <code>RStudio</code> one cannot start a Quart project via the <code>New File</code> menu. Instead, you have to start a new <code>RStudio</code> project entirely. The change is that you must select <code>Quarto Project</code> from the <code>New Project</code> menu.</p>
+</section>
+<section id="by-adding-a-quarto.yml-file" class="level3" data-number="7.2.2">
+<h3 data-number="7.2.2" class="anchored" data-anchor-id="by-adding-a-quarto.yml-file"><span class="header-section-number">7.2.2</span> By adding a <code>quarto.yml</code> file</h3>
+<p>Alternatively, what you can do is simply add a <code>_quarto.yml</code> file. Here is an example <code>_quarto.yml</code> file:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode yml code-with-copy"><code class="sourceCode yaml"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">project</span><span class="kw">:</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">type</span><span class="kw">:</span><span class="at"> book</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">render</span><span class="kw">:</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> index.qmd</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">output-dir</span><span class="kw">:</span><span class="at"> docs</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="fu">book</span><span class="kw">:</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">title</span><span class="kw">:</span><span class="at"> Statistical Computing</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">sidebar</span><span class="kw">:</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">border</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">background</span><span class="kw">:</span><span class="at"> light</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">position</span><span class="kw">:</span><span class="at"> right</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">navbar</span><span class="kw">:</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">search</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">background</span><span class="kw">:</span><span class="at"> light</span></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">chapters</span><span class="kw">:</span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="kw">-</span><span class="at"> index.qmd</span></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">html</span><span class="kw">:</span></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">theme</span><span class="kw">:</span><span class="at"> cosmo</span></span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">toc</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">toc-depth</span><span class="kw">:</span><span class="at"> </span><span class="dv">3</span></span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">toc-location</span><span class="kw">:</span><span class="at"> left</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>A brief explanation of this file:</p>
+<ul>
+<li><code>index.qmd</code> is the “base” <code>qmd</code>. It is the first file that will be rendered. Always include it.
+<ul>
+<li>If you want to include other files, then specify them in the <code>chapters</code> and <code>render</code> keys.</li>
+</ul></li>
+<li><code>output-dir</code> specifies where the output will be saved. In this case, it will be saved in a <code>docs</code> folder.</li>
+<li><code>book</code> specifies the title of the book, the sidebar, the navbar, and the chapters.</li>
+<li><code>format</code> specifies specific formatting options for the <code>html</code> outputL
+<ul>
+<li>The <code>theme</code> defines the overall appearance of the website.</li>
+<li><code>toc</code> specifies whether a table of contents should be generated, and the <code>toc-depth</code> specifies how many levels of headings should be included.</li>
+</ul></li>
+</ul>
+</section>
+</section>
+<section id="defining-a-quarto-project" class="level2" data-number="7.3">
+<h2 data-number="7.3" class="anchored" data-anchor-id="defining-a-quarto-project"><span class="header-section-number">7.3</span> Defining a Quarto Project</h2>
 <p>A <strong>Quarto project</strong> is defined by a <code>quarto.yml</code> file, which specifies how multiple <code>.qmd</code> files should be compiled together.</p>
 <p>Example of a <code>quarto.yml</code> file for a website:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">project</span><span class="kw">:</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">type</span><span class="kw">:</span><span class="at"> website</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">html</span><span class="kw">:</span></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">toc</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">toc-depth</span><span class="kw">:</span><span class="at"> </span><span class="dv">3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">project</span><span class="kw">:</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">type</span><span class="kw">:</span><span class="at"> website</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">html</span><span class="kw">:</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">toc</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">toc-depth</span><span class="kw">:</span><span class="at"> </span><span class="dv">3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>This tells Quarto:<br>
 - The project is a <strong>website</strong>. .<br>
 - A <strong>table of contents</strong> should be generated (<code>toc: true</code>) for headings up to level 3 (<code>toc-depth: 3</code>).</p>
 </section>
-<section id="website-vs.-book" class="level2" data-number="7.3">
-<h2 data-number="7.3" class="anchored" data-anchor-id="website-vs.-book"><span class="header-section-number">7.3</span> Website vs.&nbsp;Book</h2>
+<section id="website-vs.-book" class="level2" data-number="7.4">
+<h2 data-number="7.4" class="anchored" data-anchor-id="website-vs.-book"><span class="header-section-number">7.4</span> Website vs.&nbsp;Book</h2>
 <ul>
 <li><strong>Website (<code>type: website</code>)</strong>
 <ul>
@@ -394,27 +446,27 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul></li>
 </ul>
 <p>Example <code>quarto.yml</code> for a book:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">project</span><span class="kw">:</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">type</span><span class="kw">:</span><span class="at"> book</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="fu">book</span><span class="kw">:</span></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">chapters</span><span class="kw">:</span></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> index.qmd</span></span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> intro.qmd</span></span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> analysis.qmd</span></span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span></span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">pdf</span><span class="kw">:</span><span class="at"> </span></span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">documentclass</span><span class="kw">:</span><span class="at"> book</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">project</span><span class="kw">:</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">type</span><span class="kw">:</span><span class="at"> book</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="fu">book</span><span class="kw">:</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">chapters</span><span class="kw">:</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> index.qmd</span></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> intro.qmd</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> analysis.qmd</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="fu">format</span><span class="kw">:</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">pdf</span><span class="kw">:</span><span class="at"> </span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">documentclass</span><span class="kw">:</span><span class="at"> book</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Here:<br>
 - The <strong>chapters</strong> define the book structure.<br>
 - The <strong>format</strong> section customizes the outputs.</p>
 </section>
-<section id="rendering-a-quarto-project" class="level2" data-number="7.4">
-<h2 data-number="7.4" class="anchored" data-anchor-id="rendering-a-quarto-project"><span class="header-section-number">7.4</span> Rendering a Quarto Project</h2>
+<section id="rendering-a-quarto-project" class="level2" data-number="7.5">
+<h2 data-number="7.5" class="anchored" data-anchor-id="rendering-a-quarto-project"><span class="header-section-number">7.5</span> Rendering a Quarto Project</h2>
 <p>To build the entire project, use the <strong><code>quarto</code> R package</strong>:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"quarto"</span>)</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>quarto<span class="sc">::</span><span class="fu">quarto_render</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"quarto"</span>)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>quarto<span class="sc">::</span><span class="fu">quarto_render</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li>This <strong>renders all files</strong> in the project according to <code>quarto.yml</code>.<br>
 </li>
@@ -423,8 +475,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>For <strong>books</strong>, output is saved in <code>_book/</code>.</li>
 </ul>
 </section>
-<section id="important-notes" class="level2" data-number="7.5">
-<h2 data-number="7.5" class="anchored" data-anchor-id="important-notes"><span class="header-section-number">7.5</span> Important Notes</h2>
+<section id="important-notes" class="level2" data-number="7.6">
+<h2 data-number="7.6" class="anchored" data-anchor-id="important-notes"><span class="header-section-number">7.6</span> Important Notes</h2>
 <ul>
 <li>To start a new Quarto project, go to <strong>RStudio → New Project → Quarto Project</strong>.<br>
 </li>
