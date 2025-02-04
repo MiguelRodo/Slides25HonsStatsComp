@@ -1,5 +1,7 @@
 # CHANGELOG
 
+- Patch (v1.0.6): Miguel Rodo (2025-02-04 09:46:13)
+  - Add helpful information
 - Patch (v1.0.5): Miguel Rodo (2025-02-04 09:00:05)
   - Add further instructions
 - Patch (v1.0.4): Miguel Rodo (2025-02-04 08:57:06)
