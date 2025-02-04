@@ -1,5 +1,7 @@
 # CHANGELOG
 
+- Patch (v1.0.4): Miguel Rodo (2025-02-04 08:57:06)
+  - Add extra git config instructions
 - Patch (v1.0.3): Miguel Rodo (2025-02-04 08:05:52)
   - Add _quarto.yml file
 - Patch (v1.0.2): Miguel Rodo (2025-02-04 02:10:45)
