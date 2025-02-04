@@ -1,26 +1,12 @@
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# {{ Package }}
+# Slides25HonsStatsComp
 
 <!-- badges: start -->
 <!-- badges: end -->
 
-The goal of {{ Package }} is to …
+The goal of `Slides25HonsStatsComp` is to create and display content for
+days one, four and five of the honours statistical computing course.
 
-## Installation
-
-You can install the development version of {{ Package }} like so:
-
-    # FILL THIS IN! HOW CAN PEOPLE INSTALL YOUR DEV PACKAGE?
-
-The purpose of Slides25HonsStatsComp is to create slides for
-thestatistics honours course.
-
-## Citation
-
-## Citation
-
-To cite `Slides25HonsStatsComp` in publications use: @Misc{rodo, title =
-{Slides25HonsStatsComp: Slides}, author = {Miguel Rodo}, url =
-{<https://github.com/MiguelRodo/Slides25HonsStatsComp/#readme>},
-abstract = {Slides}, version = {0.0.0-1}, }
+The content is available at the following link:
+<https://miguelrodo.github.io/Slides25HonsStatsComp>.

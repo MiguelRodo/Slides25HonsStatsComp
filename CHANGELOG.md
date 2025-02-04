@@ -1,5 +1,7 @@
 # CHANGELOG
 
+- Patch (v1.0.2): Miguel Rodo (2025-02-04 02:10:45)
+  - Add website reference
 - Patch (v1.0.1): Miguel Rodo (2025-02-04 02:02:18)
   - Build correctly
 - **Major** (v1.0.0): Miguel Rodo (2025-02-04 02:01:30)
