@@ -1,4 +1,4 @@
-# `projsimple`
+# `projrsimple`
 
 I've written a simple package to help you:
 
