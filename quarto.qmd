@@ -114,6 +114,54 @@ One limitation of R Markdown was that while you could generate individual report
 
 **Quarto solves this by providing built-in support for project structures.**  
 
+## Starting a Quarto Project
+
+### Via `RStudio` GUI
+
+Unfortunately, in `RStudio` one cannot start a Quart project via the `New File` menu.
+Instead, you have to start a new `RStudio` project entirely.
+The change is that you must select `Quarto Project` from the `New Project` menu.
+
+### By adding a `quarto.yml` file
+
+Alternatively, what you can do is simply add a `_quarto.yml` file.
+Here is an example `_quarto.yml` file:
+
+```yml
+project:
+  type: book
+  render:
+  - index.qmd
+  output-dir: docs
+book:
+  title: Statistical Computing
+  sidebar:
+    border: true
+    background: light
+    position: right
+  navbar:
+    search: true
+    background: light
+  chapters:
+  - index.qmd
+format:
+  html:
+    theme: cosmo
+    toc: true
+    toc-depth: 3
+    toc-location: left
+```
+
+A brief explanation of this file:
+
+- `index.qmd` is the "base" `qmd`. It is the first file that will be rendered. Always include it.
+  - If you want to include other files, then specify them in the `chapters` and `render` keys.
+- `output-dir` specifies where the output will be saved. In this case, it will be saved in a `docs` folder.
+- `book` specifies the title of the book, the sidebar, the navbar, and the chapters.
+- `format` specifies specific formatting options for the `html` outputL
+  - The `theme` defines the overall appearance of the website.
+  - `toc` specifies whether a table of contents should be generated, and the `toc-depth` specifies how many levels of headings should be included.
+
 ## Defining a Quarto Project 
 
 A **Quarto project** is defined by a `quarto.yml` file, which specifies how multiple `.qmd` files should be compiled together.  
