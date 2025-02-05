@@ -1,4 +1,4 @@
-# Tackling Projects in RStudio
+# Tackling Projects in RStudio {#sec-day1-projects}
 
 Refer to the video `projects.mp4` for an overview of working on projects. Here are some principles for keeping your work organized and reproducible.
 

@@ -1,4 +1,4 @@
-# Practical One
+# Practical One {#sec-day1-prac1}
 
 **NOTE**: the answers to the questions below should be placed into their own qmd file in a Quarto project on GitHub.
 This Quarto project (the rendered document itself, as well as the source code on GitHub) will be peer-assessed next week.

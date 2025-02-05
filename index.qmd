@@ -1,4 +1,4 @@
-# Welcome
+# Welcome {-}
 
 We have a lot to cover in this bootcamp-style course. By the end, you should be able to **write acceptable assignments faster**. One of the biggest time sinks in Honours statistics is the process of writing up your analyses, which is often slowed down by two major issues:
 

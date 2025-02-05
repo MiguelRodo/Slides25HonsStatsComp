@@ -1,4 +1,4 @@
-# Git and GitHub
+# Git and GitHub {#sec-day1-git}
 
 ## Prerequites
 

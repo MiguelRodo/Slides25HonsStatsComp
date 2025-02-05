@@ -1,4 +1,4 @@
-# Day One
+# Day One {#sec-day1 .unnumbered}
 
 ## What Will We Cover by the End of Day One?
 

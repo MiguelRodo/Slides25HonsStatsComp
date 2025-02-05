@@ -1,4 +1,4 @@
-# Literate Programming
+# Literate Programming {#sec-day1-quarto}
 
 See the video `quarto.mp4` for a visual explanation of this document.
 

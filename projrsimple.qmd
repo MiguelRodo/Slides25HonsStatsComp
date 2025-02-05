@@ -1,4 +1,4 @@
-# `projrsimple`
+# `projrsimple` {#sec-day1-projrsimple}
 
 I've written a simple package to help you:
 

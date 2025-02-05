@@ -1,4 +1,4 @@
-# Fundamental R Objects and Functions
+# Fundamental R Objects and Functions {#sec-day1-r}
 
 See the video `r.mp4` for a visual explanation of this document.
 
