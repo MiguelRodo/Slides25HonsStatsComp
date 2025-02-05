@@ -1,7 +1,5 @@
 # Git and GitHub
 
-See the video `git.mp4`.
-
 ## Prerequites
 
 1. Create a GitHub account: [GitHub](https://www.github.com).
@@ -39,6 +37,8 @@ You can also create a new repo directly on GitHub, and then clone it (Git-speak 
 Here are the instructions: [New project, GitHub first](https://happygitwithr.com/new-github-first).
 
 ### Approach 2: Begin with `RStudio` project on your machine, and then connect it to GitHub
+
+See the video `git.mp4` for this process illustrated.
 
 In `RStudio`, open your project. 
 
