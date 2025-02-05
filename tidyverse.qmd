@@ -1,0 +1,179 @@
+# Making working with `R` objects easier
+
+- Most of this is going to be pakcages from the `tidyverse`
+- But we will also introduce the pipe, `|>`, which is not from the `tidyverse`.
+  - There is a `tidyverse` equivalent (`%>%`), but it requires the `magrittr` package and so it's usually better to have to attach fewer packages than more to run the code, so I recommend that. But up to you.
+
+## Display of dataframes
+
+Let's use this dataframe as an example:
+
+```{r}
+example_df <- data.frame(
+  id = rep(paste0("id_", 1:500), each = 20),
+  timepoint = rep(1:20, 500),
+  disease_status = rep(
+    sample(c("healthy", "diseased"), 20, replace = TRUE),
+    each = 500
+  ),
+  blood_pressure = c(
+    runif(20, 120, 140) |> round(),
+    sample(c(NA, runif(19, 120, 140)), 9980, replace = TRUE)
+  )
+)
+example_df[50, "disease_status"] <- ("Healthy")
+```
+
+## `tibble`
+
+It has 10000 rows:
+
+```{r}
+nrow(example_df)
+```
+
+So, when we have a look at it, we need to use the `head` command to have a look at the first few rows, otherwise we will print 10000 rows to the console and have to wait for it to finish:
+
+```{r}
+head(example_df)
+```
+
+This is inconvenient, and we often forget this, so I prefer to always make my dataframe a tibble.
+To do this, install and attach the `tibble` package:
+
+Use the `tibble` package, which is part of the `tidyverse`:
+
+```{r}
+if (!requireNamespace("tibble", quietly = TRUE)) {
+  install.packages("tibble")
+}
+library(tibble)
+```
+
+So, you can convert the dataframe to a tibble like this:
+
+```{r}
+class(example_df)
+example_df <- as_tibble(example_df)
+class(example_df)
+```
+
+Now when we display it, we only see the first ten rows:
+
+```{r}
+example_df
+```
+
+You'll also see that it tells you what type each column is.
+This is useful, as you couldn't tell by looking at the output of the pre-`tibble` printing of the dataframe whether, e.g. `timepoint` was a number or a character.
+You may get odd bugs down the line if you don't know what type each column is.\
+
+I have two packages I virtually always attach at the top of the scripts - `tibble` and `ggplot2`, so I suggest keeping `tibble` there for you.
+Note that you can also use `tibble` to create dataframes, so you can use it instead of `data.frame` to create dataframes:
+
+```{r}
+new_tbl <- tibble(x = 1:5, y = rnorm(5))
+```
+
+The primary reason is that the display of dataframes is much better with `tibble` than with the base `R` dataframes.
+
+## `view_cols`
+
+Another thing I find useful is the `view_cols` function from the `UtilsDataRSV` package I wrote.
+You can install it like this:
+
+```r
+if (!requireNamespace("remotes", quietly = TRUE)) {
+  install.packages("remotes")
+}
+remotes::install_github("SATVILab/UtilsDataRSV")
+```
+
+What it does is show unique entries from each column, and if there are any NAs in a particular column, those are always shown:
+
+
+
+This example data frame where we have twenty measurements per individual of their blood pressure at a sequence of timepoints, as well are their disease status:
+
+```{r}
+example_df
+```
+
+The first ten rows are all from the same participant, so we can't see all the values for `disease_status`.
+There are 10 000 rows, so we also aren't sure if there are any `NA` entries.
+
+So, we can use `view_cols` to see the unique entries in each column:
+
+```{r}
+example_df |>
+  UtilsDataRSV::view_cols()
+```
+
+- We can see that there are 500 unique entries for `id`, which is what we can compare with what we expect. 
+- We see a range of timepoints.
+- We see that there are three unique entries for `disease_status`, with one of them clearly being a typo (`Healthy`). 
+- We can see that there are missing data for `blood_pressure`, which we would have missed if we just looked at the first few rows.
+
+I find that this is a function I've returned to again and again, as once you've done a bunch of data processing you want to know that you won't get any surprises down the line because of things like typos (`Healthy`) or missing data.
+So, I often use it to have a look at the data first (what problems do I need to fix?) and then along the way and after (did I fix the problem, did I introduce any new problems?).
+
+I've seen that there is also the `skimr` package, which probably does similar things and may be more polished, so have a look there if you like. 
+
+## Pipe
+
+- Essentially, the pipe is a rewrite of code, from
+
+```r
+f(x,y)
+```
+
+to 
+
+```r
+x |> f(y)
+```
+
+The two produce exactly the same results.
+But the difference is that, when you have a bunch of things you need to do to an obejct (e.g. select certain rows from a dataframe, add new columns, etc.), the pipe makes it easier to read and write the code.
+
+See [R4DS](https://r4ds.hadley.nz/data-transform.html#sec-the-pipe) on the pipe.
+
+Problems with base `R` manipulations of things like data frames and lists and so on:
+
+- Inconsistent syntax:
+  - For example
+- Not concise syntax
+  - For example:
+    - `test_df[test_df[["column"]] == "value", ]`
+  - Regular expressions
+    - `grepl("pattern", "string")`
+- Does not necessarily work well with pipes
+  - To work well with pipes, we want the first parameter to take the return value from the previous one
+- Inconsistent return values
+  - E.g. `test_df[, 1] vs test_df[, c(1, 2)]`
+
+## `dplyr`
+
+- `dplyr` provides key functions for working with data frames
+- For example, `filter`
+
+- 
+
+- dplyr
+- magrittr
+- ggplot2
+- tidyr
+- pipes
+- Notable mentions:
+  - `broom`
+  - `tidymodels`
+  - `forcats`
+  - `lubridate`
+  - `stringr`
+  - `readr`
+  - `purrr`
+  - `tibble`
+  - `rlang`
+  - `stringi`
+  - `readxl`
+  - `haven`

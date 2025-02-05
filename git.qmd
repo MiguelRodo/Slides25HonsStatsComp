@@ -9,6 +9,11 @@ See the video `git.mp4`.
 
 ## Setting Up Git
 
+*Note*:
+
+- Below I describe how to start an R project and connect it to Git and GitHub. Longer instructions are available at the HappyGitWithR website for doing the same thing: [R first, GitHub last](https://happygitwithr.com/existing-github-last)
+  - If you want to instead create a Git repo first, and then download it and connect it to R, see these HappyGitWithR instructions: [New project, GitHub first](https://happygitwithr.com/new-github-first).
+
 In `RStudio`, open your project. 
 
 Then, run the following code.
