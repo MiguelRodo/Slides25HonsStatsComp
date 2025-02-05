@@ -1,6 +1,5 @@
 # Making working with `R` objects easier {#sec-day5-tidyverse}
 
-
 ## Displaying Dataframes in R
 
 Working with large dataframes can be challenging if you inadvertently print all rows to the console.
@@ -39,11 +38,11 @@ However, constantly having to call `head()` is not ideal. A better solution is t
 
 ---
 
-## Enhancing Dataframe Display with `tibble`
+### Enhancing Dataframe Display with `tibble`
 
 The `tibble` package (a core part of the tidyverse) offers a more concise and informative display. When you print a tibble, it only shows the first 10 rows and includes data type information for each column. This is particularly useful because it lets you quickly verify, for example, whether `timepoint` is numeric or character—information that can be obscured in the default dataframe printout.
 
-### Installation and Conversion
+#### Installation and Conversion
 
 First, ensure that the `tibble` package is installed and loaded:
 
@@ -85,17 +84,17 @@ So always add `library(tibble)` to the top of your script.
 
 ---
 
-## Exploring Data Columns with `view_cols`
+### Exploring Data Columns with `view_cols`
 
 Another useful tool is the `view_cols` function from the `UtilsDataRSV` package. This function displays unique entries for each column—always showing any missing values (NAs)—so you can quickly identify anomalies such as typos or unexpected values.
 
-### When and Why to Use `view_cols`
+#### When and Why to Use `view_cols`
 
 - **Identify Typos:** In our example, the first ten rows may not reveal that `disease_status` contains three unique entries (e.g., `"healthy"`, `"diseased"`, and the typo `"Healthy"`).
 - **Detect Missing Data:** With 10,000 rows, it’s easy to overlook missing values (NAs) when only a few rows are displayed.
 - **Verify Expected Values:** For instance, the `id` column should have 500 unique entries, and `view_cols` can help you confirm this.
 
-### Installation
+#### Installation
 
 To install the `UtilsDataRSV` package, use the following code:
 
@@ -106,7 +105,7 @@ if (!requireNamespace("remotes", quietly = TRUE)) {
 remotes::install_github("SATVILab/UtilsDataRSV")
 ```
 
-### Using `view_cols`
+#### Using `view_cols`
 
 Once installed, you can apply `view_cols` to your tibble to inspect the unique values in each column:
 
