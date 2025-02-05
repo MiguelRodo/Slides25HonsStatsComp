@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>3&nbsp; Tackling Projects in RStudio – Statistical Computing</title>
+<title>8&nbsp; Making working with R objects easier – Statistical Computing</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -64,8 +64,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./quarto.html" rel="next">
-<link href="./r.html" rel="prev">
+<link href="./ggplot2.html" rel="next">
+<link href="./day5.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -127,7 +127,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./day1.html">Day One</a></li><li class="breadcrumb-item"><a href="./projects.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Tackling Projects in RStudio</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./day5.html">Day Five</a></li><li class="breadcrumb-item"><a href="./tidyverse.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Making working with <code>R</code> objects easier</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -162,7 +162,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./projects.html" class="sidebar-item-text sidebar-link active">
+  <a href="./projects.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Tackling Projects in RStudio</span></span></a>
   </div>
 </li>
@@ -203,7 +203,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./tidyverse.html" class="sidebar-item-text sidebar-link">
+  <a href="./tidyverse.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Making working with <code>R</code> objects easier</span></span></a>
   </div>
 </li>
@@ -221,10 +221,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#using-rstudio-projects" id="toc-using-rstudio-projects" class="nav-link active" data-scroll-target="#using-rstudio-projects"><span class="header-section-number">3.1</span> Using RStudio Projects</a></li>
-  <li><a href="#organizing-project-files-and-directories" id="toc-organizing-project-files-and-directories" class="nav-link" data-scroll-target="#organizing-project-files-and-directories"><span class="header-section-number">3.2</span> Organizing Project Files and Directories</a></li>
-  <li><a href="#structuring-r-scripts-for-readability" id="toc-structuring-r-scripts-for-readability" class="nav-link" data-scroll-target="#structuring-r-scripts-for-readability"><span class="header-section-number">3.3</span> Structuring R Scripts for Readability</a></li>
-  <li><a href="#summary-of-best-practices" id="toc-summary-of-best-practices" class="nav-link" data-scroll-target="#summary-of-best-practices"><span class="header-section-number">3.4</span> Summary of Best Practices</a></li>
+  <li><a href="#displaying-dataframes-in-r" id="toc-displaying-dataframes-in-r" class="nav-link active" data-scroll-target="#displaying-dataframes-in-r"><span class="header-section-number">8.1</span> Displaying Dataframes in R</a></li>
+  <li><a href="#enhancing-dataframe-display-with-tibble" id="toc-enhancing-dataframe-display-with-tibble" class="nav-link" data-scroll-target="#enhancing-dataframe-display-with-tibble"><span class="header-section-number">8.2</span> Enhancing Dataframe Display with <code>tibble</code></a>
+  <ul class="collapse">
+  <li><a href="#installation-and-conversion" id="toc-installation-and-conversion" class="nav-link" data-scroll-target="#installation-and-conversion"><span class="header-section-number">8.2.1</span> Installation and Conversion</a></li>
+  </ul></li>
+  <li><a href="#exploring-data-columns-with-view_cols" id="toc-exploring-data-columns-with-view_cols" class="nav-link" data-scroll-target="#exploring-data-columns-with-view_cols"><span class="header-section-number">8.3</span> Exploring Data Columns with <code>view_cols</code></a>
+  <ul class="collapse">
+  <li><a href="#when-and-why-to-use-view_cols" id="toc-when-and-why-to-use-view_cols" class="nav-link" data-scroll-target="#when-and-why-to-use-view_cols"><span class="header-section-number">8.3.1</span> When and Why to Use <code>view_cols</code></a></li>
+  <li><a href="#installation" id="toc-installation" class="nav-link" data-scroll-target="#installation"><span class="header-section-number">8.3.2</span> Installation</a></li>
+  <li><a href="#using-view_cols" id="toc-using-view_cols" class="nav-link" data-scroll-target="#using-view_cols"><span class="header-section-number">8.3.3</span> Using <code>view_cols</code></a></li>
+  </ul></li>
+  <li><a href="#pipe" id="toc-pipe" class="nav-link" data-scroll-target="#pipe"><span class="header-section-number">8.4</span> Pipe</a></li>
+  <li><a href="#dplyr" id="toc-dplyr" class="nav-link" data-scroll-target="#dplyr"><span class="header-section-number">8.5</span> <code>dplyr</code></a></li>
   </ul>
 </nav>
 </nav>
@@ -235,9 +244,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./day1.html">Day One</a></li><li class="breadcrumb-item"><a href="./projects.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Tackling Projects in RStudio</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./day5.html">Day Five</a></li><li class="breadcrumb-item"><a href="./tidyverse.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Making working with <code>R</code> objects easier</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Tackling Projects in RStudio</span></h1>
+<h1 class="title"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Making working with <code>R</code> objects easier</span></h1>
 </div>
 
 
@@ -254,109 +263,159 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>Refer to the video <code>projects.mp4</code> for an overview of working on projects. Here are some principles for keeping your work organized and reproducible.</p>
-<section id="using-rstudio-projects" class="level2" data-number="3.1">
-<h2 data-number="3.1" class="anchored" data-anchor-id="using-rstudio-projects"><span class="header-section-number">3.1</span> Using RStudio Projects</h2>
 <ul>
-<li>Click on <strong>New Project</strong> in the top-right corner of RStudio to create an RStudio Project.</li>
-<li>This creates a directory containing all the code, data, and outputs for your analysis.</li>
-<li>When you open a project, the working directory is automatically set to that project folder.</li>
+<li>Most of this is going to be pakcages from the <code>tidyverse</code></li>
+<li>But we will also introduce the pipe, <code>|&gt;</code>, which is not from the <code>tidyverse</code>.
+<ul>
+<li>There is a <code>tidyverse</code> equivalent (<code>%&gt;%</code>), but it requires the <code>magrittr</code> package and so it’s usually better to have to attach fewer packages than more to run the code, so I recommend that. But up to you.</li>
+</ul></li>
 </ul>
-<p><strong>Benefits:</strong></p>
+<section id="displaying-dataframes-in-r" class="level2" data-number="8.1">
+<h2 data-number="8.1" class="anchored" data-anchor-id="displaying-dataframes-in-r"><span class="header-section-number">8.1</span> Displaying Dataframes in R</h2>
+<p>Working with large dataframes can be challenging if you inadvertently print all rows to the console. Consider the following example:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>example_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">id =</span> <span class="fu">rep</span>(<span class="fu">paste0</span>(<span class="st">"id_"</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">500</span>), <span class="at">each =</span> <span class="dv">20</span>),</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">timepoint =</span> <span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>, <span class="dv">500</span>),</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">disease_status =</span> <span class="fu">rep</span>(</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">"healthy"</span>, <span class="st">"diseased"</span>), <span class="dv">20</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">each =</span> <span class="dv">500</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">blood_pressure =</span> <span class="fu">c</span>(</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">runif</span>(<span class="dv">20</span>, <span class="dv">120</span>, <span class="dv">140</span>) <span class="sc">|&gt;</span> <span class="fu">round</span>(),</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sample</span>(<span class="fu">c</span>(<span class="cn">NA</span>, <span class="fu">runif</span>(<span class="dv">19</span>, <span class="dv">120</span>, <span class="dv">140</span>)), <span class="dv">9980</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Introduce a typo for demonstration</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>example_df[<span class="dv">50</span>, <span class="st">"disease_status"</span>] <span class="ot">&lt;-</span> <span class="st">"Healthy"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This dataframe contains 10,000 rows:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(example_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Printing the entire dataframe (e.g., simply typing <code>example_df</code>) would display all rows, which is both inconvenient and time-consuming. Instead, we typically use the <code>head()</code> function to preview just the first few rows:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(example_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>However, constantly having to call <code>head()</code> is not ideal. A better solution is to convert the dataframe into a tibble.</p>
+<hr>
+</section>
+<section id="enhancing-dataframe-display-with-tibble" class="level2" data-number="8.2">
+<h2 data-number="8.2" class="anchored" data-anchor-id="enhancing-dataframe-display-with-tibble"><span class="header-section-number">8.2</span> Enhancing Dataframe Display with <code>tibble</code></h2>
+<p>The <code>tibble</code> package (a core part of the tidyverse) offers a more concise and informative display. When you print a tibble, it only shows the first 10 rows and includes data type information for each column. This is particularly useful because it lets you quickly verify, for example, whether <code>timepoint</code> is numeric or character—information that can be obscured in the default dataframe printout.</p>
+<section id="installation-and-conversion" class="level3" data-number="8.2.1">
+<h3 data-number="8.2.1" class="anchored" data-anchor-id="installation-and-conversion"><span class="header-section-number">8.2.1</span> Installation and Conversion</h3>
+<p>First, ensure that the <code>tibble</code> package is installed and loaded:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">requireNamespace</span>(<span class="st">"tibble"</span>, <span class="at">quietly =</span> <span class="cn">TRUE</span>)) {</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">install.packages</span>(<span class="st">"tibble"</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tibble)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Convert your dataframe to a tibble using <code>as_tibble()</code>:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Check the class before conversion</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(example_df)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert to tibble</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>example_df <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(example_df)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Check the class after conversion</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(example_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Now, simply typing <code>example_df</code> will display a neat summary of your data:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>example_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This tidy display helps you catch issues like typos or unexpected data types early on. I generally load both <code>tibble</code> and <code>ggplot2</code> at the top of my scripts, and you can also create new dataframes directly as tibbles:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>new_tbl <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">x =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="at">y =</span> <span class="fu">rnorm</span>(<span class="dv">5</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<hr>
+</section>
+</section>
+<section id="exploring-data-columns-with-view_cols" class="level2" data-number="8.3">
+<h2 data-number="8.3" class="anchored" data-anchor-id="exploring-data-columns-with-view_cols"><span class="header-section-number">8.3</span> Exploring Data Columns with <code>view_cols</code></h2>
+<p>Another useful tool is the <code>view_cols</code> function from the <code>UtilsDataRSV</code> package. This function displays unique entries for each column—always showing any missing values (NAs)—so you can quickly identify anomalies such as typos or unexpected values.</p>
+<section id="when-and-why-to-use-view_cols" class="level3" data-number="8.3.1">
+<h3 data-number="8.3.1" class="anchored" data-anchor-id="when-and-why-to-use-view_cols"><span class="header-section-number">8.3.1</span> When and Why to Use <code>view_cols</code></h3>
 <ul>
-<li><strong>Consistent relative paths:</strong> Avoids issues with absolute paths that vary across devices.</li>
-<li><strong>Easier collaboration:</strong> Consistent paths make sharing scripts seamless.</li>
-<li><strong>Quick access:</strong> Recently opened projects are available in the top-right dropdown menu.</li>
+<li><strong>Identify Typos:</strong> In our example, the first ten rows may not reveal that <code>disease_status</code> contains three unique entries (e.g., <code>"healthy"</code>, <code>"diseased"</code>, and the typo <code>"Healthy"</code>).</li>
+<li><strong>Detect Missing Data:</strong> With 10,000 rows, it’s easy to overlook missing values (NAs) when only a few rows are displayed.</li>
+<li><strong>Verify Expected Values:</strong> For instance, the <code>id</code> column should have 500 unique entries, and <code>view_cols</code> can help you confirm this.</li>
 </ul>
 </section>
-<section id="organizing-project-files-and-directories" class="level2" data-number="3.2">
-<h2 data-number="3.2" class="anchored" data-anchor-id="organizing-project-files-and-directories"><span class="header-section-number">3.2</span> Organizing Project Files and Directories</h2>
-<p>A well-structured project prevents clutter and helps you locate files easily. A common folder structure might include:</p>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 19%">
-<col style="width: 80%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Folder Name</th>
-<th>Purpose</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><code>_raw_data/</code></td>
-<td>Stores unmodified datasets</td>
-</tr>
-<tr class="even">
-<td><code>_output/</code></td>
-<td>Contains figures, reports, and final documents</td>
-</tr>
-<tr class="odd">
-<td><code>_tmp/</code></td>
-<td>Holds intermediate files not intended for sharing</td>
-</tr>
-<tr class="even">
-<td><code>_reference/</code></td>
-<td>Keeps supplementary materials such as papers and assignment details</td>
-</tr>
-</tbody>
-</table>
-<p><em>Note:</em> Keep scripts (e.g., <code>.R</code>, <code>.Rmd</code>, <code>.qmd</code>) in the main project directory to avoid issues with relative paths.</p>
+<section id="installation" class="level3" data-number="8.3.2">
+<h3 data-number="8.3.2" class="anchored" data-anchor-id="installation"><span class="header-section-number">8.3.2</span> Installation</h3>
+<p>To install the <code>UtilsDataRSV</code> package, use the following code:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">requireNamespace</span>(<span class="st">"remotes"</span>, <span class="at">quietly =</span> <span class="cn">TRUE</span>)) {</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">install.packages</span>(<span class="st">"remotes"</span>)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"SATVILab/UtilsDataRSV"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="structuring-r-scripts-for-readability" class="level2" data-number="3.3">
-<h2 data-number="3.3" class="anchored" data-anchor-id="structuring-r-scripts-for-readability"><span class="header-section-number">3.3</span> Structuring R Scripts for Readability</h2>
-<p>Good script structure improves maintainability and reduces errors. Consider these guidelines:</p>
-<ol type="1">
-<li><strong>Organize Scripts Logically</strong>
+<section id="using-view_cols" class="level3" data-number="8.3.3">
+<h3 data-number="8.3.3" class="anchored" data-anchor-id="using-view_cols"><span class="header-section-number">8.3.3</span> Using <code>view_cols</code></h3>
+<p>Once installed, you can apply <code>view_cols</code> to your tibble to inspect the unique values in each column:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>example_df <span class="sc">|&gt;</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  UtilsDataRSV<span class="sc">::</span><span class="fu">view_cols</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This command will:</p>
 <ul>
-<li>Begin with a setup section (load libraries and data).</li>
-<li>Follow with analysis and processing steps, grouped logically.</li>
-</ul></li>
-<li><strong>Improve Readability</strong>
-<ul>
-<li>Keep lines at a reasonable length (even with word wrapping).</li>
-<li>Use informative variable names instead of generic ones like <code>x</code> or <code>y</code>.</li>
-<li>Avoid reusing variable names to prevent confusion.</li>
-</ul></li>
-<li><strong>Use Section Headings</strong>
-<ul>
-<li>Separate your code into sections with comment dividers (e.g., <code># ---- Setup ----</code>).</li>
-<li>RStudio recognizes these dividers and allows for code folding.</li>
-</ul></li>
-</ol>
-<p><strong>Example of a Structured Script:</strong></p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ============================</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Setup</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># ============================</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)              <span class="co"># Load required packages</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>data_raw <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"_raw_data/air_pollution.csv"</span>)  <span class="co"># Load dataset</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># ============================</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Data Cleaning</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co"># ============================</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>data_cleaned <span class="ot">&lt;-</span> data_raw <span class="sc">|&gt;</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(pm2<span class="fl">.5</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">log_pm =</span> <span class="fu">log</span>(pm2<span class="fl">.5</span>))</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="co"># ============================</span></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualization</span></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="co"># ============================</span></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(data_cleaned, <span class="fu">aes</span>(<span class="at">x =</span> temperature, <span class="at">y =</span> log_pm)) <span class="sc">+</span></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>)</span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="co"># ============================</span></span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Model Fitting</span></span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="co"># ============================</span></span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">lm</span>(log_pm <span class="sc">~</span> temperature <span class="sc">+</span> humidity, <span class="at">data =</span> data_cleaned)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<li>Display up to 20 unique values per column (noting if more exist).</li>
+<li>Clearly show all NA entries.</li>
+<li>Provide a quick summary of each column’s contents, which is especially helpful after data processing steps to ensure no new issues have been introduced.</li>
+</ul>
+<p>For a possibly more polished alternative, consider exploring the <code>skimr</code> package, which offers similar functionality.</p>
 </section>
-<section id="summary-of-best-practices" class="level2" data-number="3.4">
-<h2 data-number="3.4" class="anchored" data-anchor-id="summary-of-best-practices"><span class="header-section-number">3.4</span> Summary of Best Practices</h2>
+</section>
+<section id="pipe" class="level2" data-number="8.4">
+<h2 data-number="8.4" class="anchored" data-anchor-id="pipe"><span class="header-section-number">8.4</span> Pipe</h2>
 <ul>
-<li>Use RStudio Projects for consistent working directories and collaboration.</li>
-<li>Organize files into clearly named directories to avoid clutter.</li>
-<li>Structure your R scripts with a logical order, clear variable names, and well-defined sections.</li>
+<li>Essentially, the pipe is a rewrite of code, from</li>
+</ul>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">f</span>(x,y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>to</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>x <span class="sc">|&gt;</span> <span class="fu">f</span>(y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The two produce exactly the same results. But the difference is that, when you have a bunch of things you need to do to an obejct (e.g.&nbsp;select certain rows from a dataframe, add new columns, etc.), the pipe makes it easier to read and write the code.</p>
+<p>See <a href="https://r4ds.hadley.nz/data-transform.html#sec-the-pipe">R4DS</a> on the pipe.</p>
+<p>Problems with base <code>R</code> manipulations of things like data frames and lists and so on:</p>
+<ul>
+<li>Inconsistent syntax:
+<ul>
+<li>For example</li>
+</ul></li>
+<li>Not concise syntax
+<ul>
+<li>For example:
+<ul>
+<li><code>test_df[test_df[["column"]] == "value", ]</code></li>
+</ul></li>
+<li>Regular expressions
+<ul>
+<li><code>grepl("pattern", "string")</code></li>
+</ul></li>
+</ul></li>
+<li>Does not necessarily work well with pipes
+<ul>
+<li>To work well with pipes, we want the first parameter to take the return value from the previous one</li>
+</ul></li>
+<li>Inconsistent return values
+<ul>
+<li>E.g. <code>test_df[, 1] vs test_df[, c(1, 2)]</code></li>
+</ul></li>
+</ul>
+</section>
+<section id="dplyr" class="level2" data-number="8.5">
+<h2 data-number="8.5" class="anchored" data-anchor-id="dplyr"><span class="header-section-number">8.5</span> <code>dplyr</code></h2>
+<ul>
+<li><p><code>dplyr</code> provides key functions for working with data frames</p></li>
+<li><p>For example, <code>filter</code></p></li>
+<li></li>
+<li><p>dplyr</p></li>
+<li><p>magrittr</p></li>
+<li><p>ggplot2</p></li>
+<li><p>tidyr</p></li>
+<li><p>pipes</p></li>
+<li><p>Notable mentions:</p>
+<ul>
+<li><code>broom</code></li>
+<li><code>tidymodels</code></li>
+<li><code>forcats</code></li>
+<li><code>lubridate</code></li>
+<li><code>stringr</code></li>
+<li><code>readr</code></li>
+<li><code>purrr</code></li>
+<li><code>tibble</code></li>
+<li><code>rlang</code></li>
+<li><code>stringi</code></li>
+<li><code>readxl</code></li>
+<li><code>haven</code></li>
+</ul></li>
 </ul>
 
 
@@ -782,13 +841,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./r.html" class="pagination-link" aria-label="Fundamental R Objects and Functions">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Fundamental R Objects and Functions</span></span>
+      <a href="./day5.html" class="pagination-link" aria-label="Day Five">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Day Five</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./quarto.html" class="pagination-link" aria-label="Literate Programming">
-        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Literate Programming</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./ggplot2.html" class="pagination-link" aria-label="`ggplot2`">
+        <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title"><code>ggplot2</code></span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
