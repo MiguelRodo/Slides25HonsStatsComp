@@ -9,12 +9,12 @@
 
 There are two main approaches for setting up a new R project that you want on GitHub:
 
-- Approach 1: Create project using Git 
+- Approach 1: Create project using Git, then download it to your machine
 - Approach 2: Begin with pre-existing `RStudio` project, and then connect to GitHub
 
 The first approach tends to be easier (and is new to these notes).
  
-### Approach 1: Create project using Git and GitHub, then download it to your machine
+### Approach 1: Create project using Git, then download it to your machine
 
 Within here, there are two approaches.
 One of them uses GitHub Desktop, a standalone program, and the other uses `github.com` itself, the website.
