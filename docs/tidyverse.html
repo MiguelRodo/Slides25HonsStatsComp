@@ -257,6 +257,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
+<p><strong>NOTE: THIS IS A DRAFT</strong></p>
 <section id="displaying-dataframes-in-r" class="level2" data-number="7.1">
 <h2 data-number="7.1" class="anchored" data-anchor-id="displaying-dataframes-in-r"><span class="header-section-number">7.1</span> Displaying Dataframes in R</h2>
 <p>Working with large dataframes can be challenging if you inadvertently print all rows to the console. Consider the following example:</p>
@@ -288,12 +289,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(example_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>    id timepoint disease_status blood_pressure
-1 id_1         1        healthy            135
-2 id_1         2        healthy            121
-3 id_1         3        healthy            120
-4 id_1         4        healthy            132
-5 id_1         5        healthy            121
-6 id_1         6        healthy            130</code></pre>
+1 id_1         1        healthy            129
+2 id_1         2        healthy            139
+3 id_1         3        healthy            133
+4 id_1         4        healthy            120
+5 id_1         5        healthy            139
+6 id_1         6        healthy            122</code></pre>
 </div>
 </div>
 <p>However, constantly having to call <code>head()</code> is not ideal. A better solution is to convert the dataframe into a tibble.</p>
@@ -333,16 +334,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <pre><code># A tibble: 10,000 × 4
    id    timepoint disease_status blood_pressure
    &lt;chr&gt;     &lt;int&gt; &lt;chr&gt;                   &lt;dbl&gt;
- 1 id_1          1 healthy                   135
- 2 id_1          2 healthy                   121
- 3 id_1          3 healthy                   120
- 4 id_1          4 healthy                   132
- 5 id_1          5 healthy                   121
- 6 id_1          6 healthy                   130
- 7 id_1          7 healthy                   135
- 8 id_1          8 healthy                   128
+ 1 id_1          1 healthy                   129
+ 2 id_1          2 healthy                   139
+ 3 id_1          3 healthy                   133
+ 4 id_1          4 healthy                   120
+ 5 id_1          5 healthy                   139
+ 6 id_1          6 healthy                   122
+ 7 id_1          7 healthy                   126
+ 8 id_1          8 healthy                   136
  9 id_1          9 healthy                   124
-10 id_1         10 healthy                   131
+10 id_1         10 healthy                   137
 # ℹ 9,990 more rows</code></pre>
 </div>
 </div>
@@ -354,11 +355,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <pre><code># A tibble: 5 × 2
       x      y
   &lt;int&gt;  &lt;dbl&gt;
-1     1  0.278
-2     2 -0.815
-3     3  0.185
-4     4  0.502
-5     5 -1.06 </code></pre>
+1     1  0.784
+2     2 -0.791
+3     3 -1.58 
+4     4 -0.534
+5     5  0.564</code></pre>
 </div>
 </div>
 <p>Note that for a <code>tibble</code> object (i.e.&nbsp;a dataframe that has class <code>tbl_df</code>) to display as a tibble, the <code>tibble</code> package needs to be attached. So always add <code>library(tibble)</code> to the top of your script.</p>

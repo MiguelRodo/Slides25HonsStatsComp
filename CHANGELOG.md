@@ -1,5 +1,7 @@
 # CHANGELOG
 
+- Patch (v1.0.19): Miguel Rodo (2025-02-05 14:46:00)
+  - Add draft notices
 - Patch (v1.0.18): Miguel Rodo (2025-02-05 14:45:20)
   - Correct heading depth
 - Patch (v1.0.17): Miguel Rodo (2025-02-05 14:41:32)
