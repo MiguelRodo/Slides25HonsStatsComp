@@ -258,10 +258,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>See the video <code>git.mp4</code> for this process illustrated.</p>
 <p>In <code>RStudio</code>, open your project.</p>
 <p>Then, run the following code.</p>
+<section id="install-usethis" class="level4" data-number="5.2.2.1">
+<h4 data-number="5.2.2.1" class="anchored" data-anchor-id="install-usethis"><span class="header-section-number">5.2.2.1</span> Install <code>usethis</code></h4>
 <p>Firstly, ensure <code>usethis</code> is installed:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">requireNamespace</span>(<span class="st">"usethis"</span>, <span class="at">quietly =</span> <span class="cn">TRUE</span>)) {</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">install.packages</span>(<span class="st">"usethis"</span>)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="introduce-yourself-to-git" class="level4" data-number="5.2.2.2">
+<h4 data-number="5.2.2.2" class="anchored" data-anchor-id="introduce-yourself-to-git"><span class="header-section-number">5.2.2.2</span> Introduce yourself to Git</h4>
 <p>Then, if you have not set Git up before, you’ll need to run the following. Note that by “not set up Git”, I do not mean whether you’ve installed Git, but rather whether you’ve given Git basic authorship information. If you’re not sure, you can run the following:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>gert<span class="sc">::</span><span class="fu">git_config_global</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>I am not exactly sure what it looks like if you’ve not set up Git authorship information, but the key thing is that it will not have a row where the first column is <code>user.name</code> and the second column is your name, and a row where the first column is <code>user.email</code> and the second column is your email address.</p>
@@ -273,13 +278,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="fu">stopifnot</span>(<span class="sc">!</span><span class="fu">is.null</span>(email))</span>
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>gert<span class="sc">::</span><span class="fu">git_config_global_set</span>(<span class="st">"user.name"</span>,  username)</span>
 <span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>gert<span class="sc">::</span><span class="fu">git_config_global_set</span>(<span class="st">"user.email"</span>, email)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="initialise-git-for-the-project" class="level4" data-number="5.2.2.3">
+<h4 data-number="5.2.2.3" class="anchored" data-anchor-id="initialise-git-for-the-project"><span class="header-section-number">5.2.2.3</span> Initialise Git for the project</h4>
 <p>Finally, you are ready to initialise <code>git</code> for that project:</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">use_git</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>When it asks you whether you want to commit the extra files, say yes. Be aware that you don’t type “Absolutely” or “Definitely” or whatever corresponds to “yes”, you just type the number that corresponds to <code>yes</code>.</p>
 <p>After running the above, to get the <code>Git</code> pane to appear in the top right corner (alongside <code>Environment</code> and <code>History</code>), you need to close and re-open <code>RStudio</code>.</p>
 <p>You will not need to install <code>usethis</code> and set <code>Git</code> authorship information for each project, but you will need to initialise <code>Git</code> for each project.</p>
-<section id="connecting-git-to-github" class="level4" data-number="5.2.2.1">
-<h4 data-number="5.2.2.1" class="anchored" data-anchor-id="connecting-git-to-github"><span class="header-section-number">5.2.2.1</span> Connecting Git to GitHub</h4>
+</section>
+<section id="connect-git-to-github" class="level4" data-number="5.2.2.4">
+<h4 data-number="5.2.2.4" class="anchored" data-anchor-id="connect-git-to-github"><span class="header-section-number">5.2.2.4</span> Connect Git to GitHub</h4>
 <p>Run the following code:</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">create_github_token</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Name the token, set the expiry date and click on <code>Create</code>. Then copy the token (it looks like <code>ghp_akerjlwk4j5qlk45j</code>).</p>

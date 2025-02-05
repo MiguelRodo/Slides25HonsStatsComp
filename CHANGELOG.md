@@ -1,5 +1,7 @@
 # CHANGELOG
 
+- Patch (v1.0.11): Miguel Rodo (2025-02-05 13:34:09)
+  - Segment advice
 - Patch (v1.0.10): Miguel Rodo (2025-02-05 13:32:23)
   - Correct heading
 - Patch (v1.0.9): Miguel Rodo (2025-02-05 13:30:20)
