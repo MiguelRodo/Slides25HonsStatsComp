@@ -16,6 +16,8 @@
 ^_raw_data$
 ^_projr\.yml$
 ^_quarto\.yml$
+^day1\.qmd$
+^day5\.qmd$
 ^ggplot2\.qmd$
 ^git\.qmd$
 ^index\.qmd$
@@ -25,6 +27,7 @@
 ^quarto\.qmd$
 ^r\.qmd$
 ^README\.Rmd$
+^rstudio\.qmd$
 ^targets\.qmd$
 ^tidyverse\.qmd$
 ^_dependencies\.R$

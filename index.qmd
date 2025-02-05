@@ -1,6 +1,4 @@
-# R and RStudio
-
-## Welcome
+# Welcome
 
 We have a lot to cover in this bootcamp-style course. By the end, you should be able to **write acceptable assignments faster**. One of the biggest time sinks in Honours statistics is the process of writing up your analyses, which is often slowed down by two major issues:
 
@@ -9,15 +7,7 @@ We have a lot to cover in this bootcamp-style course. By the end, you should be 
 
 Our goal is to address both of these challenges. This course focuses on statistical computing, so many tasks will be statistical in nature.
 
-### What Will We Cover by the Start of Day Two?
-
-- Setting up R and RStudio.
-- Working with vectors, matrices, and data frames.
-- Discussing how to structure projects and organize files.
-- Installing Git, setting up a GitHub account, creating a local Git repository, and connecting it to RStudio.
-- Learning Quarto and Markdown to write reports.
-
-### What About Assignments?
+## What About Assignments?
 
 I won't detail all the assignments, but before term "starts", you will have:
 
@@ -34,105 +24,3 @@ I won't detail all the assignments, but before term "starts", you will have:
     - In-class test, I believe open-book but no internet.
     - Will center on writing `R` code and interpreting results. 
 
-### What is the outcome for today?
-
-Answer the questions in Practical One, and place the answers into its own qmd file into a Quarto project on GitHub.
-
-Now, let’s get started.
-
----
-
-## Resource Links
-
-This section contains key resources referenced throughout the course:
-
-- **Download R:** [CRAN](https://cran.rstudio.com/)
-- **Download RStudio:** [Posit](https://posit.co/download/rstudio-desktop/)
-
-More links will be added as we progress.
-
-## Setting Up Your Computer for Analyses in R
-
-Before diving into R, make sure your system is set up properly:
-
-1. **Install the latest version of R** – [Download here](https://cran.r-project.org/)
-2. **Install RStudio (recommended IDE for R)** – [Download here](https://posit.co/download/rstudio-desktop/)
-3. Open RStudio and you’re ready to begin.
-
-### Configure RStudio Settings
-
-Refer to the video `rstudio_settings.mp4` for a visual guide. Follow these steps to configure your RStudio settings:
-
-#### 1. General Settings
-
-Navigate to **Tools → Global Options → General**.
-
-- **Workspace subsection:**
-  - **Uncheck** `Restore .RData into workspace at startup`  
-    Prevents old objects from automatically loading when opening RStudio, ensuring a clean and reproducible environment.
-  - **Set** `Save workspace to .RData on exit` to **Never**  
-    This avoids saving hidden dependencies that can make your scripts less reproducible.
-
-#### 2. Code Editing Settings
-
-Go to **Tools → Global Options → Code → Editing**.
-
-- **Enable "Use Native Pipe Operator (`|>`)":**  
-  Since you’ll be using a later version of R, this setting improves readability and reduces dependency on packages like `{magrittr}`.
-- **Enable "Soft-wrap R source files":**  
-  This ensures that long lines wrap within the editor, so you don’t have to scroll horizontally even if the code line is long.
-
-#### 3. Code Display Settings
-
-Under **Tools → Global Options → Code → Display**:
-
-- **Enable "Rainbow Parentheses":**  
-  Displays matching parentheses in different colors, making nested expressions easier to read and reducing errors.
-
-#### 4. Appearance Settings
-
-Finally, go to **Tools → Global Options → Appearance**.
-
-- **Editor Font:** Change to a monospaced font (for example, JetBrains Mono). A monospaced font ensures each character takes up the same width, improving alignment and readability.
-- **Editor Theme:** Choose a dark theme instead of the default light theme to reduce eye strain. Good options include:
-  - Cobalt (recommended)
-  - Monokai
-  - Solarized Dark
-  - Twilight
-
-These settings help improve usability, maintainability, and comfort while coding in RStudio.
-
-## Overview of the RStudio Interface
-
-Refer to the video `rstudio_interface.mp4` for a detailed overview. RStudio is divided into four main panes:
-
-### 1. Script Editor (Top Left)
-
-This is where you write and edit your scripts (files ending in `.R`, `.Rmd`, or `.qmd`). A script is essentially a record of instructions that R executes. Use `Ctrl + Enter` (Windows/Linux) or `Cmd + Enter` (Mac) to run code from the script; the command output will appear in the Console.
-
-### 2. Console and Terminal (Bottom Left)
-
-- **Console:**  
-  Where R executes commands. You can run code from your script or type directly into the Console to test ideas.
-- **Terminal:**  
-  Adjacent to the Console, this pane runs system shell commands. It shares the same working directory as R but interprets commands using your system shell (PowerShell on Windows, Bash on Linux, or Zsh/Bash on Mac).
-
-### 3. Environment and History (Top Right)
-
-- **Environment Tab:**  
-  Lists all objects (variables, data, functions) currently loaded in your R session.
-- **History Tab:**  
-  Displays a record of all commands you have executed.
-
-### 4. Files, Plots, Packages, and Help (Bottom Right)
-
-- **Files Tab:**  
-  Shows files and folders in your current working directory.
-- **Plots Tab:**  
-  Displays any generated plots; you can zoom in, export (to PNG, PDF, JPEG, etc.), and clear old plots.
-- **Packages Tab:**  
-  Lists installed R packages and offers management options.
-- **Help Tab:**  
-  Provides documentation for functions and packages. You can search for help topics here or use the `?function_name` command in the Console.
-
-This interface layout makes it easy to write, test, and manage your R code.

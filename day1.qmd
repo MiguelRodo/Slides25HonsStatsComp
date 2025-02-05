@@ -1,0 +1,15 @@
+# Day One
+
+## What Will We Cover by the End of Day One?
+
+- Setting up R and RStudio.
+- Working with vectors, matrices, and data frames.
+- Discussing how to structure projects and organize files.
+- Installing Git, setting up a GitHub account, creating a local Git repository, and connecting it to RStudio.
+- Learning Quarto and Markdown to write reports.
+
+## What is the outcome for today?
+
+Answer the questions in Practical One, and place the answers into its own qmd file into a Quarto project on GitHub.
+
+Now, let’s get started.

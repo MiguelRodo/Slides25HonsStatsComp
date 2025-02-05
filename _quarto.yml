@@ -2,13 +2,17 @@ project:
   type: book
   render:
   - index.qmd
+  - day1.qmd
   - r.qmd
   - projects.qmd
   - quarto.qmd
   - git.qmd
   - projrsimple.qmd
   - prac1.qmd
-  output-dir: docs
+  - day2.qmd
+  - tidyverse.qmd
+  - ggplot2.qmd
+  output-dir: _tmp/projr/v1.0.12-1/docs
 book:
   title: Statistical Computing
   sidebar:
@@ -20,12 +24,18 @@ book:
     background: light
   chapters:
   - index.qmd
-  - r.qmd
-  - projects.qmd
-  - quarto.qmd
-  - git.qmd
-  - projrsimple.qmd
-  - prac1.qmd
+  - part: day1.qmd
+    chapters:
+    - r.qmd
+    - projects.qmd
+    - quarto.qmd
+    - git.qmd
+    - projrsimple.qmd
+    - prac1.qmd
+  - part: day5.qmd
+    chapters:
+    - tidyverse.qmd
+    - ggplot2.qmd
 format:
   html:
     theme: cosmo
