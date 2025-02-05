@@ -7,12 +7,38 @@ See the video `git.mp4`.
 1. Create a GitHub account: [GitHub](https://www.github.com).
 2. Install Git: [Git](https://git-scm.com/downloads).
 
-## Setting Up Git
+## Setting Up Git and GitHub
 
-*Note*:
+There are two main approaches for setting up a new R project that you want on GitHub:
 
-- Below I describe how to start an R project and connect it to Git and GitHub. Longer instructions are available at the HappyGitWithR website for doing the same thing: [R first, GitHub last](https://happygitwithr.com/existing-github-last)
-  - If you want to instead create a Git repo first, and then download it and connect it to R, see these HappyGitWithR instructions: [New project, GitHub first](https://happygitwithr.com/new-github-first).
+- Approach 1: Create project using Git 
+- Approach 2: Begin with pre-existing `RStudio` project, and then connect to GitHub
+
+The first approach tends to be easier (and is new to these notes).
+ 
+### Approach 1: Create project using Git and GitHub, then download it to your machine
+
+Within here, there are two approaches.
+One of them uses GitHub Desktop, a standalone program, and the other uses `github.com` itself, the website.
+
+We suggest using GitHub Desktop, as it will make managing your Git repositories easier after setup.
+
+#### Use GitHub Desktop
+
+GitHub Desktop is a standalone program for working with Git and GitHub.
+It is very beginner-friendly.
+
+Here is a video describing how to use it: https://www.youtube.com/watch?v=8Dd7KRpKeaE. 
+
+I have not watched it myself, but apparently it makes it very easy.
+Note that it contains more information than you need, so you can stop when you are set up.
+
+#### Use GitHub
+
+You can also create a new repo directly on GitHub, and then clone it (Git-speak for download it).
+Here are the instructions: [New project, GitHub first](https://happygitwithr.com/new-github-first).
+
+### Approach 2: Begin with `RStudio` project on your machine, and then connect it to GitHub
 
 In `RStudio`, open your project. 
 
@@ -64,7 +90,7 @@ After running the above, to get the `Git` pane to appear in the top right corner
 
 You will not need to install `usethis` and set `Git` authorship information for each project, but you will need to initialise `Git` for each project.
 
-## Connecting Git to GitHub
+#### Connecting Git to GitHub
 
 Run the following code:
 
