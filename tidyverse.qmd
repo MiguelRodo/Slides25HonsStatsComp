@@ -138,12 +138,47 @@ to
 x |> f(y)
 ```
 
-The two produce exactly the same results.
-But the difference is that, when you have a bunch of things you need to do to an obejct (e.g. select certain rows from a dataframe, add new columns, etc.), the pipe makes it easier to read and write the code.
+In other words, the object to the left of the pipe (`x`) becomes the first argument to the function on the right (`f`) and `y` becomes its second parameter.
 
-See [R4DS](https://r4ds.hadley.nz/data-transform.html#sec-the-pipe) on the pipe.
+As as silly example, this:
 
-Problems with base `R` manipulations of things like data frames and lists and so on:
+```{r}
+test_vec <- 1:5
+mean(test_vec[test_vec > 3], trim = 0.5)
+```
+
+is equivalent to this:
+
+```{r}
+test_vec[test_vec > 3] |>
+  mean(trim = 0.5)
+```
+
+In terms of `f(x,y)`, `f` is `mean`, `x` is `test_vec[test_vec > 3]` and `y` is `trim = 0.5`.
+
+The above examples are simply, and there is no great advantage to the pipe operator.
+
+However, when you have chained operations, the pipe operator can make the code more readable.
+For a realistic example, see [R4DS on the pipe](https://r4ds.hadley.nz/data-transform.html#sec-the-pipe), where they show a dramatic gain in readability from using the pipe.
+To run their example, you will need to have the `flights` dataset from the `nycflights13` package and the `tidyverse` package attached.
+
+To ensure this, first run the chunk below before running their example:
+
+```{r}
+pkg_vec <- c("tidyverse", "nycflights13", "tibble")
+for (x in pkg_vec) {
+  if (!requireNamespace(x, quietly = TRUE)) {
+    install.packages(x)
+  }
+}
+library(nycflights13)
+library(tidyverse)
+library(tibble)
+data(flights, package = "nycflights13")
+```
+
+Their example involves many functions that we'll discuss in the rest of this chapter.
+
 
 - Inconsistent syntax:
   - For example
