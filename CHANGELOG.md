@@ -1,5 +1,7 @@
 # CHANGELOG
 
+- Patch (v1.0.12): Miguel Rodo (2025-02-05 13:36:24)
+  - Remove full stop after link to prevent copy-and-paste errors
 - Patch (v1.0.11): Miguel Rodo (2025-02-05 13:34:09)
   - Segment advice
 - Patch (v1.0.10): Miguel Rodo (2025-02-05 13:32:23)
