@@ -225,19 +225,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#displaying-dataframes-in-r" id="toc-displaying-dataframes-in-r" class="nav-link active" data-scroll-target="#displaying-dataframes-in-r"><span class="header-section-number">7.1</span> Displaying Dataframes in R</a></li>
-  <li><a href="#enhancing-dataframe-display-with-tibble" id="toc-enhancing-dataframe-display-with-tibble" class="nav-link" data-scroll-target="#enhancing-dataframe-display-with-tibble"><span class="header-section-number">7.2</span> Enhancing Dataframe Display with <code>tibble</code></a>
+  <li><a href="#displaying-dataframes-in-r" id="toc-displaying-dataframes-in-r" class="nav-link active" data-scroll-target="#displaying-dataframes-in-r"><span class="header-section-number">7.1</span> Displaying Dataframes in R</a>
   <ul class="collapse">
-  <li><a href="#installation-and-conversion" id="toc-installation-and-conversion" class="nav-link" data-scroll-target="#installation-and-conversion"><span class="header-section-number">7.2.1</span> Installation and Conversion</a></li>
+  <li><a href="#enhancing-dataframe-display-with-tibble" id="toc-enhancing-dataframe-display-with-tibble" class="nav-link" data-scroll-target="#enhancing-dataframe-display-with-tibble"><span class="header-section-number">7.1.1</span> Enhancing Dataframe Display with <code>tibble</code></a></li>
+  <li><a href="#exploring-data-columns-with-view_cols" id="toc-exploring-data-columns-with-view_cols" class="nav-link" data-scroll-target="#exploring-data-columns-with-view_cols"><span class="header-section-number">7.1.2</span> Exploring Data Columns with <code>view_cols</code></a></li>
   </ul></li>
-  <li><a href="#exploring-data-columns-with-view_cols" id="toc-exploring-data-columns-with-view_cols" class="nav-link" data-scroll-target="#exploring-data-columns-with-view_cols"><span class="header-section-number">7.3</span> Exploring Data Columns with <code>view_cols</code></a>
-  <ul class="collapse">
-  <li><a href="#when-and-why-to-use-view_cols" id="toc-when-and-why-to-use-view_cols" class="nav-link" data-scroll-target="#when-and-why-to-use-view_cols"><span class="header-section-number">7.3.1</span> When and Why to Use <code>view_cols</code></a></li>
-  <li><a href="#installation" id="toc-installation" class="nav-link" data-scroll-target="#installation"><span class="header-section-number">7.3.2</span> Installation</a></li>
-  <li><a href="#using-view_cols" id="toc-using-view_cols" class="nav-link" data-scroll-target="#using-view_cols"><span class="header-section-number">7.3.3</span> Using <code>view_cols</code></a></li>
-  </ul></li>
-  <li><a href="#pipe" id="toc-pipe" class="nav-link" data-scroll-target="#pipe"><span class="header-section-number">7.4</span> Pipe</a></li>
-  <li><a href="#dplyr" id="toc-dplyr" class="nav-link" data-scroll-target="#dplyr"><span class="header-section-number">7.5</span> <code>dplyr</code></a></li>
+  <li><a href="#pipe" id="toc-pipe" class="nav-link" data-scroll-target="#pipe"><span class="header-section-number">7.2</span> Pipe</a></li>
+  <li><a href="#dplyr" id="toc-dplyr" class="nav-link" data-scroll-target="#dplyr"><span class="header-section-number">7.3</span> <code>dplyr</code></a></li>
   </ul>
 </nav>
     </div>
@@ -294,22 +288,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(example_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>    id timepoint disease_status blood_pressure
-1 id_1         1        healthy            137
-2 id_1         2        healthy            132
-3 id_1         3        healthy            125
-4 id_1         4        healthy            129
-5 id_1         5        healthy            139
-6 id_1         6        healthy            132</code></pre>
+1 id_1         1        healthy            135
+2 id_1         2        healthy            121
+3 id_1         3        healthy            120
+4 id_1         4        healthy            132
+5 id_1         5        healthy            121
+6 id_1         6        healthy            130</code></pre>
 </div>
 </div>
 <p>However, constantly having to call <code>head()</code> is not ideal. A better solution is to convert the dataframe into a tibble.</p>
 <hr>
-</section>
-<section id="enhancing-dataframe-display-with-tibble" class="level2" data-number="7.2">
-<h2 data-number="7.2" class="anchored" data-anchor-id="enhancing-dataframe-display-with-tibble"><span class="header-section-number">7.2</span> Enhancing Dataframe Display with <code>tibble</code></h2>
+<section id="enhancing-dataframe-display-with-tibble" class="level3" data-number="7.1.1">
+<h3 data-number="7.1.1" class="anchored" data-anchor-id="enhancing-dataframe-display-with-tibble"><span class="header-section-number">7.1.1</span> Enhancing Dataframe Display with <code>tibble</code></h3>
 <p>The <code>tibble</code> package (a core part of the tidyverse) offers a more concise and informative display. When you print a tibble, it only shows the first 10 rows and includes data type information for each column. This is particularly useful because it lets you quickly verify, for example, whether <code>timepoint</code> is numeric or character—information that can be obscured in the default dataframe printout.</p>
-<section id="installation-and-conversion" class="level3" data-number="7.2.1">
-<h3 data-number="7.2.1" class="anchored" data-anchor-id="installation-and-conversion"><span class="header-section-number">7.2.1</span> Installation and Conversion</h3>
+<section id="installation-and-conversion" class="level4" data-number="7.1.1.1">
+<h4 data-number="7.1.1.1" class="anchored" data-anchor-id="installation-and-conversion"><span class="header-section-number">7.1.1.1</span> Installation and Conversion</h4>
 <p>First, ensure that the <code>tibble</code> package is installed and loaded:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">requireNamespace</span>(<span class="st">"tibble"</span>, <span class="at">quietly =</span> <span class="cn">TRUE</span>)) {</span>
@@ -340,16 +333,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <pre><code># A tibble: 10,000 × 4
    id    timepoint disease_status blood_pressure
    &lt;chr&gt;     &lt;int&gt; &lt;chr&gt;                   &lt;dbl&gt;
- 1 id_1          1 healthy                   137
- 2 id_1          2 healthy                   132
- 3 id_1          3 healthy                   125
- 4 id_1          4 healthy                   129
- 5 id_1          5 healthy                   139
- 6 id_1          6 healthy                   132
- 7 id_1          7 healthy                   133
+ 1 id_1          1 healthy                   135
+ 2 id_1          2 healthy                   121
+ 3 id_1          3 healthy                   120
+ 4 id_1          4 healthy                   132
+ 5 id_1          5 healthy                   121
+ 6 id_1          6 healthy                   130
+ 7 id_1          7 healthy                   135
  8 id_1          8 healthy                   128
- 9 id_1          9 healthy                   126
-10 id_1         10 healthy                   139
+ 9 id_1          9 healthy                   124
+10 id_1         10 healthy                   131
 # ℹ 9,990 more rows</code></pre>
 </div>
 </div>
@@ -361,38 +354,38 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <pre><code># A tibble: 5 × 2
       x      y
   &lt;int&gt;  &lt;dbl&gt;
-1     1  1.09 
-2     2 -1.01 
-3     3  0.740
-4     4  0.744
-5     5  1.58 </code></pre>
+1     1  0.278
+2     2 -0.815
+3     3  0.185
+4     4  0.502
+5     5 -1.06 </code></pre>
 </div>
 </div>
 <p>Note that for a <code>tibble</code> object (i.e.&nbsp;a dataframe that has class <code>tbl_df</code>) to display as a tibble, the <code>tibble</code> package needs to be attached. So always add <code>library(tibble)</code> to the top of your script.</p>
 <hr>
 </section>
 </section>
-<section id="exploring-data-columns-with-view_cols" class="level2" data-number="7.3">
-<h2 data-number="7.3" class="anchored" data-anchor-id="exploring-data-columns-with-view_cols"><span class="header-section-number">7.3</span> Exploring Data Columns with <code>view_cols</code></h2>
+<section id="exploring-data-columns-with-view_cols" class="level3" data-number="7.1.2">
+<h3 data-number="7.1.2" class="anchored" data-anchor-id="exploring-data-columns-with-view_cols"><span class="header-section-number">7.1.2</span> Exploring Data Columns with <code>view_cols</code></h3>
 <p>Another useful tool is the <code>view_cols</code> function from the <code>UtilsDataRSV</code> package. This function displays unique entries for each column—always showing any missing values (NAs)—so you can quickly identify anomalies such as typos or unexpected values.</p>
-<section id="when-and-why-to-use-view_cols" class="level3" data-number="7.3.1">
-<h3 data-number="7.3.1" class="anchored" data-anchor-id="when-and-why-to-use-view_cols"><span class="header-section-number">7.3.1</span> When and Why to Use <code>view_cols</code></h3>
+<section id="when-and-why-to-use-view_cols" class="level4" data-number="7.1.2.1">
+<h4 data-number="7.1.2.1" class="anchored" data-anchor-id="when-and-why-to-use-view_cols"><span class="header-section-number">7.1.2.1</span> When and Why to Use <code>view_cols</code></h4>
 <ul>
 <li><strong>Identify Typos:</strong> In our example, the first ten rows may not reveal that <code>disease_status</code> contains three unique entries (e.g., <code>"healthy"</code>, <code>"diseased"</code>, and the typo <code>"Healthy"</code>).</li>
 <li><strong>Detect Missing Data:</strong> With 10,000 rows, it’s easy to overlook missing values (NAs) when only a few rows are displayed.</li>
 <li><strong>Verify Expected Values:</strong> For instance, the <code>id</code> column should have 500 unique entries, and <code>view_cols</code> can help you confirm this.</li>
 </ul>
 </section>
-<section id="installation" class="level3" data-number="7.3.2">
-<h3 data-number="7.3.2" class="anchored" data-anchor-id="installation"><span class="header-section-number">7.3.2</span> Installation</h3>
+<section id="installation" class="level4" data-number="7.1.2.2">
+<h4 data-number="7.1.2.2" class="anchored" data-anchor-id="installation"><span class="header-section-number">7.1.2.2</span> Installation</h4>
 <p>To install the <code>UtilsDataRSV</code> package, use the following code:</p>
 <div class="sourceCode" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">requireNamespace</span>(<span class="st">"remotes"</span>, <span class="at">quietly =</span> <span class="cn">TRUE</span>)) {</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">install.packages</span>(<span class="st">"remotes"</span>)</span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>}</span>
 <span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"SATVILab/UtilsDataRSV"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="using-view_cols" class="level3" data-number="7.3.3">
-<h3 data-number="7.3.3" class="anchored" data-anchor-id="using-view_cols"><span class="header-section-number">7.3.3</span> Using <code>view_cols</code></h3>
+<section id="using-view_cols" class="level4" data-number="7.1.2.3">
+<h4 data-number="7.1.2.3" class="anchored" data-anchor-id="using-view_cols"><span class="header-section-number">7.1.2.3</span> Using <code>view_cols</code></h4>
 <p>Once installed, you can apply <code>view_cols</code> to your tibble to inspect the unique values in each column:</p>
 <div class="sourceCode" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>example_df <span class="sc">|&gt;</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  UtilsDataRSV<span class="sc">::</span><span class="fu">view_cols</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -405,8 +398,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>For a possibly more polished alternative, consider exploring the <code>skimr</code> package, which offers similar functionality.</p>
 </section>
 </section>
-<section id="pipe" class="level2" data-number="7.4">
-<h2 data-number="7.4" class="anchored" data-anchor-id="pipe"><span class="header-section-number">7.4</span> Pipe</h2>
+</section>
+<section id="pipe" class="level2" data-number="7.2">
+<h2 data-number="7.2" class="anchored" data-anchor-id="pipe"><span class="header-section-number">7.2</span> Pipe</h2>
 <ul>
 <li>Essentially, the pipe is a rewrite of code, from</li>
 </ul>
@@ -442,8 +436,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul></li>
 </ul>
 </section>
-<section id="dplyr" class="level2" data-number="7.5">
-<h2 data-number="7.5" class="anchored" data-anchor-id="dplyr"><span class="header-section-number">7.5</span> <code>dplyr</code></h2>
+<section id="dplyr" class="level2" data-number="7.3">
+<h2 data-number="7.3" class="anchored" data-anchor-id="dplyr"><span class="header-section-number">7.3</span> <code>dplyr</code></h2>
 <ul>
 <li><p><code>dplyr</code> provides key functions for working with data frames</p></li>
 <li><p>For example, <code>filter</code></p></li>

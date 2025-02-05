@@ -1,5 +1,7 @@
 # CHANGELOG
 
+- Patch (v1.0.18): Miguel Rodo (2025-02-05 14:45:20)
+  - Correct heading depth
 - Patch (v1.0.17): Miguel Rodo (2025-02-05 14:41:32)
   - Restart numbering after parts
 - Patch (v1.0.16): Miguel Rodo (2025-02-05 14:29:02)
