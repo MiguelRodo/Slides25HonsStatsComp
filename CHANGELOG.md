@@ -1,5 +1,7 @@
 # CHANGELOG
 
+- Patch (v1.0.10): Miguel Rodo (2025-02-05 13:32:23)
+  - Correct heading
 - Patch (v1.0.9): Miguel Rodo (2025-02-05 13:30:20)
   - Move git video to correct position
 - Patch (v1.0.8): Miguel Rodo (2025-02-05 13:28:41)
