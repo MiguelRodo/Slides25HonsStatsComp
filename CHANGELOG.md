@@ -1,5 +1,7 @@
 # CHANGELOG
 
+- Patch (v1.0.20): Miguel Rodo (2025-02-05 15:00:34)
+  - Add pipe section
 - Patch (v1.0.19): Miguel Rodo (2025-02-05 14:46:00)
   - Add draft notices
 - Patch (v1.0.18): Miguel Rodo (2025-02-05 14:45:20)
