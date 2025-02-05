@@ -1,5 +1,7 @@
 # CHANGELOG
 
+- Patch (v1.0.8): Miguel Rodo (2025-02-05 13:28:41)
+  - Add GitHub instructions
 - Patch (v1.0.7): Miguel Rodo (2025-02-05 12:48:51)
   - Add link to HappyGitWithR project setup instructions
 - Patch (v1.0.6): Miguel Rodo (2025-02-04 09:46:13)
