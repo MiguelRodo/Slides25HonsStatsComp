@@ -1,6 +1,6 @@
 Package: Slides25HonsStatsComp
 Title: Slides
-Version: 1.0.13-1
+Version: 1.0.14
 Authors@R: person("Miguel", "Rodo", , "miguel.rodo@uct.ac.za", role = c("aut", "cre"))
 Maintainer: Miguel Rodo <miguel.rodo@uct.ac.za>
 Description: Slides

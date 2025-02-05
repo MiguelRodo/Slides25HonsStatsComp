@@ -1,5 +1,7 @@
 # CHANGELOG
 
+- Patch (v1.0.14): Miguel Rodo (2025-02-05 14:23:25)
+  - Try shift sidebar
 - Patch (v1.0.13): Miguel Rodo (2025-02-05 14:21:07)
   - Add parts for separate days
 - Patch (v1.0.12): Miguel Rodo (2025-02-05 13:36:24)

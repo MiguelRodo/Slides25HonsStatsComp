@@ -8,7 +8,7 @@
   "codeRepository": "https://github.com/MiguelRodo/Slides25HonsStatsComp",
   "issueTracker": "https://github.com/MiguelRodo/Slides25HonsStatsComp/issues",
   "license": "https://spdx.org/licenses/CC-BY-4.0",
-  "version": "1.0.13",
+  "version": "1.0.14",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
