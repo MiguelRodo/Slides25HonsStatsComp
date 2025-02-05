@@ -8,7 +8,7 @@ project:
   - git.qmd
   - projrsimple.qmd
   - prac1.qmd
-  output-dir: _tmp/projr/v1.0.6/docs
+  output-dir: docs
 book:
   title: Statistical Computing
   sidebar:
