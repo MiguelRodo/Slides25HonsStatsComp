@@ -84,6 +84,17 @@ new_tbl
 Note that for a `tibble` object (i.e. a dataframe that has class `tbl_df`) to display as a tibble, the `tibble` package needs to be attached.
 So always add `library(tibble)` to the top of your script.
 
+A final, very nice feature of `tibbles` is that selecting one column using `df[, "column"]` will return a tibble, rather than a vector.
+This is typically what we would expect:
+
+```{r}
+example_df[, "id"]
+```
+
+```{r}
+class(example_df[, "id"])
+```
+
 ---
 
 ### Exploring Data Columns with `view_cols`
@@ -164,7 +175,7 @@ To run their example, you will need to have the `flights` dataset from the `nycf
 
 To ensure this, first run the chunk below before running their example:
 
-```{r}
+```r
 pkg_vec <- c("tidyverse", "nycflights13", "tibble")
 for (x in pkg_vec) {
   if (!requireNamespace(x, quietly = TRUE)) {
@@ -179,26 +190,30 @@ data(flights, package = "nycflights13")
 
 Their example involves many functions that we'll discuss in the rest of this chapter.
 
+## Motivating the `tidyverse`
 
-- Inconsistent syntax:
-  - For example
-- Not concise syntax
-  - For example:
-    - `test_df[test_df[["column"]] == "value", ]`
-  - Regular expressions
-    - `grepl("pattern", "string")`
-- Does not necessarily work well with pipes
-  - To work well with pipes, we want the first parameter to take the return value from the previous one
-- Inconsistent return values
-  - E.g. `test_df[, 1] vs test_df[, c(1, 2)]`
+Base R (`R` without any extra packages, e.g. `example_df[1, 1]`) is powerful but can be verbose and inconsistent for everyday data manipulation.
+The `tidyverse` is a suite of `R` packages that work together to offer a coherent, intuitive framework that simplifies your workflow.
 
-## `dplyr`
+Individual `tidyverse` packages (such a `dplyr` and `tidyr`) can be installed separately, but the `tidyverse` metapackage installs the core packages and recommended dependencies in one go:
 
-- `dplyr` provides key functions for working with data frames
+```{r}
+if (!requireNamespace("tidyverse", quietly = TRUE)) {
+  install.packages("tidyverse")
+}
+library(tidyverse)
+```
+
+### Key Advantages:
+
+- **Readable Syntax:** Tidyverse functions replace cumbersome expressions (e.g., `test_df[test_df[["column"]] == "value", ]`) with cleaner code.
+- **Pipe-Friendly:** Designed with the data object as the first argument, they integrate seamlessly with the pipe operator for streamlined chaining.
+- **Consistent Function Interfaces:** Parameter names and positions are uniform across related functions, reducing confusion and the risk of errors, and making remembering the functions easier.
+- **Predictable Behavior:** Consistent return types and standardized design help avoid unexpected bugs.
+
+<!--
+Packages to cover:
 - For example, `filter`
-
-- 
-
 - dplyr
 - magrittr
 - ggplot2
@@ -217,3 +232,8 @@ Their example involves many functions that we'll discuss in the rest of this cha
   - `stringi`
   - `readxl`
   - `haven`
+!-->
+
+### `dplyr`
+
+- `dplyr` provides key functions for working with data frames
