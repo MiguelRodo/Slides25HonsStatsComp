@@ -1,5 +1,7 @@
 # CHANGELOG
 
+- Patch (v1.0.17): Miguel Rodo (2025-02-05 14:41:32)
+  - Restart numbering after parts
 - Patch (v1.0.16): Miguel Rodo (2025-02-05 14:29:02)
   - Rework tibble section
 - Patch (v1.0.15): Miguel Rodo (2025-02-05 14:24:59)

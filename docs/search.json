@@ -4,19 +4,19 @@
     "href": "index.html",
     "title": "Statistical Computing",
     "section": "",
-    "text": "1 Welcome\nWe have a lot to cover in this bootcamp-style course. By the end, you should be able to write acceptable assignments faster. One of the biggest time sinks in Honours statistics is the process of writing up your analyses, which is often slowed down by two major issues:\nOur goal is to address both of these challenges. This course focuses on statistical computing, so many tasks will be statistical in nature.",
+    "text": "Welcome\nWe have a lot to cover in this bootcamp-style course. By the end, you should be able to write acceptable assignments faster. One of the biggest time sinks in Honours statistics is the process of writing up your analyses, which is often slowed down by two major issues:\nOur goal is to address both of these challenges. This course focuses on statistical computing, so many tasks will be statistical in nature.",
     "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Welcome</span>"
+      "Welcome"
     ]
   },
   {
     "objectID": "index.html#what-about-assignments",
     "href": "index.html#what-about-assignments",
     "title": "Statistical Computing",
-    "section": "1.1 What About Assignments?",
-    "text": "1.1 What About Assignments?\nI won’t detail all the assignments, but before term “starts”, you will have:\n\nPeer-reviewed assessment:\n\nDate: towards the end of next week\nFormat:\n\nCollate selected practical work from the first two weeks into a Quarto project, with the code available on GitHub (Quarto and GitHub to be explained later).\nYou will each anonymously mark one other person’s work.\nWe will provide a marking rubric.\n\n\nFirst practical test:\n\nDate: 13 February, 9–11 AM.\nFormat:\n\nIn-class test, I believe open-book but no internet.\nWill center on writing R code and interpreting results.",
+    "section": "What About Assignments?",
+    "text": "What About Assignments?\nI won’t detail all the assignments, but before term “starts”, you will have:\n\nPeer-reviewed assessment:\n\nDate: towards the end of next week\nFormat:\n\nCollate selected practical work from the first two weeks into a Quarto project, with the code available on GitHub (Quarto and GitHub to be explained later).\nYou will each anonymously mark one other person’s work.\nWe will provide a marking rubric.\n\n\nFirst practical test:\n\nDate: 13 February, 9–11 AM.\nFormat:\n\nIn-class test, I believe open-book but no internet.\nWill center on writing R code and interpreting results.",
     "crumbs": [
-      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Welcome</span>"
+      "Welcome"
     ]
   },
   {
@@ -52,496 +52,496 @@
   {
     "objectID": "r.html",
     "href": "r.html",
-    "title": "2  Fundamental R Objects and Functions",
+    "title": "1  Fundamental R Objects and Functions",
     "section": "",
-    "text": "2.1 Getting Help\nSee the video r.mp4 for a visual explanation of this document.\nR is a powerful statistical computing language designed for efficient data analysis. It is free, open-source, and operates primarily on objects, which makes it flexible for data manipulation.\nR can be downloaded from CRAN, and RStudio, the recommended integrated development environment (IDE), can be obtained from RStudio. Once installed, open RStudio to explore its interface.\nTo view the help documentation for a function, use either the ? operator or the help() function:",
+    "text": "1.1 Getting Help\nSee the video r.mp4 for a visual explanation of this document.\nR is a powerful statistical computing language designed for efficient data analysis. It is free, open-source, and operates primarily on objects, which makes it flexible for data manipulation.\nR can be downloaded from CRAN, and RStudio, the recommended integrated development environment (IDE), can be obtained from RStudio. Once installed, open RStudio to explore its interface.\nTo view the help documentation for a function, use either the ? operator or the help() function:",
     "crumbs": [
       "Day One",
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Fundamental R Objects and Functions</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Fundamental R Objects and Functions</span>"
     ]
   },
   {
     "objectID": "r.html#getting-help",
     "href": "r.html#getting-help",
-    "title": "2  Fundamental R Objects and Functions",
+    "title": "1  Fundamental R Objects and Functions",
     "section": "",
     "text": "?setwd     # Opens help for setwd()\nhelp(\"lm\")  # Alternative way to get help for lm()",
     "crumbs": [
       "Day One",
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Fundamental R Objects and Functions</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Fundamental R Objects and Functions</span>"
     ]
   },
   {
     "objectID": "r.html#libraries",
     "href": "r.html#libraries",
-    "title": "2  Fundamental R Objects and Functions",
-    "section": "2.2 Libraries",
-    "text": "2.2 Libraries\nLibraries in R provide additional functions and features. For example:\n\nSyntax: library(packageName)\nExample:\nlibrary(ggplot2)  # Loads the ggplot2 package for data visualization",
+    "title": "1  Fundamental R Objects and Functions",
+    "section": "1.2 Libraries",
+    "text": "1.2 Libraries\nLibraries in R provide additional functions and features. For example:\n\nSyntax: library(packageName)\nExample:\nlibrary(ggplot2)  # Loads the ggplot2 package for data visualization",
     "crumbs": [
       "Day One",
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Fundamental R Objects and Functions</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Fundamental R Objects and Functions</span>"
     ]
   },
   {
     "objectID": "r.html#reading-in-data",
     "href": "r.html#reading-in-data",
-    "title": "2  Fundamental R Objects and Functions",
-    "section": "2.3 Reading in Data",
-    "text": "2.3 Reading in Data\nThere are many ways to read data into R. For example, to read data from a CSV file:\ndata &lt;- read.csv(\"data/yourfile.csv\")\nOther packages such as readr, readxl, and openxlsx offer additional methods and options for reading various data formats.",
+    "title": "1  Fundamental R Objects and Functions",
+    "section": "1.3 Reading in Data",
+    "text": "1.3 Reading in Data\nThere are many ways to read data into R. For example, to read data from a CSV file:\ndata &lt;- read.csv(\"data/yourfile.csv\")\nOther packages such as readr, readxl, and openxlsx offer additional methods and options for reading various data formats.",
     "crumbs": [
       "Day One",
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Fundamental R Objects and Functions</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Fundamental R Objects and Functions</span>"
     ]
   },
   {
     "objectID": "r.html#assigning-values-to-objects",
     "href": "r.html#assigning-values-to-objects",
-    "title": "2  Fundamental R Objects and Functions",
-    "section": "2.4 Assigning Values to Objects",
-    "text": "2.4 Assigning Values to Objects\nIn R, you assign values to objects using &lt;- (preferred) or =:\nx &lt;- 1               # Assigns the value 1 to x\nmsg &lt;- \"Hello, world!\"  # Assigns a character string to msg\nprint(x)            # Prints the value of x\nTo check an object’s type, use the class() function:\nclass(x)   # Returns \"numeric\"\nclass(msg) # Returns \"character\"",
+    "title": "1  Fundamental R Objects and Functions",
+    "section": "1.4 Assigning Values to Objects",
+    "text": "1.4 Assigning Values to Objects\nIn R, you assign values to objects using &lt;- (preferred) or =:\nx &lt;- 1               # Assigns the value 1 to x\nmsg &lt;- \"Hello, world!\"  # Assigns a character string to msg\nprint(x)            # Prints the value of x\nTo check an object’s type, use the class() function:\nclass(x)   # Returns \"numeric\"\nclass(msg) # Returns \"character\"",
     "crumbs": [
       "Day One",
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Fundamental R Objects and Functions</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Fundamental R Objects and Functions</span>"
     ]
   },
   {
     "objectID": "r.html#basic-computations",
     "href": "r.html#basic-computations",
-    "title": "2  Fundamental R Objects and Functions",
-    "section": "2.5 Basic Computations",
-    "text": "2.5 Basic Computations\nR supports basic arithmetic following standard mathematical precedence:\n2 + 3 * 5      # Multiplication happens before addition\nlog(10)        # Natural logarithm of 10\n4^2            # Exponentiation: 4 squared\nsqrt(16)       # Square root of 16\nabs(-7)        # Absolute value of -7\nFor integer division and modulus operations:\n15 %/% 4  # Integer division: returns 3\n15 %% 4   # Modulus: returns 3",
+    "title": "1  Fundamental R Objects and Functions",
+    "section": "1.5 Basic Computations",
+    "text": "1.5 Basic Computations\nR supports basic arithmetic following standard mathematical precedence:\n2 + 3 * 5      # Multiplication happens before addition\nlog(10)        # Natural logarithm of 10\n4^2            # Exponentiation: 4 squared\nsqrt(16)       # Square root of 16\nabs(-7)        # Absolute value of -7\nFor integer division and modulus operations:\n15 %/% 4  # Integer division: returns 3\n15 %% 4   # Modulus: returns 3",
     "crumbs": [
       "Day One",
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Fundamental R Objects and Functions</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Fundamental R Objects and Functions</span>"
     ]
   },
   {
     "objectID": "r.html#working-with-vectors",
     "href": "r.html#working-with-vectors",
-    "title": "2  Fundamental R Objects and Functions",
-    "section": "2.6 Working with Vectors",
-    "text": "2.6 Working with Vectors\nVectors store multiple values of the same type and are a fundamental data structure in R:\nx &lt;- c(1, 3, 2, 10, 5)  # Creates a numeric vector\ny &lt;- 1:5                # Creates a sequence from 1 to 5\nMathematical operations can be applied directly to vectors:\ny + 2   # Adds 2 to each element\n2 * y   # Multiplies each element by 2\nx + y   # Adds corresponding elements of x and y\nx * y   # Multiplies corresponding elements of x and y\nx^y     # Raises each element of x to the power given in y\nTo extract specific elements from a vector:\nx[2]      # Returns the second element\nx[3:5]    # Returns elements from index 3 to 5\nx[-2]     # Returns all elements except the second one\nx[x &gt; 3]  # Returns elements greater than 3",
+    "title": "1  Fundamental R Objects and Functions",
+    "section": "1.6 Working with Vectors",
+    "text": "1.6 Working with Vectors\nVectors store multiple values of the same type and are a fundamental data structure in R:\nx &lt;- c(1, 3, 2, 10, 5)  # Creates a numeric vector\ny &lt;- 1:5                # Creates a sequence from 1 to 5\nMathematical operations can be applied directly to vectors:\ny + 2   # Adds 2 to each element\n2 * y   # Multiplies each element by 2\nx + y   # Adds corresponding elements of x and y\nx * y   # Multiplies corresponding elements of x and y\nx^y     # Raises each element of x to the power given in y\nTo extract specific elements from a vector:\nx[2]      # Returns the second element\nx[3:5]    # Returns elements from index 3 to 5\nx[-2]     # Returns all elements except the second one\nx[x &gt; 3]  # Returns elements greater than 3",
     "crumbs": [
       "Day One",
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Fundamental R Objects and Functions</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Fundamental R Objects and Functions</span>"
     ]
   },
   {
     "objectID": "r.html#working-with-character-vectors",
     "href": "r.html#working-with-character-vectors",
-    "title": "2  Fundamental R Objects and Functions",
-    "section": "2.7 Working with Character Vectors",
-    "text": "2.7 Working with Character Vectors\nCharacter vectors store text data:\ncolours &lt;- c(\"green\", \"blue\", \"orange\", \"yellow\", \"red\")\ncolours[2]  # Returns \"blue\"\ncolours[5]  # Returns \"red\"\nNote that character vectors do not support arithmetic operations.",
+    "title": "1  Fundamental R Objects and Functions",
+    "section": "1.7 Working with Character Vectors",
+    "text": "1.7 Working with Character Vectors\nCharacter vectors store text data:\ncolours &lt;- c(\"green\", \"blue\", \"orange\", \"yellow\", \"red\")\ncolours[2]  # Returns \"blue\"\ncolours[5]  # Returns \"red\"\nNote that character vectors do not support arithmetic operations.",
     "crumbs": [
       "Day One",
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Fundamental R Objects and Functions</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Fundamental R Objects and Functions</span>"
     ]
   },
   {
     "objectID": "r.html#matrices",
     "href": "r.html#matrices",
-    "title": "2  Fundamental R Objects and Functions",
-    "section": "2.8 Matrices",
-    "text": "2.8 Matrices\nMatrices are two-dimensional arrays where all elements are of the same type:\nx &lt;- c(1, 3, 2, 10, 5)\ny &lt;- 1:5\n\nm1 &lt;- cbind(x, y)  # Column-binding creates a matrix\nm2 &lt;- rbind(x, y)  # Row-binding creates a matrix\nMatrix operations include:\nt(m1)       # Transposes the matrix\nm1 + m2     # Adds corresponding elements\nm1 %*% m2   # Matrix multiplication\nsolve(m1)   # Computes the inverse of a square matrix (if possible)",
+    "title": "1  Fundamental R Objects and Functions",
+    "section": "1.8 Matrices",
+    "text": "1.8 Matrices\nMatrices are two-dimensional arrays where all elements are of the same type:\nx &lt;- c(1, 3, 2, 10, 5)\ny &lt;- 1:5\n\nm1 &lt;- cbind(x, y)  # Column-binding creates a matrix\nm2 &lt;- rbind(x, y)  # Row-binding creates a matrix\nMatrix operations include:\nt(m1)       # Transposes the matrix\nm1 + m2     # Adds corresponding elements\nm1 %*% m2   # Matrix multiplication\nsolve(m1)   # Computes the inverse of a square matrix (if possible)",
     "crumbs": [
       "Day One",
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Fundamental R Objects and Functions</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Fundamental R Objects and Functions</span>"
     ]
   },
   {
     "objectID": "r.html#lists",
     "href": "r.html#lists",
-    "title": "2  Fundamental R Objects and Functions",
-    "section": "2.9 Lists",
-    "text": "2.9 Lists\nLists can store elements of different types, making them flexible for various data:\nmy_list &lt;- list(num = 1, vec = c(1, 2, 3), mat = matrix(1:6, nrow = 2))\nAccess elements of a list using the $ operator:\nmy_list$num  # Retrieves the numeric element\nmy_list$vec  # Retrieves the vector\nmy_list$mat  # Retrieves the matrix",
+    "title": "1  Fundamental R Objects and Functions",
+    "section": "1.9 Lists",
+    "text": "1.9 Lists\nLists can store elements of different types, making them flexible for various data:\nmy_list &lt;- list(num = 1, vec = c(1, 2, 3), mat = matrix(1:6, nrow = 2))\nAccess elements of a list using the $ operator:\nmy_list$num  # Retrieves the numeric element\nmy_list$vec  # Retrieves the vector\nmy_list$mat  # Retrieves the matrix",
     "crumbs": [
       "Day One",
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Fundamental R Objects and Functions</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Fundamental R Objects and Functions</span>"
     ]
   },
   {
     "objectID": "r.html#data-frames",
     "href": "r.html#data-frames",
-    "title": "2  Fundamental R Objects and Functions",
-    "section": "2.10 Data Frames",
-    "text": "2.10 Data Frames\nData frames store tabular data, similar to spreadsheets:\ndf &lt;- data.frame(name = c(\"Alice\", \"Bob\"), age = c(25, 30))\nExtract data from a data frame:\ndf$name           # Extracts the \"name\" column\ndf[1, ]           # Returns the first row\ndf[df$age &gt; 25, ] # Filters rows where age is greater than 25",
+    "title": "1  Fundamental R Objects and Functions",
+    "section": "1.10 Data Frames",
+    "text": "1.10 Data Frames\nData frames store tabular data, similar to spreadsheets:\ndf &lt;- data.frame(name = c(\"Alice\", \"Bob\"), age = c(25, 30))\nExtract data from a data frame:\ndf$name           # Extracts the \"name\" column\ndf[1, ]           # Returns the first row\ndf[df$age &gt; 25, ] # Filters rows where age is greater than 25",
     "crumbs": [
       "Day One",
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Fundamental R Objects and Functions</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Fundamental R Objects and Functions</span>"
     ]
   },
   {
     "objectID": "r.html#working-with-file-paths",
     "href": "r.html#working-with-file-paths",
-    "title": "2  Fundamental R Objects and Functions",
-    "section": "2.11 Working with File Paths",
-    "text": "2.11 Working with File Paths\nR provides several functions to work with file paths, allowing you to build, explore, and manipulate directories and files in a platform-independent way. Here are some common functions along with examples and explanations:\n\n2.11.1 Constructing File Paths with file.path()\n\nPurpose:\nfile.path() constructs file paths by combining directory and file names. It automatically uses the correct file separator for the operating system.\nExample:\n# Combine folder, subfolder, and file name\nfull_path &lt;- file.path(\"data\", \"raw\", \"myfile.txt\")\nprint(full_path)\nThis will produce a path like \"data/raw/myfile.txt\" on Unix-like systems or \"data\\\\raw\\\\myfile.txt\" on Windows.\n\n\n\n2.11.2 Listing Files with list.files()\n\nPurpose:\nlist.files() returns a character vector of the file names in a specified directory. It can also be used to filter files by pattern.\nExample:\n# List all files in the \"data\" directory\nfiles &lt;- list.files(path = \"data\")\nprint(files)\n\n# List only CSV files in the \"data\" directory\ncsv_files &lt;- list.files(path = \"data\", pattern = \"\\\\.csv$\")\nprint(csv_files)\nThis function is useful for dynamically accessing the contents of a directory.\n\n\n2.11.2.1 Listing Directories with list.dirs()\n\nPurpose:\nlist.dirs() provides a recursive list of directories (subdirectories included) within a specified path.\nExample:\n# List all directories within the \"data\" folder, including subdirectories\ndirectories &lt;- list.dirs(path = \"data\")\nprint(directories)\nThis function helps you understand the structure of your file system under a particular directory.\n\n\n\n2.11.2.2 Creating Directories with dir.create()\n\nPurpose:\ndir.create() is used to create new directories. When creating nested directories (sub-directories that do not yet exist), you must set the recursive argument to TRUE.\nExample:\n# Create a nested directory structure \"data/raw\"\ndir.create(path = file.path(\"data\", \"raw\"), recursive = TRUE)\nSetting recursive = TRUE ensures that if the parent directory \"data\" does not exist, it will be created along with \"raw\".\n\n\n\n2.11.2.3 Reading and Writing Text Files with readLines() and writeLines()\n\nreadLines():\n\nPurpose:\nReads text files line by line into a character vector, which is useful for processing or analyzing text.\nExample:\n# Read the content of a text file into a vector of lines\nlines &lt;- readLines(\"data/raw/myfile.txt\")\nprint(lines)\n\nwriteLines():\n\nPurpose:\nWrites a character vector to a text file, with each element being written as a separate line.\nExample:\n# Create a vector of text lines\noutput_lines &lt;- c(\"This is the first line.\", \"This is the second line.\")\n\n# Write the vector to a file called \"output.txt\"\nwriteLines(output_lines, con = \"data/output/output.txt\")\nThese functions are ideal for simple text processing, such as reading logs, configuration files, or exporting simple reports.",
+    "title": "1  Fundamental R Objects and Functions",
+    "section": "1.11 Working with File Paths",
+    "text": "1.11 Working with File Paths\nR provides several functions to work with file paths, allowing you to build, explore, and manipulate directories and files in a platform-independent way. Here are some common functions along with examples and explanations:\n\n1.11.1 Constructing File Paths with file.path()\n\nPurpose:\nfile.path() constructs file paths by combining directory and file names. It automatically uses the correct file separator for the operating system.\nExample:\n# Combine folder, subfolder, and file name\nfull_path &lt;- file.path(\"data\", \"raw\", \"myfile.txt\")\nprint(full_path)\nThis will produce a path like \"data/raw/myfile.txt\" on Unix-like systems or \"data\\\\raw\\\\myfile.txt\" on Windows.\n\n\n\n1.11.2 Listing Files with list.files()\n\nPurpose:\nlist.files() returns a character vector of the file names in a specified directory. It can also be used to filter files by pattern.\nExample:\n# List all files in the \"data\" directory\nfiles &lt;- list.files(path = \"data\")\nprint(files)\n\n# List only CSV files in the \"data\" directory\ncsv_files &lt;- list.files(path = \"data\", pattern = \"\\\\.csv$\")\nprint(csv_files)\nThis function is useful for dynamically accessing the contents of a directory.\n\n\n1.11.2.1 Listing Directories with list.dirs()\n\nPurpose:\nlist.dirs() provides a recursive list of directories (subdirectories included) within a specified path.\nExample:\n# List all directories within the \"data\" folder, including subdirectories\ndirectories &lt;- list.dirs(path = \"data\")\nprint(directories)\nThis function helps you understand the structure of your file system under a particular directory.\n\n\n\n1.11.2.2 Creating Directories with dir.create()\n\nPurpose:\ndir.create() is used to create new directories. When creating nested directories (sub-directories that do not yet exist), you must set the recursive argument to TRUE.\nExample:\n# Create a nested directory structure \"data/raw\"\ndir.create(path = file.path(\"data\", \"raw\"), recursive = TRUE)\nSetting recursive = TRUE ensures that if the parent directory \"data\" does not exist, it will be created along with \"raw\".\n\n\n\n1.11.2.3 Reading and Writing Text Files with readLines() and writeLines()\n\nreadLines():\n\nPurpose:\nReads text files line by line into a character vector, which is useful for processing or analyzing text.\nExample:\n# Read the content of a text file into a vector of lines\nlines &lt;- readLines(\"data/raw/myfile.txt\")\nprint(lines)\n\nwriteLines():\n\nPurpose:\nWrites a character vector to a text file, with each element being written as a separate line.\nExample:\n# Create a vector of text lines\noutput_lines &lt;- c(\"This is the first line.\", \"This is the second line.\")\n\n# Write the vector to a file called \"output.txt\"\nwriteLines(output_lines, con = \"data/output/output.txt\")\nThese functions are ideal for simple text processing, such as reading logs, configuration files, or exporting simple reports.",
     "crumbs": [
       "Day One",
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Fundamental R Objects and Functions</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Fundamental R Objects and Functions</span>"
     ]
   },
   {
     "objectID": "r.html#writing-functions",
     "href": "r.html#writing-functions",
-    "title": "2  Fundamental R Objects and Functions",
-    "section": "2.12 Writing Functions",
-    "text": "2.12 Writing Functions\nFunctions in R allow you to encapsulate operations and reuse code. Define a function using function():\nincrement &lt;- function(x) {\n  x + 1  # Adds 1 to the input value and returns it\n}\n\nincrement(3)  # Returns 4\nNote that functions always return the last value computed:\nincrement &lt;- function(x) {\n  x + 2\n  x + 1\n}\n\nincrement(3)  # Returns 4\nFunctions can also take multiple arguments:\nadd_numbers &lt;- function(x, y) {\n  return(x + y)\n}\n\nadd_numbers(2, 5)  # Returns 7\nA common example is a function to calculate the hypotenuse of a right triangle (you will use this daily):\nhypotenuse &lt;- function(a, b) {\n  sqrt(a^2 + b^2)  # Uses the Pythagorean theorem\n}\n\nhypotenuse(3, 4)  # Returns 5",
+    "title": "1  Fundamental R Objects and Functions",
+    "section": "1.12 Writing Functions",
+    "text": "1.12 Writing Functions\nFunctions in R allow you to encapsulate operations and reuse code. Define a function using function():\nincrement &lt;- function(x) {\n  x + 1  # Adds 1 to the input value and returns it\n}\n\nincrement(3)  # Returns 4\nNote that functions always return the last value computed:\nincrement &lt;- function(x) {\n  x + 2\n  x + 1\n}\n\nincrement(3)  # Returns 4\nFunctions can also take multiple arguments:\nadd_numbers &lt;- function(x, y) {\n  return(x + y)\n}\n\nadd_numbers(2, 5)  # Returns 7\nA common example is a function to calculate the hypotenuse of a right triangle (you will use this daily):\nhypotenuse &lt;- function(a, b) {\n  sqrt(a^2 + b^2)  # Uses the Pythagorean theorem\n}\n\nhypotenuse(3, 4)  # Returns 5",
     "crumbs": [
       "Day One",
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Fundamental R Objects and Functions</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Fundamental R Objects and Functions</span>"
     ]
   },
   {
     "objectID": "r.html#basic-statistical-functions",
     "href": "r.html#basic-statistical-functions",
-    "title": "2  Fundamental R Objects and Functions",
-    "section": "2.13 Basic Statistical Functions",
-    "text": "2.13 Basic Statistical Functions\nR includes built-in functions for summary statistics:\nmean(df$age)     # Computes the mean\nsd(df$age)       # Computes the standard deviation\nsummary(df)      # Provides a summary of the data frame\nTo create frequency tables:\ntable(df$name)  # Counts occurrences of each name",
+    "title": "1  Fundamental R Objects and Functions",
+    "section": "1.13 Basic Statistical Functions",
+    "text": "1.13 Basic Statistical Functions\nR includes built-in functions for summary statistics:\nmean(df$age)     # Computes the mean\nsd(df$age)       # Computes the standard deviation\nsummary(df)      # Provides a summary of the data frame\nTo create frequency tables:\ntable(df$name)  # Counts occurrences of each name",
     "crumbs": [
       "Day One",
-      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Fundamental R Objects and Functions</span>"
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Fundamental R Objects and Functions</span>"
     ]
   },
   {
     "objectID": "projects.html",
     "href": "projects.html",
-    "title": "3  Tackling Projects in RStudio",
+    "title": "2  Tackling Projects in RStudio",
     "section": "",
-    "text": "3.1 Using RStudio Projects\nRefer to the video projects.mp4 for an overview of working on projects. Here are some principles for keeping your work organized and reproducible.\nBenefits:",
+    "text": "2.1 Using RStudio Projects\nRefer to the video projects.mp4 for an overview of working on projects. Here are some principles for keeping your work organized and reproducible.\nBenefits:",
     "crumbs": [
       "Day One",
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Tackling Projects in RStudio</span>"
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Tackling Projects in RStudio</span>"
     ]
   },
   {
     "objectID": "projects.html#using-rstudio-projects",
     "href": "projects.html#using-rstudio-projects",
-    "title": "3  Tackling Projects in RStudio",
+    "title": "2  Tackling Projects in RStudio",
     "section": "",
     "text": "Click on New Project in the top-right corner of RStudio to create an RStudio Project.\nThis creates a directory containing all the code, data, and outputs for your analysis.\nWhen you open a project, the working directory is automatically set to that project folder.\n\n\n\nConsistent relative paths: Avoids issues with absolute paths that vary across devices.\nEasier collaboration: Consistent paths make sharing scripts seamless.\nQuick access: Recently opened projects are available in the top-right dropdown menu.",
     "crumbs": [
       "Day One",
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Tackling Projects in RStudio</span>"
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Tackling Projects in RStudio</span>"
     ]
   },
   {
     "objectID": "projects.html#organizing-project-files-and-directories",
     "href": "projects.html#organizing-project-files-and-directories",
-    "title": "3  Tackling Projects in RStudio",
-    "section": "3.2 Organizing Project Files and Directories",
-    "text": "3.2 Organizing Project Files and Directories\nA well-structured project prevents clutter and helps you locate files easily. A common folder structure might include:\n\n\n\n\n\n\n\nFolder Name\nPurpose\n\n\n\n\n_raw_data/\nStores unmodified datasets\n\n\n_output/\nContains figures, reports, and final documents\n\n\n_tmp/\nHolds intermediate files not intended for sharing\n\n\n_reference/\nKeeps supplementary materials such as papers and assignment details\n\n\n\nNote: Keep scripts (e.g., .R, .Rmd, .qmd) in the main project directory to avoid issues with relative paths.",
+    "title": "2  Tackling Projects in RStudio",
+    "section": "2.2 Organizing Project Files and Directories",
+    "text": "2.2 Organizing Project Files and Directories\nA well-structured project prevents clutter and helps you locate files easily. A common folder structure might include:\n\n\n\n\n\n\n\nFolder Name\nPurpose\n\n\n\n\n_raw_data/\nStores unmodified datasets\n\n\n_output/\nContains figures, reports, and final documents\n\n\n_tmp/\nHolds intermediate files not intended for sharing\n\n\n_reference/\nKeeps supplementary materials such as papers and assignment details\n\n\n\nNote: Keep scripts (e.g., .R, .Rmd, .qmd) in the main project directory to avoid issues with relative paths.",
     "crumbs": [
       "Day One",
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Tackling Projects in RStudio</span>"
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Tackling Projects in RStudio</span>"
     ]
   },
   {
     "objectID": "projects.html#structuring-r-scripts-for-readability",
     "href": "projects.html#structuring-r-scripts-for-readability",
-    "title": "3  Tackling Projects in RStudio",
-    "section": "3.3 Structuring R Scripts for Readability",
-    "text": "3.3 Structuring R Scripts for Readability\nGood script structure improves maintainability and reduces errors. Consider these guidelines:\n\nOrganize Scripts Logically\n\nBegin with a setup section (load libraries and data).\nFollow with analysis and processing steps, grouped logically.\n\nImprove Readability\n\nKeep lines at a reasonable length (even with word wrapping).\nUse informative variable names instead of generic ones like x or y.\nAvoid reusing variable names to prevent confusion.\n\nUse Section Headings\n\nSeparate your code into sections with comment dividers (e.g., # ---- Setup ----).\nRStudio recognizes these dividers and allows for code folding.\n\n\nExample of a Structured Script:\n# ============================\n# Setup\n# ============================\nlibrary(ggplot2)              # Load required packages\ndata_raw &lt;- read.csv(\"_raw_data/air_pollution.csv\")  # Load dataset\n\n# ============================\n# Data Cleaning\n# ============================\ndata_cleaned &lt;- data_raw |&gt;\n  dplyr::filter(!is.na(pm2.5)) |&gt;\n  dplyr::mutate(log_pm = log(pm2.5))\n\n# ============================\n# Visualization\n# ============================\nggplot(data_cleaned, aes(x = temperature, y = log_pm)) +\n  geom_point() +\n  geom_smooth(method = \"lm\")\n\n# ============================\n# Model Fitting\n# ============================\nmodel &lt;- lm(log_pm ~ temperature + humidity, data = data_cleaned)",
+    "title": "2  Tackling Projects in RStudio",
+    "section": "2.3 Structuring R Scripts for Readability",
+    "text": "2.3 Structuring R Scripts for Readability\nGood script structure improves maintainability and reduces errors. Consider these guidelines:\n\nOrganize Scripts Logically\n\nBegin with a setup section (load libraries and data).\nFollow with analysis and processing steps, grouped logically.\n\nImprove Readability\n\nKeep lines at a reasonable length (even with word wrapping).\nUse informative variable names instead of generic ones like x or y.\nAvoid reusing variable names to prevent confusion.\n\nUse Section Headings\n\nSeparate your code into sections with comment dividers (e.g., # ---- Setup ----).\nRStudio recognizes these dividers and allows for code folding.\n\n\nExample of a Structured Script:\n# ============================\n# Setup\n# ============================\nlibrary(ggplot2)              # Load required packages\ndata_raw &lt;- read.csv(\"_raw_data/air_pollution.csv\")  # Load dataset\n\n# ============================\n# Data Cleaning\n# ============================\ndata_cleaned &lt;- data_raw |&gt;\n  dplyr::filter(!is.na(pm2.5)) |&gt;\n  dplyr::mutate(log_pm = log(pm2.5))\n\n# ============================\n# Visualization\n# ============================\nggplot(data_cleaned, aes(x = temperature, y = log_pm)) +\n  geom_point() +\n  geom_smooth(method = \"lm\")\n\n# ============================\n# Model Fitting\n# ============================\nmodel &lt;- lm(log_pm ~ temperature + humidity, data = data_cleaned)",
     "crumbs": [
       "Day One",
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Tackling Projects in RStudio</span>"
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Tackling Projects in RStudio</span>"
     ]
   },
   {
     "objectID": "projects.html#summary-of-best-practices",
     "href": "projects.html#summary-of-best-practices",
-    "title": "3  Tackling Projects in RStudio",
-    "section": "3.4 Summary of Best Practices",
-    "text": "3.4 Summary of Best Practices\n\nUse RStudio Projects for consistent working directories and collaboration.\nOrganize files into clearly named directories to avoid clutter.\nStructure your R scripts with a logical order, clear variable names, and well-defined sections.",
+    "title": "2  Tackling Projects in RStudio",
+    "section": "2.4 Summary of Best Practices",
+    "text": "2.4 Summary of Best Practices\n\nUse RStudio Projects for consistent working directories and collaboration.\nOrganize files into clearly named directories to avoid clutter.\nStructure your R scripts with a logical order, clear variable names, and well-defined sections.",
     "crumbs": [
       "Day One",
-      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Tackling Projects in RStudio</span>"
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Tackling Projects in RStudio</span>"
     ]
   },
   {
     "objectID": "quarto.html",
     "href": "quarto.html",
-    "title": "4  Literate Programming",
+    "title": "3  Literate Programming",
     "section": "",
-    "text": "4.1 What is Literate Programming?\nSee the video quarto.mp4 for a visual explanation of this document.\nLIterate programming combines code (e.g., R or Python) with text to create documents that are both readable and executable. The text itself is written in Markdown, a lightweight formatting language that allows us to structure documents with headings, bullet points, bold and italic text, and more.\nTwo key tools for literate programming in R are R Markdown and Quarto.",
+    "text": "3.1 What is Literate Programming?\nSee the video quarto.mp4 for a visual explanation of this document.\nLIterate programming combines code (e.g., R or Python) with text to create documents that are both readable and executable. The text itself is written in Markdown, a lightweight formatting language that allows us to structure documents with headings, bullet points, bold and italic text, and more.\nTwo key tools for literate programming in R are R Markdown and Quarto.",
     "crumbs": [
       "Day One",
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Literate Programming</span>"
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Literate Programming</span>"
     ]
   },
   {
     "objectID": "quarto.html#what-is-r-markdown",
     "href": "quarto.html#what-is-r-markdown",
-    "title": "4  Literate Programming",
-    "section": "5.1 What is R Markdown?",
-    "text": "5.1 What is R Markdown?\nR Markdown was the original tool for embedding code within documents. It allows users to write reports, create presentations, and generate formatted documents that include both text and code outputs.",
+    "title": "3  Literate Programming",
+    "section": "4.1 What is R Markdown?",
+    "text": "4.1 What is R Markdown?\nR Markdown was the original tool for embedding code within documents. It allows users to write reports, create presentations, and generate formatted documents that include both text and code outputs.",
     "crumbs": [
       "Day One",
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Literate Programming</span>"
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Literate Programming</span>"
     ]
   },
   {
     "objectID": "quarto.html#structure-of-an-r-markdown-file",
     "href": "quarto.html#structure-of-an-r-markdown-file",
-    "title": "4  Literate Programming",
-    "section": "5.2 Structure of an R Markdown File",
-    "text": "5.2 Structure of an R Markdown File\nAn R Markdown file (.Rmd) consists of three main components:\n\n5.2.1 1. YAML Front Matter\nThe YAML front matter is the metadata at the top of the document. It controls the output format (e.g., HTML, PDF, Word).\nExample:\n---\ntitle: \"My Report\"\noutput: html_document\n---\nThis tells R Markdown to generate an HTML document. Other options include pdf_document and word_document.\n\n\n5.2.2 2. Code Chunks\nCode chunks are sections of executable code, enclosed by triple backticks (```) with a specified language. In our case, it will be R:\n\n\nsummary(cars)\n\n\n\nBackticks (`) are usually found next to the number 1 key on the keyboard.\nBy default, all code in chunks is executed when the document is rendered.\n\nChunk Options:\n- echo = FALSE → Hides the code but still runs it.\n- echo = TRUE → Displays both the code and its output.\n- Other options can control figure size, message display, and more.\nExample:\n\n\n\n     speed           dist       \n Min.   : 4.0   Min.   :  2.00  \n 1st Qu.:12.0   1st Qu.: 26.00  \n Median :15.0   Median : 36.00  \n Mean   :15.4   Mean   : 42.98  \n 3rd Qu.:19.0   3rd Qu.: 56.00  \n Max.   :25.0   Max.   :120.00  \n\n\n\nThe summary will appear in the final document, but the code itself won’t be displayed.\n\n\n5.2.3 3. Markdown Formatting\nMarkdown is used for structuring text.\n\nHeadings: Use # for headings (## for subheadings, ### for deeper levels).\n\nBullet points: Use - or *.\n\nNumbered lists: Use 1., 2., etc.\n\nBold text: **bold** → bold\n\nItalic text: *italic* → italic",
+    "title": "3  Literate Programming",
+    "section": "4.2 Structure of an R Markdown File",
+    "text": "4.2 Structure of an R Markdown File\nAn R Markdown file (.Rmd) consists of three main components:\n\n4.2.1 1. YAML Front Matter\nThe YAML front matter is the metadata at the top of the document. It controls the output format (e.g., HTML, PDF, Word).\nExample:\n---\ntitle: \"My Report\"\noutput: html_document\n---\nThis tells R Markdown to generate an HTML document. Other options include pdf_document and word_document.\n\n\n4.2.2 2. Code Chunks\nCode chunks are sections of executable code, enclosed by triple backticks (```) with a specified language. In our case, it will be R:\n\n\nsummary(cars)\n\n\n\nBackticks (`) are usually found next to the number 1 key on the keyboard.\nBy default, all code in chunks is executed when the document is rendered.\n\nChunk Options:\n- echo = FALSE → Hides the code but still runs it.\n- echo = TRUE → Displays both the code and its output.\n- Other options can control figure size, message display, and more.\nExample:\n\n\n\n     speed           dist       \n Min.   : 4.0   Min.   :  2.00  \n 1st Qu.:12.0   1st Qu.: 26.00  \n Median :15.0   Median : 36.00  \n Mean   :15.4   Mean   : 42.98  \n 3rd Qu.:19.0   3rd Qu.: 56.00  \n Max.   :25.0   Max.   :120.00  \n\n\n\nThe summary will appear in the final document, but the code itself won’t be displayed.\n\n\n4.2.3 3. Markdown Formatting\nMarkdown is used for structuring text.\n\nHeadings: Use # for headings (## for subheadings, ### for deeper levels).\n\nBullet points: Use - or *.\n\nNumbered lists: Use 1., 2., etc.\n\nBold text: **bold** → bold\n\nItalic text: *italic* → italic",
     "crumbs": [
       "Day One",
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Literate Programming</span>"
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Literate Programming</span>"
     ]
   },
   {
     "objectID": "quarto.html#output",
     "href": "quarto.html#output",
-    "title": "4  Literate Programming",
-    "section": "5.3 Output",
-    "text": "5.3 Output\nR Markdown can embed plots, tables, and formatted text into a document. When you include code that generates a plot, the plot will be displayed in the final output.",
+    "title": "3  Literate Programming",
+    "section": "4.3 Output",
+    "text": "4.3 Output\nR Markdown can embed plots, tables, and formatted text into a document. When you include code that generates a plot, the plot will be displayed in the final output.",
     "crumbs": [
       "Day One",
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Literate Programming</span>"
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Literate Programming</span>"
     ]
   },
   {
     "objectID": "quarto.html#what-is-quarto",
     "href": "quarto.html#what-is-quarto",
-    "title": "4  Literate Programming",
-    "section": "6.1 What is Quarto?",
-    "text": "6.1 What is Quarto?\nQuarto is the successor to R Markdown. It is very similar but:\n- Has a different YAML front matter structure.\n- Supports more programming languages (via Jupyter).\n- Provides a more unified workflow for reports, websites, and books.",
+    "title": "3  Literate Programming",
+    "section": "5.1 What is Quarto?",
+    "text": "5.1 What is Quarto?\nQuarto is the successor to R Markdown. It is very similar but:\n- Has a different YAML front matter structure.\n- Supports more programming languages (via Jupyter).\n- Provides a more unified workflow for reports, websites, and books.",
     "crumbs": [
       "Day One",
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Literate Programming</span>"
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Literate Programming</span>"
     ]
   },
   {
     "objectID": "quarto.html#differences-in-yaml",
     "href": "quarto.html#differences-in-yaml",
-    "title": "4  Literate Programming",
-    "section": "6.2 Differences in YAML",
-    "text": "6.2 Differences in YAML\nInstead of specifying output: html_document like in R Markdown, Quarto uses:\n---\ntitle: \"My Report\"\nformat: html\n---\nQuarto uses format instead of output, making it more flexible.",
+    "title": "3  Literate Programming",
+    "section": "5.2 Differences in YAML",
+    "text": "5.2 Differences in YAML\nInstead of specifying output: html_document like in R Markdown, Quarto uses:\n---\ntitle: \"My Report\"\nformat: html\n---\nQuarto uses format instead of output, making it more flexible.",
     "crumbs": [
       "Day One",
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Literate Programming</span>"
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Literate Programming</span>"
     ]
   },
   {
     "objectID": "quarto.html#code-chunks-in-quarto",
     "href": "quarto.html#code-chunks-in-quarto",
-    "title": "4  Literate Programming",
-    "section": "6.3 Code Chunks in Quarto",
-    "text": "6.3 Code Chunks in Quarto\nQuarto code chunks function similarly to R Markdown, but chunk options can be specified in a cleaner way:\n\n```{r}\n#| eval: false\nsummary(cars)\n```\n\nUsing #| option: value inside the chunk makes options easier to read and manage.",
+    "title": "3  Literate Programming",
+    "section": "5.3 Code Chunks in Quarto",
+    "text": "5.3 Code Chunks in Quarto\nQuarto code chunks function similarly to R Markdown, but chunk options can be specified in a cleaner way:\n\n```{r}\n#| eval: false\nsummary(cars)\n```\n\nUsing #| option: value inside the chunk makes options easier to read and manage.",
     "crumbs": [
       "Day One",
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Literate Programming</span>"
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Literate Programming</span>"
     ]
   },
   {
     "objectID": "quarto.html#why-use-quarto-projects",
     "href": "quarto.html#why-use-quarto-projects",
-    "title": "4  Literate Programming",
-    "section": "7.1 Why Use Quarto Projects?",
-    "text": "7.1 Why Use Quarto Projects?\nOne limitation of R Markdown was that while you could generate individual reports (.html, .pdf, etc.), managing multiple files in a project (e.g., a website) required extra tools like bookdown.\nQuarto solves this by providing built-in support for project structures.",
+    "title": "3  Literate Programming",
+    "section": "6.1 Why Use Quarto Projects?",
+    "text": "6.1 Why Use Quarto Projects?\nOne limitation of R Markdown was that while you could generate individual reports (.html, .pdf, etc.), managing multiple files in a project (e.g., a website) required extra tools like bookdown.\nQuarto solves this by providing built-in support for project structures.",
     "crumbs": [
       "Day One",
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Literate Programming</span>"
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Literate Programming</span>"
     ]
   },
   {
     "objectID": "quarto.html#starting-a-quarto-project",
     "href": "quarto.html#starting-a-quarto-project",
-    "title": "4  Literate Programming",
-    "section": "7.2 Starting a Quarto Project",
-    "text": "7.2 Starting a Quarto Project\n\n7.2.1 Via RStudio GUI\nUnfortunately, in RStudio one cannot start a Quart project via the New File menu. Instead, you have to start a new RStudio project entirely. The change is that you must select Quarto Project from the New Project menu.\n\n\n7.2.2 By adding a quarto.yml file\nAlternatively, what you can do is simply add a _quarto.yml file. Here is an example _quarto.yml file:\nproject:\n  type: book\n  render:\n  - index.qmd\n  output-dir: docs\nbook:\n  title: Statistical Computing\n  sidebar:\n    border: true\n    background: light\n    position: right\n  navbar:\n    search: true\n    background: light\n  chapters:\n  - index.qmd\nformat:\n  html:\n    theme: cosmo\n    toc: true\n    toc-depth: 3\n    toc-location: left\nA brief explanation of this file:\n\nindex.qmd is the “base” qmd. It is the first file that will be rendered. Always include it.\n\nIf you want to include other files, then specify them in the chapters and render keys.\n\noutput-dir specifies where the output will be saved. In this case, it will be saved in a docs folder.\nbook specifies the title of the book, the sidebar, the navbar, and the chapters.\nformat specifies specific formatting options for the html outputL\n\nThe theme defines the overall appearance of the website.\ntoc specifies whether a table of contents should be generated, and the toc-depth specifies how many levels of headings should be included.",
+    "title": "3  Literate Programming",
+    "section": "6.2 Starting a Quarto Project",
+    "text": "6.2 Starting a Quarto Project\n\n6.2.1 Via RStudio GUI\nUnfortunately, in RStudio one cannot start a Quart project via the New File menu. Instead, you have to start a new RStudio project entirely. The change is that you must select Quarto Project from the New Project menu.\n\n\n6.2.2 By adding a quarto.yml file\nAlternatively, what you can do is simply add a _quarto.yml file. Here is an example _quarto.yml file:\nproject:\n  type: book\n  render:\n  - index.qmd\n  output-dir: docs\nbook:\n  title: Statistical Computing\n  sidebar:\n    border: true\n    background: light\n    position: right\n  navbar:\n    search: true\n    background: light\n  chapters:\n  - index.qmd\nformat:\n  html:\n    theme: cosmo\n    toc: true\n    toc-depth: 3\n    toc-location: left\nA brief explanation of this file:\n\nindex.qmd is the “base” qmd. It is the first file that will be rendered. Always include it.\n\nIf you want to include other files, then specify them in the chapters and render keys.\n\noutput-dir specifies where the output will be saved. In this case, it will be saved in a docs folder.\nbook specifies the title of the book, the sidebar, the navbar, and the chapters.\nformat specifies specific formatting options for the html outputL\n\nThe theme defines the overall appearance of the website.\ntoc specifies whether a table of contents should be generated, and the toc-depth specifies how many levels of headings should be included.",
     "crumbs": [
       "Day One",
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Literate Programming</span>"
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Literate Programming</span>"
     ]
   },
   {
     "objectID": "quarto.html#defining-a-quarto-project",
     "href": "quarto.html#defining-a-quarto-project",
-    "title": "4  Literate Programming",
-    "section": "7.3 Defining a Quarto Project",
-    "text": "7.3 Defining a Quarto Project\nA Quarto project is defined by a quarto.yml file, which specifies how multiple .qmd files should be compiled together.\nExample of a quarto.yml file for a website:\nproject:\n  type: website\n\nformat:\n  html:\n    toc: true\n    toc-depth: 3\nThis tells Quarto:\n- The project is a website. .\n- A table of contents should be generated (toc: true) for headings up to level 3 (toc-depth: 3).",
+    "title": "3  Literate Programming",
+    "section": "6.3 Defining a Quarto Project",
+    "text": "6.3 Defining a Quarto Project\nA Quarto project is defined by a quarto.yml file, which specifies how multiple .qmd files should be compiled together.\nExample of a quarto.yml file for a website:\nproject:\n  type: website\n\nformat:\n  html:\n    toc: true\n    toc-depth: 3\nThis tells Quarto:\n- The project is a website. .\n- A table of contents should be generated (toc: true) for headings up to level 3 (toc-depth: 3).",
     "crumbs": [
       "Day One",
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Literate Programming</span>"
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Literate Programming</span>"
     ]
   },
   {
     "objectID": "quarto.html#website-vs.-book",
     "href": "quarto.html#website-vs.-book",
-    "title": "4  Literate Programming",
-    "section": "7.4 Website vs. Book",
-    "text": "7.4 Website vs. Book\n\nWebsite (type: website)\n\nOnly outputs HTML.\n\nHas a navigation bar linking different pages.\n\n\nBook (type: book)\n\nCan output HTML, PDF, or Word.\n\nUses a chapters: key to define sections.\n\n\nExample quarto.yml for a book:\nproject:\n  type: book\n\nbook:\n  chapters:\n    - index.qmd\n    - intro.qmd\n    - analysis.qmd\n\nformat:\n  pdf: \n    documentclass: book\nHere:\n- The chapters define the book structure.\n- The format section customizes the outputs.",
+    "title": "3  Literate Programming",
+    "section": "6.4 Website vs. Book",
+    "text": "6.4 Website vs. Book\n\nWebsite (type: website)\n\nOnly outputs HTML.\n\nHas a navigation bar linking different pages.\n\n\nBook (type: book)\n\nCan output HTML, PDF, or Word.\n\nUses a chapters: key to define sections.\n\n\nExample quarto.yml for a book:\nproject:\n  type: book\n\nbook:\n  chapters:\n    - index.qmd\n    - intro.qmd\n    - analysis.qmd\n\nformat:\n  pdf: \n    documentclass: book\nHere:\n- The chapters define the book structure.\n- The format section customizes the outputs.",
     "crumbs": [
       "Day One",
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Literate Programming</span>"
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Literate Programming</span>"
     ]
   },
   {
     "objectID": "quarto.html#rendering-a-quarto-project",
     "href": "quarto.html#rendering-a-quarto-project",
-    "title": "4  Literate Programming",
-    "section": "7.5 Rendering a Quarto Project",
-    "text": "7.5 Rendering a Quarto Project\nTo build the entire project, use the quarto R package:\ninstall.packages(\"quarto\")\nquarto::quarto_render()\n\nThis renders all files in the project according to quarto.yml.\n\nFor websites, output is saved in _site/.\n\nFor books, output is saved in _book/.",
+    "title": "3  Literate Programming",
+    "section": "6.5 Rendering a Quarto Project",
+    "text": "6.5 Rendering a Quarto Project\nTo build the entire project, use the quarto R package:\ninstall.packages(\"quarto\")\nquarto::quarto_render()\n\nThis renders all files in the project according to quarto.yml.\n\nFor websites, output is saved in _site/.\n\nFor books, output is saved in _book/.",
     "crumbs": [
       "Day One",
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Literate Programming</span>"
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Literate Programming</span>"
     ]
   },
   {
     "objectID": "quarto.html#important-notes",
     "href": "quarto.html#important-notes",
-    "title": "4  Literate Programming",
-    "section": "7.6 Important Notes",
-    "text": "7.6 Important Notes\n\nTo start a new Quarto project, go to RStudio → New Project → Quarto Project.\n\nIf creating a website, ensure you have an index.qmd file—websites require an index.html as the main entry point.\nClicking the Knit button in RStudio will render the current .qmd file, but quarto::quarto_render() is needed for the entire project.",
+    "title": "3  Literate Programming",
+    "section": "6.6 Important Notes",
+    "text": "6.6 Important Notes\n\nTo start a new Quarto project, go to RStudio → New Project → Quarto Project.\n\nIf creating a website, ensure you have an index.qmd file—websites require an index.html as the main entry point.\nClicking the Knit button in RStudio will render the current .qmd file, but quarto::quarto_render() is needed for the entire project.",
     "crumbs": [
       "Day One",
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Literate Programming</span>"
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Literate Programming</span>"
     ]
   },
   {
     "objectID": "git.html",
     "href": "git.html",
-    "title": "5  Git and GitHub",
+    "title": "4  Git and GitHub",
     "section": "",
-    "text": "5.1 Prerequites",
+    "text": "4.1 Prerequites",
     "crumbs": [
       "Day One",
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Git and GitHub</span>"
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Git and GitHub</span>"
     ]
   },
   {
     "objectID": "git.html#prerequites",
     "href": "git.html#prerequites",
-    "title": "5  Git and GitHub",
+    "title": "4  Git and GitHub",
     "section": "",
     "text": "Create a GitHub account: GitHub.\nInstall Git: Git.",
     "crumbs": [
       "Day One",
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Git and GitHub</span>"
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Git and GitHub</span>"
     ]
   },
   {
     "objectID": "git.html#setting-up-git-and-github",
     "href": "git.html#setting-up-git-and-github",
-    "title": "5  Git and GitHub",
-    "section": "5.2 Setting Up Git and GitHub",
-    "text": "5.2 Setting Up Git and GitHub\nThere are two main approaches for setting up a new R project that you want on GitHub:\n\nApproach 1: Create project using Git, then download it to your machine\nApproach 2: Begin with pre-existing RStudio project, and then connect to GitHub\n\nThe first approach tends to be easier (and is new to these notes).\n\n5.2.1 Approach 1: Create project using Git, then download it to your machine\nWithin here, there are two approaches. One of them uses GitHub Desktop, a standalone program, and the other uses github.com itself, the website.\nWe suggest using GitHub Desktop, as it will make managing your Git repositories easier after setup.\n\n5.2.1.1 Use GitHub Desktop\nGitHub Desktop is a standalone program for working with Git and GitHub. It is very beginner-friendly.\nHere is a video describing how to use it: https://www.youtube.com/watch?v=8Dd7KRpKeaE\nI have not watched it myself, but apparently it makes it very easy. Note that it contains more information than you need, so you can stop when you are set up.\n\n\n5.2.1.2 Use GitHub\nYou can also create a new repo directly on GitHub, and then clone it (Git-speak for download it). Here are the instructions: New project, GitHub first.\n\n\n\n5.2.2 Approach 2: Begin with RStudio project on your machine, and then connect it to GitHub\nSee the video git.mp4 for this process illustrated.\nIn RStudio, open your project.\nThen, run the following code.\n\n5.2.2.1 Install usethis\nFirstly, ensure usethis is installed:\nif (!requireNamespace(\"usethis\", quietly = TRUE)) {\n  install.packages(\"usethis\")\n}\n\n\n5.2.2.2 Introduce yourself to Git\nThen, if you have not set Git up before, you’ll need to run the following. Note that by “not set up Git”, I do not mean whether you’ve installed Git, but rather whether you’ve given Git basic authorship information. If you’re not sure, you can run the following:\ngert::git_config_global()\nI am not exactly sure what it looks like if you’ve not set up Git authorship information, but the key thing is that it will not have a row where the first column is user.name and the second column is your name, and a row where the first column is user.email and the second column is your email address.\nIf you can see you’ve not set user.name and user.email, then run the following, swopping NULL with your name and email address:\n# set your username and your email address\nusername &lt;- NULL  # replace NULL with e.g. \"Miguel Rodo\" (be sure to include the quotes)\nemail &lt;- NULL # replace NULL with e.g. \"miguel.rodo@uct.ac.za\"\nstopifnot(!is.null(username)) # just checking you set this\nstopifnot(!is.null(email))\ngert::git_config_global_set(\"user.name\",  username)\ngert::git_config_global_set(\"user.email\", email)\n\n\n5.2.2.3 Initialise Git for the project\nFinally, you are ready to initialise git for that project:\nusethis::use_git()\nWhen it asks you whether you want to commit the extra files, say yes. Be aware that you don’t type “Absolutely” or “Definitely” or whatever corresponds to “yes”, you just type the number that corresponds to yes.\nAfter running the above, to get the Git pane to appear in the top right corner (alongside Environment and History), you need to close and re-open RStudio.\nYou will not need to install usethis and set Git authorship information for each project, but you will need to initialise Git for each project.\n\n\n5.2.2.4 Connect Git to GitHub\nRun the following code:\nusethis::create_github_token()\nName the token, set the expiry date and click on Create. Then copy the token (it looks like ghp_akerjlwk4j5qlk45j).\nThen, run the following code:\ngitcreds::gitcreds_set()\nand paste your token.",
+    "title": "4  Git and GitHub",
+    "section": "4.2 Setting Up Git and GitHub",
+    "text": "4.2 Setting Up Git and GitHub\nThere are two main approaches for setting up a new R project that you want on GitHub:\n\nApproach 1: Create project using Git, then download it to your machine\nApproach 2: Begin with pre-existing RStudio project, and then connect to GitHub\n\nThe first approach tends to be easier (and is new to these notes).\n\n4.2.1 Approach 1: Create project using Git, then download it to your machine\nWithin here, there are two approaches. One of them uses GitHub Desktop, a standalone program, and the other uses github.com itself, the website.\nWe suggest using GitHub Desktop, as it will make managing your Git repositories easier after setup.\n\n4.2.1.1 Use GitHub Desktop\nGitHub Desktop is a standalone program for working with Git and GitHub. It is very beginner-friendly.\nHere is a video describing how to use it: https://www.youtube.com/watch?v=8Dd7KRpKeaE\nI have not watched it myself, but apparently it makes it very easy. Note that it contains more information than you need, so you can stop when you are set up.\n\n\n4.2.1.2 Use GitHub\nYou can also create a new repo directly on GitHub, and then clone it (Git-speak for download it). Here are the instructions: New project, GitHub first.\n\n\n\n4.2.2 Approach 2: Begin with RStudio project on your machine, and then connect it to GitHub\nSee the video git.mp4 for this process illustrated.\nIn RStudio, open your project.\nThen, run the following code.\n\n4.2.2.1 Install usethis\nFirstly, ensure usethis is installed:\nif (!requireNamespace(\"usethis\", quietly = TRUE)) {\n  install.packages(\"usethis\")\n}\n\n\n4.2.2.2 Introduce yourself to Git\nThen, if you have not set Git up before, you’ll need to run the following. Note that by “not set up Git”, I do not mean whether you’ve installed Git, but rather whether you’ve given Git basic authorship information. If you’re not sure, you can run the following:\ngert::git_config_global()\nI am not exactly sure what it looks like if you’ve not set up Git authorship information, but the key thing is that it will not have a row where the first column is user.name and the second column is your name, and a row where the first column is user.email and the second column is your email address.\nIf you can see you’ve not set user.name and user.email, then run the following, swopping NULL with your name and email address:\n# set your username and your email address\nusername &lt;- NULL  # replace NULL with e.g. \"Miguel Rodo\" (be sure to include the quotes)\nemail &lt;- NULL # replace NULL with e.g. \"miguel.rodo@uct.ac.za\"\nstopifnot(!is.null(username)) # just checking you set this\nstopifnot(!is.null(email))\ngert::git_config_global_set(\"user.name\",  username)\ngert::git_config_global_set(\"user.email\", email)\n\n\n4.2.2.3 Initialise Git for the project\nFinally, you are ready to initialise git for that project:\nusethis::use_git()\nWhen it asks you whether you want to commit the extra files, say yes. Be aware that you don’t type “Absolutely” or “Definitely” or whatever corresponds to “yes”, you just type the number that corresponds to yes.\nAfter running the above, to get the Git pane to appear in the top right corner (alongside Environment and History), you need to close and re-open RStudio.\nYou will not need to install usethis and set Git authorship information for each project, but you will need to initialise Git for each project.\n\n\n4.2.2.4 Connect Git to GitHub\nRun the following code:\nusethis::create_github_token()\nName the token, set the expiry date and click on Create. Then copy the token (it looks like ghp_akerjlwk4j5qlk45j).\nThen, run the following code:\ngitcreds::gitcreds_set()\nand paste your token.",
     "crumbs": [
       "Day One",
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Git and GitHub</span>"
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Git and GitHub</span>"
     ]
   },
   {
     "objectID": "git.html#further-resources",
     "href": "git.html#further-resources",
-    "title": "5  Git and GitHub",
-    "section": "5.3 Further resources",
-    "text": "5.3 Further resources\n\nHappy Git with R:\n\nSet up guidance:\n\nWhy Git? Why GitHub?\nRegister a GitHub account\nInstall Git\nIntroduce Yourself to Git\nPersonal Access tokens for HTTPS\n\nDescription of how Git works and how to use it:\n\nSome Git Basics, and then the next few sections",
+    "title": "4  Git and GitHub",
+    "section": "4.3 Further resources",
+    "text": "4.3 Further resources\n\nHappy Git with R:\n\nSet up guidance:\n\nWhy Git? Why GitHub?\nRegister a GitHub account\nInstall Git\nIntroduce Yourself to Git\nPersonal Access tokens for HTTPS\n\nDescription of how Git works and how to use it:\n\nSome Git Basics, and then the next few sections",
     "crumbs": [
       "Day One",
-      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Git and GitHub</span>"
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Git and GitHub</span>"
     ]
   },
   {
     "objectID": "projrsimple.html",
     "href": "projrsimple.html",
-    "title": "6  projrsimple",
+    "title": "5  projrsimple",
     "section": "",
-    "text": "6.1 Installation\nI’ve written a simple package to help you:\nThere are only two functions in this package:\nWhat problems does it help solve?\nYou can install the package from GitHub using the following code:",
+    "text": "5.1 Installation\nI’ve written a simple package to help you:\nThere are only two functions in this package:\nWhat problems does it help solve?\nYou can install the package from GitHub using the following code:",
     "crumbs": [
       "Day One",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>`projrsimple`</span>"
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>`projrsimple`</span>"
     ]
   },
   {
     "objectID": "projrsimple.html#installation",
     "href": "projrsimple.html#installation",
-    "title": "6  projrsimple",
+    "title": "5  projrsimple",
     "section": "",
     "text": "if (!requireNamespace(\"remotes\", quietly = TRUE)) {\n  install.packages(\"remotes\")\n}\nremotes::install_github(\"MiguelRodo/projrsimple\")",
     "crumbs": [
       "Day One",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>`projrsimple`</span>"
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>`projrsimple`</span>"
     ]
   },
   {
     "objectID": "projrsimple.html#usage",
     "href": "projrsimple.html#usage",
-    "title": "6  projrsimple",
-    "section": "6.2 Usage",
-    "text": "6.2 Usage\n\nInstall projrsimple (see above).\nOpen an R session in your project directory (folder where you want to work).\nRun projr_init() to initialise your project (set up Git, GitHub, project directories and a README; simpler than the other instructions for doing this).\nWrite code in scripts (.R, .Rmd, .qmd and/or Quarto projects) in the project directory.\nRun projr_run to execute all scripts. Within those scripts, save outputs to _output directory.\nView rendered documents in the docs directory.\n\nSee the package website for more information: projrsimple.",
+    "title": "5  projrsimple",
+    "section": "5.2 Usage",
+    "text": "5.2 Usage\n\nInstall projrsimple (see above).\nOpen an R session in your project directory (folder where you want to work).\nRun projr_init() to initialise your project (set up Git, GitHub, project directories and a README; simpler than the other instructions for doing this).\nWrite code in scripts (.R, .Rmd, .qmd and/or Quarto projects) in the project directory.\nRun projr_run to execute all scripts. Within those scripts, save outputs to _output directory.\nView rendered documents in the docs directory.\n\nSee the package website for more information: projrsimple.",
     "crumbs": [
       "Day One",
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>`projrsimple`</span>"
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>`projrsimple`</span>"
     ]
   },
   {
     "objectID": "prac1.html",
     "href": "prac1.html",
-    "title": "7  Practical One",
+    "title": "6  Practical One",
     "section": "",
     "text": "NOTE: the answers to the questions below should be placed into their own qmd file in a Quarto project on GitHub. This Quarto project (the rendered document itself, as well as the source code on GitHub) will be peer-assessed next week.\n\nFind all rows in “airquality” that have missing values. Note that the airquality dataset in R is always available (just type airquality in the console to see it).\nFind mean, sd, min, max for each of temperature and ozone level.\nFor linear regression, parameter estimates can be found as follows. \\(\\hat{\\beta} = (X^TX)^{-1}X^TY\\) Here, Y is the response variable, and X is the design matrix. The cars data (an R data set, also always available in R) contains two variables: speed and distance to stop. Fit a simple linear regression model to these data, i.e. find the \\(\\beta\\) estimates, using the equation above, and matrix calcuations in R.\nCheck that you get the same \\(\\beta\\) estimates as when fitting the linear regression model using lm() in R.",
     "crumbs": [
       "Day One",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Practical One</span>"
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Practical One</span>"
     ]
   },
   {
     "objectID": "tidyverse.html",
     "href": "tidyverse.html",
-    "title": "8  Making working with R objects easier",
+    "title": "7  Making working with R objects easier",
     "section": "",
-    "text": "8.1 Displaying Dataframes in R\nWorking with large dataframes can be challenging if you inadvertently print all rows to the console. Consider the following example:\nexample_df &lt;- data.frame(\n  id = rep(paste0(\"id_\", 1:500), each = 20),\n  timepoint = rep(1:20, 500),\n  disease_status = rep(\n    sample(c(\"healthy\", \"diseased\"), 20, replace = TRUE),\n    each = 500\n  ),\n  blood_pressure = c(\n    runif(20, 120, 140) |&gt; round(),\n    sample(c(NA, runif(19, 120, 140)), 9980, replace = TRUE)\n  )\n)\n# Introduce a typo for demonstration\nexample_df[50, \"disease_status\"] &lt;- \"Healthy\"\nThis dataframe contains 10,000 rows:\nnrow(example_df)\n\n[1] 10000\nPrinting the entire dataframe (e.g., simply typing example_df) would display all rows, which is both inconvenient and time-consuming. Instead, we typically use the head() function to preview just the first few rows:\nhead(example_df)\n\n    id timepoint disease_status blood_pressure\n1 id_1         1        healthy            124\n2 id_1         2        healthy            132\n3 id_1         3        healthy            124\n4 id_1         4        healthy            124\n5 id_1         5        healthy            132\n6 id_1         6        healthy            131\nHowever, constantly having to call head() is not ideal. A better solution is to convert the dataframe into a tibble.",
+    "text": "7.1 Displaying Dataframes in R\nWorking with large dataframes can be challenging if you inadvertently print all rows to the console. Consider the following example:\nexample_df &lt;- data.frame(\n  id = rep(paste0(\"id_\", 1:500), each = 20),\n  timepoint = rep(1:20, 500),\n  disease_status = rep(\n    sample(c(\"healthy\", \"diseased\"), 20, replace = TRUE),\n    each = 500\n  ),\n  blood_pressure = c(\n    runif(20, 120, 140) |&gt; round(),\n    sample(c(NA, runif(19, 120, 140)), 9980, replace = TRUE)\n  )\n)\n# Introduce a typo for demonstration\nexample_df[50, \"disease_status\"] &lt;- \"Healthy\"\nThis dataframe contains 10,000 rows:\nnrow(example_df)\n\n[1] 10000\nPrinting the entire dataframe (e.g., simply typing example_df) would display all rows, which is both inconvenient and time-consuming. Instead, we typically use the head() function to preview just the first few rows:\nhead(example_df)\n\n    id timepoint disease_status blood_pressure\n1 id_1         1        healthy            137\n2 id_1         2        healthy            132\n3 id_1         3        healthy            125\n4 id_1         4        healthy            129\n5 id_1         5        healthy            139\n6 id_1         6        healthy            132\nHowever, constantly having to call head() is not ideal. A better solution is to convert the dataframe into a tibble.",
     "crumbs": [
       "Day Five",
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Making working with `R` objects easier</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Making working with `R` objects easier</span>"
     ]
   },
   {
     "objectID": "tidyverse.html#enhancing-dataframe-display-with-tibble",
     "href": "tidyverse.html#enhancing-dataframe-display-with-tibble",
-    "title": "8  Making working with R objects easier",
-    "section": "8.2 Enhancing Dataframe Display with tibble",
-    "text": "8.2 Enhancing Dataframe Display with tibble\nThe tibble package (a core part of the tidyverse) offers a more concise and informative display. When you print a tibble, it only shows the first 10 rows and includes data type information for each column. This is particularly useful because it lets you quickly verify, for example, whether timepoint is numeric or character—information that can be obscured in the default dataframe printout.\n\n8.2.1 Installation and Conversion\nFirst, ensure that the tibble package is installed and loaded:\n\nif (!requireNamespace(\"tibble\", quietly = TRUE)) {\n  install.packages(\"tibble\")\n}\nlibrary(tibble)\n\nConvert your dataframe to a tibble using as_tibble():\n\n# Check the class before conversion\nclass(example_df)\n\n[1] \"data.frame\"\n\n# Convert to tibble\nexample_df &lt;- as_tibble(example_df)\n\n# Check the class after conversion\nclass(example_df)\n\n[1] \"tbl_df\"     \"tbl\"        \"data.frame\"\n\n\nNow, simply typing example_df will display a neat summary of your data:\n\nexample_df\n\n# A tibble: 10,000 × 4\n   id    timepoint disease_status blood_pressure\n   &lt;chr&gt;     &lt;int&gt; &lt;chr&gt;                   &lt;dbl&gt;\n 1 id_1          1 healthy                   124\n 2 id_1          2 healthy                   132\n 3 id_1          3 healthy                   124\n 4 id_1          4 healthy                   124\n 5 id_1          5 healthy                   132\n 6 id_1          6 healthy                   131\n 7 id_1          7 healthy                   120\n 8 id_1          8 healthy                   127\n 9 id_1          9 healthy                   129\n10 id_1         10 healthy                   124\n# ℹ 9,990 more rows\n\n\nThis tidy display helps you catch issues like typos or unexpected data types early on. I generally load both tibble and ggplot2 at the top of my scripts, and you can also create new dataframes directly as tibbles:\n\nnew_tbl &lt;- tibble(x = 1:5, y = rnorm(5))\nnew_tbl\n\n# A tibble: 5 × 2\n      x      y\n  &lt;int&gt;  &lt;dbl&gt;\n1     1  1.23 \n2     2  0.211\n3     3 -1.43 \n4     4  0.389\n5     5 -0.768\n\n\nNote that for a tibble object (i.e. a dataframe that has class tbl_df) to display as a tibble, the tibble package needs to be attached. So always add library(tibble) to the top of your script.",
+    "title": "7  Making working with R objects easier",
+    "section": "7.2 Enhancing Dataframe Display with tibble",
+    "text": "7.2 Enhancing Dataframe Display with tibble\nThe tibble package (a core part of the tidyverse) offers a more concise and informative display. When you print a tibble, it only shows the first 10 rows and includes data type information for each column. This is particularly useful because it lets you quickly verify, for example, whether timepoint is numeric or character—information that can be obscured in the default dataframe printout.\n\n7.2.1 Installation and Conversion\nFirst, ensure that the tibble package is installed and loaded:\n\nif (!requireNamespace(\"tibble\", quietly = TRUE)) {\n  install.packages(\"tibble\")\n}\nlibrary(tibble)\n\nConvert your dataframe to a tibble using as_tibble():\n\n# Check the class before conversion\nclass(example_df)\n\n[1] \"data.frame\"\n\n# Convert to tibble\nexample_df &lt;- as_tibble(example_df)\n\n# Check the class after conversion\nclass(example_df)\n\n[1] \"tbl_df\"     \"tbl\"        \"data.frame\"\n\n\nNow, simply typing example_df will display a neat summary of your data:\n\nexample_df\n\n# A tibble: 10,000 × 4\n   id    timepoint disease_status blood_pressure\n   &lt;chr&gt;     &lt;int&gt; &lt;chr&gt;                   &lt;dbl&gt;\n 1 id_1          1 healthy                   137\n 2 id_1          2 healthy                   132\n 3 id_1          3 healthy                   125\n 4 id_1          4 healthy                   129\n 5 id_1          5 healthy                   139\n 6 id_1          6 healthy                   132\n 7 id_1          7 healthy                   133\n 8 id_1          8 healthy                   128\n 9 id_1          9 healthy                   126\n10 id_1         10 healthy                   139\n# ℹ 9,990 more rows\n\n\nThis tidy display helps you catch issues like typos or unexpected data types early on. I generally load both tibble and ggplot2 at the top of my scripts, and you can also create new dataframes directly as tibbles:\n\nnew_tbl &lt;- tibble(x = 1:5, y = rnorm(5))\nnew_tbl\n\n# A tibble: 5 × 2\n      x      y\n  &lt;int&gt;  &lt;dbl&gt;\n1     1  1.09 \n2     2 -1.01 \n3     3  0.740\n4     4  0.744\n5     5  1.58 \n\n\nNote that for a tibble object (i.e. a dataframe that has class tbl_df) to display as a tibble, the tibble package needs to be attached. So always add library(tibble) to the top of your script.",
     "crumbs": [
       "Day Five",
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Making working with `R` objects easier</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Making working with `R` objects easier</span>"
     ]
   },
   {
     "objectID": "tidyverse.html#exploring-data-columns-with-view_cols",
     "href": "tidyverse.html#exploring-data-columns-with-view_cols",
-    "title": "8  Making working with R objects easier",
-    "section": "8.3 Exploring Data Columns with view_cols",
-    "text": "8.3 Exploring Data Columns with view_cols\nAnother useful tool is the view_cols function from the UtilsDataRSV package. This function displays unique entries for each column—always showing any missing values (NAs)—so you can quickly identify anomalies such as typos or unexpected values.\n\n8.3.1 When and Why to Use view_cols\n\nIdentify Typos: In our example, the first ten rows may not reveal that disease_status contains three unique entries (e.g., \"healthy\", \"diseased\", and the typo \"Healthy\").\nDetect Missing Data: With 10,000 rows, it’s easy to overlook missing values (NAs) when only a few rows are displayed.\nVerify Expected Values: For instance, the id column should have 500 unique entries, and view_cols can help you confirm this.\n\n\n\n8.3.2 Installation\nTo install the UtilsDataRSV package, use the following code:\nif (!requireNamespace(\"remotes\", quietly = TRUE)) {\n  install.packages(\"remotes\")\n}\nremotes::install_github(\"SATVILab/UtilsDataRSV\")\n\n\n8.3.3 Using view_cols\nOnce installed, you can apply view_cols to your tibble to inspect the unique values in each column:\nexample_df |&gt;\n  UtilsDataRSV::view_cols()\nThis command will:\n\nDisplay up to 20 unique values per column (noting if more exist).\nClearly show all NA entries.\nProvide a quick summary of each column’s contents, which is especially helpful after data processing steps to ensure no new issues have been introduced.\n\nFor a possibly more polished alternative, consider exploring the skimr package, which offers similar functionality.",
+    "title": "7  Making working with R objects easier",
+    "section": "7.3 Exploring Data Columns with view_cols",
+    "text": "7.3 Exploring Data Columns with view_cols\nAnother useful tool is the view_cols function from the UtilsDataRSV package. This function displays unique entries for each column—always showing any missing values (NAs)—so you can quickly identify anomalies such as typos or unexpected values.\n\n7.3.1 When and Why to Use view_cols\n\nIdentify Typos: In our example, the first ten rows may not reveal that disease_status contains three unique entries (e.g., \"healthy\", \"diseased\", and the typo \"Healthy\").\nDetect Missing Data: With 10,000 rows, it’s easy to overlook missing values (NAs) when only a few rows are displayed.\nVerify Expected Values: For instance, the id column should have 500 unique entries, and view_cols can help you confirm this.\n\n\n\n7.3.2 Installation\nTo install the UtilsDataRSV package, use the following code:\nif (!requireNamespace(\"remotes\", quietly = TRUE)) {\n  install.packages(\"remotes\")\n}\nremotes::install_github(\"SATVILab/UtilsDataRSV\")\n\n\n7.3.3 Using view_cols\nOnce installed, you can apply view_cols to your tibble to inspect the unique values in each column:\nexample_df |&gt;\n  UtilsDataRSV::view_cols()\nThis command will:\n\nDisplay up to 20 unique values per column (noting if more exist).\nClearly show all NA entries.\nProvide a quick summary of each column’s contents, which is especially helpful after data processing steps to ensure no new issues have been introduced.\n\nFor a possibly more polished alternative, consider exploring the skimr package, which offers similar functionality.",
     "crumbs": [
       "Day Five",
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Making working with `R` objects easier</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Making working with `R` objects easier</span>"
     ]
   },
   {
     "objectID": "tidyverse.html#pipe",
     "href": "tidyverse.html#pipe",
-    "title": "8  Making working with R objects easier",
-    "section": "8.4 Pipe",
-    "text": "8.4 Pipe\n\nEssentially, the pipe is a rewrite of code, from\n\nf(x,y)\nto\nx |&gt; f(y)\nThe two produce exactly the same results. But the difference is that, when you have a bunch of things you need to do to an obejct (e.g. select certain rows from a dataframe, add new columns, etc.), the pipe makes it easier to read and write the code.\nSee R4DS on the pipe.\nProblems with base R manipulations of things like data frames and lists and so on:\n\nInconsistent syntax:\n\nFor example\n\nNot concise syntax\n\nFor example:\n\ntest_df[test_df[[\"column\"]] == \"value\", ]\n\nRegular expressions\n\ngrepl(\"pattern\", \"string\")\n\n\nDoes not necessarily work well with pipes\n\nTo work well with pipes, we want the first parameter to take the return value from the previous one\n\nInconsistent return values\n\nE.g. test_df[, 1] vs test_df[, c(1, 2)]",
+    "title": "7  Making working with R objects easier",
+    "section": "7.4 Pipe",
+    "text": "7.4 Pipe\n\nEssentially, the pipe is a rewrite of code, from\n\nf(x,y)\nto\nx |&gt; f(y)\nThe two produce exactly the same results. But the difference is that, when you have a bunch of things you need to do to an obejct (e.g. select certain rows from a dataframe, add new columns, etc.), the pipe makes it easier to read and write the code.\nSee R4DS on the pipe.\nProblems with base R manipulations of things like data frames and lists and so on:\n\nInconsistent syntax:\n\nFor example\n\nNot concise syntax\n\nFor example:\n\ntest_df[test_df[[\"column\"]] == \"value\", ]\n\nRegular expressions\n\ngrepl(\"pattern\", \"string\")\n\n\nDoes not necessarily work well with pipes\n\nTo work well with pipes, we want the first parameter to take the return value from the previous one\n\nInconsistent return values\n\nE.g. test_df[, 1] vs test_df[, c(1, 2)]",
     "crumbs": [
       "Day Five",
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Making working with `R` objects easier</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Making working with `R` objects easier</span>"
     ]
   },
   {
     "objectID": "tidyverse.html#dplyr",
     "href": "tidyverse.html#dplyr",
-    "title": "8  Making working with R objects easier",
-    "section": "8.5 dplyr",
-    "text": "8.5 dplyr\n\ndplyr provides key functions for working with data frames\nFor example, filter\n\ndplyr\nmagrittr\nggplot2\ntidyr\npipes\nNotable mentions:\n\nbroom\ntidymodels\nforcats\nlubridate\nstringr\nreadr\npurrr\ntibble\nrlang\nstringi\nreadxl\nhaven",
+    "title": "7  Making working with R objects easier",
+    "section": "7.5 dplyr",
+    "text": "7.5 dplyr\n\ndplyr provides key functions for working with data frames\nFor example, filter\n\ndplyr\nmagrittr\nggplot2\ntidyr\npipes\nNotable mentions:\n\nbroom\ntidymodels\nforcats\nlubridate\nstringr\nreadr\npurrr\ntibble\nrlang\nstringi\nreadxl\nhaven",
     "crumbs": [
       "Day Five",
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Making working with `R` objects easier</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Making working with `R` objects easier</span>"
     ]
   }
 ]
