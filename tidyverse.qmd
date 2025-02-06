@@ -265,7 +265,7 @@ The rows functions select rows (`filter`), order rows (`arrange`), and select di
 - **arrange()**: Reorders rows based on column values.
 
   ```{r}
-  flights |> arrange(desc(dep_delay))
+  flights |> arrange(dep_delay)
   ```
 
 - **distinct()**: Returns unique rows or unique combinations of specified columns.
@@ -278,28 +278,31 @@ The rows functions select rows (`filter`), order rows (`arrange`), and select di
 
 The columns functions create new columns (`mutate`), select columns (`select`), rename columns (`rename`), and relocate columns (`relocate`).
 
-- **mutate()**: Creates new columns derived from existing ones.
-
-  ```{r}
-  flights |> mutate(speed = distance / air_time * 60)
-  ```
-
 - **select()**: Chooses and reorders specific columns.
 
   ```{r}
   flights |> select(year, month, day, dep_delay)
   ```
 
+- **mutate()**: Creates new columns derived from existing ones.
+
+  ```{r}
+  flights |>
+    mutate(speed = distance / air_time * 60) |>
+    select(distance, air_time, speed)
+  ```
+
+
 - **rename()**: Changes column names without removing other columns.
 
   ```{r}
-  flights |> rename(tail_num = tailnum)
+  flights |> rename(YEAR = year)
   ```
 
 - **relocate()**: Moves columns to a new position within the data frame.
 
   ```{r}
-  flights |> relocate(dep_delay, .before = 1)
+  flights |> relocate(carrier, flight)
   ```
 
 #### Groups & Summaries
