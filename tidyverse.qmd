@@ -1,8 +1,28 @@
-# Streamlining data workflows with the tidyverse {#sec-day5-tidyverse}
-
-**NOTE: THIS IS A DRAFT**
+# Working with dataframes {#sec-day5-tidyverse}
 
 For an accompanying video, see `tidyverse.mp4`.
+
+## Motivation
+
+While base R is powerful, its syntax can be verbose and inconsistent for everyday data manipulation. The tidyverse offers a suite of packages that work seamlessly together, providing a coherent and intuitive framework for your workflow.
+
+Instead of installing individual packages like **dplyr** or **tidyr** separately, the tidyverse metapackage installs the core packages and recommended dependencies all at once:
+
+```r
+if (!requireNamespace("tidyverse", quietly = TRUE)) {
+  install.packages("tidyverse")
+}
+library(tidyverse)
+```
+
+**Key Advantages:**
+
+- **Readable Syntax:** Tidyverse functions replace cumbersome expressions (e.g., `test_df[test_df[["column"]] == "value", ]`) with cleaner, more intuitive code.
+- **Pipe-Friendly:** Designed with the data object as the first argument, these functions work seamlessly with the pipe operator for streamlined chaining.
+- **Consistent Interfaces:** Uniform parameter names and positions across functions reduce confusion and help prevent errors.
+- **Predictable Behavior:** Standardized return types and design make outcomes more reliable and debugging easier.
+
+At the heart of many analyses is the dataframe, and the tidyverse is built to simplify working with and transforming dataframes effectively.
 
 ## Displaying Dataframes in R
 
@@ -188,30 +208,8 @@ data(flights, package = "nycflights13")
 
 Their example involves many functions that we'll discuss in the rest of this chapter.
 
-## Motivating the `tidyverse`
-
-Base R (`R` without any extra packages, e.g. `example_df[1, 1]`) is powerful but can be verbose and inconsistent for everyday data manipulation.
-The `tidyverse` is a suite of `R` packages that work together to offer a coherent, intuitive framework that simplifies your workflow.
-
-Individual `tidyverse` packages (such a `dplyr` and `tidyr`) can be installed separately, but the `tidyverse` metapackage installs the core packages and recommended dependencies in one go:
-
-```{r}
-if (!requireNamespace("tidyverse", quietly = TRUE)) {
-  install.packages("tidyverse")
-}
-library(tidyverse)
-```
-
-### Key Advantages:
-
-- **Readable Syntax:** Tidyverse functions replace cumbersome expressions (e.g., `test_df[test_df[["column"]] == "value", ]`) with cleaner code.
-- **Pipe-Friendly:** Designed with the data object as the first argument, they integrate seamlessly with the pipe operator for streamlined chaining.
-- **Consistent Function Interfaces:** Parameter names and positions are uniform across related functions, reducing confusion and the risk of errors, and making remembering t he functions easier.
-- **Predictable Behavior:** Consistent return types and standardized design help avoid unexpected bugs.
-
 ## Working with rows and columns
 
-The primary object of an analysis is typically the dataframe.
 The `dplyr` package provides a suite of functions for manipulating dataframes, including selecting rows and columns, creating new columns, and summarizing data.
 
 There is little point in re-writing excellent content, so I refer you to the [R4DS chapter on `dplyr`](https://r4ds.hadley.nz/data-transform) for a comprehensive introduction to the package.
@@ -353,7 +351,6 @@ if (!requireNamespace("tidyr", quietly = TRUE)) {
 library(tidyr)
 data(billboard, package = "tidyr")
 data(cms_patient_experience, package = "tidyr")
-
 ```
 
 - **pivot_longer():**  
