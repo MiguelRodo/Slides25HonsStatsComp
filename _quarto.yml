@@ -13,7 +13,7 @@ project:
   - tidyverse.qmd
   - prac-day-five.qmd
   - ggplot2.qmd
-  output-dir: docs
+  output-dir: _tmp/projr/v1.0.29/docs
 book:
   title: Statistical Computing
   sidebar:
@@ -35,6 +35,7 @@ book:
   - part: day5.qmd
     chapters:
     - tidyverse.qmd
+    - prac-day-five.qmd
     - ggplot2.qmd
 format:
   html:
