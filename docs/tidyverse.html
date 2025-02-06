@@ -234,7 +234,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#motivating-the-tidyverse" id="toc-motivating-the-tidyverse" class="nav-link" data-scroll-target="#motivating-the-tidyverse"><span class="header-section-number">7.3</span> Motivating the <code>tidyverse</code></a>
   <ul class="collapse">
   <li><a href="#key-advantages" id="toc-key-advantages" class="nav-link" data-scroll-target="#key-advantages"><span class="header-section-number">7.3.1</span> Key Advantages:</a></li>
-  <li><a href="#dplyr" id="toc-dplyr" class="nav-link" data-scroll-target="#dplyr"><span class="header-section-number">7.3.2</span> <code>dplyr</code></a></li>
+  </ul></li>
+  <li><a href="#dplyr" id="toc-dplyr" class="nav-link" data-scroll-target="#dplyr"><span class="header-section-number">7.4</span> <code>dplyr</code></a>
+  <ul class="collapse">
+  <li><a href="#resources" id="toc-resources" class="nav-link" data-scroll-target="#resources"><span class="header-section-number">7.4.1</span> Resources</a></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">7.4.2</span> Summary</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -293,12 +297,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(example_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>    id timepoint disease_status blood_pressure
-1 id_1         1        healthy            124
-2 id_1         2        healthy            126
-3 id_1         3        healthy            132
-4 id_1         4        healthy            128
-5 id_1         5        healthy            126
-6 id_1         6        healthy            123</code></pre>
+1 id_1         1       diseased            127
+2 id_1         2       diseased            122
+3 id_1         3       diseased            134
+4 id_1         4       diseased            126
+5 id_1         5       diseased            139
+6 id_1         6       diseased            137</code></pre>
 </div>
 </div>
 <p>However, constantly having to call <code>head()</code> is not ideal. A better solution is to convert the dataframe into a tibble.</p>
@@ -338,16 +342,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <pre><code># A tibble: 10,000 × 4
    id    timepoint disease_status blood_pressure
    &lt;chr&gt;     &lt;int&gt; &lt;chr&gt;                   &lt;dbl&gt;
- 1 id_1          1 healthy                   124
- 2 id_1          2 healthy                   126
- 3 id_1          3 healthy                   132
- 4 id_1          4 healthy                   128
- 5 id_1          5 healthy                   126
- 6 id_1          6 healthy                   123
- 7 id_1          7 healthy                   132
- 8 id_1          8 healthy                   129
- 9 id_1          9 healthy                   132
-10 id_1         10 healthy                   123
+ 1 id_1          1 diseased                  127
+ 2 id_1          2 diseased                  122
+ 3 id_1          3 diseased                  134
+ 4 id_1          4 diseased                  126
+ 5 id_1          5 diseased                  139
+ 6 id_1          6 diseased                  137
+ 7 id_1          7 diseased                  123
+ 8 id_1          8 diseased                  138
+ 9 id_1          9 diseased                  135
+10 id_1         10 diseased                  136
 # ℹ 9,990 more rows</code></pre>
 </div>
 </div>
@@ -357,13 +361,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>new_tbl</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 5 × 2
-      x      y
-  &lt;int&gt;  &lt;dbl&gt;
-1     1 -0.206
-2     2 -1.33 
-3     3 -0.670
-4     4 -0.235
-5     5  0.147</code></pre>
+      x       y
+  &lt;int&gt;   &lt;dbl&gt;
+1     1  0.0822
+2     2 -0.628 
+3     3  0.577 
+4     4 -1.45  
+5     5  0.742 </code></pre>
 </div>
 </div>
 <p>Note that for a <code>tibble</code> object (i.e.&nbsp;a dataframe that has class <code>tbl_df</code>) to display as a tibble, the <code>tibble</code> package needs to be attached. So always add <code>library(tibble)</code> to the top of your script.</p>
@@ -418,8 +422,29 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="using-view_cols" class="level4" data-number="7.1.2.3">
 <h4 data-number="7.1.2.3" class="anchored" data-anchor-id="using-view_cols"><span class="header-section-number">7.1.2.3</span> Using <code>view_cols</code></h4>
 <p>Once installed, you can apply <code>view_cols</code> to your tibble to inspect the unique values in each column:</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>example_df <span class="sc">|&gt;</span></span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  UtilsDataRSV<span class="sc">::</span><span class="fu">view_cols</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>UtilsDataRSV<span class="sc">::</span><span class="fu">view_cols</span>(example_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "id"
+ [1] "id_188" "id_172" "id_200" "id_485" "id_425" "id_40"  "id_94"  "id_269"
+ [9] "id_187" "id_284" "id_86"  "id_147" "id_33"  "id_497" "id_46"  "id_354"
+[17] "id_239" "id_39"  "id_121" "id_149"
+[1] "480 unique entries not displayed"
+[1] "_____________________"
+[1] "timepoint"
+[1] 19 14 17  1 10
+[1] "_____________________"
+[1] "disease_status"
+[1] "Healthy"  "healthy"  "diseased"
+[1] "_____________________"
+[1] "blood_pressure"
+[1] 133.2679 123.4438 133.0000 132.0000       NA
+[1] "_____________________"</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Not all unique entries displayed for these non-numeric cols: id</code></pre>
+</div>
+</div>
 <p>This command will:</p>
 <ul>
 <li>Display up to 20 unique values per column (noting if more exist).</li>
@@ -427,6 +452,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Provide a quick summary of each column’s contents, which is especially helpful after data processing steps to ensure no new issues have been introduced.</li>
 </ul>
 <p>For a possibly more polished alternative, consider exploring the <code>skimr</code> package, which offers similar functionality.</p>
+<p>You can also display the dataframe on its side, using <code>dplyr::glimpse()</code>:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>dplyr<span class="sc">::</span><span class="fu">glimpse</span>(example_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 10,000
+Columns: 4
+$ id             &lt;chr&gt; "id_1", "id_1", "id_1", "id_1", "id_1", "id_1", "id_1",…
+$ timepoint      &lt;int&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, …
+$ disease_status &lt;chr&gt; "diseased", "diseased", "diseased", "diseased", "diseas…
+$ blood_pressure &lt;dbl&gt; 127.0000, 122.0000, 134.0000, 126.0000, 139.0000, 137.0…</code></pre>
+</div>
+</div>
 </section>
 </section>
 </section>
@@ -435,22 +472,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li>Essentially, the pipe is a rewrite of code, from</li>
 </ul>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">f</span>(x,y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">f</span>(x,y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>to</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>x <span class="sc">|&gt;</span> <span class="fu">f</span>(y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>x <span class="sc">|&gt;</span> <span class="fu">f</span>(y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>In other words, the object to the left of the pipe (<code>x</code>) becomes the first argument to the function on the right (<code>f</code>) and <code>y</code> becomes its second parameter.</p>
 <p>As as silly example, this:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>test_vec <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span></span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(test_vec[test_vec <span class="sc">&gt;</span> <span class="dv">3</span>], <span class="at">trim =</span> <span class="fl">0.5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>test_vec <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(test_vec[test_vec <span class="sc">&gt;</span> <span class="dv">3</span>], <span class="at">trim =</span> <span class="fl">0.5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 4.5</code></pre>
 </div>
 </div>
 <p>is equivalent to this:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>test_vec[test_vec <span class="sc">&gt;</span> <span class="dv">3</span>] <span class="sc">|&gt;</span></span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mean</span>(<span class="at">trim =</span> <span class="fl">0.5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>test_vec[test_vec <span class="sc">&gt;</span> <span class="dv">3</span>] <span class="sc">|&gt;</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mean</span>(<span class="at">trim =</span> <span class="fl">0.5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 4.5</code></pre>
 </div>
@@ -459,27 +496,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>The above examples are simply, and there is no great advantage to the pipe operator.</p>
 <p>However, when you have chained operations, the pipe operator can make the code more readable. For a realistic example, see <a href="https://r4ds.hadley.nz/data-transform.html#sec-the-pipe">R4DS on the pipe</a>, where they show a dramatic gain in readability from using the pipe. To run their example, you will need to have the <code>flights</code> dataset from the <code>nycflights13</code> package and the <code>tidyverse</code> package attached.</p>
 <p>To ensure this, first run the chunk below before running their example:</p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>pkg_vec <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"tidyverse"</span>, <span class="st">"nycflights13"</span>, <span class="st">"tibble"</span>)</span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (x <span class="cf">in</span> pkg_vec) {</span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="sc">!</span><span class="fu">requireNamespace</span>(x, <span class="at">quietly =</span> <span class="cn">TRUE</span>)) {</span>
-<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">install.packages</span>(x)</span>
-<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(nycflights13)</span>
-<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tibble)</span>
-<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(flights, <span class="at">package =</span> <span class="st">"nycflights13"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Their example involves many functions that we’ll discuss in the rest of this chapter.</p>
-</section>
-<section id="motivating-the-tidyverse" class="level2" data-number="7.3">
-<h2 data-number="7.3" class="anchored" data-anchor-id="motivating-the-tidyverse"><span class="header-section-number">7.3</span> Motivating the <code>tidyverse</code></h2>
-<p>Base R (<code>R</code> without any extra packages, e.g.&nbsp;<code>example_df[1, 1]</code>) is powerful but can be verbose and inconsistent for everyday data manipulation. The <code>tidyverse</code> is a suite of <code>R</code> packages that work together to offer a coherent, intuitive framework that simplifies your workflow.</p>
-<p>Individual <code>tidyverse</code> packages (such a <code>dplyr</code> and <code>tidyr</code>) can be installed separately, but the <code>tidyverse</code> metapackage installs the core packages and recommended dependencies in one go:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">requireNamespace</span>(<span class="st">"tidyverse"</span>, <span class="at">quietly =</span> <span class="cn">TRUE</span>)) {</span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">install.packages</span>(<span class="st">"tidyverse"</span>)</span>
-<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>pkg_vec <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"tidyverse"</span>, <span class="st">"nycflights13"</span>, <span class="st">"tibble"</span>)</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (x <span class="cf">in</span> pkg_vec) {</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="sc">!</span><span class="fu">requireNamespace</span>(x, <span class="at">quietly =</span> <span class="cn">TRUE</span>)) {</span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">install.packages</span>(x)</span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(nycflights13)</span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
 ✔ dplyr     1.1.4     ✔ purrr     1.0.2
@@ -491,45 +516,283 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 ✖ dplyr::lag()    masks stats::lag()
 ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
 </div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tibble)</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(flights, <span class="at">package =</span> <span class="st">"nycflights13"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Their example involves many functions that we’ll discuss in the rest of this chapter.</p>
+</section>
+<section id="motivating-the-tidyverse" class="level2" data-number="7.3">
+<h2 data-number="7.3" class="anchored" data-anchor-id="motivating-the-tidyverse"><span class="header-section-number">7.3</span> Motivating the <code>tidyverse</code></h2>
+<p>Base R (<code>R</code> without any extra packages, e.g.&nbsp;<code>example_df[1, 1]</code>) is powerful but can be verbose and inconsistent for everyday data manipulation. The <code>tidyverse</code> is a suite of <code>R</code> packages that work together to offer a coherent, intuitive framework that simplifies your workflow.</p>
+<p>Individual <code>tidyverse</code> packages (such a <code>dplyr</code> and <code>tidyr</code>) can be installed separately, but the <code>tidyverse</code> metapackage installs the core packages and recommended dependencies in one go:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">requireNamespace</span>(<span class="st">"tidyverse"</span>, <span class="at">quietly =</span> <span class="cn">TRUE</span>)) {</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">install.packages</span>(<span class="st">"tidyverse"</span>)</span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <section id="key-advantages" class="level3" data-number="7.3.1">
 <h3 data-number="7.3.1" class="anchored" data-anchor-id="key-advantages"><span class="header-section-number">7.3.1</span> Key Advantages:</h3>
 <ul>
 <li><strong>Readable Syntax:</strong> Tidyverse functions replace cumbersome expressions (e.g., <code>test_df[test_df[["column"]] == "value", ]</code>) with cleaner code.</li>
 <li><strong>Pipe-Friendly:</strong> Designed with the data object as the first argument, they integrate seamlessly with the pipe operator for streamlined chaining.</li>
-<li><strong>Consistent Function Interfaces:</strong> Parameter names and positions are uniform across related functions, reducing confusion and the risk of errors, and making remembering the functions easier.</li>
+<li><strong>Consistent Function Interfaces:</strong> Parameter names and positions are uniform across related functions, reducing confusion and the risk of errors, and making remembering t he functions easier.</li>
 <li><strong>Predictable Behavior:</strong> Consistent return types and standardized design help avoid unexpected bugs.</li>
 </ul>
 <!--
 Packages to cover:
-- For example, `filter`
+- filter
 - dplyr
 - magrittr
 - ggplot2
 - tidyr
 - pipes
 - Notable mentions:
-  - `broom`
-  - `tidymodels`
-  - `forcats`
-  - `lubridate`
-  - `stringr`
-  - `readr`
-  - `purrr`
-  - `tibble`
-  - `rlang`
-  - `stringi`
-  - `readxl`
-  - `haven`
+  - broom
+  - tidymodels
+  - forcats
+  - lubridate
+  - stringr
+  - readr
+  - purrr
+  - tibble
+  - rlang
+  - stringi
+  - readxl
+  - haven
 !-->
 </section>
-<section id="dplyr" class="level3" data-number="7.3.2">
-<h3 data-number="7.3.2" class="anchored" data-anchor-id="dplyr"><span class="header-section-number">7.3.2</span> <code>dplyr</code></h3>
+</section>
+<section id="dplyr" class="level2" data-number="7.4">
+<h2 data-number="7.4" class="anchored" data-anchor-id="dplyr"><span class="header-section-number">7.4</span> <code>dplyr</code></h2>
+<section id="resources" class="level3" data-number="7.4.1">
+<h3 data-number="7.4.1" class="anchored" data-anchor-id="resources"><span class="header-section-number">7.4.1</span> Resources</h3>
+<p>See <code>dplyr.mp4</code> for a video on <code>dplyr</code>.</p>
+<p>There is little point in re-writing excellent content, so I refer you to the <a href="https://r4ds.hadley.nz/transform.html">R4DS chapter on <code>dplyr</code></a> for a comprehensive introduction to the package.</p>
+</section>
+<section id="summary" class="level3" data-number="7.4.2">
+<h3 data-number="7.4.2" class="anchored" data-anchor-id="summary"><span class="header-section-number">7.4.2</span> Summary</h3>
+<p>Here is a concise summary of the content on the <code>dplyr</code> section of R4DS. For more examples, refer the excellent examples within each function’s help file (e.g.&nbsp;<code>?filter</code>).</p>
+<section id="rows" class="level4" data-number="7.4.2.1">
+<h4 data-number="7.4.2.1" class="anchored" data-anchor-id="rows"><span class="header-section-number">7.4.2.1</span> Rows</h4>
+<p>The rows functions select rows (<code>filter</code>), order rows (<code>arrange</code>), and select distinct rows (<code>distinct</code>).</p>
 <ul>
-<li><code>dplyr</code> provides key functions for working with data frames</li>
+<li><p><strong>filter()</strong>: Keeps rows that meet specified conditions.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>flights <span class="sc">|&gt;</span> <span class="fu">filter</span>(month <span class="sc">==</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 27,004 × 19
+    year month   day dep_time sched_dep_time dep_delay arr_time sched_arr_time
+   &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt;    &lt;int&gt;          &lt;int&gt;
+ 1  2013     1     1      517            515         2      830            819
+ 2  2013     1     1      533            529         4      850            830
+ 3  2013     1     1      542            540         2      923            850
+ 4  2013     1     1      544            545        -1     1004           1022
+ 5  2013     1     1      554            600        -6      812            837
+ 6  2013     1     1      554            558        -4      740            728
+ 7  2013     1     1      555            600        -5      913            854
+ 8  2013     1     1      557            600        -3      709            723
+ 9  2013     1     1      557            600        -3      838            846
+10  2013     1     1      558            600        -2      753            745
+# ℹ 26,994 more rows
+# ℹ 11 more variables: arr_delay &lt;dbl&gt;, carrier &lt;chr&gt;, flight &lt;int&gt;,
+#   tailnum &lt;chr&gt;, origin &lt;chr&gt;, dest &lt;chr&gt;, air_time &lt;dbl&gt;, distance &lt;dbl&gt;,
+#   hour &lt;dbl&gt;, minute &lt;dbl&gt;, time_hour &lt;dttm&gt;</code></pre>
+</div>
+</div></li>
+<li><p><strong>arrange()</strong>: Reorders rows based on column values.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>flights <span class="sc">|&gt;</span> <span class="fu">arrange</span>(<span class="fu">desc</span>(dep_delay))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 336,776 × 19
+    year month   day dep_time sched_dep_time dep_delay arr_time sched_arr_time
+   &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt;    &lt;int&gt;          &lt;int&gt;
+ 1  2013     1     9      641            900      1301     1242           1530
+ 2  2013     6    15     1432           1935      1137     1607           2120
+ 3  2013     1    10     1121           1635      1126     1239           1810
+ 4  2013     9    20     1139           1845      1014     1457           2210
+ 5  2013     7    22      845           1600      1005     1044           1815
+ 6  2013     4    10     1100           1900       960     1342           2211
+ 7  2013     3    17     2321            810       911      135           1020
+ 8  2013     6    27      959           1900       899     1236           2226
+ 9  2013     7    22     2257            759       898      121           1026
+10  2013    12     5      756           1700       896     1058           2020
+# ℹ 336,766 more rows
+# ℹ 11 more variables: arr_delay &lt;dbl&gt;, carrier &lt;chr&gt;, flight &lt;int&gt;,
+#   tailnum &lt;chr&gt;, origin &lt;chr&gt;, dest &lt;chr&gt;, air_time &lt;dbl&gt;, distance &lt;dbl&gt;,
+#   hour &lt;dbl&gt;, minute &lt;dbl&gt;, time_hour &lt;dttm&gt;</code></pre>
+</div>
+</div></li>
+<li><p><strong>distinct()</strong>: Returns unique rows or unique combinations of specified columns.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>flights <span class="sc">|&gt;</span> <span class="fu">distinct</span>(origin, dest)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 224 × 2
+   origin dest 
+   &lt;chr&gt;  &lt;chr&gt;
+ 1 EWR    IAH  
+ 2 LGA    IAH  
+ 3 JFK    MIA  
+ 4 JFK    BQN  
+ 5 LGA    ATL  
+ 6 EWR    ORD  
+ 7 EWR    FLL  
+ 8 LGA    IAD  
+ 9 JFK    MCO  
+10 LGA    ORD  
+# ℹ 214 more rows</code></pre>
+</div>
+</div></li>
+</ul>
+</section>
+<section id="columns" class="level4" data-number="7.4.2.2">
+<h4 data-number="7.4.2.2" class="anchored" data-anchor-id="columns"><span class="header-section-number">7.4.2.2</span> Columns</h4>
+<p>The columns functions create new columns (<code>mutate</code>), select columns (<code>select</code>), rename columns (<code>rename</code>), and relocate columns (<code>relocate</code>).</p>
+<ul>
+<li><p><strong>mutate()</strong>: Creates new columns derived from existing ones.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>flights <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">speed =</span> distance <span class="sc">/</span> air_time <span class="sc">*</span> <span class="dv">60</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 336,776 × 20
+    year month   day dep_time sched_dep_time dep_delay arr_time sched_arr_time
+   &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt;    &lt;int&gt;          &lt;int&gt;
+ 1  2013     1     1      517            515         2      830            819
+ 2  2013     1     1      533            529         4      850            830
+ 3  2013     1     1      542            540         2      923            850
+ 4  2013     1     1      544            545        -1     1004           1022
+ 5  2013     1     1      554            600        -6      812            837
+ 6  2013     1     1      554            558        -4      740            728
+ 7  2013     1     1      555            600        -5      913            854
+ 8  2013     1     1      557            600        -3      709            723
+ 9  2013     1     1      557            600        -3      838            846
+10  2013     1     1      558            600        -2      753            745
+# ℹ 336,766 more rows
+# ℹ 12 more variables: arr_delay &lt;dbl&gt;, carrier &lt;chr&gt;, flight &lt;int&gt;,
+#   tailnum &lt;chr&gt;, origin &lt;chr&gt;, dest &lt;chr&gt;, air_time &lt;dbl&gt;, distance &lt;dbl&gt;,
+#   hour &lt;dbl&gt;, minute &lt;dbl&gt;, time_hour &lt;dttm&gt;, speed &lt;dbl&gt;</code></pre>
+</div>
+</div></li>
+<li><p><strong>select()</strong>: Chooses and reorders specific columns.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>flights <span class="sc">|&gt;</span> <span class="fu">select</span>(year, month, day, dep_delay)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 336,776 × 4
+    year month   day dep_delay
+   &lt;int&gt; &lt;int&gt; &lt;int&gt;     &lt;dbl&gt;
+ 1  2013     1     1         2
+ 2  2013     1     1         4
+ 3  2013     1     1         2
+ 4  2013     1     1        -1
+ 5  2013     1     1        -6
+ 6  2013     1     1        -4
+ 7  2013     1     1        -5
+ 8  2013     1     1        -3
+ 9  2013     1     1        -3
+10  2013     1     1        -2
+# ℹ 336,766 more rows</code></pre>
+</div>
+</div></li>
+<li><p><strong>rename()</strong>: Changes column names without removing other columns.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>flights <span class="sc">|&gt;</span> <span class="fu">rename</span>(<span class="at">tail_num =</span> tailnum)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 336,776 × 19
+    year month   day dep_time sched_dep_time dep_delay arr_time sched_arr_time
+   &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt;    &lt;int&gt;          &lt;int&gt;
+ 1  2013     1     1      517            515         2      830            819
+ 2  2013     1     1      533            529         4      850            830
+ 3  2013     1     1      542            540         2      923            850
+ 4  2013     1     1      544            545        -1     1004           1022
+ 5  2013     1     1      554            600        -6      812            837
+ 6  2013     1     1      554            558        -4      740            728
+ 7  2013     1     1      555            600        -5      913            854
+ 8  2013     1     1      557            600        -3      709            723
+ 9  2013     1     1      557            600        -3      838            846
+10  2013     1     1      558            600        -2      753            745
+# ℹ 336,766 more rows
+# ℹ 11 more variables: arr_delay &lt;dbl&gt;, carrier &lt;chr&gt;, flight &lt;int&gt;,
+#   tail_num &lt;chr&gt;, origin &lt;chr&gt;, dest &lt;chr&gt;, air_time &lt;dbl&gt;, distance &lt;dbl&gt;,
+#   hour &lt;dbl&gt;, minute &lt;dbl&gt;, time_hour &lt;dttm&gt;</code></pre>
+</div>
+</div></li>
+<li><p><strong>relocate()</strong>: Moves columns to a new position within the data frame.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>flights <span class="sc">|&gt;</span> <span class="fu">relocate</span>(dep_delay, <span class="at">.before =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 336,776 × 19
+   dep_delay  year month   day dep_time sched_dep_time arr_time sched_arr_time
+       &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;          &lt;int&gt;    &lt;int&gt;          &lt;int&gt;
+ 1         2  2013     1     1      517            515      830            819
+ 2         4  2013     1     1      533            529      850            830
+ 3         2  2013     1     1      542            540      923            850
+ 4        -1  2013     1     1      544            545     1004           1022
+ 5        -6  2013     1     1      554            600      812            837
+ 6        -4  2013     1     1      554            558      740            728
+ 7        -5  2013     1     1      555            600      913            854
+ 8        -3  2013     1     1      557            600      709            723
+ 9        -3  2013     1     1      557            600      838            846
+10        -2  2013     1     1      558            600      753            745
+# ℹ 336,766 more rows
+# ℹ 11 more variables: arr_delay &lt;dbl&gt;, carrier &lt;chr&gt;, flight &lt;int&gt;,
+#   tailnum &lt;chr&gt;, origin &lt;chr&gt;, dest &lt;chr&gt;, air_time &lt;dbl&gt;, distance &lt;dbl&gt;,
+#   hour &lt;dbl&gt;, minute &lt;dbl&gt;, time_hour &lt;dttm&gt;</code></pre>
+</div>
+</div></li>
+</ul>
+</section>
+<section id="groups-summaries" class="level4" data-number="7.4.2.3">
+<h4 data-number="7.4.2.3" class="anchored" data-anchor-id="groups-summaries"><span class="header-section-number">7.4.2.3</span> Groups &amp; Summaries</h4>
+<p>The groups and summaries functions group data (<code>group_by</code>) and summarise data within groups (<code>summarise</code>).</p>
+<ul>
+<li><p><strong>group_by()</strong>: Splits the data into groups based on one or more columns. The grouping is not visible, and does not create multiple dataframes. See <code>summarise</code> below for how to use the groups.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>flights <span class="sc">|&gt;</span> <span class="fu">group_by</span>(month)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 336,776 × 19
+# Groups:   month [12]
+    year month   day dep_time sched_dep_time dep_delay arr_time sched_arr_time
+   &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt;    &lt;int&gt;          &lt;int&gt;
+ 1  2013     1     1      517            515         2      830            819
+ 2  2013     1     1      533            529         4      850            830
+ 3  2013     1     1      542            540         2      923            850
+ 4  2013     1     1      544            545        -1     1004           1022
+ 5  2013     1     1      554            600        -6      812            837
+ 6  2013     1     1      554            558        -4      740            728
+ 7  2013     1     1      555            600        -5      913            854
+ 8  2013     1     1      557            600        -3      709            723
+ 9  2013     1     1      557            600        -3      838            846
+10  2013     1     1      558            600        -2      753            745
+# ℹ 336,766 more rows
+# ℹ 11 more variables: arr_delay &lt;dbl&gt;, carrier &lt;chr&gt;, flight &lt;int&gt;,
+#   tailnum &lt;chr&gt;, origin &lt;chr&gt;, dest &lt;chr&gt;, air_time &lt;dbl&gt;, distance &lt;dbl&gt;,
+#   hour &lt;dbl&gt;, minute &lt;dbl&gt;, time_hour &lt;dttm&gt;</code></pre>
+</div>
+</div></li>
+<li><p><strong>summarise()</strong>: Computes summary statistics for each group.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>flights <span class="sc">|&gt;</span> <span class="fu">group_by</span>(month) <span class="sc">|&gt;</span> <span class="fu">summarise</span>(<span class="at">avg_delay =</span> <span class="fu">mean</span>(dep_delay, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 12 × 2
+   month avg_delay
+   &lt;int&gt;     &lt;dbl&gt;
+ 1     1     10.0 
+ 2     2     10.8 
+ 3     3     13.2 
+ 4     4     13.9 
+ 5     5     13.0 
+ 6     6     20.8 
+ 7     7     21.7 
+ 8     8     12.6 
+ 9     9      6.72
+10    10      6.24
+11    11      5.44
+12    12     16.6 </code></pre>
+</div>
+</div></li>
 </ul>
 
 
+</section>
 </section>
 </section>
 

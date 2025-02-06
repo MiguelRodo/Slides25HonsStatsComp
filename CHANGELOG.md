@@ -1,5 +1,7 @@
 # CHANGELOG
 
+- Patch (v1.0.22): Miguel Rodo (2025-02-06 07:11:39)
+  - Add `dplyr` section
 - Patch (v1.0.21): Miguel Rodo (2025-02-05 15:08:14)
   - Add tidyverse motivation
 - Patch (v1.0.20): Miguel Rodo (2025-02-05 15:00:34)
