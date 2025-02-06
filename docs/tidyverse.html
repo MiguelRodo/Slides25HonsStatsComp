@@ -235,13 +235,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul class="collapse">
   <li><a href="#key-advantages" id="toc-key-advantages" class="nav-link" data-scroll-target="#key-advantages"><span class="header-section-number">7.3.1</span> Key Advantages:</a></li>
   </ul></li>
-  <li><a href="#section" id="toc-section" class="nav-link" data-scroll-target="#section"><span class="header-section-number">7.4</span> </a>
+  <li><a href="#working-with-rows-and-columns" id="toc-working-with-rows-and-columns" class="nav-link" data-scroll-target="#working-with-rows-and-columns"><span class="header-section-number">7.4</span> Working with rows and columns</a>
   <ul class="collapse">
   <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">7.4.1</span> Summary</a></li>
   </ul></li>
-  <li><a href="#tidyr" id="toc-tidyr" class="nav-link" data-scroll-target="#tidyr"><span class="header-section-number">7.5</span> <code>tidyr</code></a>
+  <li><a href="#changing-the-shape-of-data" id="toc-changing-the-shape-of-data" class="nav-link" data-scroll-target="#changing-the-shape-of-data"><span class="header-section-number">7.5</span> Changing the shape of data</a>
   <ul class="collapse">
-  <li><a href="#key-tidying-concepts-and-tools" id="toc-key-tidying-concepts-and-tools" class="nav-link" data-scroll-target="#key-tidying-concepts-and-tools"><span class="header-section-number">7.5.1</span> Key Tidying Concepts and Tools</a></li>
+  <li><a href="#summary-1" id="toc-summary-1" class="nav-link" data-scroll-target="#summary-1"><span class="header-section-number">7.5.1</span> Summary</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -301,12 +301,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(example_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>    id timepoint disease_status blood_pressure
-1 id_1         1        healthy            133
-2 id_1         2        healthy            139
-3 id_1         3        healthy            138
-4 id_1         4        healthy            125
-5 id_1         5        healthy            137
-6 id_1         6        healthy            120</code></pre>
+1 id_1         1       diseased            132
+2 id_1         2       diseased            125
+3 id_1         3       diseased            127
+4 id_1         4       diseased            132
+5 id_1         5       diseased            123
+6 id_1         6       diseased            131</code></pre>
 </div>
 </div>
 <p>However, constantly having to call <code>head()</code> is not ideal. A better solution is to convert the dataframe into a tibble.</p>
@@ -345,16 +345,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <pre><code># A tibble: 10,000 × 4
    id    timepoint disease_status blood_pressure
    &lt;chr&gt;     &lt;int&gt; &lt;chr&gt;                   &lt;dbl&gt;
- 1 id_1          1 healthy                   133
- 2 id_1          2 healthy                   139
- 3 id_1          3 healthy                   138
- 4 id_1          4 healthy                   125
- 5 id_1          5 healthy                   137
- 6 id_1          6 healthy                   120
- 7 id_1          7 healthy                   134
- 8 id_1          8 healthy                   136
- 9 id_1          9 healthy                   121
-10 id_1         10 healthy                   131
+ 1 id_1          1 diseased                  132
+ 2 id_1          2 diseased                  125
+ 3 id_1          3 diseased                  127
+ 4 id_1          4 diseased                  132
+ 5 id_1          5 diseased                  123
+ 6 id_1          6 diseased                  131
+ 7 id_1          7 diseased                  132
+ 8 id_1          8 diseased                  123
+ 9 id_1          9 diseased                  137
+10 id_1         10 diseased                  120
 # ℹ 9,990 more rows</code></pre>
 </div>
 </div>
@@ -364,13 +364,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>new_tbl</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 5 × 2
-      x      y
-  &lt;int&gt;  &lt;dbl&gt;
-1     1  0.773
-2     2 -0.862
-3     3  1.62 
-4     4  0.814
-5     5  2.15 </code></pre>
+      x       y
+  &lt;int&gt;   &lt;dbl&gt;
+1     1  1.30  
+2     2  0.0393
+3     3 -1.77  
+4     4 -0.447 
+5     5 -1.02  </code></pre>
 </div>
 </div>
 <p>Note that for a <code>tibble</code> object (i.e.&nbsp;a dataframe that has class <code>tbl_df</code>) to display as a tibble, the <code>tibble</code> package needs to be attached. So always add <code>library(tibble)</code> to the top of your script.</p>
@@ -418,19 +418,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>UtilsDataRSV<span class="sc">::</span><span class="fu">view_cols</span>(example_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "id"
- [1] "id_24"  "id_219" "id_373" "id_361" "id_457" "id_455" "id_175" "id_214"
- [9] "id_98"  "id_233" "id_327" "id_299" "id_19"  "id_227" "id_291" "id_319"
-[17] "id_132" "id_437" "id_155" "id_111"
+ [1] "id_330" "id_110" "id_112" "id_127" "id_97"  "id_151" "id_95"  "id_186"
+ [9] "id_335" "id_355" "id_375" "id_417" "id_476" "id_148" "id_146" "id_454"
+[17] "id_159" "id_267" "id_451" "id_124"
 [1] "480 unique entries not displayed"
 [1] "_____________________"
 [1] "timepoint"
-[1]  5 11  8 18  3
+[1] 10  5 19 16 14
 [1] "_____________________"
 [1] "disease_status"
-[1] "diseased" "healthy"  "Healthy" 
+[1] "diseased" "Healthy"  "healthy" 
 [1] "_____________________"
 [1] "blood_pressure"
-[1] 125.6555 133.0000 138.0000 121.7139       NA
+[1] 140.0000 139.0000 125.0000 129.6857       NA
 [1] "_____________________"</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
@@ -452,8 +452,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 Columns: 4
 $ id             &lt;chr&gt; "id_1", "id_1", "id_1", "id_1", "id_1", "id_1", "id_1",…
 $ timepoint      &lt;int&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, …
-$ disease_status &lt;chr&gt; "healthy", "healthy", "healthy", "healthy", "healthy", …
-$ blood_pressure &lt;dbl&gt; 133.0000, 139.0000, 138.0000, 125.0000, 137.0000, 120.0…</code></pre>
+$ disease_status &lt;chr&gt; "diseased", "diseased", "diseased", "diseased", "diseas…
+$ blood_pressure &lt;dbl&gt; 132.0000, 125.0000, 127.0000, 132.0000, 123.0000, 131.0…</code></pre>
 </div>
 </div>
 </section>
@@ -530,33 +530,12 @@ $ blood_pressure &lt;dbl&gt; 133.0000, 139.0000, 138.0000, 125.0000, 137.0000, 1
 <li><strong>Consistent Function Interfaces:</strong> Parameter names and positions are uniform across related functions, reducing confusion and the risk of errors, and making remembering t he functions easier.</li>
 <li><strong>Predictable Behavior:</strong> Consistent return types and standardized design help avoid unexpected bugs.</li>
 </ul>
-<!--
-Packages to cover:
-- filter
-- dplyr
-- magrittr
-- ggplot2
-- tidyr
-- pipes
-- Notable mentions:
-  - broom
-  - tidymodels
-  - forcats
-  - lubridate
-  - stringr
-  - readr
-  - purrr
-  - tibble
-  - rlang
-  - stringi
-  - readxl
-  - haven
-!-->
 </section>
 </section>
-<section id="section" class="level2" data-number="7.4">
-<h2 data-number="7.4" class="anchored" data-anchor-id="section"><span class="header-section-number">7.4</span> </h2>
-<p>There is little point in re-writing excellent content, so I refer you to the <a href="https://r4ds.hadley.nz/transform.html">R4DS chapter on <code>dplyr</code></a> for a comprehensive introduction to the package.</p>
+<section id="working-with-rows-and-columns" class="level2" data-number="7.4">
+<h2 data-number="7.4" class="anchored" data-anchor-id="working-with-rows-and-columns"><span class="header-section-number">7.4</span> Working with rows and columns</h2>
+<p>The primary object of an analysis is typically the dataframe. The <code>dplyr</code> package provides a suite of functions for manipulating dataframes, including selecting rows and columns, creating new columns, and summarizing data.</p>
+<p>There is little point in re-writing excellent content, so I refer you to the <a href="https://r4ds.hadley.nz/data-transform">R4DS chapter on <code>dplyr</code></a> for a comprehensive introduction to the package.</p>
 <section id="summary" class="level3" data-number="7.4.1">
 <h3 data-number="7.4.1" class="anchored" data-anchor-id="summary"><span class="header-section-number">7.4.1</span> Summary</h3>
 <p>Here is a concise summary of the content on the <code>dplyr</code> section of R4DS. For more examples, refer the excellent examples within each function’s help file (e.g.&nbsp;<code>?filter</code>).</p>
@@ -875,16 +854,35 @@ Packages to cover:
 </section>
 </section>
 </section>
-<section id="tidyr" class="level2" data-number="7.5">
-<h2 data-number="7.5" class="anchored" data-anchor-id="tidyr"><span class="header-section-number">7.5</span> <code>tidyr</code></h2>
+<section id="changing-the-shape-of-data" class="level2" data-number="7.5">
+<h2 data-number="7.5" class="anchored" data-anchor-id="changing-the-shape-of-data"><span class="header-section-number">7.5</span> Changing the shape of data</h2>
+<p>A key concept in data analysis is that of “tidy data”. A dataset is tidy when:</p>
+<ul>
+<li>Each variable is in its own column.</li>
+<li>Each observation is in its own row.</li>
+<li>Each cell contains a single value.</li>
+</ul>
+<p>Consistent data structure simplifies analysis, leverages vectorized operations, and makes it easier to use tidyverse functions.</p>
+<p>The <code>tidyr</code> package provides convenient tools for tidying data, such as <code>pivot_longer()</code> and <code>pivot_wider()</code>.</p>
+<p>As before, I refer you to the <a href="https://r4ds.hadley.nz/data-tidy">R4DS chapter on <code>tidyr</code></a> for a comprehensive introduction to the package.</p>
+<section id="summary-1" class="level3" data-number="7.5.1">
+<h3 data-number="7.5.1" class="anchored" data-anchor-id="summary-1"><span class="header-section-number">7.5.1</span> Summary</h3>
+<p>Here is a concise summary of the key content on the <code>tidyr</code> section of R4DS. For more examples, refer the excellent examples within each function’s help file (e.g.&nbsp;<code>?pivot_longer</code>).</p>
+<p>To run the examples below, you will need to attach the <code>tidyr</code> package and load the <code>billboard</code> and <code>cms_patient_experience</code> datasets.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb61"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">requireNamespace</span>(<span class="st">"tidyr"</span>, <span class="at">quietly =</span> <span class="cn">TRUE</span>)) {</span>
 <span id="cb61-2"><a href="#cb61-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">install.packages</span>(<span class="st">"tidyr"</span>)</span>
 <span id="cb61-3"><a href="#cb61-3" aria-hidden="true" tabindex="-1"></a>}</span>
 <span id="cb61-4"><a href="#cb61-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
 <span id="cb61-5"><a href="#cb61-5" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(billboard, <span class="at">package =</span> <span class="st">"tidyr"</span>)</span>
-<span id="cb61-6"><a href="#cb61-6" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(cms_patient_experience, <span class="at">package =</span> <span class="st">"tidyr"</span>)</span>
-<span id="cb61-7"><a href="#cb61-7" aria-hidden="true" tabindex="-1"></a>billboard</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb61-6"><a href="#cb61-6" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(cms_patient_experience, <span class="at">package =</span> <span class="st">"tidyr"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li><p><strong>pivot_longer():</strong></p>
+<p>Converts data from wide to long format by gathering multiple columns into key-value pairs (results in fewer columns, more rows).</p>
+<p>Here is the <code>billboard</code> data before the transformation:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a>billboard</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 317 × 79
    artist     track date.entered   wk1   wk2   wk3   wk4   wk5   wk6   wk7   wk8
@@ -907,53 +905,16 @@ Packages to cover:
 #   wk31 &lt;dbl&gt;, wk32 &lt;dbl&gt;, wk33 &lt;dbl&gt;, wk34 &lt;dbl&gt;, wk35 &lt;dbl&gt;, wk36 &lt;dbl&gt;,
 #   wk37 &lt;dbl&gt;, wk38 &lt;dbl&gt;, wk39 &lt;dbl&gt;, wk40 &lt;dbl&gt;, wk41 &lt;dbl&gt;, wk42 &lt;dbl&gt;, …</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a>cms_patient_experience</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 500 × 5
-   org_pac_id org_nm                           measure_cd measure_title prf_rate
-   &lt;chr&gt;      &lt;chr&gt;                            &lt;chr&gt;      &lt;chr&gt;            &lt;dbl&gt;
- 1 0446157747 USC CARE MEDICAL GROUP INC       CAHPS_GRP… CAHPS for MI…       63
- 2 0446157747 USC CARE MEDICAL GROUP INC       CAHPS_GRP… CAHPS for MI…       87
- 3 0446157747 USC CARE MEDICAL GROUP INC       CAHPS_GRP… CAHPS for MI…       86
- 4 0446157747 USC CARE MEDICAL GROUP INC       CAHPS_GRP… CAHPS for MI…       57
- 5 0446157747 USC CARE MEDICAL GROUP INC       CAHPS_GRP… CAHPS for MI…       85
- 6 0446157747 USC CARE MEDICAL GROUP INC       CAHPS_GRP… CAHPS for MI…       24
- 7 0446162697 ASSOCIATION OF UNIVERSITY PHYSI… CAHPS_GRP… CAHPS for MI…       59
- 8 0446162697 ASSOCIATION OF UNIVERSITY PHYSI… CAHPS_GRP… CAHPS for MI…       85
- 9 0446162697 ASSOCIATION OF UNIVERSITY PHYSI… CAHPS_GRP… CAHPS for MI…       83
-10 0446162697 ASSOCIATION OF UNIVERSITY PHYSI… CAHPS_GRP… CAHPS for MI…       63
-# ℹ 490 more rows</code></pre>
 </div>
-</div>
-<section id="key-tidying-concepts-and-tools" class="level3" data-number="7.5.1">
-<h3 data-number="7.5.1" class="anchored" data-anchor-id="key-tidying-concepts-and-tools"><span class="header-section-number">7.5.1</span> Key Tidying Concepts and Tools</h3>
-<section id="what-is-tidy-data" class="level4" data-number="7.5.1.1">
-<h4 data-number="7.5.1.1" class="anchored" data-anchor-id="what-is-tidy-data"><span class="header-section-number">7.5.1.1</span> What Is Tidy Data?</h4>
-<ul>
-<li><p><strong>Definition:</strong></p>
-<p>A dataset is tidy when:</p>
-<ul>
-<li>Each variable is in its own column.</li>
-<li>Each observation is in its own row.</li>
-<li>Each cell contains a single value.</li>
-</ul></li>
-<li><p><strong>Benefits:</strong></p>
-<p>Consistent data structure simplifies analysis, leverages vectorized operations, and makes it easier to use tidyverse functions.</p></li>
-</ul>
-</section>
-<section id="tidyr-1" class="level4" data-number="7.5.1.2">
-<h4 data-number="7.5.1.2" class="anchored" data-anchor-id="tidyr-1"><span class="header-section-number">7.5.1.2</span> <code>tidyr</code></h4>
-<ul>
-<li><p><strong>pivot_longer():</strong></p>
-<p>Converts data from wide to long format by gathering multiple columns into key-value pairs (results in fewer columns, more rows).</p>
+<p>Here is the <code>billboard</code> data after the transformation:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a>billboard <span class="sc">|&gt;</span> </span>
-<span id="cb65-2"><a href="#cb65-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(</span>
-<span id="cb65-3"><a href="#cb65-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">cols =</span> <span class="fu">starts_with</span>(<span class="st">"wk"</span>), <span class="co"># columns to pivot (display along rows)</span></span>
-<span id="cb65-4"><a href="#cb65-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_to =</span> <span class="st">"week"</span>,  <span class="co"># new column for the column names</span></span>
-<span id="cb65-5"><a href="#cb65-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_to =</span> <span class="st">"rank"</span>, <span class="co"># new column for the values</span></span>
-<span id="cb65-6"><a href="#cb65-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_drop_na =</span> <span class="cn">TRUE</span> <span class="co"># drop rows with NA values</span></span>
-<span id="cb65-7"><a href="#cb65-7" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a>billboard <span class="sc">|&gt;</span> </span>
+<span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(</span>
+<span id="cb64-3"><a href="#cb64-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">cols =</span> <span class="fu">starts_with</span>(<span class="st">"wk"</span>), <span class="co"># columns to pivot (display along rows)</span></span>
+<span id="cb64-4"><a href="#cb64-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_to =</span> <span class="st">"week"</span>,  <span class="co"># new column for the column names</span></span>
+<span id="cb64-5"><a href="#cb64-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_to =</span> <span class="st">"rank"</span>, <span class="co"># new column for the values</span></span>
+<span id="cb64-6"><a href="#cb64-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_drop_na =</span> <span class="cn">TRUE</span> <span class="co"># drop rows with NA values</span></span>
+<span id="cb64-7"><a href="#cb64-7" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 5,307 × 5
    artist  track                   date.entered week   rank
@@ -973,13 +934,34 @@ Packages to cover:
 </div></li>
 <li><p><strong>pivot_wider():</strong></p>
 <p>Transforms long data to wide format by spreading key-value pairs across columns (results in more columns, fewer rows).</p>
+<p>Here is the <code>cms_patient_experience</code> data before the transformation:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a>cms_patient_experience <span class="sc">|&gt;</span> </span>
-<span id="cb67-2"><a href="#cb67-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(</span>
-<span id="cb67-3"><a href="#cb67-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">id_cols =</span> <span class="fu">c</span>(<span class="st">"org_pac_id"</span>, <span class="st">"org_nm"</span>), <span class="co"># columns to keep as identifiers</span></span>
-<span id="cb67-4"><a href="#cb67-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_from =</span> measure_cd, <span class="co"># column to spread (unique entries become columns)</span></span>
-<span id="cb67-5"><a href="#cb67-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_from =</span> prf_rate <span class="co"># column to use for values (values become cell contents)</span></span>
-<span id="cb67-6"><a href="#cb67-6" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a>cms_patient_experience</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 500 × 5
+   org_pac_id org_nm                           measure_cd measure_title prf_rate
+   &lt;chr&gt;      &lt;chr&gt;                            &lt;chr&gt;      &lt;chr&gt;            &lt;dbl&gt;
+ 1 0446157747 USC CARE MEDICAL GROUP INC       CAHPS_GRP… CAHPS for MI…       63
+ 2 0446157747 USC CARE MEDICAL GROUP INC       CAHPS_GRP… CAHPS for MI…       87
+ 3 0446157747 USC CARE MEDICAL GROUP INC       CAHPS_GRP… CAHPS for MI…       86
+ 4 0446157747 USC CARE MEDICAL GROUP INC       CAHPS_GRP… CAHPS for MI…       57
+ 5 0446157747 USC CARE MEDICAL GROUP INC       CAHPS_GRP… CAHPS for MI…       85
+ 6 0446157747 USC CARE MEDICAL GROUP INC       CAHPS_GRP… CAHPS for MI…       24
+ 7 0446162697 ASSOCIATION OF UNIVERSITY PHYSI… CAHPS_GRP… CAHPS for MI…       59
+ 8 0446162697 ASSOCIATION OF UNIVERSITY PHYSI… CAHPS_GRP… CAHPS for MI…       85
+ 9 0446162697 ASSOCIATION OF UNIVERSITY PHYSI… CAHPS_GRP… CAHPS for MI…       83
+10 0446162697 ASSOCIATION OF UNIVERSITY PHYSI… CAHPS_GRP… CAHPS for MI…       63
+# ℹ 490 more rows</code></pre>
+</div>
+</div>
+<p>Here is the <code>cms_patient_experience</code> data after the transformation:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a>cms_patient_experience <span class="sc">|&gt;</span> </span>
+<span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(</span>
+<span id="cb68-3"><a href="#cb68-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">id_cols =</span> <span class="fu">c</span>(<span class="st">"org_pac_id"</span>, <span class="st">"org_nm"</span>), <span class="co"># columns to keep as identifiers</span></span>
+<span id="cb68-4"><a href="#cb68-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">names_from =</span> measure_cd, <span class="co"># column to spread (unique entries become columns)</span></span>
+<span id="cb68-5"><a href="#cb68-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">values_from =</span> prf_rate <span class="co"># column to use for values (values become cell contents)</span></span>
+<span id="cb68-6"><a href="#cb68-6" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 95 × 8
    org_pac_id org_nm CAHPS_GRP_1 CAHPS_GRP_2 CAHPS_GRP_3 CAHPS_GRP_5 CAHPS_GRP_8
@@ -1004,7 +986,6 @@ Packages to cover:
 </ul>
 
 
-</section>
 </section>
 </section>
 
