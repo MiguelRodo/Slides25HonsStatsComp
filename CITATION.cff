@@ -8,7 +8,7 @@ message: 'To cite package "Slides25HonsStatsComp" in publications use:'
 type: software
 license: CC-BY-4.0
 title: 'Slides25HonsStatsComp: Slides'
-version: 1.0.25
+version: 1.0.26
 abstract: Slides
 authors:
 - family-names: Rodo
@@ -23,7 +23,7 @@ preferred-citation:
     email: miguel.rodo@uct.ac.za
   url: https://github.com/MiguelRodo/Slides25HonsStatsComp/#readme
   abstract: Slides
-  version: 1.0.24
+  version: 1.0.25
 repository-code: https://github.com/MiguelRodo/Slides25HonsStatsComp
 url: https://github.com/MiguelRodo/Slides25HonsStatsComp/#readme
 contact:

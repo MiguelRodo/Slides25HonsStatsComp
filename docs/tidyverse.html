@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>7&nbsp; Streamlining data workflows with the tidyverse – Statistical Computing</title>
+<title>7&nbsp; Working with dataframes – Statistical Computing</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -127,7 +127,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./day5.html">Day Five: Transforming data</a></li><li class="breadcrumb-item"><a href="./tidyverse.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Streamlining data workflows with the tidyverse</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./day5.html">Day Five: Transforming data</a></li><li class="breadcrumb-item"><a href="./tidyverse.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Working with dataframes</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -204,7 +204,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./tidyverse.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Streamlining data workflows with the tidyverse</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Working with dataframes</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -225,16 +225,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#displaying-dataframes-in-r" id="toc-displaying-dataframes-in-r" class="nav-link active" data-scroll-target="#displaying-dataframes-in-r"><span class="header-section-number">7.1</span> Displaying Dataframes in R</a>
+  <li><a href="#motivation" id="toc-motivation" class="nav-link active" data-scroll-target="#motivation"><span class="header-section-number">7.1</span> Motivation</a></li>
+  <li><a href="#displaying-dataframes-in-r" id="toc-displaying-dataframes-in-r" class="nav-link" data-scroll-target="#displaying-dataframes-in-r"><span class="header-section-number">7.2</span> Displaying Dataframes in R</a>
   <ul class="collapse">
-  <li><a href="#enhancing-dataframe-display-with-tibble" id="toc-enhancing-dataframe-display-with-tibble" class="nav-link" data-scroll-target="#enhancing-dataframe-display-with-tibble"><span class="header-section-number">7.1.1</span> Enhancing Dataframe Display with <code>tibble</code></a></li>
-  <li><a href="#exploring-data-columns-with-view_cols" id="toc-exploring-data-columns-with-view_cols" class="nav-link" data-scroll-target="#exploring-data-columns-with-view_cols"><span class="header-section-number">7.1.2</span> Exploring Data Columns with <code>view_cols</code></a></li>
+  <li><a href="#enhancing-dataframe-display-with-tibble" id="toc-enhancing-dataframe-display-with-tibble" class="nav-link" data-scroll-target="#enhancing-dataframe-display-with-tibble"><span class="header-section-number">7.2.1</span> Enhancing Dataframe Display with <code>tibble</code></a></li>
+  <li><a href="#exploring-data-columns-with-view_cols" id="toc-exploring-data-columns-with-view_cols" class="nav-link" data-scroll-target="#exploring-data-columns-with-view_cols"><span class="header-section-number">7.2.2</span> Exploring Data Columns with <code>view_cols</code></a></li>
   </ul></li>
-  <li><a href="#pipe" id="toc-pipe" class="nav-link" data-scroll-target="#pipe"><span class="header-section-number">7.2</span> Pipe</a></li>
-  <li><a href="#motivating-the-tidyverse" id="toc-motivating-the-tidyverse" class="nav-link" data-scroll-target="#motivating-the-tidyverse"><span class="header-section-number">7.3</span> Motivating the <code>tidyverse</code></a>
-  <ul class="collapse">
-  <li><a href="#key-advantages" id="toc-key-advantages" class="nav-link" data-scroll-target="#key-advantages"><span class="header-section-number">7.3.1</span> Key Advantages:</a></li>
-  </ul></li>
+  <li><a href="#pipe" id="toc-pipe" class="nav-link" data-scroll-target="#pipe"><span class="header-section-number">7.3</span> Pipe</a></li>
   <li><a href="#working-with-rows-and-columns" id="toc-working-with-rows-and-columns" class="nav-link" data-scroll-target="#working-with-rows-and-columns"><span class="header-section-number">7.4</span> Working with rows and columns</a>
   <ul class="collapse">
   <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">7.4.1</span> Summary</a></li>
@@ -249,9 +246,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./day5.html">Day Five: Transforming data</a></li><li class="breadcrumb-item"><a href="./tidyverse.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Streamlining data workflows with the tidyverse</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./day5.html">Day Five: Transforming data</a></li><li class="breadcrumb-item"><a href="./tidyverse.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Working with dataframes</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span id="sec-day5-tidyverse" class="quarto-section-identifier"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Streamlining data workflows with the tidyverse</span></span></h1>
+<h1 class="title"><span id="sec-day5-tidyverse" class="quarto-section-identifier"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Working with dataframes</span></span></h1>
 </div>
 
 
@@ -268,115 +265,131 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p><strong>NOTE: THIS IS A DRAFT</strong></p>
 <p>For an accompanying video, see <code>tidyverse.mp4</code>.</p>
-<section id="displaying-dataframes-in-r" class="level2" data-number="7.1">
-<h2 data-number="7.1" class="anchored" data-anchor-id="displaying-dataframes-in-r"><span class="header-section-number">7.1</span> Displaying Dataframes in R</h2>
+<section id="motivation" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="motivation"><span class="header-section-number">7.1</span> Motivation</h2>
+<p>While base R is powerful, its syntax can be verbose and inconsistent for everyday data manipulation. The tidyverse offers a suite of packages that work seamlessly together, providing a coherent and intuitive framework for your workflow.</p>
+<p>Instead of installing individual packages like <strong>dplyr</strong> or <strong>tidyr</strong> separately, the tidyverse metapackage installs the core packages and recommended dependencies all at once:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">requireNamespace</span>(<span class="st">"tidyverse"</span>, <span class="at">quietly =</span> <span class="cn">TRUE</span>)) {</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">install.packages</span>(<span class="st">"tidyverse"</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><strong>Key Advantages:</strong></p>
+<ul>
+<li><strong>Readable Syntax:</strong> Tidyverse functions replace cumbersome expressions (e.g., <code>test_df[test_df[["column"]] == "value", ]</code>) with cleaner, more intuitive code.</li>
+<li><strong>Pipe-Friendly:</strong> Designed with the data object as the first argument, these functions work seamlessly with the pipe operator for streamlined chaining.</li>
+<li><strong>Consistent Interfaces:</strong> Uniform parameter names and positions across functions reduce confusion and help prevent errors.</li>
+<li><strong>Predictable Behavior:</strong> Standardized return types and design make outcomes more reliable and debugging easier.</li>
+</ul>
+<p>At the heart of many analyses is the dataframe, and the tidyverse is built to simplify working with and transforming dataframes effectively.</p>
+</section>
+<section id="displaying-dataframes-in-r" class="level2" data-number="7.2">
+<h2 data-number="7.2" class="anchored" data-anchor-id="displaying-dataframes-in-r"><span class="header-section-number">7.2</span> Displaying Dataframes in R</h2>
 <p>Working with large dataframes can be challenging if you inadvertently print all rows to the console. Consider the following example:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>example_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">id =</span> <span class="fu">rep</span>(<span class="fu">paste0</span>(<span class="st">"id_"</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">500</span>), <span class="at">each =</span> <span class="dv">20</span>),</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">timepoint =</span> <span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>, <span class="dv">500</span>),</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">disease_status =</span> <span class="fu">rep</span>(</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">"healthy"</span>, <span class="st">"diseased"</span>), <span class="dv">20</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">each =</span> <span class="dv">500</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  ),</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">blood_pressure =</span> <span class="fu">c</span>(</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">runif</span>(<span class="dv">20</span>, <span class="dv">120</span>, <span class="dv">140</span>) <span class="sc">|&gt;</span> <span class="fu">round</span>(),</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sample</span>(<span class="fu">c</span>(<span class="cn">NA</span>, <span class="fu">runif</span>(<span class="dv">19</span>, <span class="dv">120</span>, <span class="dv">140</span>)), <span class="dv">9980</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Introduce a typo for demonstration</span></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>example_df[<span class="dv">50</span>, <span class="st">"disease_status"</span>] <span class="ot">&lt;-</span> <span class="st">"Healthy"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>example_df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">id =</span> <span class="fu">rep</span>(<span class="fu">paste0</span>(<span class="st">"id_"</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">500</span>), <span class="at">each =</span> <span class="dv">20</span>),</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">timepoint =</span> <span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>, <span class="dv">500</span>),</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">disease_status =</span> <span class="fu">rep</span>(</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">"healthy"</span>, <span class="st">"diseased"</span>), <span class="dv">20</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">each =</span> <span class="dv">500</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">blood_pressure =</span> <span class="fu">c</span>(</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">runif</span>(<span class="dv">20</span>, <span class="dv">120</span>, <span class="dv">140</span>) <span class="sc">|&gt;</span> <span class="fu">round</span>(),</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sample</span>(<span class="fu">c</span>(<span class="cn">NA</span>, <span class="fu">runif</span>(<span class="dv">19</span>, <span class="dv">120</span>, <span class="dv">140</span>)), <span class="dv">9980</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Introduce a typo for demonstration</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>example_df[<span class="dv">50</span>, <span class="st">"disease_status"</span>] <span class="ot">&lt;-</span> <span class="st">"Healthy"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>This dataframe contains 10,000 rows:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(example_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(example_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 10000</code></pre>
 </div>
 </div>
 <p>Printing the entire dataframe (e.g., simply typing <code>example_df</code>) would display all rows, which is both inconvenient and time-consuming. Instead, we typically use the <code>head()</code> function to preview just the first few rows:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(example_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(example_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>    id timepoint disease_status blood_pressure
-1 id_1         1       diseased            132
-2 id_1         2       diseased            125
-3 id_1         3       diseased            127
-4 id_1         4       diseased            132
-5 id_1         5       diseased            123
-6 id_1         6       diseased            131</code></pre>
+1 id_1         1        healthy            138
+2 id_1         2        healthy            136
+3 id_1         3        healthy            131
+4 id_1         4        healthy            131
+5 id_1         5        healthy            138
+6 id_1         6        healthy            130</code></pre>
 </div>
 </div>
 <p>However, constantly having to call <code>head()</code> is not ideal. A better solution is to convert the dataframe into a tibble.</p>
-<section id="enhancing-dataframe-display-with-tibble" class="level3" data-number="7.1.1">
-<h3 data-number="7.1.1" class="anchored" data-anchor-id="enhancing-dataframe-display-with-tibble"><span class="header-section-number">7.1.1</span> Enhancing Dataframe Display with <code>tibble</code></h3>
+<section id="enhancing-dataframe-display-with-tibble" class="level3" data-number="7.2.1">
+<h3 data-number="7.2.1" class="anchored" data-anchor-id="enhancing-dataframe-display-with-tibble"><span class="header-section-number">7.2.1</span> Enhancing Dataframe Display with <code>tibble</code></h3>
 <p>The <code>tibble</code> package (a core part of the tidyverse) offers a more concise and informative display. When you print a tibble, it only shows the first 10 rows and includes data type information for each column. This is particularly useful because it lets you quickly verify, for example, whether <code>timepoint</code> is numeric or character—information that can be obscured in the default dataframe printout.</p>
-<section id="installation-and-conversion" class="level4" data-number="7.1.1.1">
-<h4 data-number="7.1.1.1" class="anchored" data-anchor-id="installation-and-conversion"><span class="header-section-number">7.1.1.1</span> Installation and Conversion</h4>
+<section id="installation-and-conversion" class="level4" data-number="7.2.1.1">
+<h4 data-number="7.2.1.1" class="anchored" data-anchor-id="installation-and-conversion"><span class="header-section-number">7.2.1.1</span> Installation and Conversion</h4>
 <p>First, ensure that the <code>tibble</code> package is installed and loaded:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">requireNamespace</span>(<span class="st">"tibble"</span>, <span class="at">quietly =</span> <span class="cn">TRUE</span>)) {</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">install.packages</span>(<span class="st">"tibble"</span>)</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tibble)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">requireNamespace</span>(<span class="st">"tibble"</span>, <span class="at">quietly =</span> <span class="cn">TRUE</span>)) {</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">install.packages</span>(<span class="st">"tibble"</span>)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tibble)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Convert your dataframe to a tibble using <code>as_tibble()</code>:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Check the class before conversion</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(example_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Check the class before conversion</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(example_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "data.frame"</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert to tibble</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>example_df <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(example_df)</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Check the class after conversion</span></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(example_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert to tibble</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>example_df <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(example_df)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Check the class after conversion</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(example_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "tbl_df"     "tbl"        "data.frame"</code></pre>
 </div>
 </div>
 <p>Now, simply typing <code>example_df</code> will display a neat summary of your data:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>example_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>example_df</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 10,000 × 4
    id    timepoint disease_status blood_pressure
    &lt;chr&gt;     &lt;int&gt; &lt;chr&gt;                   &lt;dbl&gt;
- 1 id_1          1 diseased                  132
- 2 id_1          2 diseased                  125
- 3 id_1          3 diseased                  127
- 4 id_1          4 diseased                  132
- 5 id_1          5 diseased                  123
- 6 id_1          6 diseased                  131
- 7 id_1          7 diseased                  132
- 8 id_1          8 diseased                  123
- 9 id_1          9 diseased                  137
-10 id_1         10 diseased                  120
+ 1 id_1          1 healthy                   138
+ 2 id_1          2 healthy                   136
+ 3 id_1          3 healthy                   131
+ 4 id_1          4 healthy                   131
+ 5 id_1          5 healthy                   138
+ 6 id_1          6 healthy                   130
+ 7 id_1          7 healthy                   129
+ 8 id_1          8 healthy                   135
+ 9 id_1          9 healthy                   136
+10 id_1         10 healthy                   132
 # ℹ 9,990 more rows</code></pre>
 </div>
 </div>
 <p>This tidy display helps you catch issues like typos or unexpected data types early on. I generally load both <code>tibble</code> and <code>ggplot2</code> at the top of my scripts, and you can also create new dataframes directly as tibbles:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>new_tbl <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">x =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="at">y =</span> <span class="fu">rnorm</span>(<span class="dv">5</span>))</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>new_tbl</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>new_tbl <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">x =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="at">y =</span> <span class="fu">rnorm</span>(<span class="dv">5</span>))</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>new_tbl</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 5 × 2
-      x       y
-  &lt;int&gt;   &lt;dbl&gt;
-1     1  1.30  
-2     2  0.0393
-3     3 -1.77  
-4     4 -0.447 
-5     5 -1.02  </code></pre>
+      x      y
+  &lt;int&gt;  &lt;dbl&gt;
+1     1  0.100
+2     2  1.11 
+3     3  1.28 
+4     4  0.748
+5     5 -1.30 </code></pre>
 </div>
 </div>
 <p>Note that for a <code>tibble</code> object (i.e.&nbsp;a dataframe that has class <code>tbl_df</code>) to display as a tibble, the <code>tibble</code> package needs to be attached. So always add <code>library(tibble)</code> to the top of your script.</p>
 <p>A final, very nice feature of <code>tibbles</code> is that selecting one column using <code>df[, "column"]</code> will return a tibble, rather than a vector. This is typically what we would expect:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>example_df[, <span class="st">"id"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>example_df[, <span class="st">"id"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 10,000 × 1
    id   
@@ -395,42 +408,42 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(example_df[, <span class="st">"id"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(example_df[, <span class="st">"id"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "tbl_df"     "tbl"        "data.frame"</code></pre>
 </div>
 </div>
 </section>
 </section>
-<section id="exploring-data-columns-with-view_cols" class="level3" data-number="7.1.2">
-<h3 data-number="7.1.2" class="anchored" data-anchor-id="exploring-data-columns-with-view_cols"><span class="header-section-number">7.1.2</span> Exploring Data Columns with <code>view_cols</code></h3>
+<section id="exploring-data-columns-with-view_cols" class="level3" data-number="7.2.2">
+<h3 data-number="7.2.2" class="anchored" data-anchor-id="exploring-data-columns-with-view_cols"><span class="header-section-number">7.2.2</span> Exploring Data Columns with <code>view_cols</code></h3>
 <p>Whilst <code>tibble</code>s provide a more informative display, they still only show the first few rows of each column.</p>
 <p>Another useful tool is the <code>view_cols</code> function from the <code>UtilsDataRSV</code> package. This function displays unique entries for each column—always showing any missing values (NAs)—so you can quickly identify anomalies such as typos or unexpected values.</p>
 <p>To install the <code>UtilsDataRSV</code> package, use the following code:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">requireNamespace</span>(<span class="st">"remotes"</span>, <span class="at">quietly =</span> <span class="cn">TRUE</span>)) {</span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">install.packages</span>(<span class="st">"remotes"</span>)</span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"SATVILab/UtilsDataRSV"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">requireNamespace</span>(<span class="st">"remotes"</span>, <span class="at">quietly =</span> <span class="cn">TRUE</span>)) {</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">install.packages</span>(<span class="st">"remotes"</span>)</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"SATVILab/UtilsDataRSV"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Once installed, you can apply <code>view_cols</code> to your tibble to inspect the unique values in each column:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>UtilsDataRSV<span class="sc">::</span><span class="fu">view_cols</span>(example_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>UtilsDataRSV<span class="sc">::</span><span class="fu">view_cols</span>(example_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "id"
- [1] "id_330" "id_110" "id_112" "id_127" "id_97"  "id_151" "id_95"  "id_186"
- [9] "id_335" "id_355" "id_375" "id_417" "id_476" "id_148" "id_146" "id_454"
-[17] "id_159" "id_267" "id_451" "id_124"
+ [1] "id_355" "id_60"  "id_120" "id_462" "id_101" "id_482" "id_159" "id_393"
+ [9] "id_368" "id_161" "id_476" "id_236" "id_249" "id_376" "id_59"  "id_57" 
+[17] "id_6"   "id_41"  "id_453" "id_13" 
 [1] "480 unique entries not displayed"
 [1] "_____________________"
 [1] "timepoint"
-[1] 10  5 19 16 14
+[1]  8  9  1 19  3
 [1] "_____________________"
 [1] "disease_status"
-[1] "diseased" "Healthy"  "healthy" 
+[1] "Healthy"  "healthy"  "diseased"
 [1] "_____________________"
 [1] "blood_pressure"
-[1] 140.0000 139.0000 125.0000 129.6857       NA
+[1] 126.7409 135.8335 131.9028 136.0000       NA
 [1] "_____________________"</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
@@ -446,39 +459,39 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>For a possibly more polished alternative, consider exploring the <code>skimr</code> package, which (I think) offers similar functionality.</p>
 <p>You can also display the dataframe on its side, using <code>dplyr::glimpse()</code>:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>dplyr<span class="sc">::</span><span class="fu">glimpse</span>(example_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>dplyr<span class="sc">::</span><span class="fu">glimpse</span>(example_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Rows: 10,000
 Columns: 4
 $ id             &lt;chr&gt; "id_1", "id_1", "id_1", "id_1", "id_1", "id_1", "id_1",…
 $ timepoint      &lt;int&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, …
-$ disease_status &lt;chr&gt; "diseased", "diseased", "diseased", "diseased", "diseas…
-$ blood_pressure &lt;dbl&gt; 132.0000, 125.0000, 127.0000, 132.0000, 123.0000, 131.0…</code></pre>
+$ disease_status &lt;chr&gt; "healthy", "healthy", "healthy", "healthy", "healthy", …
+$ blood_pressure &lt;dbl&gt; 138.0000, 136.0000, 131.0000, 131.0000, 138.0000, 130.0…</code></pre>
 </div>
 </div>
 </section>
 </section>
-<section id="pipe" class="level2" data-number="7.2">
-<h2 data-number="7.2" class="anchored" data-anchor-id="pipe"><span class="header-section-number">7.2</span> Pipe</h2>
+<section id="pipe" class="level2" data-number="7.3">
+<h2 data-number="7.3" class="anchored" data-anchor-id="pipe"><span class="header-section-number">7.3</span> Pipe</h2>
 <ul>
 <li>Essentially, the pipe is a rewrite of code, from</li>
 </ul>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">f</span>(x,y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">f</span>(x,y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>to</p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>x <span class="sc">|&gt;</span> <span class="fu">f</span>(y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>x <span class="sc">|&gt;</span> <span class="fu">f</span>(y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>In other words, the object to the left of the pipe (<code>x</code>) becomes the first argument to the function on the right (<code>f</code>) and <code>y</code> becomes its second parameter.</p>
 <p>As as silly example, this:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>test_vec <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span></span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(test_vec[test_vec <span class="sc">&gt;</span> <span class="dv">3</span>], <span class="at">trim =</span> <span class="fl">0.5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>test_vec <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(test_vec[test_vec <span class="sc">&gt;</span> <span class="dv">3</span>], <span class="at">trim =</span> <span class="fl">0.5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 4.5</code></pre>
 </div>
 </div>
 <p>is equivalent to this:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>test_vec[test_vec <span class="sc">&gt;</span> <span class="dv">3</span>] <span class="sc">|&gt;</span></span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mean</span>(<span class="at">trim =</span> <span class="fl">0.5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>test_vec[test_vec <span class="sc">&gt;</span> <span class="dv">3</span>] <span class="sc">|&gt;</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mean</span>(<span class="at">trim =</span> <span class="fl">0.5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 4.5</code></pre>
 </div>
@@ -488,14 +501,14 @@ $ blood_pressure &lt;dbl&gt; 132.0000, 125.0000, 127.0000, 132.0000, 123.0000, 1
 <p>However, when you have chained operations, the pipe operator can make the code more readable. For a realistic example, see <a href="https://r4ds.hadley.nz/data-transform.html#sec-the-pipe">R4DS on the pipe</a>, where they show a dramatic gain in readability from using the pipe. To run their example, you will need to have the <code>flights</code> dataset from the <code>nycflights13</code> package and the <code>tidyverse</code> package attached.</p>
 <p>To ensure this, first run the chunk below before running their example:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>pkg_vec <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"tidyverse"</span>, <span class="st">"nycflights13"</span>, <span class="st">"tibble"</span>)</span>
-<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (x <span class="cf">in</span> pkg_vec) {</span>
-<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="sc">!</span><span class="fu">requireNamespace</span>(x, <span class="at">quietly =</span> <span class="cn">TRUE</span>)) {</span>
-<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">install.packages</span>(x)</span>
-<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(nycflights13)</span>
-<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>pkg_vec <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"tidyverse"</span>, <span class="st">"nycflights13"</span>, <span class="st">"tibble"</span>)</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (x <span class="cf">in</span> pkg_vec) {</span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="sc">!</span><span class="fu">requireNamespace</span>(x, <span class="at">quietly =</span> <span class="cn">TRUE</span>)) {</span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">install.packages</span>(x)</span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(nycflights13)</span>
+<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
 ✔ dplyr     1.1.4     ✔ purrr     1.0.2
@@ -507,34 +520,14 @@ $ blood_pressure &lt;dbl&gt; 132.0000, 125.0000, 127.0000, 132.0000, 123.0000, 1
 ✖ dplyr::lag()    masks stats::lag()
 ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tibble)</span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(flights, <span class="at">package =</span> <span class="st">"nycflights13"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tibble)</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(flights, <span class="at">package =</span> <span class="st">"nycflights13"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Their example involves many functions that we’ll discuss in the rest of this chapter.</p>
 </section>
-<section id="motivating-the-tidyverse" class="level2" data-number="7.3">
-<h2 data-number="7.3" class="anchored" data-anchor-id="motivating-the-tidyverse"><span class="header-section-number">7.3</span> Motivating the <code>tidyverse</code></h2>
-<p>Base R (<code>R</code> without any extra packages, e.g.&nbsp;<code>example_df[1, 1]</code>) is powerful but can be verbose and inconsistent for everyday data manipulation. The <code>tidyverse</code> is a suite of <code>R</code> packages that work together to offer a coherent, intuitive framework that simplifies your workflow.</p>
-<p>Individual <code>tidyverse</code> packages (such a <code>dplyr</code> and <code>tidyr</code>) can be installed separately, but the <code>tidyverse</code> metapackage installs the core packages and recommended dependencies in one go:</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">requireNamespace</span>(<span class="st">"tidyverse"</span>, <span class="at">quietly =</span> <span class="cn">TRUE</span>)) {</span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">install.packages</span>(<span class="st">"tidyverse"</span>)</span>
-<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<section id="key-advantages" class="level3" data-number="7.3.1">
-<h3 data-number="7.3.1" class="anchored" data-anchor-id="key-advantages"><span class="header-section-number">7.3.1</span> Key Advantages:</h3>
-<ul>
-<li><strong>Readable Syntax:</strong> Tidyverse functions replace cumbersome expressions (e.g., <code>test_df[test_df[["column"]] == "value", ]</code>) with cleaner code.</li>
-<li><strong>Pipe-Friendly:</strong> Designed with the data object as the first argument, they integrate seamlessly with the pipe operator for streamlined chaining.</li>
-<li><strong>Consistent Function Interfaces:</strong> Parameter names and positions are uniform across related functions, reducing confusion and the risk of errors, and making remembering t he functions easier.</li>
-<li><strong>Predictable Behavior:</strong> Consistent return types and standardized design help avoid unexpected bugs.</li>
-</ul>
-</section>
-</section>
 <section id="working-with-rows-and-columns" class="level2" data-number="7.4">
 <h2 data-number="7.4" class="anchored" data-anchor-id="working-with-rows-and-columns"><span class="header-section-number">7.4</span> Working with rows and columns</h2>
-<p>The primary object of an analysis is typically the dataframe. The <code>dplyr</code> package provides a suite of functions for manipulating dataframes, including selecting rows and columns, creating new columns, and summarizing data.</p>
+<p>The <code>dplyr</code> package provides a suite of functions for manipulating dataframes, including selecting rows and columns, creating new columns, and summarizing data.</p>
 <p>There is little point in re-writing excellent content, so I refer you to the <a href="https://r4ds.hadley.nz/data-transform">R4DS chapter on <code>dplyr</code></a> for a comprehensive introduction to the package.</p>
 <section id="summary" class="level3" data-number="7.4.1">
 <h3 data-number="7.4.1" class="anchored" data-anchor-id="summary"><span class="header-section-number">7.4.1</span> Summary</h3>

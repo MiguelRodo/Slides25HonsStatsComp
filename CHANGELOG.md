@@ -1,5 +1,7 @@
 # CHANGELOG
 
+- Patch (v1.0.26): Miguel Rodo (2025-02-06 08:44:00)
+  - Rework intro
 - Patch (v1.0.25): Miguel Rodo (2025-02-06 08:39:22)
   - Update tidyr section
 - Patch (v1.0.24): Miguel Rodo (2025-02-06 08:32:35)
