@@ -8,7 +8,7 @@ While base R is powerful, its syntax can be verbose and inconsistent for everyda
 
 Instead of installing individual packages like **dplyr** or **tidyr** separately, the tidyverse metapackage installs the core packages and recommended dependencies all at once:
 
-```r
+```{r}
 if (!requireNamespace("tidyverse", quietly = TRUE)) {
   install.packages("tidyverse")
 }
@@ -157,13 +157,15 @@ dplyr::glimpse(example_df)
 
 - Essentially, the pipe is a rewrite of code, from
 
-```r
+```{r}
+#| eval: false
 f(x,y)
 ```
 
 to 
 
-```r
+```{r}
+eval: false
 x |> f(y)
 ```
 
@@ -397,3 +399,83 @@ data(cms_patient_experience, package = "tidyr")
   ```
 
   - Columns not specified in `id_cols`, `names_from`, or `values_from` are dropped (such as `measure_nm` in this example).
+
+## Joining dataframes
+
+The `dplyr` package also provides functions for joining dataframes, such as `left_join()` and `inner_join()`.
+
+The full-length notes are in the [R4DS chapter on `joins`](https://r4ds.hadley.nz/joins).
+
+### Key Joining Concepts in dplyr
+
+Data analysis typically involves combining multiple data frames. Joins let you connect tables using shared keys, which can be primary keys (unique identifiers in one table) and foreign keys (variables that reference primary keys in another).
+
+### Summary
+
+Again, here is a concise summary of the R4DS content on the `joins` section.
+More examples are available in the help files for each function (e.g. `?left_join`).
+
+To run the examples below, attach the `dplyr` package, create the `flights2` dataframe, and load the `airlines` and `planes` datasets.
+
+```{r}
+library(dplyr)
+data("flights", package = "nycflights13")
+flights2 <- flights |> 
+  select(year, time_hour, origin, dest, tailnum, carrier)
+data("airlines", package = "nycflights13")
+data("planes", package = "nycflights13")
+```
+
+Here is what these datasets look like:
+
+```{r}
+flights2
+```
+
+```{r}
+airlines
+```
+
+```{r}
+planes
+```
+
+#### Mutating Joins
+
+Mutating joins add new columns from one data frame to another based on matching key values. They share a common interface:
+
+- **left_join()**: Keeps all rows from the left table and adds matching columns from the right table.  
+  ```{r}
+  # Add full airline names to flights2 data
+  flights2 |> left_join(airlines)
+  ```
+
+- **inner_join()**: Keeps only rows with matching keys in both tables.  
+  ```{r}
+  # Only keep rows where both x and y have a matching key
+  df1 |> inner_join(df2, join_by(key))
+  ```
+
+- **Specifying Keys:**  
+  By default, join functions match on columns with the same name. Use `join_by()` to specify different keys:
+  ```{r}
+  flights2 |> left_join(planes, join_by(tailnum))
+  ```
+
+#### Filtering Joins
+
+Filtering joins select rows from one table based solely on whether they have a match in another table.
+
+- **semi_join()**: Keeps rows in `x` that have at least one match in `y` (does not add columns from `y`).  
+  ```{r}
+  # Keep only origin airports that appear in flights2
+  airports |> semi_join(flights2, join_by(faa == origin))
+  ```
+
+- **anti_join()**: Keeps rows in `x` that have no match in `y`.  
+  ```{r}
+  # Find tail numbers in flights2 that are missing from planes
+  flights2 |> anti_join(planes, join_by(tailnum)) |> distinct(tailnum)
+  ```
+
+These joining functions provide a powerful and flexible way to integrate data from different sources, ensuring that your analyses are both comprehensive and accurate.
