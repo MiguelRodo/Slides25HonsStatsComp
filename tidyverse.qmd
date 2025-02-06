@@ -415,7 +415,7 @@ Data analysis typically involves combining multiple data frames. Joins let you c
 Again, here is a concise summary of the R4DS content on the `joins` section.
 More examples are available in the help files for each function (e.g. `?left_join`).
 
-To run the examples below, attach the `dplyr` package, create the `flights2` dataframe, and load the `airlines` and `planes` datasets.
+To run the examples below, attach the `dplyr` package and create and load the following datasets:
 
 ```{r}
 library(dplyr)
@@ -424,6 +424,8 @@ flights2 <- flights |>
   select(year, time_hour, origin, dest, tailnum, carrier)
 data("airlines", package = "nycflights13")
 data("planes", package = "nycflights13")
+df1 <- tibble(key = c(1, 2, 2), val_x = c("x1", "x2", "x3"))
+df2 <- tibble(key = c(1, 2, 2), val_y = c("y1", "y2", "y3"))
 ```
 
 Here is what these datasets look like:
@@ -438,6 +440,14 @@ airlines
 
 ```{r}
 planes
+```
+
+```{r}
+df1
+```
+
+```{r}
+df2
 ```
 
 #### Mutating Joins
@@ -456,8 +466,10 @@ They share a common interface:
 
   ```{r}
   # Only keep rows where both x and y have a matching key
-  df1 |> inner_join(df2, join_by(key))
+  df1 |> inner_join(df2)
   ```
+
+  - In the example above, `dplyr` emits a warning as two rows in `df1` (those with `key` value `2`) have two matches in `df2` (those with `key` value `2`). Often, this is an error (your data isn't what you expect it to be), but that is the example they showed.
 
 - **Specifying Keys:**  
 
@@ -471,13 +483,15 @@ They share a common interface:
 
 Filtering joins select rows from one table based solely on whether they have a match in another table.
 
-- **semi_join()**: Keeps rows in `x` that have at least one match in `y` (does not add columns from `y`).  
+- **semi_join()**: Keeps rows in `x` that have at least one match in `y` (does not add columns from `y`).
+
   ```{r}
   # Keep only origin airports that appear in flights2
   airports |> semi_join(flights2, join_by(faa == origin))
   ```
 
-- **anti_join()**: Keeps rows in `x` that have no match in `y`.  
+- **anti_join()**: Keeps rows in `x` that have no match in `y`.
+
   ```{r}
   # Find tail numbers in flights2 that are missing from planes
   flights2 |> anti_join(planes, join_by(tailnum)) |> distinct(tailnum)
