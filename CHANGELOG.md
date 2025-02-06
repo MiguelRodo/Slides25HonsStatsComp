@@ -1,5 +1,7 @@
 # CHANGELOG
 
+- Patch (v1.0.30): Miguel Rodo (2025-02-06 21:00:09)
+  - Adjust prac five
 - Patch (v1.0.29): Miguel Rodo (2025-02-06 20:00:10)
   - Refine prac
 - Patch (v1.0.28): Miguel Rodo (2025-02-06 19:15:08)
