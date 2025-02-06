@@ -333,12 +333,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(example_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>    id timepoint disease_status blood_pressure
-1 id_1         1        healthy            137
-2 id_1         2        healthy            137
-3 id_1         3        healthy            132
-4 id_1         4        healthy            122
-5 id_1         5        healthy            140
-6 id_1         6        healthy            122</code></pre>
+1 id_1         1       diseased            139
+2 id_1         2       diseased            127
+3 id_1         3       diseased            120
+4 id_1         4       diseased            133
+5 id_1         5       diseased            134
+6 id_1         6       diseased            136</code></pre>
 </div>
 </div>
 <p>However, constantly having to call <code>head()</code> is not ideal. A better solution is to convert the dataframe into a tibble.</p>
@@ -377,16 +377,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <pre><code># A tibble: 10,000 × 4
    id    timepoint disease_status blood_pressure
    &lt;chr&gt;     &lt;int&gt; &lt;chr&gt;                   &lt;dbl&gt;
- 1 id_1          1 healthy                   137
- 2 id_1          2 healthy                   137
- 3 id_1          3 healthy                   132
- 4 id_1          4 healthy                   122
- 5 id_1          5 healthy                   140
- 6 id_1          6 healthy                   122
- 7 id_1          7 healthy                   138
- 8 id_1          8 healthy                   132
- 9 id_1          9 healthy                   133
-10 id_1         10 healthy                   124
+ 1 id_1          1 diseased                  139
+ 2 id_1          2 diseased                  127
+ 3 id_1          3 diseased                  120
+ 4 id_1          4 diseased                  133
+ 5 id_1          5 diseased                  134
+ 6 id_1          6 diseased                  136
+ 7 id_1          7 diseased                  131
+ 8 id_1          8 diseased                  128
+ 9 id_1          9 diseased                  136
+10 id_1         10 diseased                  140
 # ℹ 9,990 more rows</code></pre>
 </div>
 </div>
@@ -398,11 +398,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <pre><code># A tibble: 5 × 2
       x      y
   &lt;int&gt;  &lt;dbl&gt;
-1     1  1.34 
-2     2 -1.99 
-3     3  1.32 
-4     4  0.655
-5     5  1.13 </code></pre>
+1     1  0.941
+2     2  0.628
+3     3  0.124
+4     4 -0.912
+5     5  0.705</code></pre>
 </div>
 </div>
 <p>Note that for a <code>tibble</code> object (i.e.&nbsp;a dataframe that has class <code>tbl_df</code>) to display as a tibble, the <code>tibble</code> package needs to be attached. So always add <code>library(tibble)</code> to the top of your script.</p>
@@ -450,19 +450,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>UtilsDataRSV<span class="sc">::</span><span class="fu">view_cols</span>(example_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "id"
- [1] "id_243" "id_254" "id_185" "id_340" "id_66"  "id_37"  "id_342" "id_72" 
- [9] "id_268" "id_257" "id_321" "id_465" "id_17"  "id_410" "id_157" "id_331"
-[17] "id_162" "id_354" "id_325" "id_487"
+ [1] "id_421" "id_77"  "id_29"  "id_25"  "id_151" "id_90"  "id_491" "id_166"
+ [9] "id_269" "id_4"   "id_397" "id_214" "id_209" "id_411" "id_443" "id_147"
+[17] "id_65"  "id_184" "id_246" "id_472"
 [1] "480 unique entries not displayed"
 [1] "_____________________"
 [1] "timepoint"
-[1]  9 16  7 19 18
+[1] 20  9  4 11  1
 [1] "_____________________"
 [1] "disease_status"
-[1] "Healthy"  "diseased" "healthy" 
+[1] "healthy"  "Healthy"  "diseased"
 [1] "_____________________"
 [1] "blood_pressure"
-[1] 124 138 134 140  NA
+[1] 124.0000 129.5821 126.7227 120.0000       NA
 [1] "_____________________"</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
@@ -484,8 +484,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 Columns: 4
 $ id             &lt;chr&gt; "id_1", "id_1", "id_1", "id_1", "id_1", "id_1", "id_1",…
 $ timepoint      &lt;int&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, …
-$ disease_status &lt;chr&gt; "healthy", "healthy", "healthy", "healthy", "healthy", …
-$ blood_pressure &lt;dbl&gt; 137.0000, 137.0000, 132.0000, 122.0000, 140.0000, 122.0…</code></pre>
+$ disease_status &lt;chr&gt; "diseased", "diseased", "diseased", "diseased", "diseas…
+$ blood_pressure &lt;dbl&gt; 139.0000, 127.0000, 120.0000, 133.0000, 134.0000, 136.0…</code></pre>
 </div>
 </div>
 </section>
