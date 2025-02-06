@@ -53,6 +53,11 @@ tibble(
 )
 ```
 
+```{r}
+flights |>
+  filter(month == 1) |>
+```
+
 3. Explain why the standard deviation is `NA` for one carrier, and why it is `0` for others.
 
 4. Using `tidyr` and `dplyr` where appropriate, construct a dataframe where the carriers are along the columns, and the rows are the average departure delay (`dep_delay`) flown by each carrier (`carrier`) in each month.
