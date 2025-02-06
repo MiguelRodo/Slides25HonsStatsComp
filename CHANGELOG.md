@@ -1,5 +1,7 @@
 # CHANGELOG
 
+- Patch (v1.0.27): Miguel Rodo (2025-02-06 09:05:49)
+  - Improve `join` section
 - Patch (v1.0.26): Miguel Rodo (2025-02-06 08:44:00)
   - Rework intro
 - Patch (v1.0.25): Miguel Rodo (2025-02-06 08:39:22)
