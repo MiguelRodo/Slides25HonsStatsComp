@@ -106,6 +106,25 @@
       ],
       "Hash": "e7bdd9ee90e96921ca8a0f1972d66682"
     },
+    "UtilsDataRSV": {
+      "Package": "UtilsDataRSV",
+      "Version": "0.1.0",
+      "Source": "GitHub",
+      "RemoteType": "github",
+      "RemoteHost": "api.github.com",
+      "RemoteUsername": "SATVILab",
+      "RemoteRepo": "UtilsDataRSV",
+      "RemoteRef": "main",
+      "RemoteSha": "c7018542b8a4739faf68d06ec617310f5b1f57c2",
+      "Requirements": [
+        "dplyr",
+        "magrittr",
+        "rlang",
+        "stringr",
+        "tibble"
+      ],
+      "Hash": "ade526b737112cbc356ec61b65543ccd"
+    },
     "V8": {
       "Package": "V8",
       "Version": "6.0.0",
@@ -994,6 +1013,17 @@
         "utils"
       ],
       "Hash": "ccbb8846be320b627e6aa2b4616a2ded"
+    },
+    "nycflights13": {
+      "Package": "nycflights13",
+      "Version": "1.0.2",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Requirements": [
+        "R",
+        "tibble"
+      ],
+      "Hash": "61eb941328b49a62d7f9816dfed7d959"
     },
     "openssl": {
       "Package": "openssl",

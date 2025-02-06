@@ -122,9 +122,8 @@ remotes::install_github("SATVILab/UtilsDataRSV")
 
 Once installed, you can apply `view_cols` to your tibble to inspect the unique values in each column:
 
-```r
-example_df |>
-  UtilsDataRSV::view_cols()
+```{r}
+UtilsDataRSV::view_cols(example_df)
 ```
 
 This command will:
@@ -134,6 +133,12 @@ This command will:
 - Provide a quick summary of each column’s contents, which is especially helpful after data processing steps to ensure no new issues have been introduced.
 
 For a possibly more polished alternative, consider exploring the `skimr` package, which offers similar functionality.
+
+You can also display the dataframe on its side, using `dplyr::glimpse()`:
+
+```{r}
+dplyr::glimpse(example_df)
+```
 
 ## Pipe
 
@@ -175,7 +180,7 @@ To run their example, you will need to have the `flights` dataset from the `nycf
 
 To ensure this, first run the chunk below before running their example:
 
-```r
+```{r}
 pkg_vec <- c("tidyverse", "nycflights13", "tibble")
 for (x in pkg_vec) {
   if (!requireNamespace(x, quietly = TRUE)) {
@@ -208,32 +213,109 @@ library(tidyverse)
 
 - **Readable Syntax:** Tidyverse functions replace cumbersome expressions (e.g., `test_df[test_df[["column"]] == "value", ]`) with cleaner code.
 - **Pipe-Friendly:** Designed with the data object as the first argument, they integrate seamlessly with the pipe operator for streamlined chaining.
-- **Consistent Function Interfaces:** Parameter names and positions are uniform across related functions, reducing confusion and the risk of errors, and making remembering the functions easier.
+- **Consistent Function Interfaces:** Parameter names and positions are uniform across related functions, reducing confusion and the risk of errors, and making remembering t he functions easier.
 - **Predictable Behavior:** Consistent return types and standardized design help avoid unexpected bugs.
 
 <!--
 Packages to cover:
-- For example, `filter`
+- filter
 - dplyr
 - magrittr
 - ggplot2
 - tidyr
 - pipes
 - Notable mentions:
-  - `broom`
-  - `tidymodels`
-  - `forcats`
-  - `lubridate`
-  - `stringr`
-  - `readr`
-  - `purrr`
-  - `tibble`
-  - `rlang`
-  - `stringi`
-  - `readxl`
-  - `haven`
+  - broom
+  - tidymodels
+  - forcats
+  - lubridate
+  - stringr
+  - readr
+  - purrr
+  - tibble
+  - rlang
+  - stringi
+  - readxl
+  - haven
 !-->
 
-### `dplyr`
+## `dplyr`
 
-- `dplyr` provides key functions for working with data frames
+### Resources
+
+See `dplyr.mp4` for a video on `dplyr`.
+
+There is little point in re-writing excellent content, so I refer you to the [R4DS chapter on `dplyr`](https://r4ds.hadley.nz/transform.html) for a comprehensive introduction to the package.
+
+### Summary
+
+Here is a concise summary of the content on the `dplyr` section of R4DS.
+For more examples, refer the excellent examples within each function's help file (e.g. `?filter`).
+
+#### Rows
+
+The rows functions select rows (`filter`), order rows (`arrange`), and select distinct rows (`distinct`).
+
+- **filter()**: Keeps rows that meet specified conditions.
+
+  ```{r}
+  flights |> filter(month == 1)
+  ```
+
+- **arrange()**: Reorders rows based on column values.
+
+  ```{r}
+  flights |> arrange(desc(dep_delay))
+  ```
+
+- **distinct()**: Returns unique rows or unique combinations of specified columns.
+
+  ```{r}
+  flights |> distinct(origin, dest)
+  ```
+
+#### Columns
+
+The columns functions create new columns (`mutate`), select columns (`select`), rename columns (`rename`), and relocate columns (`relocate`).
+
+- **mutate()**: Creates new columns derived from existing ones.
+
+  ```{r}
+  flights |> mutate(speed = distance / air_time * 60)
+  ```
+
+- **select()**: Chooses and reorders specific columns.
+
+  ```{r}
+  flights |> select(year, month, day, dep_delay)
+  ```
+
+- **rename()**: Changes column names without removing other columns.
+
+  ```{r}
+  flights |> rename(tail_num = tailnum)
+  ```
+
+- **relocate()**: Moves columns to a new position within the data frame.
+
+  ```{r}
+  flights |> relocate(dep_delay, .before = 1)
+  ```
+
+#### Groups & Summaries
+
+The groups and summaries functions group data (`group_by`) and summarise data within groups (`summarise`).
+
+- **group_by()**: Splits the data into groups based on one or more columns. The grouping is not visible, and does not create multiple dataframes. See `summarise` below for how to use the groups.
+
+  ```{r}
+  flights |> group_by(month)
+  ```
+  
+
+- **summarise()**: Computes summary statistics for each group.
+
+  ```{r}
+  flights |> group_by(month) |> summarise(avg_delay = mean(dep_delay, na.rm = TRUE))
+  ```
+
