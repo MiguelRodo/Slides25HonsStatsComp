@@ -209,29 +209,6 @@ library(tidyverse)
 - **Consistent Function Interfaces:** Parameter names and positions are uniform across related functions, reducing confusion and the risk of errors, and making remembering t he functions easier.
 - **Predictable Behavior:** Consistent return types and standardized design help avoid unexpected bugs.
 
-<!--
-Packages to cover:
-- filter
-- dplyr
-- magrittr
-- ggplot2
-- tidyr
-- pipes
-- Notable mentions:
-  - broom
-  - tidymodels
-  - forcats
-  - lubridate
-  - stringr
-  - readr
-  - purrr
-  - tibble
-  - rlang
-  - stringi
-  - readxl
-  - haven
-!-->
-
 ## 
 
 There is little point in re-writing excellent content, so I refer you to the [R4DS chapter on `dplyr`](https://r4ds.hadley.nz/transform.html) for a comprehensive introduction to the package.

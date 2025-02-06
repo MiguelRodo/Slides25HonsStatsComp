@@ -1,5 +1,7 @@
 # CHANGELOG
 
+- Patch (v1.0.24): Miguel Rodo (2025-02-06 08:32:35)
+  - Re-organise tidyverse content
 - Patch (v1.0.23): Miguel Rodo (2025-02-06 07:19:33)
   - Improve examples
 - Patch (v1.0.22): Miguel Rodo (2025-02-06 07:11:39)
