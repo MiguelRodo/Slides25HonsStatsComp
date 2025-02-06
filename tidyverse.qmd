@@ -209,9 +209,12 @@ library(tidyverse)
 - **Consistent Function Interfaces:** Parameter names and positions are uniform across related functions, reducing confusion and the risk of errors, and making remembering t he functions easier.
 - **Predictable Behavior:** Consistent return types and standardized design help avoid unexpected bugs.
 
-## 
+## Working with rows and columns
 
-There is little point in re-writing excellent content, so I refer you to the [R4DS chapter on `dplyr`](https://r4ds.hadley.nz/transform.html) for a comprehensive introduction to the package.
+The primary object of an analysis is typically the dataframe.
+The `dplyr` package provides a suite of functions for manipulating dataframes, including selecting rows and columns, creating new columns, and summarizing data.
+
+There is little point in re-writing excellent content, so I refer you to the [R4DS chapter on `dplyr`](https://r4ds.hadley.nz/data-transform) for a comprehensive introduction to the package.
 
 ### Summary
 
@@ -317,39 +320,53 @@ The groups and summaries functions group data (`group_by`) and summarise data wi
   flights |> group_by(month) |> summarise(avg_delay = mean(dep_delay, na.rm = TRUE))
   ```
 
-## `tidyr`
+## Changing the shape of data
+
+A key concept in data analysis is that of "tidy data".
+A dataset is tidy when:
+
+- Each variable is in its own column.
+- Each observation is in its own row.
+- Each cell contains a single value.
+
+Consistent data structure simplifies analysis, leverages vectorized operations, and makes it easier to use tidyverse functions.
+
+The `tidyr` package provides convenient tools for tidying data, such as `pivot_longer()` and `pivot_wider()`.
+
+As before, I refer you to the [R4DS chapter on `tidyr`](https://r4ds.hadley.nz/data-tidy) for a comprehensive introduction to the package.
+
+### Summary
+
+Here is a concise summary of the key content on the `tidyr` section of R4DS.
+For more examples, refer the excellent examples within each function's help file (e.g. `?pivot_longer`).
+
+To run the examples below, you will need to attach the `tidyr` package and load the `billboard` and `cms_patient_experience` datasets.
 
 ```{r}
+#| message: false
+#| warning: false
+#| results: hide
+#| echo: true
 if (!requireNamespace("tidyr", quietly = TRUE)) {
   install.packages("tidyr")
 }
 library(tidyr)
 data(billboard, package = "tidyr")
 data(cms_patient_experience, package = "tidyr")
-billboard
-cms_patient_experience
+
 ```
-
-### Key Tidying Concepts and Tools
-
-#### What Is Tidy Data?
-
-- **Definition:**
-
-  A dataset is tidy when:
-  - Each variable is in its own column.
-  - Each observation is in its own row.
-  - Each cell contains a single value.
-
-- **Benefits:**  
-
-  Consistent data structure simplifies analysis, leverages vectorized operations, and makes it easier to use tidyverse functions.
-
-#### `tidyr`
 
 - **pivot_longer():**  
 
   Converts data from wide to long format by gathering multiple columns into key-value pairs (results in fewer columns, more rows).
+
+  Here is the `billboard` data before the transformation:
+
+  ```{r}
+  billboard
+  ```
+
+  Here is the `billboard` data after the transformation:
 
   ```{r}
   billboard |> 
@@ -364,6 +381,14 @@ cms_patient_experience
 - **pivot_wider():** 
 
   Transforms long data to wide format by spreading key-value pairs across columns (results in more columns, fewer rows).
+
+  Here is the `cms_patient_experience` data before the transformation:
+
+  ```{r}
+  cms_patient_experience
+  ```
+
+  Here is the `cms_patient_experience` data after the transformation:
 
   ```{r}
   cms_patient_experience |> 
