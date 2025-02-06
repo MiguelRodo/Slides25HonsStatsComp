@@ -165,7 +165,7 @@ f(x,y)
 to 
 
 ```{r}
-eval: false
+#| eval: false
 x |> f(y)
 ```
 
@@ -442,22 +442,27 @@ planes
 
 #### Mutating Joins
 
-Mutating joins add new columns from one data frame to another based on matching key values. They share a common interface:
+Mutating joins add new columns from one data frame to another based on matching key values.
+They share a common interface:
 
 - **left_join()**: Keeps all rows from the left table and adds matching columns from the right table.  
+
   ```{r}
   # Add full airline names to flights2 data
   flights2 |> left_join(airlines)
   ```
 
-- **inner_join()**: Keeps only rows with matching keys in both tables.  
+- **inner_join()**: Keeps only rows with matching keys in both tables. 
+
   ```{r}
   # Only keep rows where both x and y have a matching key
   df1 |> inner_join(df2, join_by(key))
   ```
 
 - **Specifying Keys:**  
+
   By default, join functions match on columns with the same name. Use `join_by()` to specify different keys:
+
   ```{r}
   flights2 |> left_join(planes, join_by(tailnum))
   ```
