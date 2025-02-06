@@ -297,12 +297,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(example_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>    id timepoint disease_status blood_pressure
-1 id_1         1       diseased            127
-2 id_1         2       diseased            122
-3 id_1         3       diseased            134
-4 id_1         4       diseased            126
-5 id_1         5       diseased            139
-6 id_1         6       diseased            137</code></pre>
+1 id_1         1       diseased            133
+2 id_1         2       diseased            124
+3 id_1         3       diseased            130
+4 id_1         4       diseased            128
+5 id_1         5       diseased            130
+6 id_1         6       diseased            132</code></pre>
 </div>
 </div>
 <p>However, constantly having to call <code>head()</code> is not ideal. A better solution is to convert the dataframe into a tibble.</p>
@@ -342,16 +342,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <pre><code># A tibble: 10,000 × 4
    id    timepoint disease_status blood_pressure
    &lt;chr&gt;     &lt;int&gt; &lt;chr&gt;                   &lt;dbl&gt;
- 1 id_1          1 diseased                  127
- 2 id_1          2 diseased                  122
- 3 id_1          3 diseased                  134
- 4 id_1          4 diseased                  126
- 5 id_1          5 diseased                  139
- 6 id_1          6 diseased                  137
- 7 id_1          7 diseased                  123
- 8 id_1          8 diseased                  138
- 9 id_1          9 diseased                  135
-10 id_1         10 diseased                  136
+ 1 id_1          1 diseased                  133
+ 2 id_1          2 diseased                  124
+ 3 id_1          3 diseased                  130
+ 4 id_1          4 diseased                  128
+ 5 id_1          5 diseased                  130
+ 6 id_1          6 diseased                  132
+ 7 id_1          7 diseased                  138
+ 8 id_1          8 diseased                  132
+ 9 id_1          9 diseased                  134
+10 id_1         10 diseased                  138
 # ℹ 9,990 more rows</code></pre>
 </div>
 </div>
@@ -361,13 +361,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>new_tbl</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 5 × 2
-      x       y
-  &lt;int&gt;   &lt;dbl&gt;
-1     1  0.0822
-2     2 -0.628 
-3     3  0.577 
-4     4 -1.45  
-5     5  0.742 </code></pre>
+      x      y
+  &lt;int&gt;  &lt;dbl&gt;
+1     1  1.57 
+2     2 -0.472
+3     3 -1.71 
+4     4 -0.298
+5     5 -1.01 </code></pre>
 </div>
 </div>
 <p>Note that for a <code>tibble</code> object (i.e.&nbsp;a dataframe that has class <code>tbl_df</code>) to display as a tibble, the <code>tibble</code> package needs to be attached. So always add <code>library(tibble)</code> to the top of your script.</p>
@@ -426,19 +426,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>UtilsDataRSV<span class="sc">::</span><span class="fu">view_cols</span>(example_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "id"
- [1] "id_188" "id_172" "id_200" "id_485" "id_425" "id_40"  "id_94"  "id_269"
- [9] "id_187" "id_284" "id_86"  "id_147" "id_33"  "id_497" "id_46"  "id_354"
-[17] "id_239" "id_39"  "id_121" "id_149"
+ [1] "id_211" "id_272" "id_189" "id_484" "id_123" "id_334" "id_386" "id_498"
+ [9] "id_232" "id_181" "id_220" "id_134" "id_51"  "id_151" "id_195" "id_344"
+[17] "id_452" "id_495" "id_236" "id_171"
 [1] "480 unique entries not displayed"
 [1] "_____________________"
 [1] "timepoint"
-[1] 19 14 17  1 10
+[1] 19  4 18 11 16
 [1] "_____________________"
 [1] "disease_status"
-[1] "Healthy"  "healthy"  "diseased"
+[1] "diseased" "Healthy"  "healthy" 
 [1] "_____________________"
 [1] "blood_pressure"
-[1] 133.2679 123.4438 133.0000 132.0000       NA
+[1] 124.7902 138.0000 120.1275 126.0000       NA
 [1] "_____________________"</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
@@ -461,7 +461,7 @@ Columns: 4
 $ id             &lt;chr&gt; "id_1", "id_1", "id_1", "id_1", "id_1", "id_1", "id_1",…
 $ timepoint      &lt;int&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, …
 $ disease_status &lt;chr&gt; "diseased", "diseased", "diseased", "diseased", "diseas…
-$ blood_pressure &lt;dbl&gt; 127.0000, 122.0000, 134.0000, 126.0000, 139.0000, 137.0…</code></pre>
+$ blood_pressure &lt;dbl&gt; 133.0000, 124.0000, 130.0000, 128.0000, 130.0000, 132.0…</code></pre>
 </div>
 </div>
 </section>
@@ -602,21 +602,21 @@ Packages to cover:
 </div></li>
 <li><p><strong>arrange()</strong>: Reorders rows based on column values.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>flights <span class="sc">|&gt;</span> <span class="fu">arrange</span>(<span class="fu">desc</span>(dep_delay))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>flights <span class="sc">|&gt;</span> <span class="fu">arrange</span>(dep_delay)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 336,776 × 19
     year month   day dep_time sched_dep_time dep_delay arr_time sched_arr_time
    &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt;    &lt;int&gt;          &lt;int&gt;
- 1  2013     1     9      641            900      1301     1242           1530
- 2  2013     6    15     1432           1935      1137     1607           2120
- 3  2013     1    10     1121           1635      1126     1239           1810
- 4  2013     9    20     1139           1845      1014     1457           2210
- 5  2013     7    22      845           1600      1005     1044           1815
- 6  2013     4    10     1100           1900       960     1342           2211
- 7  2013     3    17     2321            810       911      135           1020
- 8  2013     6    27      959           1900       899     1236           2226
- 9  2013     7    22     2257            759       898      121           1026
-10  2013    12     5      756           1700       896     1058           2020
+ 1  2013    12     7     2040           2123       -43       40           2352
+ 2  2013     2     3     2022           2055       -33     2240           2338
+ 3  2013    11    10     1408           1440       -32     1549           1559
+ 4  2013     1    11     1900           1930       -30     2233           2243
+ 5  2013     1    29     1703           1730       -27     1947           1957
+ 6  2013     8     9      729            755       -26     1002            955
+ 7  2013    10    23     1907           1932       -25     2143           2143
+ 8  2013     3    30     2030           2055       -25     2213           2250
+ 9  2013     3     2     1431           1455       -24     1601           1631
+10  2013     5     5      934            958       -24     1225           1309
 # ℹ 336,766 more rows
 # ℹ 11 more variables: arr_delay &lt;dbl&gt;, carrier &lt;chr&gt;, flight &lt;int&gt;,
 #   tailnum &lt;chr&gt;, origin &lt;chr&gt;, dest &lt;chr&gt;, air_time &lt;dbl&gt;, distance &lt;dbl&gt;,
@@ -649,32 +649,9 @@ Packages to cover:
 <h4 data-number="7.4.2.2" class="anchored" data-anchor-id="columns"><span class="header-section-number">7.4.2.2</span> Columns</h4>
 <p>The columns functions create new columns (<code>mutate</code>), select columns (<code>select</code>), rename columns (<code>rename</code>), and relocate columns (<code>relocate</code>).</p>
 <ul>
-<li><p><strong>mutate()</strong>: Creates new columns derived from existing ones.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>flights <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">speed =</span> distance <span class="sc">/</span> air_time <span class="sc">*</span> <span class="dv">60</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 336,776 × 20
-    year month   day dep_time sched_dep_time dep_delay arr_time sched_arr_time
-   &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt;    &lt;int&gt;          &lt;int&gt;
- 1  2013     1     1      517            515         2      830            819
- 2  2013     1     1      533            529         4      850            830
- 3  2013     1     1      542            540         2      923            850
- 4  2013     1     1      544            545        -1     1004           1022
- 5  2013     1     1      554            600        -6      812            837
- 6  2013     1     1      554            558        -4      740            728
- 7  2013     1     1      555            600        -5      913            854
- 8  2013     1     1      557            600        -3      709            723
- 9  2013     1     1      557            600        -3      838            846
-10  2013     1     1      558            600        -2      753            745
-# ℹ 336,766 more rows
-# ℹ 12 more variables: arr_delay &lt;dbl&gt;, carrier &lt;chr&gt;, flight &lt;int&gt;,
-#   tailnum &lt;chr&gt;, origin &lt;chr&gt;, dest &lt;chr&gt;, air_time &lt;dbl&gt;, distance &lt;dbl&gt;,
-#   hour &lt;dbl&gt;, minute &lt;dbl&gt;, time_hour &lt;dttm&gt;, speed &lt;dbl&gt;</code></pre>
-</div>
-</div></li>
 <li><p><strong>select()</strong>: Chooses and reorders specific columns.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>flights <span class="sc">|&gt;</span> <span class="fu">select</span>(year, month, day, dep_delay)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>flights <span class="sc">|&gt;</span> <span class="fu">select</span>(year, month, day, dep_delay)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 336,776 × 4
     year month   day dep_delay
@@ -692,12 +669,34 @@ Packages to cover:
 # ℹ 336,766 more rows</code></pre>
 </div>
 </div></li>
+<li><p><strong>mutate()</strong>: Creates new columns derived from existing ones.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>flights <span class="sc">|&gt;</span></span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">speed =</span> distance <span class="sc">/</span> air_time <span class="sc">*</span> <span class="dv">60</span>) <span class="sc">|&gt;</span></span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(distance, air_time, speed)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 336,776 × 3
+   distance air_time speed
+      &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt;
+ 1     1400      227  370.
+ 2     1416      227  374.
+ 3     1089      160  408.
+ 4     1576      183  517.
+ 5      762      116  394.
+ 6      719      150  288.
+ 7     1065      158  404.
+ 8      229       53  259.
+ 9      944      140  405.
+10      733      138  319.
+# ℹ 336,766 more rows</code></pre>
+</div>
+</div></li>
 <li><p><strong>rename()</strong>: Changes column names without removing other columns.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>flights <span class="sc">|&gt;</span> <span class="fu">rename</span>(<span class="at">tail_num =</span> tailnum)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>flights <span class="sc">|&gt;</span> <span class="fu">rename</span>(<span class="at">YEAR =</span> year)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 336,776 × 19
-    year month   day dep_time sched_dep_time dep_delay arr_time sched_arr_time
+    YEAR month   day dep_time sched_dep_time dep_delay arr_time sched_arr_time
    &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt;    &lt;int&gt;          &lt;int&gt;
  1  2013     1     1      517            515         2      830            819
  2  2013     1     1      533            529         4      850            830
@@ -711,31 +710,31 @@ Packages to cover:
 10  2013     1     1      558            600        -2      753            745
 # ℹ 336,766 more rows
 # ℹ 11 more variables: arr_delay &lt;dbl&gt;, carrier &lt;chr&gt;, flight &lt;int&gt;,
-#   tail_num &lt;chr&gt;, origin &lt;chr&gt;, dest &lt;chr&gt;, air_time &lt;dbl&gt;, distance &lt;dbl&gt;,
+#   tailnum &lt;chr&gt;, origin &lt;chr&gt;, dest &lt;chr&gt;, air_time &lt;dbl&gt;, distance &lt;dbl&gt;,
 #   hour &lt;dbl&gt;, minute &lt;dbl&gt;, time_hour &lt;dttm&gt;</code></pre>
 </div>
 </div></li>
 <li><p><strong>relocate()</strong>: Moves columns to a new position within the data frame.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>flights <span class="sc">|&gt;</span> <span class="fu">relocate</span>(dep_delay, <span class="at">.before =</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>flights <span class="sc">|&gt;</span> <span class="fu">relocate</span>(carrier, flight)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 336,776 × 19
-   dep_delay  year month   day dep_time sched_dep_time arr_time sched_arr_time
-       &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;          &lt;int&gt;    &lt;int&gt;          &lt;int&gt;
- 1         2  2013     1     1      517            515      830            819
- 2         4  2013     1     1      533            529      850            830
- 3         2  2013     1     1      542            540      923            850
- 4        -1  2013     1     1      544            545     1004           1022
- 5        -6  2013     1     1      554            600      812            837
- 6        -4  2013     1     1      554            558      740            728
- 7        -5  2013     1     1      555            600      913            854
- 8        -3  2013     1     1      557            600      709            723
- 9        -3  2013     1     1      557            600      838            846
-10        -2  2013     1     1      558            600      753            745
+   carrier flight  year month   day dep_time sched_dep_time dep_delay arr_time
+   &lt;chr&gt;    &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt;    &lt;int&gt;          &lt;int&gt;     &lt;dbl&gt;    &lt;int&gt;
+ 1 UA        1545  2013     1     1      517            515         2      830
+ 2 UA        1714  2013     1     1      533            529         4      850
+ 3 AA        1141  2013     1     1      542            540         2      923
+ 4 B6         725  2013     1     1      544            545        -1     1004
+ 5 DL         461  2013     1     1      554            600        -6      812
+ 6 UA        1696  2013     1     1      554            558        -4      740
+ 7 B6         507  2013     1     1      555            600        -5      913
+ 8 EV        5708  2013     1     1      557            600        -3      709
+ 9 B6          79  2013     1     1      557            600        -3      838
+10 AA         301  2013     1     1      558            600        -2      753
 # ℹ 336,766 more rows
-# ℹ 11 more variables: arr_delay &lt;dbl&gt;, carrier &lt;chr&gt;, flight &lt;int&gt;,
-#   tailnum &lt;chr&gt;, origin &lt;chr&gt;, dest &lt;chr&gt;, air_time &lt;dbl&gt;, distance &lt;dbl&gt;,
-#   hour &lt;dbl&gt;, minute &lt;dbl&gt;, time_hour &lt;dttm&gt;</code></pre>
+# ℹ 10 more variables: sched_arr_time &lt;int&gt;, arr_delay &lt;dbl&gt;, tailnum &lt;chr&gt;,
+#   origin &lt;chr&gt;, dest &lt;chr&gt;, air_time &lt;dbl&gt;, distance &lt;dbl&gt;, hour &lt;dbl&gt;,
+#   minute &lt;dbl&gt;, time_hour &lt;dttm&gt;</code></pre>
 </div>
 </div></li>
 </ul>
