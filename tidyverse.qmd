@@ -1,6 +1,8 @@
-# Making working with `R` objects easier {#sec-day5-tidyverse}
+# Streamlining data workflows with the tidyverse {#sec-day5-tidyverse}
 
 **NOTE: THIS IS A DRAFT**
+
+For an accompanying video, see `tidyverse.mp4`.
 
 ## Displaying Dataframes in R
 
@@ -37,8 +39,6 @@ head(example_df)
 ```
 
 However, constantly having to call `head()` is not ideal. A better solution is to convert the dataframe into a tibble.
-
----
 
 ### Enhancing Dataframe Display with `tibble`
 
@@ -95,30 +95,22 @@ example_df[, "id"]
 class(example_df[, "id"])
 ```
 
----
-
 ### Exploring Data Columns with `view_cols`
 
-Another useful tool is the `view_cols` function from the `UtilsDataRSV` package. This function displays unique entries for each column—always showing any missing values (NAs)—so you can quickly identify anomalies such as typos or unexpected values.
+Whilst `tibble`s provide a more informative display, they still only show the first few rows of each column.
 
-#### When and Why to Use `view_cols`
-
-- **Identify Typos:** In our example, the first ten rows may not reveal that `disease_status` contains three unique entries (e.g., `"healthy"`, `"diseased"`, and the typo `"Healthy"`).
-- **Detect Missing Data:** With 10,000 rows, it’s easy to overlook missing values (NAs) when only a few rows are displayed.
-- **Verify Expected Values:** For instance, the `id` column should have 500 unique entries, and `view_cols` can help you confirm this.
-
-#### Installation
+Another useful tool is the `view_cols` function from the `UtilsDataRSV` package.
+This function displays unique entries for each column—always showing any missing values (NAs)—so you can quickly identify anomalies such as typos or unexpected values.
 
 To install the `UtilsDataRSV` package, use the following code:
 
-```r
+```{r}
+#| eval: false
 if (!requireNamespace("remotes", quietly = TRUE)) {
   install.packages("remotes")
 }
 remotes::install_github("SATVILab/UtilsDataRSV")
 ```
-
-#### Using `view_cols`
 
 Once installed, you can apply `view_cols` to your tibble to inspect the unique values in each column:
 
@@ -126,13 +118,14 @@ Once installed, you can apply `view_cols` to your tibble to inspect the unique v
 UtilsDataRSV::view_cols(example_df)
 ```
 
-This command will:
+`view_cols` is particularly helpful when you cannot easily inspect all the rows or columns of a dataframe.
+For example, with 10,000 rows, it’s impractical to scroll through the entire dataset to:
 
-- Display up to 20 unique values per column (noting if more exist).
-- Clearly show all NA entries.
-- Provide a quick summary of each column’s contents, which is especially helpful after data processing steps to ensure no new issues have been introduced.
+- **Identify Typos:** In our example, the first ten rows may not reveal that `disease_status` contains three unique entries (e.g., `"healthy"`, `"diseased"`, and the typo `"Healthy"`).
+- **Detect Missing Data:** It's easy to overlook missing values (NAs).
+- **Verify Expected Values:** For instance, the `id` column should have 500 unique entries, and `view_cols` can help you confirm th
 
-For a possibly more polished alternative, consider exploring the `skimr` package, which offers similar functionality.
+For a possibly more polished alternative, consider exploring the `skimr` package, which (I think) offers similar functionality.
 
 You can also display the dataframe on its side, using `dplyr::glimpse()`:
 
@@ -239,11 +232,7 @@ Packages to cover:
   - haven
 !-->
 
-## `dplyr`
-
-### Resources
-
-See `dplyr.mp4` for a video on `dplyr`.
+## 
 
 There is little point in re-writing excellent content, so I refer you to the [R4DS chapter on `dplyr`](https://r4ds.hadley.nz/transform.html) for a comprehensive introduction to the package.
 
@@ -251,6 +240,17 @@ There is little point in re-writing excellent content, so I refer you to the [R4
 
 Here is a concise summary of the content on the `dplyr` section of R4DS.
 For more examples, refer the excellent examples within each function's help file (e.g. `?filter`).
+
+To run the examples below, you will need to attach the `nycflights13` package and the `tidyverse` package (or just the `dplyr` package).
+
+```{r}
+if (!requireNamespace("dplyr", quietly = TRUE)) {
+  install.packages("dplyr")
+}
+library(dplyr)
+data(flights, package = "nycflights13")
+flights
+```
 
 #### Rows
 
@@ -284,6 +284,18 @@ The columns functions create new columns (`mutate`), select columns (`select`), 
   flights |> select(year, month, day, dep_delay)
   ```
 
+  - Selecting a range:
+            
+    ```{r}
+    flights |> select(year:day)
+    ```
+
+  - Selecting all columns except some:
+
+    ```{r}
+    flights |> select(!year:arr_delay)
+    ```
+
 - **mutate()**: Creates new columns derived from existing ones.
 
   ```{r}
@@ -305,6 +317,12 @@ The columns functions create new columns (`mutate`), select columns (`select`), 
   flights |> relocate(carrier, flight)
   ```
 
+  - Moving the columns before a specified column:
+
+    ```{r}
+    flights |> relocate(carrier, flight, .before = year)
+    ```
+
 #### Groups & Summaries
 
 The groups and summaries functions group data (`group_by`) and summarise data within groups (`summarise`).
@@ -322,3 +340,61 @@ The groups and summaries functions group data (`group_by`) and summarise data wi
   flights |> group_by(month) |> summarise(avg_delay = mean(dep_delay, na.rm = TRUE))
   ```
 
+## `tidyr`
+
+```{r}
+if (!requireNamespace("tidyr", quietly = TRUE)) {
+  install.packages("tidyr")
+}
+library(tidyr)
+data(billboard, package = "tidyr")
+data(cms_patient_experience, package = "tidyr")
+billboard
+cms_patient_experience
+```
+
+### Key Tidying Concepts and Tools
+
+#### What Is Tidy Data?
+
+- **Definition:**
+
+  A dataset is tidy when:
+  - Each variable is in its own column.
+  - Each observation is in its own row.
+  - Each cell contains a single value.
+
+- **Benefits:**  
+
+  Consistent data structure simplifies analysis, leverages vectorized operations, and makes it easier to use tidyverse functions.
+
+#### `tidyr`
+
+- **pivot_longer():**  
+
+  Converts data from wide to long format by gathering multiple columns into key-value pairs (results in fewer columns, more rows).
+
+  ```{r}
+  billboard |> 
+    pivot_longer(
+      cols = starts_with("wk"), # columns to pivot (display along rows)
+      names_to = "week",  # new column for the column names
+      values_to = "rank", # new column for the values
+      values_drop_na = TRUE # drop rows with NA values
+    )
+  ```
+
+- **pivot_wider():** 
+
+  Transforms long data to wide format by spreading key-value pairs across columns (results in more columns, fewer rows).
+
+  ```{r}
+  cms_patient_experience |> 
+    pivot_wider(
+      id_cols = c("org_pac_id", "org_nm"), # columns to keep as identifiers
+      names_from = measure_cd, # column to spread (unique entries become columns)
+      values_from = prf_rate # column to use for values (values become cell contents)
+    )
+  ```
+
+  - Columns not specified in `id_cols`, `names_from`, or `values_from` are dropped (such as `measure_nm` in this example).
