@@ -16,7 +16,7 @@ project:
   - ggplot2.qmd
   - handins.qmd
   - handin1.qmd
-  output-dir: docs
+  output-dir: _tmp/projr/v1.0.36/docs
 book:
   title: Statistical Computing
   sidebar:

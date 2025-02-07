@@ -6,6 +6,10 @@ This is your first peer-reviewed assignment for the course.
 
 This hand-in counts 2.5% towards your final mark for the course.
 
+## Due date
+
+Next week Tuesday (11 February), MIDNIGHT.
+
 ## Required practicals
 
 It consists of three practical exercises:
