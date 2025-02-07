@@ -17,12 +17,12 @@
 ^_projr\.yml$
 ^_quarto\.yml$
 ^day1\.qmd$
+^day4\.qmd$
 ^day5\.qmd$
-^day6\.qmd$
 ^ggplot2\.qmd$
 ^git\.qmd$
 ^index\.qmd$
-^prac-day-five\.qmd$
+^prac-day-four\.qmd$
 ^prac1\.qmd$
 ^projects\.qmd$
 ^projrsimple\.qmd$

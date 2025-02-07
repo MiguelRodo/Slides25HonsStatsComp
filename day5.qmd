@@ -1,3 +1,2 @@
-# Day Five: Transforming and displaying data {#sec-day5 .unnumbered}
-
+# Day Five: Displaying data {#sec-day5 .unnumbered}
 

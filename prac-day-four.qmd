@@ -1,4 +1,6 @@
-# Practical Day Five
+# Practical Day Four
+
+**Note**: this *was* `Practical Day Five`, but I realised I got my days wrong.
 
 ## Introduction
 
