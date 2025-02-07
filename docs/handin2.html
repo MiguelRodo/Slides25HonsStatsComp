@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>7&nbsp; Practical One – Statistical Computing</title>
+<title>handin2 – Statistical Computing</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,8 +30,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./day4.html" rel="next">
-<link href="./projrsimple.html" rel="prev">
+<link href="./handin1.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -69,35 +68,6 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 </head>
 
@@ -122,7 +92,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./day1.html">Day One: Projects in R</a></li><li class="breadcrumb-item"><a href="./prac1.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Practical One</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./handins.html">Peer-reviewed assessments</a></li><li class="breadcrumb-item"><a href="./handin2.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">handin2.html</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -187,7 +157,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./prac1.html" class="sidebar-item-text sidebar-link active">
+  <a href="./prac1.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Practical One</span></span></a>
   </div>
 </li>
@@ -239,7 +209,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./handin2.html" class="sidebar-item-text sidebar-link">
+  <a href="./handin2.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">handin2.html</span></span></a>
   </div>
 </li>
@@ -254,34 +224,11 @@ window.Quarto = {
         
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
-
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./day1.html">Day One: Projects in R</a></li><li class="breadcrumb-item"><a href="./prac1.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Practical One</span></a></li></ol></nav>
-<div class="quarto-title">
-<h1 class="title"><span id="sec-day1-prac1" class="quarto-section-identifier"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Practical One</span></span></h1>
-</div>
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./handins.html">Peer-reviewed assessments</a></li><li class="breadcrumb-item"><a href="./handin2.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">handin2.html</span></a></li></ol></nav></header>
 
 
 
-<div class="quarto-title-meta">
 
-    
-  
-    
-  </div>
-  
-
-
-</header>
-
-
-<p><strong>NOTE</strong>: the answers to the questions below should be placed into their own qmd file in a Quarto project on GitHub. This Quarto project (the rendered document itself, as well as the source code on GitHub) will be peer-assessed next week.</p>
-<ol type="1">
-<li>Find all rows in “airquality” that have missing values. Note that the <code>airquality</code> dataset in <code>R</code> is always available (just type <code>airquality</code> in the console to see it).</li>
-<li>Find mean, sd, min, max for each of temperature and ozone level.</li>
-<li>For linear regression, parameter estimates can be found as follows. <span class="math inline">\(\hat{\beta} = (X^TX)^{-1}X^TY\)</span> Here, Y is the response variable, and X is the design matrix. The cars data (an R data set, also always available in <code>R</code>) contains two variables: speed and distance to stop. Fit a simple linear regression model to these data, i.e.&nbsp;find the <span class="math inline">\(\beta\)</span> estimates, using the equation above, and matrix calcuations in R.</li>
-<li>Check that you get the same <span class="math inline">\(\beta\)</span> estimates as when fitting the linear regression model using lm() in R.</li>
-</ol>
 
 
 
@@ -705,14 +652,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./projrsimple.html" class="pagination-link" aria-label="`projrsimple`">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title"><code>projrsimple</code></span></span>
+      <a href="./handin1.html" class="pagination-link" aria-label="First peer-reviewewd hand-in">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">First peer-reviewewd hand-in</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./day4.html" class="pagination-link" aria-label="Day Four: Transforming and displaying data">
-        <span class="nav-page-text">Day Four: Transforming and displaying data</span> <i class="bi bi-arrow-right-short"></i>
-      </a>
   </div>
 </nav>
 </div> <!-- /content -->
