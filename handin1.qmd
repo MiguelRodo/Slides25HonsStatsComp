@@ -1,0 +1,81 @@
+# First peer-reviewewd hand-in
+
+This is your first peer-reviewed assignment for the course.
+
+## Couse mark contribution
+
+This hand-in counts 2.5% towards your final mark for the course.
+
+## Required practicals
+
+It consists of three practical exercises:
+
+1. **Prac 1:** (available [here](https://miguelrodo.github.io/Slides25HonsStatsComp/prac1.html))  
+2. **Prac 2:** (uploaded to Amathuba under the `Day Two / Three` section)  
+3. **Practical Day Four:** (available [here](https://miguelrodo.github.io/Slides25HonsStatsComp/prac-day-four.html))
+
+## Submission instructions
+
+1. **Render Your Quarter Site:**  
+   Ensure your site is correctly generated in the `_site` (or `_book`) folder.
+
+2. **Zip the Rendered Site:**  
+   Compress the rendered site into one zip file.
+
+3. **Upload:**  
+   Submit the zip file via the assignment page on Amathuba.
+
+4. **Include GitHub URL:**  
+   In your submission, clearly state the URL to your GitHub repository (i.e, `github.com/yourusername/yourrepo`, e.g. `github.com/MiguelRodo/Slides25HonsStatsComp`) where your assignment code can be viewed.
+
+## Rubric (/100)
+
+The rubric below is not necessarily final and may be adjusted, but this is the basic structure:
+
+### 1. Rendered Quarter Site (/20)
+
+- **Full (0.5%):** The rendered document is a Quarto project (i.e. a `_site`/`_book` folder).
+- **Partial (0.25%):** The practicals have been rendered using some literate programming approach (individual Quarto files, RMarkdown files or a `bookdown` project), but not a `Quarto` project.
+- **None (0%):** The site fails to render.
+
+### 2. GitHub Repository URL (/20)
+
+- **Full (0.5%):** A correct and accessible GitHub URL is provided that seems to have all the code.
+- **Partial (0.25%):** A correct and accessible GitHub URL is provided but it seems to be incomplete.
+- **None (0%):** No GitHub URL is provided or it is completely incorrect.
+
+### 3. Prac day 1, prac 2 and prac day 5 (/20 each)
+
+For each practical:
+
+- **Full (0.5%):** Practical is completed correctly with all required components.
+- **Partial (0.25%):** Some components are completed, but noticeable issues or omissions exist.
+- **None (0%):** Practical is not attempted or is entirely incorrect.
+
+## FAQs
+
+- How many Git/GitHub repos does this involve?
+  - One. Your project should contain something like the following files and folders, which is what you should see locally and on GitHub:
+
+```plaintext
+_site/
+prac-day-1.qmd
+prac2.qmd
+prac-day-four.qmd
+_quarto.yml
+```
+
+- Should each question in each prac be answered in a separate qmd?
+  - No, as per above, each prac should be in one qmd file exactly. So all questions from each practical should be answered in just one file.
+
+- I cannot get Quarto projects to work. Can I just submit them as separate rendered HTML files?
+  - You can, but you'll get part marks for that part of the rubric.
+
+## Marking Guidelines
+
+- We do not expect you to mark each question individually in the practicals. Instead, try assess more quickly whether it appears correct or not. 
+
+## Marking queries
+
+- Firstly, please remember this only 2.5%!
+- Secondly, bring them to us, and we will have a look at them.

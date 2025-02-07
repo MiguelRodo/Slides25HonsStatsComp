@@ -90,9 +90,8 @@ This is where you write and edit your scripts (files ending in `.R`, `.Rmd`, or 
 
 This interface layout makes it easy to write, test, and manage your R code.
 
-[^longnote]:
+[^longnote]: The packages we ask you to install are usually *easy* to install, so if you have errors like this, it might be because your `R` is out of date:
 
-```sh
 * installing *source* package 'httr2' ...
 
 ** package 'httr2' successfully unpacked and MD5 sums checked
@@ -104,4 +103,5 @@ ERROR: configuration failed for package 'httr2'
 
 * removing 'C:/Users/Wang/AppData/Local/R/win-Library/4.2/httr2'
 Warning in install.packages :
+
 ```
