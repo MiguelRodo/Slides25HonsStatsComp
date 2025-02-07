@@ -1,5 +1,7 @@
 # CHANGELOG
 
+- Patch (v1.0.35): Miguel Rodo (2025-02-07 15:00:47)
+  - Update render qmd's
 - Patch (v1.0.34): Miguel Rodo (2025-02-07 14:59:12)
   - Name days correctly
 - Patch (v1.0.33): Miguel Rodo (2025-02-07 14:31:37)
