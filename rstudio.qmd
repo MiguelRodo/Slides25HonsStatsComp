@@ -2,9 +2,15 @@
 
 Before diving into R, make sure your system is set up properly:
 
-1. **Install the latest version of R** – [Download here](https://cran.r-project.org/)
-2. **Install RStudio (recommended IDE for R)** – [Download here](https://posit.co/download/rstudio-desktop/)
-3. Open RStudio and you’re ready to begin.
+1. **Install the Latest Version of R**  
+   Download the most current release from [CRAN](https://cran.r-project.org/).  
+   **_IMPORTANT:_** Ensure you update to the latest version before starting this course—even if R is already installed—as older versions may cause unexpected issues when using newer `R` packages.
+
+2. **Install RStudio (Recommended IDE for R)**  
+   Get RStudio from [here](https://posit.co/download/rstudio-desktop/).
+
+3. **Launch RStudio**  
+   Open RStudio, and you're all set to begin!
 
 ## Configure RStudio Settings
 
