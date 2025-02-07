@@ -1,6 +1,6 @@
 # Working with dataframes {#sec-day5-tidyverse}
 
-For an accompanying video, see `tidyverse.mp4`.
+For an accompanying video, see `df.mp4`.
 
 ## Motivation
 
