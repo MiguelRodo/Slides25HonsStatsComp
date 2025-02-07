@@ -1,5 +1,7 @@
 # CHANGELOG
 
+- Patch (v1.0.37): Miguel Rodo (2025-02-07 15:27:19)
+  - Add due date
 - Patch (v1.0.36): Miguel Rodo (2025-02-07 15:25:42)
   - Add outline for handin one
 - Patch (v1.0.35): Miguel Rodo (2025-02-07 15:00:47)
