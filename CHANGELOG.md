@@ -1,5 +1,7 @@
 # CHANGELOG
 
+- Patch (v1.0.32): Miguel Rodo (2025-02-07 14:24:09)
+  - Add back RStudio page
 - Patch (v1.0.31): Miguel Rodo (2025-02-07 04:58:18)
   - Correct video name
 - Patch (v1.0.30): Miguel Rodo (2025-02-06 21:00:09)
