@@ -64,8 +64,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./prac-day-five.html" rel="next">
-<link href="./day5.html" rel="prev">
+<link href="./prac-day-four.html" rel="next">
+<link href="./day4.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -127,7 +127,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./day5.html">Day Five: Transforming and displaying data</a></li><li class="breadcrumb-item"><a href="./tidyverse.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Working with dataframes</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./day4.html">Day Four: Transforming and displaying data</a></li><li class="breadcrumb-item"><a href="./tidyverse.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Working with dataframes</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -200,8 +200,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a href="./day5.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Day Five: Transforming and displaying data</span></a>
+            <a href="./day4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Day Four: Transforming and displaying data</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -215,8 +215,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./prac-day-five.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Practical Day Five</span></span></a>
+  <a href="./prac-day-four.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Practical Day Four</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -263,9 +263,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./day5.html">Day Five: Transforming and displaying data</a></li><li class="breadcrumb-item"><a href="./tidyverse.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Working with dataframes</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./day4.html">Day Four: Transforming and displaying data</a></li><li class="breadcrumb-item"><a href="./tidyverse.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Working with dataframes</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span id="sec-day5-tidyverse" class="quarto-section-identifier"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Working with dataframes</span></span></h1>
+<h1 class="title"><span id="sec-day4-tidyverse" class="quarto-section-identifier"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Working with dataframes</span></span></h1>
 </div>
 
 
@@ -345,12 +345,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(example_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>    id timepoint disease_status blood_pressure
-1 id_1         1        healthy            135
-2 id_1         2        healthy            130
-3 id_1         3        healthy            122
-4 id_1         4        healthy            122
-5 id_1         5        healthy            129
-6 id_1         6        healthy            134</code></pre>
+1 id_1         1       diseased            129
+2 id_1         2       diseased            123
+3 id_1         3       diseased            139
+4 id_1         4       diseased            135
+5 id_1         5       diseased            139
+6 id_1         6       diseased            126</code></pre>
 </div>
 </div>
 <p>However, constantly having to call <code>head()</code> is not ideal. A better solution is to convert the dataframe into a tibble.</p>
@@ -389,16 +389,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <pre><code># A tibble: 10,000 × 4
    id    timepoint disease_status blood_pressure
    &lt;chr&gt;     &lt;int&gt; &lt;chr&gt;                   &lt;dbl&gt;
- 1 id_1          1 healthy                   135
- 2 id_1          2 healthy                   130
- 3 id_1          3 healthy                   122
- 4 id_1          4 healthy                   122
- 5 id_1          5 healthy                   129
- 6 id_1          6 healthy                   134
- 7 id_1          7 healthy                   136
- 8 id_1          8 healthy                   124
- 9 id_1          9 healthy                   132
-10 id_1         10 healthy                   130
+ 1 id_1          1 diseased                  129
+ 2 id_1          2 diseased                  123
+ 3 id_1          3 diseased                  139
+ 4 id_1          4 diseased                  135
+ 5 id_1          5 diseased                  139
+ 6 id_1          6 diseased                  126
+ 7 id_1          7 diseased                  128
+ 8 id_1          8 diseased                  124
+ 9 id_1          9 diseased                  137
+10 id_1         10 diseased                  136
 # ℹ 9,990 more rows</code></pre>
 </div>
 </div>
@@ -408,13 +408,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>new_tbl</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 5 × 2
-      x     y
-  &lt;int&gt; &lt;dbl&gt;
-1     1 0.548
-2     2 0.521
-3     3 1.14 
-4     4 1.09 
-5     5 0.690</code></pre>
+      x      y
+  &lt;int&gt;  &lt;dbl&gt;
+1     1 -0.734
+2     2  2.00 
+3     3  3.43 
+4     4 -0.373
+5     5  0.143</code></pre>
 </div>
 </div>
 <p>Note that for a <code>tibble</code> object (i.e.&nbsp;a dataframe that has class <code>tbl_df</code>) to display as a tibble, the <code>tibble</code> package needs to be attached. So always add <code>library(tibble)</code> to the top of your script.</p>
@@ -462,19 +462,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>UtilsDataRSV<span class="sc">::</span><span class="fu">view_cols</span>(example_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "id"
- [1] "id_64"  "id_71"  "id_370" "id_420" "id_56"  "id_33"  "id_461" "id_163"
- [9] "id_119" "id_90"  "id_77"  "id_245" "id_161" "id_247" "id_151" "id_447"
-[17] "id_289" "id_298" "id_203" "id_37" 
+ [1] "id_16"  "id_410" "id_246" "id_250" "id_86"  "id_291" "id_167" "id_22" 
+ [9] "id_357" "id_432" "id_454" "id_500" "id_423" "id_10"  "id_52"  "id_100"
+[17] "id_436" "id_158" "id_43"  "id_284"
 [1] "480 unique entries not displayed"
 [1] "_____________________"
 [1] "timepoint"
-[1]  4 10  8 13 11
+[1] 20  1  7 18 13
 [1] "_____________________"
 [1] "disease_status"
-[1] "diseased" "healthy"  "Healthy" 
+[1] "diseased" "Healthy"  "healthy" 
 [1] "_____________________"
 [1] "blood_pressure"
-[1] 126.0000 127.1787 129.0000 140.0000       NA
+[1] 134.4287 124.0000 127.2481 127.8336       NA
 [1] "_____________________"</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
@@ -496,8 +496,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 Columns: 4
 $ id             &lt;chr&gt; "id_1", "id_1", "id_1", "id_1", "id_1", "id_1", "id_1",…
 $ timepoint      &lt;int&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, …
-$ disease_status &lt;chr&gt; "healthy", "healthy", "healthy", "healthy", "healthy", …
-$ blood_pressure &lt;dbl&gt; 135.0000, 130.0000, 122.0000, 122.0000, 129.0000, 134.0…</code></pre>
+$ disease_status &lt;chr&gt; "diseased", "diseased", "diseased", "diseased", "diseas…
+$ blood_pressure &lt;dbl&gt; 129.0000, 123.0000, 139.0000, 135.0000, 139.0000, 126.0…</code></pre>
 </div>
 </div>
 </section>
@@ -1657,13 +1657,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./day5.html" class="pagination-link" aria-label="Day Five: Transforming and displaying data">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Day Five: Transforming and displaying data</span>
+      <a href="./day4.html" class="pagination-link" aria-label="Day Four: Transforming and displaying data">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Day Four: Transforming and displaying data</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./prac-day-five.html" class="pagination-link" aria-label="Practical Day Five">
-        <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Practical Day Five</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./prac-day-four.html" class="pagination-link" aria-label="Practical Day Four">
+        <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Practical Day Four</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
