@@ -1,5 +1,7 @@
 # CHANGELOG
 
+- Patch (v1.0.33): Miguel Rodo (2025-02-07 14:31:37)
+  - Add footnote of example package install error
 - Patch (v1.0.32): Miguel Rodo (2025-02-07 14:24:09)
   - Add back RStudio page
 - Patch (v1.0.31): Miguel Rodo (2025-02-07 04:58:18)
