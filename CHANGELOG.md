@@ -1,5 +1,7 @@
 # CHANGELOG
 
+- Patch (v1.0.56): Miguel Rodo (2025-02-09 13:07:35)
+  - Rebuild so that figure hopefully appears
 - Patch (v1.0.55): Miguel Rodo (2025-02-09 13:04:13)
   - Remove warnings
 - Patch (v1.0.54): Miguel Rodo (2025-02-09 13:01:46)
