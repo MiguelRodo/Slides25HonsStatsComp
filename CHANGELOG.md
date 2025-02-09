@@ -1,5 +1,7 @@
 # CHANGELOG
 
+- Patch (v1.0.51): Miguel Rodo (2025-02-09 11:51:39)
+  - Use one column
 - Patch (v1.0.50): Miguel Rodo (2025-02-09 11:49:06)
   - Add plotting content
 - Patch (v1.0.49): Miguel Rodo (2025-02-09 11:11:50)
