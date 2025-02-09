@@ -187,3 +187,56 @@ Below is a concise summary of the key information on `ggplot2`:
   ```
 
 
+## Combining Plots with cowplot::plot_grid
+
+When you want to display multiple plots side by side (or in a grid), the **cowplot** package provides the convenient function `plot_grid()`. This function not only aligns axes but also lets you add labels (e.g., “A”, “B”, …) so that each subplot is clearly identified. This is especially useful in academic work where figures need to be self-contained and cross-referenced.
+
+Here’s an example of combining two ggplot figures:
+
+```r
+# Install and load cowplot if not already installed
+if (!requireNamespace("cowplot", quietly = TRUE)) {
+  install.packages("cowplot")
+}
+library(cowplot)
+
+# Create two example plots
+library(ggplot2)
+library(palmerpenguins)
+library(ggthemes)
+
+p1 <- ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g)) +
+  geom_point(aes(color = species, shape = species)) +
+  geom_smooth(method = "lm") +
+  labs(title = "Scatterplot: Flipper Length vs Body Mass") +
+  scale_color_colorblind() +
+  theme_cowplot()  # using cowplot theme for consistent font sizes
+
+p2 <- ggplot(penguins, aes(x = bill_length_mm, y = bill_depth_mm)) +
+  geom_point(aes(color = species)) +
+  geom_smooth(method = "loess") +
+  labs(title = "Scatterplot: Bill Length vs Bill Depth") +
+  scale_color_colorblind() +
+  theme_cowplot()
+
+# Combine the two plots into one figure with labels
+combined_plot <- plot_grid(p1, p2,
+                           labels = c("A", "B"),    # Add subplot labels
+                           label_size = 16,         # Adjust label size if needed
+                           align = "hv",            # Align both horizontally and vertically
+                           ncol = 2)                # Arrange side by side
+
+# Print the combined plot
+print(combined_plot)
+```
+
+**Key points about this approach:**
+
+- The **`plot_grid()`** function accepts a vector of plots (here, `p1` and `p2`).
+- Use the **`labels`** argument to automatically add subplot labels.
+- The **`align`** parameter ensures that the axes are aligned (set to `"hv"` for both horizontal and vertical alignment).
+- With **`theme_cowplot()`** (from the cowplot package), you can set a consistent base font size and styling across all plots, which helps avoid the common pitfall of tiny text elements.
+
+When you incorporate these combined plots in your Quarto document, be sure to assign a figure caption (using the `fig-cap` attribute) and a label (like `fig-combined`) so that you can reference the entire figure later using the `@fig-combined` syntax.
+
+---
