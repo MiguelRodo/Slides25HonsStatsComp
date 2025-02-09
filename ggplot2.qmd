@@ -106,13 +106,6 @@ Below is a concise summary of the key information on `ggplot2`:
   ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g))
   ```
 
-  This does not mean that the above function does nothing, however, as it is specifying the data and the mapping of variables to the x and y axes:
-
-  ```{r}
-  p <- ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g))
-  str(p)
-  ```
-
 ### Aesthetic Mappings
 
 - **Mapping Variables to Visual Properties**:  
@@ -180,7 +173,7 @@ Below is a concise summary of the key information on `ggplot2`:
 ### Saving Your Plots
 
 - **Exporting Graphics**:  
-  Use `ggsave()` to save the most recent plot to a file (e.g., PNG, PDF).
+  Use `ggsave()` to save the most recent plot to a file  {#sec-day4-prac}(e.g., PNG, PDF).
   
   ```r
   ggsave("penguin-plot.png")
@@ -195,6 +188,9 @@ This is especially useful in academic work where figures need to be self-contain
 Here’s an example of combining two ggplot figures:
 
 ```{r}
+#| warning: false
+#| results: hide
+#| message: false
 # Install and load cowplot if not already installed
 if (!requireNamespace("cowplot", quietly = TRUE)) {
   install.packages("cowplot")
@@ -228,12 +224,15 @@ combined_plot <- plot_grid(
   align = "hv",            # Align both horizontally and vertically
   ncol = 1
 )                # Arrange side by side
+```
 
+```{r}
+#| warning: false
 # Print the combined plot
 combined_plot
 ```
 
-As always, there are other packages that can achieve this (e.g. `patchwork`), but `cowplot` is a good choice for its simplicity and ease of use.
+As always, there are other packages that can achieve this (e.g. `patchwork`), but I'm familiar with `cowplot`.
 
 ## Adequate Text Size
 
@@ -246,6 +245,7 @@ I therefore always use the `cowplot::theme_cowplot()` theme, as it a) has a larg
 Here is an example:
 
 ```{r}
+#| warning: false
 p1 +
   # 14 is actually the default, just for demonstration
   theme_cowplot(font_size = 14) 
@@ -254,6 +254,7 @@ p1 +
 The theme is fairly minimal, so you can add gridlines, etc. if you want:
 
 ```{r}
+#| warning: false
 p1 + 
   theme_cowplot() +
   # can also have `minor = "xy"` for minor gridlines
@@ -266,9 +267,17 @@ p1 +
 
 There are many guidelines for plots, but these are the main focuses: 
 
-- Plot is readable: text large enough, colours and shapes distinguishable.
-- Plot is captioned and cross-referenced: plot caption goes below the plot, and the plot is cross-referenced in the text. It should be cross referenced *before* it appears.
-- Plot is self-contained: the plot should be understandable without needing to refer to the main text. Achieve this by including a caption with an informative title, using sentences to describe any important details, and closing with abbreviations or symbols used in the plot.
+- **Plot is readable**: text large enough, colours and shapes distinguishable.
+- **Plot is captioned and cross-referenced**: plot caption goes below the plot, and the plot is cross-referenced in the text. It should be cross referenced *before* it appears.
+- **Plot is self-contained:** the plot should be understandable without needing to refer to the main text. Achieve this by:
+  - Including a caption with:
+    - An informative title
+    - Additional sentences to describe any important details
+    - Closing definitions of abbreviations or symbols used in the plot.
+  - Labelling axes and legends clearly
+- **Neatly formatted text**:
+  - Headings should have a consistent sentence/title case
+  - All text should be free of punctuation and programming syntax/formatting (e.g. `Participant_ID`).
 
 ## Captions and cross-referencing
 
