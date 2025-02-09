@@ -39,6 +39,8 @@
 ^_dependencies\.R$
 ^CHANGELOG\.md$
 ^codemeta\.json$
+^day1\.html$
+^index\.html$
 ^LICENSE\.md$
 ^manifest\.csv$
 ^\.quarto/

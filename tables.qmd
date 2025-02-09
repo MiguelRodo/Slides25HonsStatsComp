@@ -20,34 +20,15 @@ When it comes to tables in academic writing or reports, clear and consistent for
   - **Headings**:
     Headings should consistently be either title or sentence case, and should not contain punctuation or programming syntax/formatting (e.g. `Participant_ID`). Headings can be bold or not, but should be consistent throughout the document.
 
-## Example: Creating a Table with knitr::kable in Quarto
+## Generating a table from `R`
 
-To run the examples below, attach these packages first:
+Typically, it is convenient to create the table in `R` in the relevant output format.
 
-```{r}
-#| echo: true
-#| results: hide
-#| message: false
-#| warning: false
-pkg_vec <- c("ggplot2", "palmerpenguins", "dplyr", "knitr")
-for (x in pkg_vec) {
-  if (!requireNamespace(x, quietly = TRUE)) {
-    install.packages(x, dependencies = TRUE)
-  }
-  # if you want to programmatically attach
-  # libraries, this is the way to to do it
-  library(x, character.only = TRUE)
-}
-```
-
-Below is a sample Quarto code chunk that produces a table from an R data frame. In this example, we create a summary table of the penguins dataset, @tab-summary:
+### Computed table
 
 ```{r}
 #| echo: fenced
-#| label: tab-summary
-#| tab-cap: "Summary Statistics for Penguin Measurements. Values are rounded to 2 decimal places. Abbreviations: FL = Flipper Length (mm), BM = Body Mass (g)."
 #| results: asis
-
 # Create a summary table of key statistics by species
 penguin_summary <- penguins |>
   group_by(species) |>
@@ -62,35 +43,56 @@ penguin_summary <- penguins |>
 # Display the table using knitr::kable
 kable(
   penguin_summary,
-  table.attr = "style='width:50%; border-collapse: collapse;'",
-  align = "lccc"
+  caption = "Summary statistics for penguin easurements. Values are rounded to 2 decimal places. Abbreviations: FL = Flipper Length (mm), BM = Body Mass (g)."
 )
 ```
 
-**Explanation:**
+- The column names were formatted using `dplyr`.
+- The table styling (no vertical lines, placement of horizontal lines, bold headings) was set using `knitr::kable()`.
+- The table caption was set using `knitr::kable()` as well.
+- Note that the `results: asis` chunk option is *essential* to this displaying correctly.
 
-- **Caption and Label:**
-  The code chunk header includes a `tab-cap` attribute that begins with `tab-summary:`. This sets the table’s caption and label. In your text, reference it as “@tab-summary.”
-- **Table Formatting:**
-  The `knitr::kable()` function is used to render the table. In this example, HTML formatting is chosen, but you can adjust the format based on your output (PDF, HTML, etc.). The inline CSS (via `table.attr`) is kept minimal to avoid excessive lines. Vertical lines are omitted.
-- **Rounding:**
-  Numerical values are rounded to 2 decimal places to maintain clarity.
+### Copied into a Quarto document
 
-## Generating `LaTeX` Tables directly from R
+I find getting labels and cross-referencing to work well when directly computing the table is a bit tricky.
 
-If you have a `LaTeX` document, you can generate tables directly from R using `knitr::kable()` with the `format = "latex"` option. Here's an example:
+So, I prefer to do the following:
+
+1. Run the code to compute the table in the `R` console.
+
+In the example above, that means running the `kable()` call.
+Depending on your desired output format, you will get Markdown or LaTeX output (typically).
+Here is what the Markdown output looks like, running the following code:
 
 ```{r}
-#| results: asis
-kable(
-  penguin_summary,
-  format = "latex",
-  align = "lccc"
-)
+#| eval: false
+kable(penguin_summary)
 ```
 
-The output above is then copied and pated into your `LaTeX` document.
+```plaintext
+|Species   |   FL   |   BM    | Count |
+|:---------|:------:|:-------:|:-----:|
+|Adelie    | 189.95 | 3700.66 |  152  |
+|Chinstrap | 195.82 | 3733.09 |  68   |
+|Gentoo    | 217.19 | 5076.02 |  124  |
+```
+
+2. Copy the output into your Quarto document.
+
+3. If you are working within Quarto, then you can use the Quarto cross-referencing syntax (details [here](https://quarto.org/docs/authoring/cross-references.html)).
 
 
+::: {#tbl-summary}
 
+|Species   |   FL   |   BM    | Count |
+|:---------|:------:|:-------:|:-----:|
+|Adelie    | 189.95 | 3700.66 |  152  |
+|Chinstrap | 195.82 | 3733.09 |  68   |
+|Gentoo    | 217.19 | 5076.02 |  124  |
+
+Summary statistics for penguin easurements. Values are rounded to 2 decimal places. Abbreviations: FL = Flipper Length (mm), BM = Body Mass (g).
+
+:::
+
+4. Reference the table using the syntax `@<label>`, where `<label>` is the part immediately following the `#` in the opening of the `:::` block: @tbl-summary.
 

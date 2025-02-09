@@ -1,0 +1,326 @@
+kable                  package:knitr                   R Documentation
+
+_C_r_e_a_t_e _t_a_b_l_e_s _i_n _L_a_T_e_X, _H_T_M_L, _M_a_r_k_d_o_w_n _a_n_d _r_e_S_t_r_u_c_t_u_r_e_d_T_e_x_t
+
+_D_e_s_c_r_i_p_t_i_o_n:
+
+     A very simple table generator, and it is simple by design. It is
+     not intended to replace any other R packages for making tables.
+     The ‘kable()’ function returns a single table for a single data
+     object, and returns a table that contains multiple tables if the
+     input object is a list of data objects. The ‘kables()’ function is
+     similar to ‘kable(x)’ when ‘x’ is a list of data objects, but
+     ‘kables()’ accepts a list of ‘kable()’ values directly instead of
+     data objects (see examples below).
+
+_U_s_a_g_e:
+
+     kable(
+       x,
+       format,
+       digits = getOption("digits"),
+       row.names = NA,
+       col.names = NA,
+       align,
+       caption = opts_current$get("tab.cap"),
+       label = NULL,
+       format.args = list(),
+       escape = TRUE,
+       ...
+     )
+     
+     kables(x, format, caption = NULL, label = NULL)
+     
+_A_r_g_u_m_e_n_t_s:
+
+       x: For ‘kable()’, ‘x’ is an R object, which is typically a
+          matrix or data frame. For ‘kables()’, a list with each
+          element being a returned value from ‘kable()’.
+
+  format: A character string. Possible values are ‘latex’, ‘html’,
+          ‘pipe’ (Pandoc's pipe tables), ‘simple’ (Pandoc's simple
+          tables), ‘rst’, ‘jira’, and ‘org’ (Emacs Org-mode). The value
+          of this argument will be automatically determined if the
+          function is called within a ‘knitr’ document. The ‘format’
+          value can also be set in the global option
+          ‘knitr.table.format’. If ‘format’ is a function, it must
+          return a character string.
+
+  digits: Maximum number of digits for numeric columns, passed to
+          ‘round()’. This can also be a vector of length ‘ncol(x)’, to
+          set the number of digits for individual columns.
+
+row.names: Logical: whether to include row names. By default, row names
+          are included if ‘rownames(x)’ is neither ‘NULL’ nor identical
+          to ‘1:nrow(x)’.
+
+col.names: A character vector of column names to be used in the table.
+
+   align: Column alignment: a character vector consisting of ‘'l'’
+          (left), ‘'c'’ (center) and/or ‘'r'’ (right). By default or if
+          ‘align = NULL’, numeric columns are right-aligned, and other
+          columns are left-aligned. If ‘length(align) == 1L’, the
+          string will be expanded to a vector of individual letters,
+          e.g. ‘'clc'’ becomes ‘c('c', 'l', 'c')’, unless the output
+          format is LaTeX.
+
+ caption: The table caption. By default, it is retrieved from the chunk
+          option ‘tab.cap’.
+
+   label: The table reference label. By default, the label is obtained
+          from ‘knitr::opts_current$get('label')’ (i.e., the current
+          chunk label). To disable the label, use ‘label = NA’.
+
+format.args: A list of arguments to be passed to ‘format()’ to format
+          table values, e.g. ‘list(big.mark = ',')’.
+
+  escape: Boolean; whether to escape special characters when producing
+          HTML or LaTeX tables. When ‘escape = FALSE’, you have to make
+          sure that special characters will not trigger syntax errors
+          in LaTeX or HTML.
+
+     ...: Other arguments (see Examples and References).
+
+_D_e_t_a_i_l_s:
+
+     Missing values (‘NA’) in the table are displayed as ‘NA’ by
+     default. If you want to display them with other characters, you
+     can set the option ‘knitr.kable.NA’, e.g. ‘options(knitr.kable.NA
+     = '')’ to hide ‘NA’ values.
+
+     You can set the option ‘knitr.kable.max_rows’ to limit the number
+     of rows to show in the table, e.g., ‘options(knitr.kable.max_rows
+     = 30)’.
+
+_V_a_l_u_e:
+
+     A character vector of the table source code.
+
+_N_o_t_e:
+
+     When using ‘kable()’ as a _top-level_ expression, you do not need
+     to explicitly ‘print()’ it due to R's automatic implicit printing.
+     When it is wrapped inside other expressions (such as a ‘for’
+     loop), you must explicitly ‘print(kable(...))’.
+
+_R_e_f_e_r_e_n_c_e_s:
+
+     See <https://bookdown.org/yihui/rmarkdown-cookbook/kable.html> for
+     some examples about this function, including specific arguments
+     according to the ‘format’ selected.
+
+_S_e_e _A_l_s_o:
+
+     Other R packages such as ‘huxtable’, ‘xtable’, ‘kableExtra’, ‘gt’
+     and ‘tables’ for HTML and LaTeX tables, and ‘ascii’ and ‘pander’
+     for different flavors of markdown output and some advanced
+     features and table styles. For more on other packages for creating
+     tables, see
+     <https://bookdown.org/yihui/rmarkdown-cookbook/table-other.html>.
+
+_E_x_a_m_p_l_e_s:
+
+     d1 = head(iris)
+     d2 = head(mtcars)
+     # pipe tables by default
+     kable(d1)
+     kable(d2[, 1:5])
+     # no inner padding
+     kable(d2, format = "pipe", padding = 0)
+     # more padding
+     kable(d2, format = "pipe", padding = 2)
+     kable(d1, format = "latex")
+     kable(d1, format = "html")
+     kable(d1, format = "latex", caption = "Title of the table")
+     kable(d1, format = "html", caption = "Title of the table")
+     # use the booktabs package
+     kable(mtcars, format = "latex", booktabs = TRUE)
+     # use the longtable package
+     kable(matrix(1000, ncol = 5), format = "latex", digits = 2, longtable = TRUE)
+     # change LaTeX default table environment
+     kable(d1, format = "latex", caption = "My table", table.envir = "table*")
+     # add some table attributes
+     kable(d1, format = "html", table.attr = "id=\"mytable\"")
+     # reST output
+     kable(d2, format = "rst")
+     # no row names
+     kable(d2, format = "rst", row.names = FALSE)
+     # Pandoc simple tables
+     kable(d2, format = "simple", caption = "Title of the table")
+     # format numbers using , as decimal point, and ' as thousands separator
+     x = as.data.frame(matrix(rnorm(60, 1e+06, 10000), 10))
+     kable(x, format.args = list(decimal.mark = ",", big.mark = "'"))
+     # save the value
+     x = kable(d2, format = "html")
+     cat(x, sep = "\n")
+     # can also set options(knitr.table.format = 'html') so that the output is HTML
+     
+     # multiple tables via either kable(list(x1, x2)) or kables(list(kable(x1),
+     # kable(x2)))
+     kable(list(d1, d2), caption = "A tale of two tables")
+     kables(list(kable(d1, align = "l"), kable(d2)), caption = "A tale of two tables")
+     
+
+kable                  package:knitr                   R Documentation
+
+_C_r_e_a_t_e _t_a_b_l_e_s _i_n _L_a_T_e_X, _H_T_M_L, _M_a_r_k_d_o_w_n _a_n_d _r_e_S_t_r_u_c_t_u_r_e_d_T_e_x_t
+
+_D_e_s_c_r_i_p_t_i_o_n:
+
+     A very simple table generator, and it is simple by design. It is
+     not intended to replace any other R packages for making tables.
+     The ‘kable()’ function returns a single table for a single data
+     object, and returns a table that contains multiple tables if the
+     input object is a list of data objects. The ‘kables()’ function is
+     similar to ‘kable(x)’ when ‘x’ is a list of data objects, but
+     ‘kables()’ accepts a list of ‘kable()’ values directly instead of
+     data objects (see examples below).
+
+_U_s_a_g_e:
+
+     kable(
+       x,
+       format,
+       digits = getOption("digits"),
+       row.names = NA,
+       col.names = NA,
+       align,
+       caption = opts_current$get("tab.cap"),
+       label = NULL,
+       format.args = list(),
+       escape = TRUE,
+       ...
+     )
+     
+     kables(x, format, caption = NULL, label = NULL)
+     
+_A_r_g_u_m_e_n_t_s:
+
+       x: For ‘kable()’, ‘x’ is an R object, which is typically a
+          matrix or data frame. For ‘kables()’, a list with each
+          element being a returned value from ‘kable()’.
+
+  format: A character string. Possible values are ‘latex’, ‘html’,
+          ‘pipe’ (Pandoc's pipe tables), ‘simple’ (Pandoc's simple
+          tables), ‘rst’, ‘jira’, and ‘org’ (Emacs Org-mode). The value
+          of this argument will be automatically determined if the
+          function is called within a ‘knitr’ document. The ‘format’
+          value can also be set in the global option
+          ‘knitr.table.format’. If ‘format’ is a function, it must
+          return a character string.
+
+  digits: Maximum number of digits for numeric columns, passed to
+          ‘round()’. This can also be a vector of length ‘ncol(x)’, to
+          set the number of digits for individual columns.
+
+row.names: Logical: whether to include row names. By default, row names
+          are included if ‘rownames(x)’ is neither ‘NULL’ nor identical
+          to ‘1:nrow(x)’.
+
+col.names: A character vector of column names to be used in the table.
+
+   align: Column alignment: a character vector consisting of ‘'l'’
+          (left), ‘'c'’ (center) and/or ‘'r'’ (right). By default or if
+          ‘align = NULL’, numeric columns are right-aligned, and other
+          columns are left-aligned. If ‘length(align) == 1L’, the
+          string will be expanded to a vector of individual letters,
+          e.g. ‘'clc'’ becomes ‘c('c', 'l', 'c')’, unless the output
+          format is LaTeX.
+
+ caption: The table caption. By default, it is retrieved from the chunk
+          option ‘tab.cap’.
+
+   label: The table reference label. By default, the label is obtained
+          from ‘knitr::opts_current$get('label')’ (i.e., the current
+          chunk label). To disable the label, use ‘label = NA’.
+
+format.args: A list of arguments to be passed to ‘format()’ to format
+          table values, e.g. ‘list(big.mark = ',')’.
+
+  escape: Boolean; whether to escape special characters when producing
+          HTML or LaTeX tables. When ‘escape = FALSE’, you have to make
+          sure that special characters will not trigger syntax errors
+          in LaTeX or HTML.
+
+     ...: Other arguments (see Examples and References).
+
+_D_e_t_a_i_l_s:
+
+     Missing values (‘NA’) in the table are displayed as ‘NA’ by
+     default. If you want to display them with other characters, you
+     can set the option ‘knitr.kable.NA’, e.g. ‘options(knitr.kable.NA
+     = '')’ to hide ‘NA’ values.
+
+     You can set the option ‘knitr.kable.max_rows’ to limit the number
+     of rows to show in the table, e.g., ‘options(knitr.kable.max_rows
+     = 30)’.
+
+_V_a_l_u_e:
+
+     A character vector of the table source code.
+
+_N_o_t_e:
+
+     When using ‘kable()’ as a _top-level_ expression, you do not need
+     to explicitly ‘print()’ it due to R's automatic implicit printing.
+     When it is wrapped inside other expressions (such as a ‘for’
+     loop), you must explicitly ‘print(kable(...))’.
+
+_R_e_f_e_r_e_n_c_e_s:
+
+     See <https://bookdown.org/yihui/rmarkdown-cookbook/kable.html> for
+     some examples about this function, including specific arguments
+     according to the ‘format’ selected.
+
+_S_e_e _A_l_s_o:
+
+     Other R packages such as ‘huxtable’, ‘xtable’, ‘kableExtra’, ‘gt’
+     and ‘tables’ for HTML and LaTeX tables, and ‘ascii’ and ‘pander’
+     for different flavors of markdown output and some advanced
+     features and table styles. For more on other packages for creating
+     tables, see
+     <https://bookdown.org/yihui/rmarkdown-cookbook/table-other.html>.
+
+_E_x_a_m_p_l_e_s:
+
+     d1 = head(iris)
+     d2 = head(mtcars)
+     # pipe tables by default
+     kable(d1)
+     kable(d2[, 1:5])
+     # no inner padding
+     kable(d2, format = "pipe", padding = 0)
+     # more padding
+     kable(d2, format = "pipe", padding = 2)
+     kable(d1, format = "latex")
+     kable(d1, format = "html")
+     kable(d1, format = "latex", caption = "Title of the table")
+     kable(d1, format = "html", caption = "Title of the table")
+     # use the booktabs package
+     kable(mtcars, format = "latex", booktabs = TRUE)
+     # use the longtable package
+     kable(matrix(1000, ncol = 5), format = "latex", digits = 2, longtable = TRUE)
+     # change LaTeX default table environment
+     kable(d1, format = "latex", caption = "My table", table.envir = "table*")
+     # add some table attributes
+     kable(d1, format = "html", table.attr = "id=\"mytable\"")
+     # reST output
+     kable(d2, format = "rst")
+     # no row names
+     kable(d2, format = "rst", row.names = FALSE)
+     # Pandoc simple tables
+     kable(d2, format = "simple", caption = "Title of the table")
+     # format numbers using , as decimal point, and ' as thousands separator
+     x = as.data.frame(matrix(rnorm(60, 1e+06, 10000), 10))
+     kable(x, format.args = list(decimal.mark = ",", big.mark = "'"))
+     # save the value
+     x = kable(d2, format = "html")
+     cat(x, sep = "\n")
+     # can also set options(knitr.table.format = 'html') so that the output is HTML
+     
+     # multiple tables via either kable(list(x1, x2)) or kables(list(kable(x1),
+     # kable(x2)))
+     kable(list(d1, d2), caption = "A tale of two tables")
+     kables(list(kable(d1, align = "l"), kable(d2)), caption = "A tale of two tables")
+     
+
