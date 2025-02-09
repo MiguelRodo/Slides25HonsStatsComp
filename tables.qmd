@@ -96,8 +96,23 @@ kable(penguin_summary)
 
 2. Copy the output into your Quarto document.
 
-3. If you are working within Quarto, then you can use the Quarto cross-referencing syntax (details [here](https://quarto.org/docs/authoring/cross-references.html)).
+3. If you are working within Quarto, then you can use the Quarto cross-referencing syntax (details [here](https://quarto.org/docs/authoring/cross-references.html)), which looks like this:
 
+```markdown
+::: {#tbl-summary}
+
+|Species   |   FL   |   BM    | Count |
+|:---------|:------:|:-------:|:-----:|
+|Adelie    | 189.95 | 3700.66 |  152  |
+|Chinstrap | 195.82 | 3733.09 |  68   |
+|Gentoo    | 217.19 | 5076.02 |  124  |
+
+Summary statistics for penguin easurements. Values are rounded to 2 decimal places. Abbreviations: FL = Flipper Length (mm), BM = Body Mass (g).
+
+:::
+```
+
+and produces this, which can be cross referenced (`@tbl-summary` produces @tbl-summary):
 
 ::: {#tbl-summary}
 
@@ -110,6 +125,20 @@ kable(penguin_summary)
 Summary statistics for penguin easurements. Values are rounded to 2 decimal places. Abbreviations: FL = Flipper Length (mm), BM = Body Mass (g).
 
 :::
+
+- Key elements of Quarto table cross-referencing syntax:
+  - Opening line:
+    - Begin with `:::`
+    - Open curly braces
+    - Write label:
+      - Demarcate it with `#`
+      - No spaces between `#` and label
+      - Label begins with `tbl-`.
+      - Write remainder of label
+      - Close curly braces
+  - Place table content (copied from previous line)
+  - Write caption
+  - Close with `:::`
 
 4. Reference the table using the syntax `@<label>`, where `<label>` is the part immediately following the `#` in the opening of the `:::` block: @tbl-summary.
 
