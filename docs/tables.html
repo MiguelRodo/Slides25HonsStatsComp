@@ -282,6 +282,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul class="collapse">
   <li><a href="#computed-table" id="toc-computed-table" class="nav-link" data-scroll-target="#computed-table"><span class="header-section-number">11.2.1</span> Computed table</a></li>
   <li><a href="#copied-into-a-quarto-document" id="toc-copied-into-a-quarto-document" class="nav-link" data-scroll-target="#copied-into-a-quarto-document"><span class="header-section-number">11.2.2</span> Copied into a Quarto document</a></li>
+  <li><a href="#latex" id="toc-latex" class="nav-link" data-scroll-target="#latex"><span class="header-section-number">11.2.3</span> <code>LaTeX</code></a></li>
   </ul></li>
   </ul>
 </nav>
@@ -487,12 +488,19 @@ Table&nbsp;11.1: Summary statistics for penguin easurements. Values are rounded 
 <li>Place table content (copied from previous line)</li>
 <li>Write caption</li>
 <li>Close with <code>:::</code></li>
+<li>To cross-reference, write <code>@&lt;label&gt;</code> where <code>&lt;label&gt;</code> is the part immediately following the <code>#</code> in the opening of the <code>:::</code> block and <em>includes</em> the <code>tbl-</code> prefix.</li>
 </ul></li>
 </ul>
 <ol start="4" type="1">
 <li>Reference the table using the syntax <code>@&lt;label&gt;</code>, where <code>&lt;label&gt;</code> is the part immediately following the <code>#</code> in the opening of the <code>:::</code> block: <a href="#tbl-summary" class="quarto-xref">Table&nbsp;<span>11.1</span></a>.</li>
 </ol>
-<p>Using <code>LaTeX</code>: If you are using <code>LaTex</code>, then you would run the <code>knitr::kable</code> command with <code>format = "latex"</code>. This will give you a LaTeX table that you can copy into your document. You can then use <code>LaTeX</code>-specific labelling and cross-referencing syntax to reference the table (not covered here). But the basic idea of using <code>R</code> to generate the table contents and overall styling, and then using your document format’s specific syntax for labelling and cross-referencing, remains the same.</p>
+</section>
+<section id="latex" class="level3" data-number="11.2.3">
+<h3 data-number="11.2.3" class="anchored" data-anchor-id="latex"><span class="header-section-number">11.2.3</span> <code>LaTeX</code></h3>
+<p>Using <code>LaTeX</code>: If you are using <code>LaTex</code> (e.g.&nbsp;working in OverLeaf, which you cover in the <code>LaTeX</code> lecture later this week), then you would run the <code>knitr::kable</code> command with <code>format = "latex"</code>. This will give you a LaTeX table that you can copy into your document. You can then use <code>LaTeX</code>-specific labelling and cross-referencing syntax to reference the table (not covered here).</p>
+<p>But the basic idea of using <code>R</code> to generate the table contents and overall styling, and then using your document format’s specific syntax for labelling and cross-referencing, remains the same.</p>
+<p>This approach is <em>much</em> easier than writing out the contents of the table by hand (though manual editing may still be necessary for fine-tuning, e.g.&nbsp;for formatting).</p>
+<p>There are many other packages than <code>knitr</code> with the <code>kable</code> function that can generate formatted tables from <code>R</code> objects (e.g.&nbsp;<code>pandoc</code>, <code>gt</code>), so you can choose the one that best fits your needs. <code>knitr::kable</code>’s advantage is simplicity.</p>
 
 
 </section>
