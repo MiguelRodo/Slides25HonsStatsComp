@@ -32,6 +32,46 @@ It consists of three practical exercises:
 4. **Include GitHub URL:**  
    In your submission, clearly state the URL to your GitHub repository (i.e, `github.com/yourusername/yourrepo`, e.g. `github.com/MiguelRodo/Slides25HonsStatsComp`) where your assignment code can be viewed.
 
+## Suggested format for qmd files
+
+To assist your peers in marking your work, we *strongly* suggest that you make this *easy* for them.
+
+The fastest way to to do this is the following:
+
+- Use headings liberally (`#`, `##`, `###`, etc).
+- Echo key code chunks
+
+The headings ensure that it is easy to understand what is where, and the echoing ensures that they do not have to dig into your GitHub account to see the code.
+
+For example, for prac 1 question 1, the following would be a good format:
+
+```plaintext
+## Question 1
+
+```{r}
+#| echo: true
+<your code here>
+```
+
+```
+
+If you want to be extra clear, then you can also add the question:
+
+```plaintext
+## Question 1
+
+### Question
+
+<the question here>
+
+### Answer
+
+```{r}
+#| echo: true
+<your code here>
+```
+```
+
 ## Rubric (/100)
 
 The rubric below is not necessarily final and may be adjusted, but this is the basic structure:

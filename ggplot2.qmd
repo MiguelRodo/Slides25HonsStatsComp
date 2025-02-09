@@ -1,3 +1,7 @@
 # `ggplot2` {#sec-day5-ggplot2}
 
+<!--
+Remmember to do the tables section, too
+!-->
+
 **NOTE: THIS IS A DRAFT**

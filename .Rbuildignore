@@ -33,6 +33,7 @@
 ^r\.qmd$
 ^README\.Rmd$
 ^rstudio\.qmd$
+^tables\.qmd$
 ^targets\.qmd$
 ^tidyverse\.qmd$
 ^_dependencies\.R$

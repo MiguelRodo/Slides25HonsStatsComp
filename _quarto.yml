@@ -14,9 +14,10 @@ project:
   - tidyverse.qmd
   - prac-day-four.qmd
   - ggplot2.qmd
+  - tables.qmd
   - handins.qmd
   - handin1.qmd
-  output-dir: docs
+  output-dir: _tmp/projr/v1.0.38/docs
 book:
   title: Statistical Computing
   sidebar:
@@ -40,7 +41,10 @@ book:
     chapters:
     - tidyverse.qmd
     - prac-day-four.qmd
+  - part: day5.qmd
+    chapters:
     - ggplot2.qmd
+    - tables.qmd
   - part: handins.qmd
     chapters:
     - handin1.qmd

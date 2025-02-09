@@ -1,0 +1,15 @@
+# Tables {#sec-day5-tables}
+
+<!--
+- appropriate display 
+  - no vertical lines
+  - no double horizontal lines
+  - Usually no horizontal lines, except
+    underneath the header row and probably at the bototm, too
+- caption:
+  - Short initial title, longer description.
+  - Cross-references.
+!-->
+
+**NOTE: THIS IS A DRAFT**
+
