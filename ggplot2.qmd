@@ -1,7 +1,189 @@
-# `ggplot2` {#sec-day5-ggplot2}
+# `ggplot2`
 
-<!--
-Remmember to do the tables section, too
-!-->
+For an accompanying video, see `ggplot2.mp4`.
 
-**NOTE: THIS IS A DRAFT**
+## Motivation
+
+Creating attractive graphics is a crucial part of data analysis.
+Visualisations help you explore data, identify patterns, and communicate insights to others.
+
+Whilst base `R` graphics (`plot`) are useful and fast for simple plots, they have the following drawbacks:
+
+- Documentation is atrocious - it is hard to find what you need.
+- It is very fiddly to create complex plots.
+
+For this reason, we will be using `ggplot2` for our data visualisation needs.
+`ggplot2` is a powerful and flexible package that allows you to create a wide variety of plots.
+Due to its popularity, people writing the best visualisation packages for `R` are almost always writing them in `ggplot2`, so understanding `ggplot2` will make it easier to use other packages.
+
+## Introduction
+
+`ggplot2` has an underlying philosophy, the Grammar of Graphics, which is a systematic way of thinking about visualisation.
+
+The content below is a brief summary of the key points in the [R4DS introductory chatpter on `ggplot2`](https://r4ds.hadley.nz/data-visualize#creating-a-ggplot).
+
+In reading the `R4DS` content, you will come across that term and explanations around it, but in this introduction, I will just refer to the key components of `ggplot2` that you need to know to get started.
+
+To run the code below, you will need the `ggplot2` (installed by `tidyverse`), `palmerpenguins` and `ggthemes` packages:
+
+```{r}
+#| warning: false
+#| results: hide
+#| message: false
+pkg_vec <- c("ggplot2", "palmerpenguins", "ggthemes")
+for (x in pkg_vec) {
+  if (!requireNamespace(x, quietly = TRUE)) {
+    install.packages(x, dependencies = TRUE)
+  }
+  # if you want to programmatically attach
+  # libraries, this is the way to to do it
+  library(x, character.only = TRUE)
+}
+```
+
+```{r}
+#| echo: true
+ggplot(
+  data = penguins,
+  mapping = aes(x = flipper_length_mm, y = body_mass_g)
+  ) +
+  geom_point(aes(color = species, shape = species)) +
+  geom_smooth(method = "lm") +
+  labs(
+    title = "Body mass and flipper length",
+    subtitle = "Dimensions for Adelie, Chinstrap, and Gentoo Penguins",
+    x = "Flipper length (mm)",
+    y = "Body mass (g)",
+    color = "Species",
+    shape = "Species"
+  ) +
+  scale_color_colorblind()
+```
+
+- Initial `ggplot` call:
+  - Initialises the plot.
+  - Parameters:
+    - `data`:
+      - Specifies the data.
+    - `mapping`:
+      - Specifies how variables are mapped to the x and y axes.
+      - `aes(x = flipper_length_mm, y = body_mass_g)` maps `flipper_length_mm` to the x-axis and `body_mass_g` to the y-axis.
+        - Note that you cannot pass `list(x = ..., y = ...)` to `aes()` or just write `x = ..., y = ...` directly into `ggplot`. They must be inside the `aes()` function.
+    - Parameters set using the initial `ggplot` call are global to the plot, i.e. unless later geoms (`geom_point`, `geom_smooth`, etc.) override them, they will apply to all layers.
+- The `+` operator:
+  - Adds layers to the plot.
+  - Each `+` adds a new layer.
+  - Note that it must come at the *end* of the line - if you put it at the start of a line, `R` will think that this line is separate from the previous one, as the previous one will have ended.
+- `geom_point`:
+  - Adds points to the plot.
+    - `aes(color = species, shape = species)` maps the `species` variable to both color and shape.
+    - Since the initial `ggplot` call included the mapping `aes(x = flipper_length_mm, y = body_mass_g)`, the `geom_point` call does not need to repeat this mapping. It will automatically use `flipper_length_mm` for the x-axis and `body_mass_g` for the y-axis.
+- `geom_smooth`:
+  - Adds a best-fit line to the plot.
+    - `method = "lm"` specifies that the line should be a linear model.
+      - `method = "loess"` would fit a loess curve, which is what your prac2 asks for.
+  - Like `geom_point`, it does not need to specify the mapping since it inherits it from the initial `ggplot` call.
+- `labs`:  
+  - Adds labels to the plot.
+    - `title`, `subtitle`, `x`, `y` are plot and axis titles.
+    - `color`, and `shape` are legend titles.
+- `scale_color_colorblind`:
+  - Changes the color palette to a colorblind-friendly one.
+
+To get a feel for what different elements are doing, you can drop them from the plot and see what changes.
+
+## Summary
+
+Below is a concise summary of the key information on `ggplot2`:
+
+### Basic Structure
+
+- **Initiating a Plot**:  
+  Use `ggplot(data, aes(x, y))` to start a plot. This sets up the canvas by specifying the data and how variables are mapped to the x and y axes.
+  Note that without specifying any `geom`s (see below), you will not see any content:
+
+  ```{r}
+  ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g))
+  ```
+
+  This does not mean that the above function does nothing, however, as it is specifying the data and the mapping of variables to the x and y axes:
+
+  ```{r}
+  p <- ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g))
+  str(p)
+  ```
+
+### Aesthetic Mappings
+
+- **Mapping Variables to Visual Properties**:  
+  Inside `aes()`, map variables to aesthetics such as:
+  
+  - **Color**: Differentiates groups (e.g., `aes(color = species)`).
+  - **Shape**: Uses different symbols for groups (e.g., `aes(shape = species)`).
+  - **Size**: Can reflect magnitude differences.
+  
+  ```{r}
+  ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g)) +
+    geom_point(aes(color = species, shape = species))
+  ```
+
+### Geometric Objects (Geoms)
+
+- **Different Plot Types**:  
+  Add layers to your plot using geoms. Common examples include:
+  
+  - **Scatterplots**: `geom_point()`
+  - **Smooth Lines**: `geom_smooth()` (e.g., for adding a best-fit line)
+  - **Bar Charts**: `geom_bar()` or `geom_col()`
+  - **Histograms and Density Plots**: `geom_histogram()`, `geom_density()`
+  
+  ```{r}
+  ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g)) +
+    geom_point(aes(color = species, shape = species)) +
+    geom_smooth(method = "lm")
+  ```
+
+### Layering and Customization
+
+- **Adding Layers**:  
+  Combine multiple geoms to add detail to your plot. Layers are added using the `+` operator.
+
+- **Custom Labels and Themes**:  
+  Enhance your plot with titles, axis labels, and legends using `labs()` and adjust appearance with theme functions.
+  
+  ```r
+  ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g)) +
+    geom_point(aes(color = species, shape = species)) +
+    geom_smooth(method = "lm") +
+    labs(
+      title = "Body mass and flipper length",
+      subtitle = "Dimensions for Adelie, Chinstrap, and Gentoo Penguins",
+      x = "Flipper length (mm)",
+      y = "Body mass (g)",
+      color = "Species",
+      shape = "Species"
+    ) +
+    scale_color_colorblind()
+  ```
+
+### Faceting
+
+- **Splitting Data into Panels**:  
+  Use faceting (with `facet_wrap()` or `facet_grid()`) to create subplots based on a categorical variable, making it easier to compare groups.
+  
+  ```{r}
+  ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g)) +
+    geom_point(aes(color = species, shape = species)) +
+    facet_wrap(~ island)
+  ```
+
+### Saving Your Plots
+
+- **Exporting Graphics**:  
+  Use `ggsave()` to save the most recent plot to a file (e.g., PNG, PDF).
+  
+  ```r
+  ggsave("penguin-plot.png")
+  ```
+
+
