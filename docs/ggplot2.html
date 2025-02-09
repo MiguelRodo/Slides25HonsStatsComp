@@ -710,7 +710,7 @@ Use <code>ggsave()</code> to save the most recent plot to a file {#sec-day4-prac
 </section>
 <section id="captions-and-cross-referencing" class="level2" data-number="10.7">
 <h2 data-number="10.7" class="anchored" data-anchor-id="captions-and-cross-referencing"><span class="header-section-number">10.7</span> Captions and cross-referencing</h2>
-<p>To include a figure that is cross-referenceable, I usually save the image first to file and then use Quarto (or <code>LaTeX</code> syntax) to include it with a caption, label and cross-reference. Even if I don’t want a cross-referencable figure, I usually do this, as I find that the figure dimensions are more easily controlled this way (than just outputting the figure directly from a code chunk).</p>
+<p>To include a figure that is cross-referenceable, I usually save the image first to file and then use Quarto (or <code>LaTeX</code> syntax) to include it with a caption, label and cross-reference. Even if I don’t want a cross-referencable figure, I usually do this, as I find that the figure dimensions and proportions are more easily controlled this way (than just outputting the figure directly from a code chunk).</p>
 <p>This approach is analogous to that to creating cross-referenceable tables in the <code>Tables</code> doc.</p>
 <p>Here are the steps:</p>
 <ol type="1">
@@ -757,7 +757,7 @@ Figure&nbsp;10.1: Body mass against flipper length.
 <li>Close curly braces</li>
 </ul></li>
 </ul></li>
-<li>Place table content (copied from previous line)</li>
+<li>Write <code>![](path/to/img)</code> to include the image</li>
 <li>Write caption</li>
 <li>Close with <code>:::</code></li>
 <li>To cross-reference, write <code>@&lt;label&gt;</code> where <code>&lt;label&gt;</code> is the part immediately following the <code>#</code> in the opening of the <code>:::</code> block and <em>includes</em> the <code>fig-</code> prefix.</li>
