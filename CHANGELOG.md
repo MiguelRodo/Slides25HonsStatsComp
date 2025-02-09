@@ -1,5 +1,7 @@
 # CHANGELOG
 
+- Patch (v1.0.45): Miguel Rodo (2025-02-09 10:19:29)
+  - Try correct captioning
 - Patch (v1.0.44): Miguel Rodo (2025-02-09 10:13:07)
   - Improve table caption
 - Patch (v1.0.43): Miguel Rodo (2025-02-09 10:12:02)
