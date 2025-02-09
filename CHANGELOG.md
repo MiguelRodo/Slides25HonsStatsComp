@@ -1,5 +1,7 @@
 # CHANGELOG
 
+- Patch (v1.0.58): Miguel Rodo (2025-02-09 13:11:14)
+  - Correct prac day five name
 - Patch (v1.0.57): Miguel Rodo (2025-02-09 13:08:42)
   - Correct name for prac day five
 - Patch (v1.0.56): Miguel Rodo (2025-02-09 13:07:35)
