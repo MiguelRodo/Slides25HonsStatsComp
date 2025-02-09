@@ -1,5 +1,7 @@
 # CHANGELOG
 
+- Patch (v1.0.39): Miguel Rodo (2025-02-09 06:55:37)
+  - Add submission instructions
 - Patch (v1.0.38): Miguel Rodo (2025-02-07 18:04:07)
   - Correct typo
 - Patch (v1.0.37): Miguel Rodo (2025-02-07 15:27:19)
