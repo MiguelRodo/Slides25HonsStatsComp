@@ -70,5 +70,21 @@ kable(
 - **Rounding:**  
   Numerical values are rounded to 2 decimal places to maintain clarity.
 
+## Generating `LaTeX` Tables directly from R
+
+If you have a `LaTeX` document, you can generate tables directly from R using `knitr::kable()` with the `format = "latex"` option. Here's an example:
+
+```{r}
+#| results: asis
+kable(
+  penguin_summary,
+  format = "latex",
+  align = "lccc"
+)
 ```
+
+The output above is then copied and pated into your `LaTeX` document.
+
+
+
 
