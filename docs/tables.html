@@ -355,8 +355,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="in">penguin_summary &lt;- penguins |&gt;</span></span>
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="in">  group_by(species) |&gt;</span></span>
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="in">  summarise(</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="in">    FL = round(mean(flipper_length_mm, na.rm = TRUE), 2),</span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="in">    BM = round(mean(body_mass_g, na.rm = TRUE), 2),</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="in">    `Flipper length` = round(mean(flipper_length_mm, na.rm = TRUE), 2),</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="in">    `Body Mass` = round(mean(body_mass_g, na.rm = TRUE), 2),</span></span>
 <span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="in">    Count = n(),</span></span>
 <span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="in">    .groups = "drop"</span></span>
 <span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="in">  ) |&gt;</span></span>
@@ -373,8 +373,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <thead>
 <tr class="header">
 <th style="text-align: left;">Species</th>
-<th style="text-align: right;">FL</th>
-<th style="text-align: right;">BM</th>
+<th style="text-align: right;">Flipper length</th>
+<th style="text-align: right;">Body Mass</th>
 <th style="text-align: right;">Count</th>
 </tr>
 </thead>

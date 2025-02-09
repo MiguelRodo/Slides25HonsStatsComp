@@ -1,5 +1,7 @@
 # CHANGELOG
 
+- Patch (v1.0.60): Miguel Rodo (2025-02-09 13:18:13)
+  - Use proper heading names
 - Patch (v1.0.59): Miguel Rodo (2025-02-09 13:13:16)
   - Correct ggplot2 captioning advice
 - Patch (v1.0.58): Miguel Rodo (2025-02-09 13:11:14)
