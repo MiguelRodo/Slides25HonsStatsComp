@@ -226,7 +226,7 @@ combined_plot <- plot_grid(
   labels = c("A", "B"),    # Add subplot labels
   label_size = 16,         # Adjust label size if needed
   align = "hv",            # Align both horizontally and vertically
-  ncol = 2
+  ncol = 1
 )                # Arrange side by side
 
 # Print the combined plot
