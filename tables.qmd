@@ -11,10 +11,14 @@ When it comes to tables in academic writing or reports, clear and consistent for
 
 - **Table Styling:**
 
-  - **Avoid Vertical Lines:** Most good style guides recommend that tables do not include vertical lines. Horizontal lines should typically only appear above and below the header row and at the bottom of the table.
-  - **Minimal Horizontal Lines:** Use only as many horizontal lines as necessary to separate the header from the data.
+  - **Avoid Vertical Lines:**
+    Most good style guides recommend that tables do not include vertical lines. Horizontal lines should typically only appear above and below the header row and at the bottom of the table.
+  - **Minimal Horizontal Lines:**
+    Use only as many horizontal lines as necessary to separate the header from the data.
   - **Rounding and Significant Figures:**  
     Present numerical data with a limited, preferrably consistent number of decimal/significant places (usually 2 or 3) to enhance readability. Use a functions like or `round()` or `signif()`.
+  - **Headings**:
+    Headings should consistently be either title or sentence case, and should not contain punctuation or programming syntax/formatting (e.g. `Participant_ID`). Headings can be bold or not, but should be consistent throughout the document.
 
 ## Example: Creating a Table with knitr::kable in Quarto
 
@@ -36,10 +40,11 @@ for (x in pkg_vec) {
 }
 ```
 
-Below is a sample Quarto code chunk that produces a table from an R data frame. In this example, we create a summary table of the penguins dataset:
+Below is a sample Quarto code chunk that produces a table from an R data frame. In this example, we create a summary table of the penguins dataset, @tab-summary:
 
 ```{r}
 #| echo: fenced
+#| label: tab-summary
 #| tab-cap: "Summary Statistics for Penguin Measurements. Values are rounded to 2 decimal places. Abbreviations: FL = Flipper Length (mm), BM = Body Mass (g)."
 #| results: asis
 
@@ -49,8 +54,10 @@ penguin_summary <- penguins |>
   summarise(
     FL = round(mean(flipper_length_mm, na.rm = TRUE), 2),
     BM = round(mean(body_mass_g, na.rm = TRUE), 2),
-    Count = n()
-  )
+    Count = n(),
+    .groups = "drop"
+  ) |>
+  rename(Species = species)
 
 # Display the table using knitr::kable
 kable(
@@ -64,7 +71,7 @@ kable(
 **Explanation:**
 
 - **Caption and Label:**  
-  The code chunk header includes a `fig-cap` attribute that begins with `tab-summary:`. This sets the table’s caption and label. In your text, reference it as “@tab-summary.”
+  The code chunk header includes a `tab-cap` attribute that begins with `tab-summary:`. This sets the table’s caption and label. In your text, reference it as “@tab-summary.”
 - **Table Formatting:**  
   The `knitr::kable()` function is used to render the table. In this example, HTML formatting is chosen, but you can adjust the format based on your output (PDF, HTML, etc.). The inline CSS (via `table.attr`) is kept minimal to avoid excessive lines. Vertical lines are omitted.
 - **Rounding:**  
