@@ -315,8 +315,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li><strong>Avoid Vertical Lines:</strong> Most good style guides recommend that tables do not include vertical lines. Horizontal lines should typically only appear above and below the header row and at the bottom of the table.</li>
 <li><strong>Minimal Horizontal Lines:</strong> Use only as many horizontal lines as necessary to separate the header from the data.</li>
-<li><strong>Rounding and Significant Figures:</strong><br>
-Present numerical data with a limited, preferrably consistent number of decimal/significant places (usually 2 or 3) to enhance readability. Use a functions like or <code>round()</code> or <code>signif()</code>.</li>
+<li><strong>Rounding and Significant Figures:</strong> Present numerical data with a limited, preferrably consistent number of decimal/significant places (usually 2 or 3) to enhance readability. Use a functions like or <code>round()</code> or <code>signif()</code>.</li>
 <li><strong>Headings</strong>: Headings should consistently be either title or sentence case, and should not contain punctuation or programming syntax/formatting (e.g.&nbsp;<code>Participant_ID</code>). Headings can be bold or not, but should be consistent throughout the document.</li>
 </ul></li>
 </ul>
@@ -355,19 +354,18 @@ Present numerical data with a limited, preferrably consistent number of decimal/
 <span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="in"># Display the table using knitr::kable</span></span>
 <span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="in">kable(</span></span>
 <span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="in">  penguin_summary,</span></span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="in">  format = "html",</span></span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="in">  table.attr = "style='width:50%; border-collapse: collapse;'",</span></span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a><span class="in">  align = "lccc"</span></span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a><span class="in">)</span></span>
-<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<table class="caption-top table" data-quarto-postprocess="true">
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="in">  table.attr = "style='width:50%; border-collapse: collapse;'",</span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="in">  align = "lccc"</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a><span class="in">)</span></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<table class="caption-top table">
 <caption>Summary Statistics for Penguin Measurements. Values are rounded to 2 decimal places. Abbreviations: FL = Flipper Length (mm), BM = Body Mass (g).</caption>
 <thead>
 <tr class="header">
-<th style="text-align: left;" data-quarto-table-cell-role="th">Species</th>
-<th style="text-align: center;" data-quarto-table-cell-role="th">FL</th>
-<th style="text-align: center;" data-quarto-table-cell-role="th">BM</th>
-<th style="text-align: center;" data-quarto-table-cell-role="th">Count</th>
+<th style="text-align: left;">Species</th>
+<th style="text-align: center;">FL</th>
+<th style="text-align: center;">BM</th>
+<th style="text-align: center;">Count</th>
 </tr>
 </thead>
 <tbody>
@@ -391,16 +389,11 @@ Present numerical data with a limited, preferrably consistent number of decimal/
 </tr>
 </tbody>
 </table>
-
-
 <p><strong>Explanation:</strong></p>
 <ul>
-<li><strong>Caption and Label:</strong><br>
-The code chunk header includes a <code>tab-cap</code> attribute that begins with <code>tab-summary:</code>. This sets the table’s caption and label. In your text, reference it as “<span class="citation" data-cites="tab-summary">@tab-summary</span>.”</li>
-<li><strong>Table Formatting:</strong><br>
-The <code>knitr::kable()</code> function is used to render the table. In this example, HTML formatting is chosen, but you can adjust the format based on your output (PDF, HTML, etc.). The inline CSS (via <code>table.attr</code>) is kept minimal to avoid excessive lines. Vertical lines are omitted.</li>
-<li><strong>Rounding:</strong><br>
-Numerical values are rounded to 2 decimal places to maintain clarity.</li>
+<li><strong>Caption and Label:</strong> The code chunk header includes a <code>tab-cap</code> attribute that begins with <code>tab-summary:</code>. This sets the table’s caption and label. In your text, reference it as “<span class="citation" data-cites="tab-summary">@tab-summary</span>.”</li>
+<li><strong>Table Formatting:</strong> The <code>knitr::kable()</code> function is used to render the table. In this example, HTML formatting is chosen, but you can adjust the format based on your output (PDF, HTML, etc.). The inline CSS (via <code>table.attr</code>) is kept minimal to avoid excessive lines. Vertical lines are omitted.</li>
+<li><strong>Rounding:</strong> Numerical values are rounded to 2 decimal places to maintain clarity.</li>
 </ul>
 </section>
 <section id="generating-latex-tables-directly-from-r" class="level2" data-number="11.3">
