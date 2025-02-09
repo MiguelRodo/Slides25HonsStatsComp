@@ -146,7 +146,7 @@ Summary statistics for penguin easurements. Values are rounded to 2 decimal plac
   - Close with `:::`
   - To cross-reference, write `@<label>` where `<label>` is the part immediately following the `#` in the opening of the `:::` block and *includes* the `tbl-` prefix.
 
-4. Reference the table using the syntax `@<label>`, where `<label>` is the part immediately following the `#` in the opening of the `:::` block: @tbl-summary.
+4. Reference the table using the syntax `@<label>`, where `<label>` is the part immediately following the `#` in the opening of the `:::` block: `@tbl-summary` produces @tbl-summary.
 
 ### `LaTeX` 
 

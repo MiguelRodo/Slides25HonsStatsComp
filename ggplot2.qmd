@@ -263,6 +263,28 @@ p1 +
   background_grid(major = "xy") 
 ```
 
+A final, important point regarding the theme: by default, the background is transparent, so if you save a plot to file as a PNG, the background will be transparent.
+To understand, create `p1`, save it as a PNG and open it:
+
+```{r}
+#| eval: false
+dir.create("_tmp", showWarnings = FALSE)
+ggsave("_tmp/p-no_bg.png", plot = p1)
+```
+
+So, an unfortunately complication is that if you wish to save PNG images, then you need to usually make the background white:
+
+```{r}
+p1 <- p1 +
+  theme_cowplot() +
+  theme(
+    plot.background = element_rect(fill = "white"),
+    panel.background = element_rect(fill = "white")
+    )
+dir.create("_tmp", showWarnings = FALSE)
+ggsave("_tmp/p-bg.png", plot = p1)
+```
+
 ## General Guidelines for Plots
 
 There are many guidelines for plots, but these are the main focuses: 
@@ -281,5 +303,47 @@ There are many guidelines for plots, but these are the main focuses:
 
 ## Captions and cross-referencing
 
-I outline how to create captions and cross-references for tables in the `Tables` section.
-The same principles apply to plot.
+To include a figure that is cross-referenceable, I usually save the image first to file and then use Quarto (or `LaTeX` syntax) to include it with a caption, label and cross-reference.
+Even if I don't want a cross-referencable figure, I usually do this, as I find that the figure dimensions are more easily controlled this way (than just outputting the figure directly from a code chunk).
+
+This approach is analogous to that to creating cross-referenceable tables in the `Tables` doc.
+
+Here are the steps:
+
+1. Save the plot to file. For example:
+
+```{r}
+dir.create("_tmp", showWarnings = FALSE)
+ggsave("_tmp/penguin-plot.png", plot = p1)
+```
+
+2. If you are working within Quarto, then you can use the Quarto cross-referencing syntax (details [here](https://quarto.org/docs/authoring/cross-references.html)), which looks like this:
+
+```markdown
+::: {#fig-penguins}
+
+![](_tmp/penguin-plot.png)
+
+Body mass against flipper length.
+
+:::
+```
+
+and produces this, which can be cross referenced (`@fig-penguins` produces @fig-penguins):
+
+- Key elements of Quarto table cross-referencing syntax for figures:
+  - Opening line:
+    - Begin with `:::`
+    - Open curly braces
+    - Write label:
+      - Demarcate it with `#`
+      - No spaces between `#` and label
+      - Label begins with `fig-`.
+      - Write remainder of label
+      - Close curly braces
+  - Place table content (copied from previous line)
+  - Write caption
+  - Close with `:::`
+  - To cross-reference, write `@<label>` where `<label>` is the part immediately following the `#` in the opening of the `:::` block and *includes* the `fig-` prefix.
+
+4. Reference the table using the syntax `@<label>`, where `<label>` is the part immediately following the `#` in the opening of the `:::` block: `@fig-penguins` produces @fig-penguins.
