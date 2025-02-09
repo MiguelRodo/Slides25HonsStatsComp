@@ -3,6 +3,7 @@
 Excellent practice is all of the questions in the [R4DS Data Visualisation introduction](https://r4ds.had.co.nz/data-visualisation.html#data-visualisation), so I suggest you do them (probably skipping the non-coding questions, so as to get through the content faster).
 
 In addition, most (if not all) of Birgit's uploaded questions involve plots, so you can use those as practice too.
+They also have the advantage that they will involve learning relevant statistical and mathematical functions.
 
 However, for this practical, here are the questions you will need to answer:
 
@@ -18,4 +19,10 @@ Calculate a two-way frequency table of species of penguins and island location (
 
 ## Question Three
 
-Plot the distribution of the flipper length of penguins, separated by species. Create two plots: one where the species are in the same plot (hint: use the `alpha` parameter to make overlapping densities more visible), and one where they are in separate facets. Format the plots according to best practices.
+Plot the distribution of the flipper length of penguins, separated by species. Create three plots:
+
+1. All species in the same plot, using the `geom_boxplot` function.
+2. All species in the same plot, and use the `geom_density` function (hint: use the `alpha` parameter to make overlapping densities more visible).
+3. Each species in a separate facet.
+
+These plots need not include captions or be referenced in the text, but should follow other best practices.
