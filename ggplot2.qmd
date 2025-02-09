@@ -267,7 +267,7 @@ A final, important point regarding the theme: by default, the background is tran
 To understand, create `p1`, save it as a PNG and open it:
 
 ```{r}
-#| eval: false
+#| warning: false
 dir.create("_tmp", showWarnings = FALSE)
 ggsave("_tmp/p-no_bg.png", plot = p1)
 ```
@@ -275,6 +275,7 @@ ggsave("_tmp/p-no_bg.png", plot = p1)
 So, an unfortunately complication is that if you wish to save PNG images, then you need to usually make the background white:
 
 ```{r}
+#| warning: false
 p1 <- p1 +
   theme_cowplot() +
   theme(
@@ -313,6 +314,9 @@ Here are the steps:
 1. Save the plot to file. For example:
 
 ```{r}
+#| warning: false
+#| results: hide
+#| message: false
 dir.create("_tmp", showWarnings = FALSE)
 ggsave("_tmp/penguin-plot.png", plot = p1)
 ```
