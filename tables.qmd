@@ -40,7 +40,7 @@ Below is a sample Quarto code chunk that produces a table from an R data frame. 
 
 ```{r}
 #| echo: fenced
-#| fig-cap: "tab-summary: Summary Statistics for Penguin Measurements. Values are rounded to 2 decimal places. Abbreviations: FL = Flipper Length (mm), BM = Body Mass (g)."
+#| tab-cap: "Summary Statistics for Penguin Measurements. Values are rounded to 2 decimal places. Abbreviations: FL = Flipper Length (mm), BM = Body Mass (g)."
 #| results: asis
 
 # Create a summary table of key statistics by species
