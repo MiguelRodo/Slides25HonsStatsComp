@@ -41,6 +41,7 @@
 ^codemeta\.json$
 ^LICENSE\.md$
 ^manifest\.csv$
+^Rplots\.pdf$
 ^\.quarto/
 ^\.quarto$
 # End of projr section

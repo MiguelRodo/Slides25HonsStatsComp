@@ -186,14 +186,15 @@ Below is a concise summary of the key information on `ggplot2`:
   ggsave("penguin-plot.png")
   ```
 
-
 ## Combining Plots with cowplot::plot_grid
 
-When you want to display multiple plots side by side (or in a grid), the **cowplot** package provides the convenient function `plot_grid()`. This function not only aligns axes but also lets you add labels (e.g., “A”, “B”, …) so that each subplot is clearly identified. This is especially useful in academic work where figures need to be self-contained and cross-referenced.
+When you want to display multiple plots side by side (or in a grid), the **cowplot** package provides the convenient function `plot_grid()`.
+This function not only aligns axes but also lets you add labels (e.g., “A”, “B”, …) so that each subplot is clearly identified.
+This is especially useful in academic work where figures need to be self-contained and cross-referenced.
 
 Here’s an example of combining two ggplot figures:
 
-```r
+```{r}
 # Install and load cowplot if not already installed
 if (!requireNamespace("cowplot", quietly = TRUE)) {
   install.packages("cowplot")
@@ -220,23 +221,56 @@ p2 <- ggplot(penguins, aes(x = bill_length_mm, y = bill_depth_mm)) +
   theme_cowplot()
 
 # Combine the two plots into one figure with labels
-combined_plot <- plot_grid(p1, p2,
-                           labels = c("A", "B"),    # Add subplot labels
-                           label_size = 16,         # Adjust label size if needed
-                           align = "hv",            # Align both horizontally and vertically
-                           ncol = 2)                # Arrange side by side
+combined_plot <- plot_grid(
+  p1, p2,
+  labels = c("A", "B"),    # Add subplot labels
+  label_size = 16,         # Adjust label size if needed
+  align = "hv",            # Align both horizontally and vertically
+  ncol = 2
+)                # Arrange side by side
 
 # Print the combined plot
-print(combined_plot)
+combined_plot
 ```
 
-**Key points about this approach:**
+As always, there are other packages that can achieve this (e.g. `patchwork`), but `cowplot` is a good choice for its simplicity and ease of use.
 
-- The **`plot_grid()`** function accepts a vector of plots (here, `p1` and `p2`).
-- Use the **`labels`** argument to automatically add subplot labels.
-- The **`align`** parameter ensures that the axes are aligned (set to `"hv"` for both horizontal and vertical alignment).
-- With **`theme_cowplot()`** (from the cowplot package), you can set a consistent base font size and styling across all plots, which helps avoid the common pitfall of tiny text elements.
+## Adequate Text Size
 
-When you incorporate these combined plots in your Quarto document, be sure to assign a figure caption (using the `fig-cap` attribute) and a label (like `fig-combined`) so that you can reference the entire figure later using the `@fig-combined` syntax.
+When creating plots, ensure that the text is large enough to be easily read.
+An appropriate minimum text size varies by forat (e.g. 2m x 1m poster vs a presentation), so look online for specifics (e.g. no less than 14pt for a poster, or whatever it is).
 
----
+Typically, the `ggplot2` default theme's text size is too small.
+I therefore always use the `cowplot::theme_cowplot()` theme, as it a) has a larger default text size, and b) allows global changes to text size using its `font_size` parameter (e.g. across plot title, plot axis).
+
+Here is an example:
+
+```{r}
+p1 +
+  # 14 is actually the default, just for demonstration
+  theme_cowplot(font_size = 14) 
+```
+
+The theme is fairly minimal, so you can add gridlines, etc. if you want:
+
+```{r}
+p1 + 
+  theme_cowplot() +
+  # can also have `minor = "xy"` for minor gridlines
+  # (i.e. thinner gridlines between the thicker ones).
+  # can also just specify "x" or "y" for just one axis
+  background_grid(major = "xy") 
+```
+
+## General Guidelines for Plots
+
+There are many guidelines for plots, but these are the main focuses: 
+
+- Plot is readable: text large enough, colours and shapes distinguishable.
+- Plot is captioned and cross-referenced: plot caption goes below the plot, and the plot is cross-referenced in the text. It should be cross referenced *before* it appears.
+- Plot is self-contained: the plot should be understandable without needing to refer to the main text. Achieve this by including a caption with an informative title, using sentences to describe any important details, and closing with abbreviations or symbols used in the plot.
+
+## Captions and cross-referencing
+
+I outline how to create captions and cross-references for tables in the `Tables` section.
+The same principles apply to plot.

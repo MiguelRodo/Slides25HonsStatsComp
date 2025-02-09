@@ -11,6 +11,7 @@ _data_raw/**
 _tmp/**
 _output/**
 _raw_data/**
+Rplots.pdf
 .quarto/**
 # End of projr section
 
