@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -238,15 +272,31 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#motivation" id="toc-motivation" class="nav-link active" data-scroll-target="#motivation"><span class="header-section-number">10.1</span> Motivation</a></li>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link" data-scroll-target="#introduction"><span class="header-section-number">10.2</span> Introduction</a></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary"><span class="header-section-number">10.3</span> Summary</a>
+  <ul class="collapse">
+  <li><a href="#basic-structure" id="toc-basic-structure" class="nav-link" data-scroll-target="#basic-structure"><span class="header-section-number">10.3.1</span> Basic Structure</a></li>
+  <li><a href="#aesthetic-mappings" id="toc-aesthetic-mappings" class="nav-link" data-scroll-target="#aesthetic-mappings"><span class="header-section-number">10.3.2</span> Aesthetic Mappings</a></li>
+  <li><a href="#geometric-objects-geoms" id="toc-geometric-objects-geoms" class="nav-link" data-scroll-target="#geometric-objects-geoms"><span class="header-section-number">10.3.3</span> Geometric Objects (Geoms)</a></li>
+  <li><a href="#layering-and-customization" id="toc-layering-and-customization" class="nav-link" data-scroll-target="#layering-and-customization"><span class="header-section-number">10.3.4</span> Layering and Customization</a></li>
+  <li><a href="#faceting" id="toc-faceting" class="nav-link" data-scroll-target="#faceting"><span class="header-section-number">10.3.5</span> Faceting</a></li>
+  <li><a href="#saving-your-plots" id="toc-saving-your-plots" class="nav-link" data-scroll-target="#saving-your-plots"><span class="header-section-number">10.3.6</span> Saving Your Plots</a></li>
+  </ul></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./day5.html">Day Five: Displaying data</a></li><li class="breadcrumb-item"><a href="./ggplot2.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title"><code>ggplot2</code></span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span id="sec-day5-ggplot2" class="quarto-section-identifier"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title"><code>ggplot2</code></span></span></h1>
+<h1 class="title"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title"><code>ggplot2</code></span></h1>
 </div>
 
 
@@ -263,12 +313,423 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<!--
-Remmember to do the tables section, too
-!-->
-<p><strong>NOTE: THIS IS A DRAFT</strong></p>
+<p>For an accompanying video, see <code>ggplot2.mp4</code>.</p>
+<section id="motivation" class="level2" data-number="10.1">
+<h2 data-number="10.1" class="anchored" data-anchor-id="motivation"><span class="header-section-number">10.1</span> Motivation</h2>
+<p>Creating attractive graphics is a crucial part of data analysis. Visualisations help you explore data, identify patterns, and communicate insights to others.</p>
+<p>Whilst base <code>R</code> graphics (<code>plot</code>) are useful and fast for simple plots, they have the following drawbacks:</p>
+<ul>
+<li>Documentation is atrocious - it is hard to find what you need.</li>
+<li>It is very fiddly to create complex plots.</li>
+</ul>
+<p>For this reason, we will be using <code>ggplot2</code> for our data visualisation needs. <code>ggplot2</code> is a powerful and flexible package that allows you to create a wide variety of plots. Due to its popularity, people writing the best visualisation packages for <code>R</code> are almost always writing them in <code>ggplot2</code>, so understanding <code>ggplot2</code> will make it easier to use other packages.</p>
+</section>
+<section id="introduction" class="level2" data-number="10.2">
+<h2 data-number="10.2" class="anchored" data-anchor-id="introduction"><span class="header-section-number">10.2</span> Introduction</h2>
+<p><code>ggplot2</code> has an underlying philosophy, the Grammar of Graphics, which is a systematic way of thinking about visualisation.</p>
+<p>The content below is a brief summary of the key points in the <a href="https://r4ds.hadley.nz/data-visualize#creating-a-ggplot">R4DS introductory chatpter on <code>ggplot2</code></a>.</p>
+<p>In reading the <code>R4DS</code> content, you will come across that term and explanations around it, but in this introduction, I will just refer to the key components of <code>ggplot2</code> that you need to know to get started.</p>
+<p>To run the code below, you will need the <code>ggplot2</code> (installed by <code>tidyverse</code>), <code>palmerpenguins</code> and <code>ggthemes</code> packages:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>pkg_vec <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"ggplot2"</span>, <span class="st">"palmerpenguins"</span>, <span class="st">"ggthemes"</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (x <span class="cf">in</span> pkg_vec) {</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="sc">!</span><span class="fu">requireNamespace</span>(x, <span class="at">quietly =</span> <span class="cn">TRUE</span>)) {</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">install.packages</span>(x, <span class="at">dependencies =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># if you want to programmatically attach</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># libraries, this is the way to to do it</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">library</span>(x, <span class="at">character.only =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">data =</span> penguins,</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm, <span class="at">y =</span> body_mass_g)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> species, <span class="at">shape =</span> species)) <span class="sc">+</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>) <span class="sc">+</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Body mass and flipper length"</span>,</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"Dimensions for Adelie, Chinstrap, and Gentoo Penguins"</span>,</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Flipper length (mm)"</span>,</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Body mass (g)"</span>,</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"Species"</span>,</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">shape =</span> <span class="st">"Species"</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_colorblind</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 2 rows containing non-finite outside the scale range
+(`stat_smooth()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 2 rows containing missing values or values outside the scale range
+(`geom_point()`).</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="ggplot2_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<ul>
+<li>Initial <code>ggplot</code> call:
+<ul>
+<li>Initialises the plot.</li>
+<li>Parameters:
+<ul>
+<li><code>data</code>:
+<ul>
+<li>Specifies the data.</li>
+</ul></li>
+<li><code>mapping</code>:
+<ul>
+<li>Specifies how variables are mapped to the x and y axes.</li>
+<li><code>aes(x = flipper_length_mm, y = body_mass_g)</code> maps <code>flipper_length_mm</code> to the x-axis and <code>body_mass_g</code> to the y-axis.
+<ul>
+<li>Note that you cannot pass <code>list(x = ..., y = ...)</code> to <code>aes()</code> or just write <code>x = ..., y = ...</code> directly into <code>ggplot</code>. They must be inside the <code>aes()</code> function.</li>
+</ul></li>
+</ul></li>
+<li>Parameters set using the initial <code>ggplot</code> call are global to the plot, i.e.&nbsp;unless later geoms (<code>geom_point</code>, <code>geom_smooth</code>, etc.) override them, they will apply to all layers.</li>
+</ul></li>
+</ul></li>
+<li>The <code>+</code> operator:
+<ul>
+<li>Adds layers to the plot.</li>
+<li>Each <code>+</code> adds a new layer.</li>
+<li>Note that it must come at the <em>end</em> of the line - if you put it at the start of a line, <code>R</code> will think that this line is separate from the previous one, as the previous one will have ended.</li>
+</ul></li>
+<li><code>geom_point</code>:
+<ul>
+<li>Adds points to the plot.
+<ul>
+<li><code>aes(color = species, shape = species)</code> maps the <code>species</code> variable to both color and shape.</li>
+<li>Since the initial <code>ggplot</code> call included the mapping <code>aes(x = flipper_length_mm, y = body_mass_g)</code>, the <code>geom_point</code> call does not need to repeat this mapping. It will automatically use <code>flipper_length_mm</code> for the x-axis and <code>body_mass_g</code> for the y-axis.</li>
+</ul></li>
+</ul></li>
+<li><code>geom_smooth</code>:
+<ul>
+<li>Adds a best-fit line to the plot.
+<ul>
+<li><code>method = "lm"</code> specifies that the line should be a linear model.
+<ul>
+<li><code>method = "loess"</code> would fit a loess curve, which is what your prac2 asks for.</li>
+</ul></li>
+</ul></li>
+<li>Like <code>geom_point</code>, it does not need to specify the mapping since it inherits it from the initial <code>ggplot</code> call.</li>
+</ul></li>
+<li><code>labs</code>:
+<ul>
+<li>Adds labels to the plot.
+<ul>
+<li><code>title</code>, <code>subtitle</code>, <code>x</code>, <code>y</code> are plot and axis titles.</li>
+<li><code>color</code>, and <code>shape</code> are legend titles.</li>
+</ul></li>
+</ul></li>
+<li><code>scale_color_colorblind</code>:
+<ul>
+<li>Changes the color palette to a colorblind-friendly one.</li>
+</ul></li>
+</ul>
+<p>To get a feel for what different elements are doing, you can drop them from the plot and see what changes.</p>
+</section>
+<section id="summary" class="level2" data-number="10.3">
+<h2 data-number="10.3" class="anchored" data-anchor-id="summary"><span class="header-section-number">10.3</span> Summary</h2>
+<p>Below is a concise summary of the key information on <code>ggplot2</code>:</p>
+<section id="basic-structure" class="level3" data-number="10.3.1">
+<h3 data-number="10.3.1" class="anchored" data-anchor-id="basic-structure"><span class="header-section-number">10.3.1</span> Basic Structure</h3>
+<ul>
+<li><p><strong>Initiating a Plot</strong>:<br>
+Use <code>ggplot(data, aes(x, y))</code> to start a plot. This sets up the canvas by specifying the data and how variables are mapped to the x and y axes. Note that without specifying any <code>geom</code>s (see below), you will not see any content:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm, <span class="at">y =</span> body_mass_g))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="ggplot2_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>This does not mean that the above function does nothing, however, as it is specifying the data and the mapping of variables to the x and y axes:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm, <span class="at">y =</span> body_mass_g))</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(p)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>List of 11
+ $ data       : tibble [344 × 8] (S3: tbl_df/tbl/data.frame)
+  ..$ species          : Factor w/ 3 levels "Adelie","Chinstrap",..: 1 1 1 1 1 1 1 1 1 1 ...
+  ..$ island           : Factor w/ 3 levels "Biscoe","Dream",..: 3 3 3 3 3 3 3 3 3 3 ...
+  ..$ bill_length_mm   : num [1:344] 39.1 39.5 40.3 NA 36.7 39.3 38.9 39.2 34.1 42 ...
+  ..$ bill_depth_mm    : num [1:344] 18.7 17.4 18 NA 19.3 20.6 17.8 19.6 18.1 20.2 ...
+  ..$ flipper_length_mm: int [1:344] 181 186 195 NA 193 190 181 195 193 190 ...
+  ..$ body_mass_g      : int [1:344] 3750 3800 3250 NA 3450 3650 3625 4675 3475 4250 ...
+  ..$ sex              : Factor w/ 2 levels "female","male": 2 1 1 NA 1 2 1 2 NA NA ...
+  ..$ year             : int [1:344] 2007 2007 2007 2007 2007 2007 2007 2007 2007 2007 ...
+ $ layers     : list()
+ $ scales     :Classes 'ScalesList', 'ggproto', 'gg' &lt;ggproto object: Class ScalesList, gg&gt;
+    add: function
+    add_defaults: function
+    add_missing: function
+    backtransform_df: function
+    clone: function
+    find: function
+    get_scales: function
+    has_scale: function
+    input: function
+    map_df: function
+    n: function
+    non_position_scales: function
+    scales: NULL
+    train_df: function
+    transform_df: function
+    super:  &lt;ggproto object: Class ScalesList, gg&gt; 
+ $ guides     :Classes 'Guides', 'ggproto', 'gg' &lt;ggproto object: Class Guides, gg&gt;
+    add: function
+    assemble: function
+    build: function
+    draw: function
+    get_custom: function
+    get_guide: function
+    get_params: function
+    get_position: function
+    guides: NULL
+    merge: function
+    missing: &lt;ggproto object: Class GuideNone, Guide, gg&gt;
+        add_title: function
+        arrange_layout: function
+        assemble_drawing: function
+        available_aes: any
+        build_decor: function
+        build_labels: function
+        build_ticks: function
+        build_title: function
+        draw: function
+        draw_early_exit: function
+        elements: list
+        extract_decor: function
+        extract_key: function
+        extract_params: function
+        get_layer_key: function
+        hashables: list
+        measure_grobs: function
+        merge: function
+        override_elements: function
+        params: list
+        process_layers: function
+        setup_elements: function
+        setup_params: function
+        train: function
+        transform: function
+        super:  &lt;ggproto object: Class GuideNone, Guide, gg&gt;
+    package_box: function
+    print: function
+    process_layers: function
+    setup: function
+    subset_guides: function
+    train: function
+    update_params: function
+    super:  &lt;ggproto object: Class Guides, gg&gt; 
+ $ mapping    :List of 2
+  ..$ x: language ~flipper_length_mm
+  .. ..- attr(*, ".Environment")=&lt;environment: R_GlobalEnv&gt; 
+  ..$ y: language ~body_mass_g
+  .. ..- attr(*, ".Environment")=&lt;environment: R_GlobalEnv&gt; 
+  ..- attr(*, "class")= chr "uneval"
+ $ theme      : list()
+ $ coordinates:Classes 'CoordCartesian', 'Coord', 'ggproto', 'gg' &lt;ggproto object: Class CoordCartesian, Coord, gg&gt;
+    aspect: function
+    backtransform_range: function
+    clip: on
+    default: TRUE
+    distance: function
+    expand: TRUE
+    is_free: function
+    is_linear: function
+    labels: function
+    limits: list
+    modify_scales: function
+    range: function
+    render_axis_h: function
+    render_axis_v: function
+    render_bg: function
+    render_fg: function
+    setup_data: function
+    setup_layout: function
+    setup_panel_guides: function
+    setup_panel_params: function
+    setup_params: function
+    train_panel_guides: function
+    transform: function
+    super:  &lt;ggproto object: Class CoordCartesian, Coord, gg&gt; 
+ $ facet      :Classes 'FacetNull', 'Facet', 'ggproto', 'gg' &lt;ggproto object: Class FacetNull, Facet, gg&gt;
+    compute_layout: function
+    draw_back: function
+    draw_front: function
+    draw_labels: function
+    draw_panels: function
+    finish_data: function
+    init_scales: function
+    map_data: function
+    params: list
+    setup_data: function
+    setup_params: function
+    shrink: TRUE
+    train_scales: function
+    vars: function
+    super:  &lt;ggproto object: Class FacetNull, Facet, gg&gt; 
+ $ plot_env   :&lt;environment: R_GlobalEnv&gt; 
+ $ layout     :Classes 'Layout', 'ggproto', 'gg' &lt;ggproto object: Class Layout, gg&gt;
+    coord: NULL
+    coord_params: list
+    facet: NULL
+    facet_params: list
+    finish_data: function
+    get_scales: function
+    layout: NULL
+    map_position: function
+    panel_params: NULL
+    panel_scales_x: NULL
+    panel_scales_y: NULL
+    render: function
+    render_labels: function
+    reset_scales: function
+    resolve_label: function
+    setup: function
+    setup_panel_guides: function
+    setup_panel_params: function
+    train_position: function
+    super:  &lt;ggproto object: Class Layout, gg&gt; 
+ $ labels     :List of 2
+  ..$ x: chr "flipper_length_mm"
+  ..$ y: chr "body_mass_g"
+ - attr(*, "class")= chr [1:2] "gg" "ggplot"</code></pre>
+</div>
+</div></li>
+</ul>
+</section>
+<section id="aesthetic-mappings" class="level3" data-number="10.3.2">
+<h3 data-number="10.3.2" class="anchored" data-anchor-id="aesthetic-mappings"><span class="header-section-number">10.3.2</span> Aesthetic Mappings</h3>
+<ul>
+<li><p><strong>Mapping Variables to Visual Properties</strong>:<br>
+Inside <code>aes()</code>, map variables to aesthetics such as:</p>
+<ul>
+<li><strong>Color</strong>: Differentiates groups (e.g., <code>aes(color = species)</code>).</li>
+<li><strong>Shape</strong>: Uses different symbols for groups (e.g., <code>aes(shape = species)</code>).</li>
+<li><strong>Size</strong>: Can reflect magnitude differences.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm, <span class="at">y =</span> body_mass_g)) <span class="sc">+</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> species, <span class="at">shape =</span> species))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 2 rows containing missing values or values outside the scale range
+(`geom_point()`).</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="ggplot2_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div></li>
+</ul>
+</section>
+<section id="geometric-objects-geoms" class="level3" data-number="10.3.3">
+<h3 data-number="10.3.3" class="anchored" data-anchor-id="geometric-objects-geoms"><span class="header-section-number">10.3.3</span> Geometric Objects (Geoms)</h3>
+<ul>
+<li><p><strong>Different Plot Types</strong>:<br>
+Add layers to your plot using geoms. Common examples include:</p>
+<ul>
+<li><strong>Scatterplots</strong>: <code>geom_point()</code></li>
+<li><strong>Smooth Lines</strong>: <code>geom_smooth()</code> (e.g., for adding a best-fit line)</li>
+<li><strong>Bar Charts</strong>: <code>geom_bar()</code> or <code>geom_col()</code></li>
+<li><strong>Histograms and Density Plots</strong>: <code>geom_histogram()</code>, <code>geom_density()</code></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm, <span class="at">y =</span> body_mass_g)) <span class="sc">+</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> species, <span class="at">shape =</span> species)) <span class="sc">+</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 2 rows containing non-finite outside the scale range
+(`stat_smooth()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 2 rows containing missing values or values outside the scale range
+(`geom_point()`).</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="ggplot2_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div></li>
+</ul>
+</section>
+<section id="layering-and-customization" class="level3" data-number="10.3.4">
+<h3 data-number="10.3.4" class="anchored" data-anchor-id="layering-and-customization"><span class="header-section-number">10.3.4</span> Layering and Customization</h3>
+<ul>
+<li><p><strong>Adding Layers</strong>:<br>
+Combine multiple geoms to add detail to your plot. Layers are added using the <code>+</code> operator.</p></li>
+<li><p><strong>Custom Labels and Themes</strong>:<br>
+Enhance your plot with titles, axis labels, and legends using <code>labs()</code> and adjust appearance with theme functions.</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm, <span class="at">y =</span> body_mass_g)) <span class="sc">+</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> species, <span class="at">shape =</span> species)) <span class="sc">+</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>) <span class="sc">+</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Body mass and flipper length"</span>,</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"Dimensions for Adelie, Chinstrap, and Gentoo Penguins"</span>,</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Flipper length (mm)"</span>,</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Body mass (g)"</span>,</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"Species"</span>,</span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">shape =</span> <span class="st">"Species"</span></span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_colorblind</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+</ul>
+</section>
+<section id="faceting" class="level3" data-number="10.3.5">
+<h3 data-number="10.3.5" class="anchored" data-anchor-id="faceting"><span class="header-section-number">10.3.5</span> Faceting</h3>
+<ul>
+<li><p><strong>Splitting Data into Panels</strong>:<br>
+Use faceting (with <code>facet_wrap()</code> or <code>facet_grid()</code>) to create subplots based on a categorical variable, making it easier to compare groups.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(penguins, <span class="fu">aes</span>(<span class="at">x =</span> flipper_length_mm, <span class="at">y =</span> body_mass_g)) <span class="sc">+</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">color =</span> species, <span class="at">shape =</span> species)) <span class="sc">+</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> island)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 2 rows containing missing values or values outside the scale range
+(`geom_point()`).</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="ggplot2_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div></li>
+</ul>
+</section>
+<section id="saving-your-plots" class="level3" data-number="10.3.6">
+<h3 data-number="10.3.6" class="anchored" data-anchor-id="saving-your-plots"><span class="header-section-number">10.3.6</span> Saving Your Plots</h3>
+<ul>
+<li><p><strong>Exporting Graphics</strong>:<br>
+Use <code>ggsave()</code> to save the most recent plot to a file (e.g., PNG, PDF).</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">"penguin-plot.png"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+</ul>
 
 
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
