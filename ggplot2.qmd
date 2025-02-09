@@ -347,3 +347,5 @@ and produces this, which can be cross referenced (`@fig-penguins` produces @fig-
   - To cross-reference, write `@<label>` where `<label>` is the part immediately following the `#` in the opening of the `:::` block and *includes* the `fig-` prefix.
 
 4. Reference the table using the syntax `@<label>`, where `<label>` is the part immediately following the `#` in the opening of the `:::` block: `@fig-penguins` produces @fig-penguins.
+
+If you are using `LaTeX`, then you would do step 1 (save the plot) and then use `LaTeX` float creation cross-referencing syntax instead.

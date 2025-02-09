@@ -668,6 +668,34 @@ Use <code>ggsave()</code> to save the most recent plot to a file {#sec-day4-prac
 </div>
 </div>
 </div>
+<p>A final, important point regarding the theme: by default, the background is transparent, so if you save a plot to file as a PNG, the background will be transparent. To understand, create <code>p1</code>, save it as a PNG and open it:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dir.create</span>(<span class="st">"_tmp"</span>, <span class="at">showWarnings =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">"_tmp/p-no_bg.png"</span>, <span class="at">plot =</span> p1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>So, an unfortunately complication is that if you wish to save PNG images, then you need to usually make the background white:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> p1 <span class="sc">+</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_cowplot</span>() <span class="sc">+</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">plot.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">"white"</span>),</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.background =</span> <span class="fu">element_rect</span>(<span class="at">fill =</span> <span class="st">"white"</span>)</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a><span class="fu">dir.create</span>(<span class="st">"_tmp"</span>, <span class="at">showWarnings =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">"_tmp/p-bg.png"</span>, <span class="at">plot =</span> p1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Saving 7 x 5 in image
+`geom_smooth()` using formula = 'y ~ x'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 2 rows containing non-finite outside the scale range
+(`stat_smooth()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 2 rows containing missing values or values outside the scale range
+(`geom_point()`).</code></pre>
+</div>
+</div>
 </section>
 <section id="general-guidelines-for-plots" class="level2" data-number="10.6">
 <h2 data-number="10.6" class="anchored" data-anchor-id="general-guidelines-for-plots"><span class="header-section-number">10.6</span> General Guidelines for Plots</h2>
@@ -694,7 +722,64 @@ Use <code>ggsave()</code> to save the most recent plot to a file {#sec-day4-prac
 </section>
 <section id="captions-and-cross-referencing" class="level2" data-number="10.7">
 <h2 data-number="10.7" class="anchored" data-anchor-id="captions-and-cross-referencing"><span class="header-section-number">10.7</span> Captions and cross-referencing</h2>
-<p>I outline how to create captions and cross-references for tables in the <code>Tables</code> section. The same principles apply to plot.</p>
+<p>To include a figure that is cross-referenceable, I usually save the image first to file and then use Quarto (or <code>LaTeX</code> syntax) to include it with a caption, label and cross-reference. Even if I don’t want a cross-referencable figure, I usually do this, as I find that the figure dimensions are more easily controlled this way (than just outputting the figure directly from a code chunk).</p>
+<p>This approach is analogous to that to creating cross-referenceable tables in the <code>Tables</code> doc.</p>
+<p>Here are the steps:</p>
+<ol type="1">
+<li>Save the plot to file. For example:</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dir.create</span>(<span class="st">"_tmp"</span>, <span class="at">showWarnings =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggsave</span>(<span class="st">"_tmp/penguin-plot.png"</span>, <span class="at">plot =</span> p1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Saving 7 x 5 in image
+`geom_smooth()` using formula = 'y ~ x'</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 2 rows containing non-finite outside the scale range
+(`stat_smooth()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 2 rows containing missing values or values outside the scale range
+(`geom_point()`).</code></pre>
+</div>
+</div>
+<ol start="2" type="1">
+<li>If you are working within Quarto, then you can use the Quarto cross-referencing syntax (details <a href="https://quarto.org/docs/authoring/cross-references.html">here</a>), which looks like this:</li>
+</ol>
+<div class="sourceCode" id="cb30"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>::: {#fig-penguins}</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="al">![](_tmp/penguin-plot.png)</span></span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>Body mass against flipper length.</span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>:::</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>and produces this, which can be cross referenced (<code>@fig-penguins</code> produces <span class="quarto-unresolved-ref">?fig-penguins</span>):</p>
+<ul>
+<li>Key elements of Quarto table cross-referencing syntax for figures:
+<ul>
+<li>Opening line:
+<ul>
+<li>Begin with <code>:::</code></li>
+<li>Open curly braces</li>
+<li>Write label:
+<ul>
+<li>Demarcate it with <code>#</code></li>
+<li>No spaces between <code>#</code> and label</li>
+<li>Label begins with <code>fig-</code>.</li>
+<li>Write remainder of label</li>
+<li>Close curly braces</li>
+</ul></li>
+</ul></li>
+<li>Place table content (copied from previous line)</li>
+<li>Write caption</li>
+<li>Close with <code>:::</code></li>
+<li>To cross-reference, write <code>@&lt;label&gt;</code> where <code>&lt;label&gt;</code> is the part immediately following the <code>#</code> in the opening of the <code>:::</code> block and <em>includes</em> the <code>fig-</code> prefix.</li>
+</ul></li>
+</ul>
+<ol start="4" type="1">
+<li>Reference the table using the syntax <code>@&lt;label&gt;</code>, where <code>&lt;label&gt;</code> is the part immediately following the <code>#</code> in the opening of the <code>:::</code> block: <code>@fig-penguins</code> produces <span class="quarto-unresolved-ref">?fig-penguins</span>.</li>
+</ol>
 
 
 </section>
