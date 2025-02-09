@@ -1,1 +1,6 @@
 # Practical Day Five {#sec-day5-prac}
+
+Excellent practice is all of the questions in the [R4DS Data Visualisation introduction](https://r4ds.had.co.nz/data-visualisation.html#data-visualisation).
+However, for this practical, here are the questions you will need to answer:
+
+## 

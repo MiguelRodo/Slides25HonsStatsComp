@@ -55,8 +55,8 @@ for (x in pkg_vec) {
 penguin_summary <- penguins |>
   group_by(species) |>
   summarise(
-    FL = round(mean(flipper_length_mm, na.rm = TRUE), 2),
-    BM = round(mean(body_mass_g, na.rm = TRUE), 2),
+    `Flipper length` = round(mean(flipper_length_mm, na.rm = TRUE), 2),
+    `Body Mass` = round(mean(body_mass_g, na.rm = TRUE), 2),
     Count = n(),
     .groups = "drop"
   ) |>
