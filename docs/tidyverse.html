@@ -245,7 +245,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./prac-day-five.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">prac-day-five.html</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Practical Day Fivei</span></span></a>
   </div>
 </li>
       </ul>
@@ -391,12 +391,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(example_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>    id timepoint disease_status blood_pressure
-1 id_1         1       diseased            124
-2 id_1         2       diseased            135
-3 id_1         3       diseased            127
-4 id_1         4       diseased            128
-5 id_1         5       diseased            127
-6 id_1         6       diseased            124</code></pre>
+1 id_1         1       diseased            120
+2 id_1         2       diseased            129
+3 id_1         3       diseased            137
+4 id_1         4       diseased            129
+5 id_1         5       diseased            122
+6 id_1         6       diseased            132</code></pre>
 </div>
 </div>
 <p>However, constantly having to call <code>head()</code> is not ideal. A better solution is to convert the dataframe into a tibble.</p>
@@ -435,16 +435,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <pre><code># A tibble: 10,000 × 4
    id    timepoint disease_status blood_pressure
    &lt;chr&gt;     &lt;int&gt; &lt;chr&gt;                   &lt;dbl&gt;
- 1 id_1          1 diseased                  124
- 2 id_1          2 diseased                  135
- 3 id_1          3 diseased                  127
- 4 id_1          4 diseased                  128
- 5 id_1          5 diseased                  127
- 6 id_1          6 diseased                  124
- 7 id_1          7 diseased                  137
- 8 id_1          8 diseased                  129
- 9 id_1          9 diseased                  139
-10 id_1         10 diseased                  134
+ 1 id_1          1 diseased                  120
+ 2 id_1          2 diseased                  129
+ 3 id_1          3 diseased                  137
+ 4 id_1          4 diseased                  129
+ 5 id_1          5 diseased                  122
+ 6 id_1          6 diseased                  132
+ 7 id_1          7 diseased                  122
+ 8 id_1          8 diseased                  134
+ 9 id_1          9 diseased                  129
+10 id_1         10 diseased                  136
 # ℹ 9,990 more rows</code></pre>
 </div>
 </div>
@@ -454,13 +454,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>new_tbl</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 5 × 2
-      x      y
-  &lt;int&gt;  &lt;dbl&gt;
-1     1  0.408
-2     2 -0.678
-3     3  0.842
-4     4 -0.653
-5     5 -0.838</code></pre>
+      x       y
+  &lt;int&gt;   &lt;dbl&gt;
+1     1 -0.949 
+2     2 -0.0612
+3     3  0.924 
+4     4  0.940 
+5     5  1.99  </code></pre>
 </div>
 </div>
 <p>Note that for a <code>tibble</code> object (i.e.&nbsp;a dataframe that has class <code>tbl_df</code>) to display as a tibble, the <code>tibble</code> package needs to be attached. So always add <code>library(tibble)</code> to the top of your script.</p>
@@ -508,19 +508,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>UtilsDataRSV<span class="sc">::</span><span class="fu">view_cols</span>(example_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "id"
- [1] "id_113" "id_373" "id_29"  "id_397" "id_414" "id_10"  "id_333" "id_85" 
- [9] "id_79"  "id_262" "id_241" "id_51"  "id_159" "id_133" "id_119" "id_349"
-[17] "id_69"  "id_154" "id_157" "id_460"
+ [1] "id_51"  "id_24"  "id_3"   "id_300" "id_390" "id_43"  "id_311" "id_183"
+ [9] "id_467" "id_463" "id_294" "id_225" "id_31"  "id_135" "id_317" "id_404"
+[17] "id_241" "id_301" "id_451" "id_26" 
 [1] "480 unique entries not displayed"
 [1] "_____________________"
 [1] "timepoint"
-[1] 10  6 20  5 13
+[1] 14  8 16  2 11
 [1] "_____________________"
 [1] "disease_status"
-[1] "healthy"  "diseased" "Healthy" 
+[1] "diseased" "Healthy"  "healthy" 
 [1] "_____________________"
 [1] "blood_pressure"
-[1] 126 135 127 120  NA
+[1] 122.2216 135.5143 121.4093 122.0000       NA
 [1] "_____________________"</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
@@ -543,7 +543,7 @@ Columns: 4
 $ id             &lt;chr&gt; "id_1", "id_1", "id_1", "id_1", "id_1", "id_1", "id_1",…
 $ timepoint      &lt;int&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, …
 $ disease_status &lt;chr&gt; "diseased", "diseased", "diseased", "diseased", "diseas…
-$ blood_pressure &lt;dbl&gt; 124.0000, 135.0000, 127.0000, 128.0000, 127.0000, 124.0…</code></pre>
+$ blood_pressure &lt;dbl&gt; 120.0000, 129.0000, 137.0000, 129.0000, 122.0000, 132.0…</code></pre>
 </div>
 </div>
 </section>
