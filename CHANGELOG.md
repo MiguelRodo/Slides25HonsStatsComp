@@ -1,5 +1,7 @@
 # CHANGELOG
 
+- Patch (v1.0.48): Miguel Rodo (2025-02-09 11:06:58)
+  - Update table instructions
 - Patch (v1.0.47): Miguel Rodo (2025-02-09 11:02:44)
   - Adjust captioning advice
 - Patch (v1.0.46): Miguel Rodo (2025-02-09 10:26:08)

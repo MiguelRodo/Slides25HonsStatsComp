@@ -415,8 +415,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 |Gentoo    | 217.19 | 5076.02 |  124  |</code></pre>
 <ol start="2" type="1">
 <li><p>Copy the output into your Quarto document.</p></li>
-<li><p>If you are working within Quarto, then you can use the Quarto cross-referencing syntax (details <a href="https://quarto.org/docs/authoring/cross-references.html">here</a>).</p></li>
+<li><p>If you are working within Quarto, then you can use the Quarto cross-referencing syntax (details <a href="https://quarto.org/docs/authoring/cross-references.html">here</a>), which looks like this:</p></li>
 </ol>
+<div class="sourceCode" id="cb5"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>::: {#tbl-summary}</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>|Species   |   FL   |   BM    | Count |</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>|:---------|:------:|:-------:|:-----:|</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>|Adelie    | 189.95 | 3700.66 |  152  |</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>|Chinstrap | 195.82 | 3733.09 |  68   |</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>|Gentoo    | 217.19 | 5076.02 |  124  |</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>Summary statistics for penguin easurements. Values are rounded to 2 decimal places. Abbreviations: FL = Flipper Length (mm), BM = Body Mass (g).</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>:::</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>and produces this, which can be cross referenced (<code>@tbl-summary</code> produces <a href="#tbl-summary" class="quarto-xref">Table&nbsp;<span>11.1</span></a>):</p>
 <div id="tbl-summary" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-summary-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -456,6 +468,27 @@ Table&nbsp;11.1: Summary statistics for penguin easurements. Values are rounded 
 </div>
 </figure>
 </div>
+<ul>
+<li>Key elements of Quarto table cross-referencing syntax:
+<ul>
+<li>Opening line:
+<ul>
+<li>Begin with <code>:::</code></li>
+<li>Open curly braces</li>
+<li>Write label:
+<ul>
+<li>Demarcate it with <code>#</code></li>
+<li>No spaces between <code>#</code> and label</li>
+<li>Label begins with <code>tbl-</code>.</li>
+<li>Write remainder of label</li>
+<li>Close curly braces</li>
+</ul></li>
+</ul></li>
+<li>Place table content (copied from previous line)</li>
+<li>Write caption</li>
+<li>Close with <code>:::</code></li>
+</ul></li>
+</ul>
 <ol start="4" type="1">
 <li>Reference the table using the syntax <code>@&lt;label&gt;</code>, where <code>&lt;label&gt;</code> is the part immediately following the <code>#</code> in the opening of the <code>:::</code> block: <a href="#tbl-summary" class="quarto-xref">Table&nbsp;<span>11.1</span></a>.</li>
 </ol>
