@@ -249,7 +249,9 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#section" id="toc-section" class="nav-link active" data-scroll-target="#section"><span class="header-section-number">12.1</span> </a></li>
+  <li><a href="#question-one" id="toc-question-one" class="nav-link active" data-scroll-target="#question-one"><span class="header-section-number">12.1</span> Question One</a></li>
+  <li><a href="#question-two" id="toc-question-two" class="nav-link" data-scroll-target="#question-two"><span class="header-section-number">12.2</span> Question Two</a></li>
+  <li><a href="#question-three" id="toc-question-three" class="nav-link" data-scroll-target="#question-three"><span class="header-section-number">12.3</span> Question Three</a></li>
   </ul>
 </nav>
     </div>
@@ -275,9 +277,23 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Excellent practice is all of the questions in the <a href="https://r4ds.had.co.nz/data-visualisation.html#data-visualisation">R4DS Data Visualisation introduction</a>. However, for this practical, here are the questions you will need to answer:</p>
-<section id="section" class="level2" data-number="12.1">
-<h2 data-number="12.1" class="anchored" data-anchor-id="section"><span class="header-section-number">12.1</span> </h2>
+<p>Excellent practice is all of the questions in the <a href="https://r4ds.had.co.nz/data-visualisation.html#data-visualisation">R4DS Data Visualisation introduction</a>, so I suggest you do them (probably skipping the non-coding questions, so as to get through the content faster).</p>
+<p>However, for this practical, here are the questions you will need to answer:</p>
+<section id="question-one" class="level2" data-number="12.1">
+<h2 data-number="12.1" class="anchored" data-anchor-id="question-one"><span class="header-section-number">12.1</span> Question One</h2>
+<ol type="1">
+<li>Simulate 100 random numbers from a normal distribution with mean 3 and standard deviation 1. Use <code>ggplot2</code> to plot the empirical density of these, and format the plot according to best practice (e.g.&nbsp;with axis titles, caption, etc.).</li>
+<li>Make a reference to the plot in the text (e.g.&nbsp;using <code>@fig-dens-plot</code>).</li>
+<li>Overlay the true density of the normal distribution on the plot (hint: use <code>geom_line</code>).</li>
+</ol>
+</section>
+<section id="question-two" class="level2" data-number="12.2">
+<h2 data-number="12.2" class="anchored" data-anchor-id="question-two"><span class="header-section-number">12.2</span> Question Two</h2>
+<p>Calculate a two-way frequency table of species of penguins and island location (from the <code>palmerpenguins</code> package’s dataset), and display it according to best practices (e.g.&nbsp;table caption, appropriate lines, etc.).</p>
+</section>
+<section id="question-three" class="level2" data-number="12.3">
+<h2 data-number="12.3" class="anchored" data-anchor-id="question-three"><span class="header-section-number">12.3</span> Question Three</h2>
+<p>Plot the distribution of the flipper length of penguins, separated by species. Create two plots: one where the species are in the same plot (hint: use the <code>alpha</code> parameter to make overlapping densities more visible), and one where they are in separate facets. Format the plots according to best practices.</p>
 
 
 </section>

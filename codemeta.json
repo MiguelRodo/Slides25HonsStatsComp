@@ -8,7 +8,7 @@
   "codeRepository": "https://github.com/MiguelRodo/Slides25HonsStatsComp",
   "issueTracker": "https://github.com/MiguelRodo/Slides25HonsStatsComp/issues",
   "license": "https://spdx.org/licenses/CC-BY-4.0",
-  "version": "1.0.60",
+  "version": "1.0.61",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
@@ -34,7 +34,7 @@
   "softwareRequirements": {
     "SystemRequirements": null
   },
-  "fileSize": "2961.501KB",
+  "fileSize": "2965.643KB",
   "citation": [
     {
       "@type": "CreativeWork",

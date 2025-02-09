@@ -1,5 +1,7 @@
 # CHANGELOG
 
+- Patch (v1.0.61): Miguel Rodo (2025-02-09 13:28:58)
+  - Add assignment
 - Patch (v1.0.60): Miguel Rodo (2025-02-09 13:18:13)
   - Use proper heading names
 - Patch (v1.0.59): Miguel Rodo (2025-02-09 13:13:16)
