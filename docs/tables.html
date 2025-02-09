@@ -336,7 +336,7 @@ Present numerical data with a limited, preferrably consistent number of decimal/
 </div>
 <p>Below is a sample Quarto code chunk that produces a table from an R data frame. In this example, we create a summary table of the penguins dataset:</p>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="in">#| fig-cap: "tab-summary: Summary Statistics for Penguin Measurements. Values are rounded to 2 decimal places. Abbreviations: FL = Flipper Length (mm), BM = Body Mass (g)."</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="in">#| tab-cap: "Summary Statistics for Penguin Measurements. Values are rounded to 2 decimal places. Abbreviations: FL = Flipper Length (mm), BM = Body Mass (g)."</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="in">#| results: asis</span></span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="in"># Create a summary table of key statistics by species</span></span>
@@ -356,69 +356,39 @@ Present numerical data with a limited, preferrably consistent number of decimal/
 <span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="in">  align = "lccc"</span></span>
 <span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="in">)</span></span>
 <span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<table style="width:50%; border-collapse: collapse;">
+<table class="caption-top table" data-quarto-postprocess="true">
+<caption>Summary Statistics for Penguin Measurements. Values are rounded to 2 decimal places. Abbreviations: FL = Flipper Length (mm), BM = Body Mass (g).</caption>
 <thead>
-<tr>
-<th style="text-align:left;">
-species
-</th>
-<th style="text-align:center;">
-FL
-</th>
-<th style="text-align:center;">
-BM
-</th>
-<th style="text-align:center;">
-Count
-</th>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">species</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">FL</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">BM</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">Count</th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td style="text-align:left;">
-Adelie
-</td>
-<td style="text-align:center;">
-189.95
-</td>
-<td style="text-align:center;">
-3700.66
-</td>
-<td style="text-align:center;">
-152
-</td>
+<tr class="odd">
+<td style="text-align: left;">Adelie</td>
+<td style="text-align: center;">189.95</td>
+<td style="text-align: center;">3700.66</td>
+<td style="text-align: center;">152</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-Chinstrap
-</td>
-<td style="text-align:center;">
-195.82
-</td>
-<td style="text-align:center;">
-3733.09
-</td>
-<td style="text-align:center;">
-68
-</td>
+<tr class="even">
+<td style="text-align: left;">Chinstrap</td>
+<td style="text-align: center;">195.82</td>
+<td style="text-align: center;">3733.09</td>
+<td style="text-align: center;">68</td>
 </tr>
-<tr>
-<td style="text-align:left;">
-Gentoo
-</td>
-<td style="text-align:center;">
-217.19
-</td>
-<td style="text-align:center;">
-5076.02
-</td>
-<td style="text-align:center;">
-124
-</td>
+<tr class="odd">
+<td style="text-align: left;">Gentoo</td>
+<td style="text-align: center;">217.19</td>
+<td style="text-align: center;">5076.02</td>
+<td style="text-align: center;">124</td>
 </tr>
 </tbody>
 </table>
-<p>tab-summary: Summary Statistics for Penguin Measurements. Values are rounded to 2 decimal places. Abbreviations: FL = Flipper Length (mm), BM = Body Mass (g).</p>
+
+
 <p><strong>Explanation:</strong></p>
 <ul>
 <li><strong>Caption and Label:</strong><br>

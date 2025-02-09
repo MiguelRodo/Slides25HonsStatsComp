@@ -1,5 +1,7 @@
 # CHANGELOG
 
+- Patch (v1.0.44): Miguel Rodo (2025-02-09 10:13:07)
+  - Improve table caption
 - Patch (v1.0.43): Miguel Rodo (2025-02-09 10:12:02)
   - Add instructions for LaTeX outupt
 - Patch (v1.0.42): Miguel Rodo (2025-02-09 10:08:59)
