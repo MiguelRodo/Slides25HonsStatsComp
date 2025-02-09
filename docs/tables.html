@@ -277,9 +277,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#general-guidelines-for-tables" id="toc-general-guidelines-for-tables" class="nav-link active" data-scroll-target="#general-guidelines-for-tables"><span class="header-section-number">11.0.1</span> General Guidelines for Tables</a></li>
-  <li><a href="#example-creating-a-table-with-knitrkable-in-quarto" id="toc-example-creating-a-table-with-knitrkable-in-quarto" class="nav-link" data-scroll-target="#example-creating-a-table-with-knitrkable-in-quarto"><span class="header-section-number">11.0.2</span> Example: Creating a Table with knitr::kable in Quarto</a></li>
-  <li><a href="#best-practices-recap-for-tables" id="toc-best-practices-recap-for-tables" class="nav-link" data-scroll-target="#best-practices-recap-for-tables"><span class="header-section-number">11.0.3</span> Best Practices Recap for Tables</a></li>
+  <li><a href="#general-guidelines" id="toc-general-guidelines" class="nav-link active" data-scroll-target="#general-guidelines"><span class="header-section-number">11.1</span> General Guidelines</a></li>
+  <li><a href="#example-creating-a-table-with-knitrkable-in-quarto" id="toc-example-creating-a-table-with-knitrkable-in-quarto" class="nav-link" data-scroll-target="#example-creating-a-table-with-knitrkable-in-quarto"><span class="header-section-number">11.2</span> Example: Creating a Table with knitr::kable in Quarto</a>
+  <ul class="collapse">
+  <li><a href="#best-practices-recap-for-tables" id="toc-best-practices-recap-for-tables" class="nav-link" data-scroll-target="#best-practices-recap-for-tables"><span class="header-section-number">11.2.1</span> Best Practices Recap for Tables</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -306,8 +308,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <p>When it comes to tables in academic writing or reports, clear and consistent formatting is essential.</p>
-<section id="general-guidelines-for-tables" class="level3" data-number="11.0.1">
-<h3 data-number="11.0.1" class="anchored" data-anchor-id="general-guidelines-for-tables"><span class="header-section-number">11.0.1</span> General Guidelines for Tables</h3>
+<section id="general-guidelines" class="level2" data-number="11.1">
+<h2 data-number="11.1" class="anchored" data-anchor-id="general-guidelines"><span class="header-section-number">11.1</span> General Guidelines</h2>
 <ul>
 <li><p><strong>Captions and Cross-Referencing:</strong></p>
 <p>Every table should have a concise caption that includes a title and a descriptive sentence. Abbreviations or symbols used within the table must be defined in the caption. In Quarto, assign a label (e.g., <code>tab-summary</code>) so that you can cross-reference the table in your text with <code>@tab-summary</code>. <em>Note:</em> All tables should be referenced in your text before they appear.</p></li>
@@ -320,45 +322,42 @@ Present numerical data with a limited, preferrably consistent number of decimal/
 </ul></li>
 </ul>
 </section>
-<section id="example-creating-a-table-with-knitrkable-in-quarto" class="level3" data-number="11.0.2">
-<h3 data-number="11.0.2" class="anchored" data-anchor-id="example-creating-a-table-with-knitrkable-in-quarto"><span class="header-section-number">11.0.2</span> Example: Creating a Table with knitr::kable in Quarto</h3>
+<section id="example-creating-a-table-with-knitrkable-in-quarto" class="level2" data-number="11.2">
+<h2 data-number="11.2" class="anchored" data-anchor-id="example-creating-a-table-with-knitrkable-in-quarto"><span class="header-section-number">11.2</span> Example: Creating a Table with knitr::kable in Quarto</h2>
+<p>To run the examples below, attach these packages first:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>pkg_vec <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"ggplot2"</span>, <span class="st">"palmerpenguins"</span>, <span class="st">"dplyr"</span>, <span class="st">"knitr"</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (x <span class="cf">in</span> pkg_vec) {</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="sc">!</span><span class="fu">requireNamespace</span>(x, <span class="at">quietly =</span> <span class="cn">TRUE</span>)) {</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">install.packages</span>(x, <span class="at">dependencies =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># if you want to programmatically attach</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># libraries, this is the way to to do it</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">library</span>(x, <span class="at">character.only =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p>Below is a sample Quarto code chunk that produces a table from an R data frame. In this example, we create a summary table of the penguins dataset:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="in">#| fig-cap: "tab-summary: Summary Statistics for Penguin Measurements. Values are rounded to 2 decimal places. Abbreviations: FL = Flipper Length (mm), BM = Body Mass (g)."</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="in">library(dplyr)</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>
-Attaching package: 'dplyr'</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>The following objects are masked from 'package:stats':
-
-    filter, lag</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>The following objects are masked from 'package:base':
-
-    intersect, setdiff, setequal, union</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="in">#| fig-cap: "tab-summary: Summary Statistics for Penguin Measurements. Values are rounded to 2 decimal places. Abbreviations: FL = Flipper Length (mm), BM = Body Mass (g)."</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="in">library(knitr)</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="in">library(palmerpenguins)</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="in"># Create a summary table of key statistics by species</span></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="in">penguin_summary &lt;- penguins |&gt;</span></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="in">  group_by(species) |&gt;</span></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="in">  summarise(</span></span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="in">    FL = round(mean(flipper_length_mm, na.rm = TRUE), 2),</span></span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="in">    BM = round(mean(body_mass_g, na.rm = TRUE), 2),</span></span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="in">    Count = n()</span></span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="in">  )</span></span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="in"># Display the table using knitr::kable</span></span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="in">kable(penguin_summary, format = "html", table.attr = "style='width:50%; border-collapse: collapse;'", align = "lccc")</span></span>
-<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="in">#| fig-cap: "tab-summary: Summary Statistics for Penguin Measurements. Values are rounded to 2 decimal places. Abbreviations: FL = Flipper Length (mm), BM = Body Mass (g)."</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="in"># Create a summary table of key statistics by species</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="in">penguin_summary &lt;- penguins |&gt;</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="in">  group_by(species) |&gt;</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="in">  summarise(</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="in">    FL = round(mean(flipper_length_mm, na.rm = TRUE), 2),</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="in">    BM = round(mean(body_mass_g, na.rm = TRUE), 2),</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="in">    Count = n()</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="in">  )</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="in"># Display the table using knitr::kable</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="in">kable(</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="in">  penguin_summary,</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="in">  format = "html",</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="in">  table.attr = "style='width:50%; border-collapse: collapse;'",</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="in">  align = "lccc"</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="in">)</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <table style="width:50%; border-collapse: collapse;">
 <thead>
@@ -434,9 +433,8 @@ The <code>knitr::kable()</code> function is used to render the table. In this ex
 <li><strong>Rounding:</strong><br>
 Numerical values are rounded to 2 decimal places to maintain clarity.</li>
 </ul>
-</section>
-<section id="best-practices-recap-for-tables" class="level3" data-number="11.0.3">
-<h3 data-number="11.0.3" class="anchored" data-anchor-id="best-practices-recap-for-tables"><span class="header-section-number">11.0.3</span> Best Practices Recap for Tables</h3>
+<section id="best-practices-recap-for-tables" class="level3" data-number="11.2.1">
+<h3 data-number="11.2.1" class="anchored" data-anchor-id="best-practices-recap-for-tables"><span class="header-section-number">11.2.1</span> Best Practices Recap for Tables</h3>
 <ul>
 <li>Every table must have a caption and a label.</li>
 <li>Tables should be referenced in the text before they appear.</li>
@@ -446,6 +444,7 @@ Numerical values are rounded to 2 decimal places to maintain clarity.</li>
 </ul>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

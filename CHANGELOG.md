@@ -1,5 +1,7 @@
 # CHANGELOG
 
+- Patch (v1.0.42): Miguel Rodo (2025-02-09 10:08:59)
+  - Remove dplyr startup output
 - Patch (v1.0.41): Miguel Rodo (2025-02-09 10:05:05)
   - Add table content
 - Patch (v1.0.40): Miguel Rodo (2025-02-09 07:27:08)

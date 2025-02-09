@@ -41,6 +41,7 @@ Below is a sample Quarto code chunk that produces a table from an R data frame. 
 ```{r}
 #| echo: fenced
 #| fig-cap: "tab-summary: Summary Statistics for Penguin Measurements. Values are rounded to 2 decimal places. Abbreviations: FL = Flipper Length (mm), BM = Body Mass (g)."
+#| results: asis
 
 # Create a summary table of key statistics by species
 penguin_summary <- penguins |>
@@ -69,11 +70,5 @@ kable(
 - **Rounding:**  
   Numerical values are rounded to 2 decimal places to maintain clarity.
 
-### Best Practices Recap for Tables
-
-- Every table must have a caption and a label.
-- Tables should be referenced in the text before they appear.
-- Avoid unnecessary grid lines (especially vertical ones).
-- Ensure numbers are rounded consistently for clarity.
-- Consider using packages like `kableExtra`, `gt` or `flextable` for more complex table styling if needed.
+```
 
