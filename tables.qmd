@@ -139,11 +139,19 @@ Summary statistics for penguin easurements. Values are rounded to 2 decimal plac
   - Place table content (copied from previous line)
   - Write caption
   - Close with `:::`
+  - To cross-reference, write `@<label>` where `<label>` is the part immediately following the `#` in the opening of the `:::` block and *includes* the `tbl-` prefix.
 
 4. Reference the table using the syntax `@<label>`, where `<label>` is the part immediately following the `#` in the opening of the `:::` block: @tbl-summary.
 
+### `LaTeX` 
 
-Using `LaTeX`: If you are using `LaTex`, then you would run the `knitr::kable` command with `format = "latex"`.
+Using `LaTeX`: If you are using `LaTex` (e.g. working in OverLeaf, which you cover in the `LaTeX` lecture later this week), then you would run the `knitr::kable` command with `format = "latex"`.
 This will give you a LaTeX table that you can copy into your document.
 You can then use `LaTeX`-specific labelling and cross-referencing syntax to reference the table (not covered here).
+
 But the basic idea of using `R` to generate the table contents and overall styling, and then using your document format's specific syntax for labelling and cross-referencing, remains the same.
+
+This approach is *much* easier than writing out the contents of the table by hand (though manual editing may still be necessary for fine-tuning, e.g. for formatting).
+
+There are many other packages than `knitr` with the `kable` function that can generate formatted tables from `R` objects (e.g. `pandoc`, `gt`), so you can choose the one that best fits your needs.
+`knitr::kable`'s advantage is simplicity.
