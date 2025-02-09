@@ -2,6 +2,8 @@
 
 Excellent practice is all of the questions in the [R4DS Data Visualisation introduction](https://r4ds.had.co.nz/data-visualisation.html#data-visualisation), so I suggest you do them (probably skipping the non-coding questions, so as to get through the content faster).
 
+In addition, most (if not all) of Birgit's uploaded questions involve plots, so you can use those as practice too.
+
 However, for this practical, here are the questions you will need to answer:
 
 ## Question One
