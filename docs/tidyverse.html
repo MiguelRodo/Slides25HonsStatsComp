@@ -219,10 +219,27 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Practical Day Four</span></span></a>
   </div>
 </li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a href="./day5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Day Five: Displaying data</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./ggplot2.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title"><code>ggplot2</code></span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./tables.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Tables</span></span></a>
   </div>
 </li>
       </ul>
@@ -231,21 +248,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div class="sidebar-item-container"> 
             <a href="./handins.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Peer-reviewed assessments</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./handin1.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">First peer-reviewed hand-in</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">First peer-reviewed hand-in</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./handin2.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">handin2.html</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">handin2.html</span></span></a>
   </div>
 </li>
       </ul>
@@ -368,12 +385,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(example_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>    id timepoint disease_status blood_pressure
-1 id_1         1        healthy            127
-2 id_1         2        healthy            136
-3 id_1         3        healthy            121
-4 id_1         4        healthy            124
-5 id_1         5        healthy            128
-6 id_1         6        healthy            122</code></pre>
+1 id_1         1       diseased            125
+2 id_1         2       diseased            129
+3 id_1         3       diseased            133
+4 id_1         4       diseased            121
+5 id_1         5       diseased            133
+6 id_1         6       diseased            121</code></pre>
 </div>
 </div>
 <p>However, constantly having to call <code>head()</code> is not ideal. A better solution is to convert the dataframe into a tibble.</p>
@@ -412,16 +429,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <pre><code># A tibble: 10,000 × 4
    id    timepoint disease_status blood_pressure
    &lt;chr&gt;     &lt;int&gt; &lt;chr&gt;                   &lt;dbl&gt;
- 1 id_1          1 healthy                   127
- 2 id_1          2 healthy                   136
- 3 id_1          3 healthy                   121
- 4 id_1          4 healthy                   124
- 5 id_1          5 healthy                   128
- 6 id_1          6 healthy                   122
- 7 id_1          7 healthy                   130
- 8 id_1          8 healthy                   130
- 9 id_1          9 healthy                   123
-10 id_1         10 healthy                   130
+ 1 id_1          1 diseased                  125
+ 2 id_1          2 diseased                  129
+ 3 id_1          3 diseased                  133
+ 4 id_1          4 diseased                  121
+ 5 id_1          5 diseased                  133
+ 6 id_1          6 diseased                  121
+ 7 id_1          7 diseased                  122
+ 8 id_1          8 diseased                  124
+ 9 id_1          9 diseased                  125
+10 id_1         10 diseased                  139
 # ℹ 9,990 more rows</code></pre>
 </div>
 </div>
@@ -433,11 +450,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <pre><code># A tibble: 5 × 2
       x      y
   &lt;int&gt;  &lt;dbl&gt;
-1     1  1.09 
-2     2 -2.83 
-3     3 -0.859
-4     4 -1.24 
-5     5 -1.51 </code></pre>
+1     1 -1.13 
+2     2  0.226
+3     3  0.829
+4     4 -1.09 
+5     5 -0.243</code></pre>
 </div>
 </div>
 <p>Note that for a <code>tibble</code> object (i.e.&nbsp;a dataframe that has class <code>tbl_df</code>) to display as a tibble, the <code>tibble</code> package needs to be attached. So always add <code>library(tibble)</code> to the top of your script.</p>
@@ -485,19 +502,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>UtilsDataRSV<span class="sc">::</span><span class="fu">view_cols</span>(example_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "id"
- [1] "id_475" "id_468" "id_371" "id_488" "id_275" "id_232" "id_307" "id_117"
- [9] "id_255" "id_439" "id_120" "id_466" "id_197" "id_230" "id_324" "id_23" 
-[17] "id_21"  "id_341" "id_259" "id_409"
+ [1] "id_17"  "id_489" "id_23"  "id_458" "id_297" "id_473" "id_167" "id_164"
+ [9] "id_432" "id_196" "id_141" "id_300" "id_404" "id_260" "id_241" "id_268"
+[17] "id_206" "id_182" "id_401" "id_305"
 [1] "480 unique entries not displayed"
 [1] "_____________________"
 [1] "timepoint"
-[1]  7 18  6 12 19
+[1]  9  5 11 16  8
 [1] "_____________________"
 [1] "disease_status"
 [1] "diseased" "Healthy"  "healthy" 
 [1] "_____________________"
 [1] "blood_pressure"
-[1] 132.1791 120.0394 124.6380 138.1711       NA
+[1] 129.4636 123.5513 124.0946 133.0000       NA
 [1] "_____________________"</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
@@ -519,8 +536,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 Columns: 4
 $ id             &lt;chr&gt; "id_1", "id_1", "id_1", "id_1", "id_1", "id_1", "id_1",…
 $ timepoint      &lt;int&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, …
-$ disease_status &lt;chr&gt; "healthy", "healthy", "healthy", "healthy", "healthy", …
-$ blood_pressure &lt;dbl&gt; 127.0000, 136.0000, 121.0000, 124.0000, 128.0000, 122.0…</code></pre>
+$ disease_status &lt;chr&gt; "diseased", "diseased", "diseased", "diseased", "diseas…
+$ blood_pressure &lt;dbl&gt; 125.0000, 129.0000, 133.0000, 121.0000, 133.0000, 121.0…</code></pre>
 </div>
 </div>
 </section>
