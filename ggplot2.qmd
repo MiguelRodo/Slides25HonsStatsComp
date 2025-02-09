@@ -331,6 +331,14 @@ Body mass against flipper length.
 
 and produces this, which can be cross referenced (`@fig-penguins` produces @fig-penguins):
 
+::: {#fig-penguins}
+
+![](_tmp/penguin-plot.png)
+
+Body mass against flipper length.
+
+:::
+
 - Key elements of Quarto table cross-referencing syntax for figures:
   - Opening line:
     - Begin with `:::`
