@@ -24,6 +24,23 @@ When it comes to tables in academic writing or reports, clear and consistent for
 
 Typically, it is convenient to create the table in `R` in the relevant output format.
 
+To run the following code, attach the following packages:
+
+```{r}
+#| results: hide
+#| warning: false
+#| message: false
+pkg_vec <- c("dplyr", "palmerpenguins", "knitr")
+for (x in pkg_vec) {
+  if (!requireNamespace(x, quietly = TRUE)) {
+    install.packages(x, dependencies = TRUE)
+  }
+  # if you want to programmatically attach
+  # libraries, this is the way to to do it
+  library(x, character.only = TRUE)
+}
+```
+
 ### Computed table
 
 ```{r}
@@ -96,3 +113,8 @@ Summary statistics for penguin easurements. Values are rounded to 2 decimal plac
 
 4. Reference the table using the syntax `@<label>`, where `<label>` is the part immediately following the `#` in the opening of the `:::` block: @tbl-summary.
 
+
+Using `LaTeX`: If you are using `LaTex`, then you would run the `knitr::kable` command with `format = "latex"`.
+This will give you a LaTeX table that you can copy into your document.
+You can then use `LaTeX`-specific labelling and cross-referencing syntax to reference the table (not covered here).
+But the basic idea of using `R` to generate the table contents and overall styling, and then using your document format's specific syntax for labelling and cross-referencing, remains the same.
