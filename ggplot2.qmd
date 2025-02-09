@@ -333,7 +333,7 @@ Body mass against flipper length.
 :::
 ```
 
-and produces this, which can be cross referenced (`@fig-penguins` produces @fig-penguins):
+and produces this, which can be cross referenced (`@fig-penguins` produces @fig-penguins) (note - this for some reason does not appear correctly on the website, but locally it works):
 
 ::: {#fig-penguins}
 
