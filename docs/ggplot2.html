@@ -754,7 +754,17 @@ Use <code>ggsave()</code> to save the most recent plot to a file {#sec-day4-prac
 <span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>Body mass against flipper length.</span>
 <span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>:::</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>and produces this, which can be cross referenced (<code>@fig-penguins</code> produces <span class="quarto-unresolved-ref">?fig-penguins</span>):</p>
+<p>and produces this, which can be cross referenced (<code>@fig-penguins</code> produces <a href="#fig-penguins" class="quarto-xref">Figure&nbsp;<span>10.1</span></a>):</p>
+<div id="fig-penguins" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-penguins-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="_tmp/penguin-plot.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-penguins-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;10.1: Body mass against flipper length.
+</figcaption>
+</figure>
+</div>
 <ul>
 <li>Key elements of Quarto table cross-referencing syntax for figures:
 <ul>
@@ -778,8 +788,9 @@ Use <code>ggsave()</code> to save the most recent plot to a file {#sec-day4-prac
 </ul></li>
 </ul>
 <ol start="4" type="1">
-<li>Reference the table using the syntax <code>@&lt;label&gt;</code>, where <code>&lt;label&gt;</code> is the part immediately following the <code>#</code> in the opening of the <code>:::</code> block: <code>@fig-penguins</code> produces <span class="quarto-unresolved-ref">?fig-penguins</span>.</li>
+<li>Reference the table using the syntax <code>@&lt;label&gt;</code>, where <code>&lt;label&gt;</code> is the part immediately following the <code>#</code> in the opening of the <code>:::</code> block: <code>@fig-penguins</code> produces <a href="#fig-penguins" class="quarto-xref">Figure&nbsp;<span>10.1</span></a>.</li>
 </ol>
+<p>If you are using <code>LaTeX</code>, then you would do step 1 (save the plot) and then use <code>LaTeX</code> float creation cross-referencing syntax instead.</p>
 
 
 </section>

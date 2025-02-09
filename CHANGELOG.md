@@ -1,5 +1,7 @@
 # CHANGELOG
 
+- Patch (v1.0.54): Miguel Rodo (2025-02-09 13:01:46)
+  - Add figure
 - Patch (v1.0.53): Miguel Rodo (2025-02-09 13:00:34)
   - Add plot captioning approach
 - Patch (v1.0.52): Miguel Rodo (2025-02-09 12:44:12)
