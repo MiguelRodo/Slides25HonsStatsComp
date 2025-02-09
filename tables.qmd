@@ -2,7 +2,7 @@
 
 When it comes to tables in academic writing or reports, clear and consistent formatting is essential.
 
-### General Guidelines for Tables
+## General Guidelines
 
 - **Captions and Cross-Referencing:**
 
@@ -16,16 +16,31 @@ When it comes to tables in academic writing or reports, clear and consistent for
   - **Rounding and Significant Figures:**  
     Present numerical data with a limited, preferrably consistent number of decimal/significant places (usually 2 or 3) to enhance readability. Use a functions like or `round()` or `signif()`.
 
-### Example: Creating a Table with knitr::kable in Quarto
+## Example: Creating a Table with knitr::kable in Quarto
+
+To run the examples below, attach these packages first:
+
+```{r}
+#| echo: true
+#| results: hide
+#| message: false
+#| warning: false
+pkg_vec <- c("ggplot2", "palmerpenguins", "dplyr", "knitr")
+for (x in pkg_vec) {
+  if (!requireNamespace(x, quietly = TRUE)) {
+    install.packages(x, dependencies = TRUE)
+  }
+  # if you want to programmatically attach
+  # libraries, this is the way to to do it
+  library(x, character.only = TRUE)
+}
+```
 
 Below is a sample Quarto code chunk that produces a table from an R data frame. In this example, we create a summary table of the penguins dataset:
 
 ```{r}
 #| echo: fenced
 #| fig-cap: "tab-summary: Summary Statistics for Penguin Measurements. Values are rounded to 2 decimal places. Abbreviations: FL = Flipper Length (mm), BM = Body Mass (g)."
-library(dplyr)
-library(knitr)
-library(palmerpenguins)
 
 # Create a summary table of key statistics by species
 penguin_summary <- penguins |>
@@ -37,7 +52,12 @@ penguin_summary <- penguins |>
   )
 
 # Display the table using knitr::kable
-kable(penguin_summary, format = "html", table.attr = "style='width:50%; border-collapse: collapse;'", align = "lccc")
+kable(
+  penguin_summary,
+  format = "html",
+  table.attr = "style='width:50%; border-collapse: collapse;'",
+  align = "lccc"
+)
 ```
 
 **Explanation:**
