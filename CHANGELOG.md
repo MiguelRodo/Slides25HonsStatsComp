@@ -1,5 +1,7 @@
 # CHANGELOG
 
+- Patch (v1.0.62): Miguel Rodo (2025-02-09 13:32:02)
+  - Mention Birgit's questions
 - Patch (v1.0.61): Miguel Rodo (2025-02-09 13:28:58)
   - Add assignment
 - Patch (v1.0.60): Miguel Rodo (2025-02-09 13:18:13)

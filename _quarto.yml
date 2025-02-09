@@ -18,7 +18,7 @@ project:
   - prac-day-five.qm
   - handins.qmd
   - handin1.qmd
-  output-dir: _tmp/projr/v1.0.61/docs
+  output-dir: docs
 book:
   title: Statistical Computing
   sidebar:
