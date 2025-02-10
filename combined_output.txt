@@ -1,0 +1,2594 @@
+### day1.qmd ###
+# Day One: Projects in R {#sec-day1 .unnumbered}
+
+## What Will We Cover by the End of Day One?
+
+- Setting up R and RStudio.
+- Working with vectors, matrices, and data frames.
+- Discussing how to structure projects and organize files.
+- Installing Git, setting up a GitHub account, creating a local Git repository, and connecting it to RStudio.
+- Learning Quarto and Markdown to write reports.
+
+## What is the outcome for today?
+
+Answer the questions in Practical One, and place the answers into its own qmd file into a Quarto project on GitHub.
+
+Now, let’s get started.
+
+
+### day4.qmd ###
+# Day Four: Transforming and displaying data {#sec-day4 .unnumbered}
+
+
+
+
+### day5.qmd ###
+# Day Five: Displaying data {#sec-day5 .unnumbered}
+
+
+
+### ggplot2.qmd ###
+# `ggplot2`
+
+For an accompanying video, see `ggplot2.mp4`.
+
+## Motivation
+
+Creating attractive graphics is a crucial part of data analysis.
+Visualisations help you explore data, identify patterns, and communicate insights to others.
+
+Whilst base `R` graphics (`plot`) are useful and fast for simple plots, they have the following drawbacks:
+
+- Documentation is atrocious - it is hard to find what you need.
+- It is very fiddly to create complex plots.
+
+For this reason, we will be using `ggplot2` for our data visualisation needs.
+`ggplot2` is a powerful and flexible package that allows you to create a wide variety of plots.
+Due to its popularity, people writing the best visualisation packages for `R` are almost always writing them in `ggplot2`, so understanding `ggplot2` will make it easier to use other packages.
+
+## Introduction
+
+`ggplot2` has an underlying philosophy, the Grammar of Graphics, which is a systematic way of thinking about visualisation.
+
+The content below is a brief summary of the key points in the [R4DS introductory chatpter on `ggplot2`](https://r4ds.hadley.nz/data-visualize#creating-a-ggplot).
+
+In reading the `R4DS` content, you will come across that term and explanations around it, but in this introduction, I will just refer to the key components of `ggplot2` that you need to know to get started.
+
+To run the code below, you will need the `ggplot2` (installed by `tidyverse`), `palmerpenguins` and `ggthemes` packages:
+
+```{r}
+#| warning: false
+#| results: hide
+#| message: false
+pkg_vec <- c("ggplot2", "palmerpenguins", "ggthemes")
+for (x in pkg_vec) {
+  if (!requireNamespace(x, quietly = TRUE)) {
+    install.packages(x, dependencies = TRUE)
+  }
+  # if you want to programmatically attach
+  # libraries, this is the way to to do it
+  library(x, character.only = TRUE)
+}
+```
+
+```{r}
+#| echo: true
+ggplot(
+  data = penguins,
+  mapping = aes(x = flipper_length_mm, y = body_mass_g)
+  ) +
+  geom_point(aes(color = species, shape = species)) +
+  geom_smooth(method = "lm") +
+  labs(
+    title = "Body mass and flipper length",
+    subtitle = "Dimensions for Adelie, Chinstrap, and Gentoo Penguins",
+    x = "Flipper length (mm)",
+    y = "Body mass (g)",
+    color = "Species",
+    shape = "Species"
+  ) +
+  scale_color_colorblind()
+```
+
+- Initial `ggplot` call:
+  - Initialises the plot.
+  - Parameters:
+    - `data`:
+      - Specifies the data.
+    - `mapping`:
+      - Specifies how variables are mapped to the x and y axes.
+      - `aes(x = flipper_length_mm, y = body_mass_g)` maps `flipper_length_mm` to the x-axis and `body_mass_g` to the y-axis.
+        - Note that you cannot pass `list(x = ..., y = ...)` to `aes()` or just write `x = ..., y = ...` directly into `ggplot`. They must be inside the `aes()` function.
+    - Parameters set using the initial `ggplot` call are global to the plot, i.e. unless later geoms (`geom_point`, `geom_smooth`, etc.) override them, they will apply to all layers.
+- The `+` operator:
+  - Adds layers to the plot.
+  - Each `+` adds a new layer.
+  - Note that it must come at the *end* of the line - if you put it at the start of a line, `R` will think that this line is separate from the previous one, as the previous one will have ended.
+- `geom_point`:
+  - Adds points to the plot.
+    - `aes(color = species, shape = species)` maps the `species` variable to both color and shape.
+    - Since the initial `ggplot` call included the mapping `aes(x = flipper_length_mm, y = body_mass_g)`, the `geom_point` call does not need to repeat this mapping. It will automatically use `flipper_length_mm` for the x-axis and `body_mass_g` for the y-axis.
+- `geom_smooth`:
+  - Adds a best-fit line to the plot.
+    - `method = "lm"` specifies that the line should be a linear model.
+      - `method = "loess"` would fit a loess curve, which is what your prac2 asks for.
+  - Like `geom_point`, it does not need to specify the mapping since it inherits it from the initial `ggplot` call.
+- `labs`:  
+  - Adds labels to the plot.
+    - `title`, `subtitle`, `x`, `y` are plot and axis titles.
+    - `color`, and `shape` are legend titles.
+- `scale_color_colorblind`:
+  - Changes the color palette to a colorblind-friendly one.
+
+To get a feel for what different elements are doing, you can drop them from the plot and see what changes.
+
+## Summary
+
+Below is a concise summary of the key information on `ggplot2`:
+
+### Basic Structure
+
+- **Initiating a Plot**:  
+  Use `ggplot(data, aes(x, y))` to start a plot. This sets up the canvas by specifying the data and how variables are mapped to the x and y axes.
+  Note that without specifying any `geom`s (see below), you will not see any content:
+
+  ```{r}
+  ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g))
+  ```
+
+### Aesthetic Mappings
+
+- **Mapping Variables to Visual Properties**:  
+  Inside `aes()`, map variables to aesthetics such as:
+  
+  - **Color**: Differentiates groups (e.g., `aes(color = species)`).
+  - **Shape**: Uses different symbols for groups (e.g., `aes(shape = species)`).
+  - **Size**: Can reflect magnitude differences.
+  
+  ```{r}
+  ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g)) +
+    geom_point(aes(color = species, shape = species))
+  ```
+
+### Geometric Objects (Geoms)
+
+- **Different Plot Types**:  
+  Add layers to your plot using geoms. Common examples include:
+  
+  - **Scatterplots**: `geom_point()`
+  - **Smooth Lines**: `geom_smooth()` (e.g., for adding a best-fit line)
+  - **Bar Charts**: `geom_bar()` or `geom_col()`
+  - **Histograms and Density Plots**: `geom_histogram()`, `geom_density()`
+  
+  ```{r}
+  ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g)) +
+    geom_point(aes(color = species, shape = species)) +
+    geom_smooth(method = "lm")
+  ```
+
+### Layering and Customization
+
+- **Adding Layers**:  
+  Combine multiple geoms to add detail to your plot. Layers are added using the `+` operator.
+
+- **Custom Labels and Themes**:  
+  Enhance your plot with titles, axis labels, and legends using `labs()` and adjust appearance with theme functions.
+  
+  ```r
+  ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g)) +
+    geom_point(aes(color = species, shape = species)) +
+    geom_smooth(method = "lm") +
+    labs(
+      title = "Body mass and flipper length",
+      subtitle = "Dimensions for Adelie, Chinstrap, and Gentoo Penguins",
+      x = "Flipper length (mm)",
+      y = "Body mass (g)",
+      color = "Species",
+      shape = "Species"
+    ) +
+    scale_color_colorblind()
+  ```
+
+### Faceting
+
+- **Splitting Data into Panels**:  
+  Use faceting (with `facet_wrap()` or `facet_grid()`) to create subplots based on a categorical variable, making it easier to compare groups.
+  
+  ```{r}
+  ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g)) +
+    geom_point(aes(color = species, shape = species)) +
+    facet_wrap(~ island)
+  ```
+
+### Saving Your Plots
+
+- **Exporting Graphics**:  
+  Use `ggsave()` to save the most recent plot to a file  {#sec-day4-prac}(e.g., PNG, PDF).
+  
+  ```r
+  ggsave("penguin-plot.png")
+  ```
+
+## Combining Plots with cowplot::plot_grid
+
+When you want to display multiple plots side by side (or in a grid), the **cowplot** package provides the convenient function `plot_grid()`.
+This function not only aligns axes but also lets you add labels (e.g., “A”, “B”, …) so that each subplot is clearly identified.
+This is especially useful in academic work where figures need to be self-contained and cross-referenced.
+
+Here’s an example of combining two ggplot figures:
+
+```{r}
+#| warning: false
+#| results: hide
+#| message: false
+# Install and load cowplot if not already installed
+if (!requireNamespace("cowplot", quietly = TRUE)) {
+  install.packages("cowplot")
+}
+library(cowplot)
+
+# Create two example plots
+library(ggplot2)
+library(palmerpenguins)
+library(ggthemes)
+
+p1 <- ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g)) +
+  geom_point(aes(color = species, shape = species)) +
+  geom_smooth(method = "lm") +
+  labs(title = "Scatterplot: Flipper Length vs Body Mass") +
+  scale_color_colorblind() +
+  theme_cowplot()  # using cowplot theme for consistent font sizes
+
+p2 <- ggplot(penguins, aes(x = bill_length_mm, y = bill_depth_mm)) +
+  geom_point(aes(color = species)) +
+  geom_smooth(method = "loess") +
+  labs(title = "Scatterplot: Bill Length vs Bill Depth") +
+  scale_color_colorblind() +
+  theme_cowplot()
+
+# Combine the two plots into one figure with labels
+combined_plot <- plot_grid(
+  p1, p2,
+  labels = c("A", "B"),    # Add subplot labels
+  label_size = 16,         # Adjust label size if needed
+  align = "hv",            # Align both horizontally and vertically
+  ncol = 1
+)                # Arrange side by side
+```
+
+```{r}
+#| warning: false
+# Print the combined plot
+combined_plot
+```
+
+As always, there are other packages that can achieve this (e.g. `patchwork`), but I'm familiar with `cowplot`.
+
+## Adequate Text Size
+
+When creating plots, ensure that the text is large enough to be easily read.
+An appropriate minimum text size varies by forat (e.g. 2m x 1m poster vs a presentation), so look online for specifics (e.g. no less than 14pt for a poster, or whatever it is).
+
+Typically, the `ggplot2` default theme's text size is too small.
+I therefore always use the `cowplot::theme_cowplot()` theme, as it a) has a larger default text size, and b) allows global changes to text size using its `font_size` parameter (e.g. across plot title, plot axis).
+
+Here is an example:
+
+```{r}
+#| warning: false
+p1 +
+  # 14 is actually the default, just for demonstration
+  theme_cowplot(font_size = 14) 
+```
+
+The theme is fairly minimal, so you can add gridlines, etc. if you want:
+
+```{r}
+#| warning: false
+p1 + 
+  theme_cowplot() +
+  # can also have `minor = "xy"` for minor gridlines
+  # (i.e. thinner gridlines between the thicker ones).
+  # can also just specify "x" or "y" for just one axis
+  background_grid(major = "xy") 
+```
+
+A final, important point regarding the theme: by default, the background is transparent, so if you save a plot to file as a PNG, the background will be transparent.
+To understand, create `p1`, save it as a PNG and open it:
+
+```{r}
+#| warning: false
+dir.create("_tmp", showWarnings = FALSE)
+ggsave("_tmp/p-no_bg.png", plot = p1)
+```
+
+So, an unfortunately complication is that if you wish to save PNG images, then you need to usually make the background white:
+
+```{r}
+#| warning: false
+p1 <- p1 +
+  theme_cowplot() +
+  theme(
+    plot.background = element_rect(fill = "white"),
+    panel.background = element_rect(fill = "white")
+    )
+dir.create("_tmp", showWarnings = FALSE)
+ggsave("_tmp/p-bg.png", plot = p1)
+```
+
+## General Guidelines for Plots
+
+There are many guidelines for plots, but these are the main focuses: 
+
+- **Plot is readable**: text large enough, colours and shapes distinguishable.
+- **Plot is captioned and cross-referenced**: plot caption goes below the plot, and the plot is cross-referenced in the text. It should be cross referenced *before* it appears.
+- **Plot is self-contained:** the plot should be understandable without needing to refer to the main text. Achieve this by:
+  - Including a caption with:
+    - An informative title
+    - Additional sentences to describe any important details
+    - Closing definitions of abbreviations or symbols used in the plot.
+  - Labelling axes and legends clearly
+- **Neatly formatted text**:
+  - Headings should have a consistent sentence/title case
+  - All text should be free of punctuation and programming syntax/formatting (e.g. `Participant_ID`).
+
+## Captions and cross-referencing
+
+To include a figure that is cross-referenceable, I usually save the image first to file and then use Quarto (or `LaTeX` syntax) to include it with a caption, label and cross-reference.
+Even if I don't want a cross-referencable figure, I usually do this, as I find that the figure dimensions and proportions are more easily controlled this way (than just outputting the figure directly from a code chunk).
+
+This approach is analogous to that to creating cross-referenceable tables in the `Tables` doc.
+
+Here are the steps:
+
+1. Save the plot to file. For example:
+
+```{r}
+#| warning: false
+#| results: hide
+#| message: false
+dir.create("_tmp", showWarnings = FALSE)
+ggsave("_tmp/penguin-plot.png", plot = p1)
+```
+
+2. If you are working within Quarto, then you can use the Quarto cross-referencing syntax (details [here](https://quarto.org/docs/authoring/cross-references.html)), which looks like this:
+
+```markdown
+::: {#fig-penguins}
+
+![](_tmp/penguin-plot.png)
+
+Body mass against flipper length.
+
+:::
+```
+
+and produces this, which can be cross referenced (`@fig-penguins` produces @fig-penguins) (note - this for some reason does not appear correctly on the website, but locally it works):
+
+::: {#fig-penguins}
+
+![](_tmp/penguin-plot.png)
+
+Body mass against flipper length.
+
+:::
+
+- Key elements of Quarto table cross-referencing syntax for figures:
+  - Opening line:
+    - Begin with `:::`
+    - Open curly braces
+    - Write label:
+      - Demarcate it with `#`
+      - No spaces between `#` and label
+      - Label begins with `fig-`.
+      - Write remainder of label
+      - Close curly braces
+  - Write `![](path/to/img)` to include the image
+  - Write caption
+  - Close with `:::`
+  - To cross-reference, write `@<label>` where `<label>` is the part immediately following the `#` in the opening of the `:::` block and *includes* the `fig-` prefix.
+
+4. Reference the table using the syntax `@<label>`, where `<label>` is the part immediately following the `#` in the opening of the `:::` block: `@fig-penguins` produces @fig-penguins.
+
+If you are using `LaTeX`, then you would do step 1 (save the plot) and then use `LaTeX` float creation cross-referencing syntax instead.
+
+
+### git.qmd ###
+# Git and GitHub {#sec-day1-git}
+
+## Prerequites
+
+1. Create a GitHub account: [GitHub](https://www.github.com).
+2. Install Git: [Git](https://git-scm.com/downloads).
+
+## Setting Up Git and GitHub
+
+There are two main approaches for setting up a new R project that you want on GitHub:
+
+- Approach 1: Create project using Git, then download it to your machine
+- Approach 2: Begin with pre-existing `RStudio` project, and then connect to GitHub
+
+The first approach tends to be easier (and is new to these notes).
+ 
+### Approach 1: Create project using Git, then download it to your machine
+
+Within here, there are two approaches.
+One of them uses GitHub Desktop, a standalone program, and the other uses `github.com` itself, the website.
+
+We suggest using GitHub Desktop, as it will make managing your Git repositories easier after setup.
+
+#### Use GitHub Desktop
+
+GitHub Desktop is a standalone program for working with Git and GitHub.
+It is very beginner-friendly.
+
+Here is a video describing how to use it: https://www.youtube.com/watch?v=8Dd7KRpKeaE
+
+I have not watched it myself, but apparently it makes it very easy.
+Note that it contains more information than you need, so you can stop when you are set up.
+
+#### Use GitHub
+
+You can also create a new repo directly on GitHub, and then clone it (Git-speak for download it).
+Here are the instructions: [New project, GitHub first](https://happygitwithr.com/new-github-first).
+
+### Approach 2: Begin with `RStudio` project on your machine, and then connect it to GitHub
+
+See the video `git.mp4` for this process illustrated.
+
+In `RStudio`, open your project. 
+
+Then, run the following code.
+
+#### Install `usethis`
+
+Firstly, ensure `usethis` is installed:
+
+```r
+if (!requireNamespace("usethis", quietly = TRUE)) {
+  install.packages("usethis")
+}
+```
+
+#### Introduce yourself to Git
+
+Then, if you have not set Git up before, you'll need to run the following.
+Note that by "not set up Git", I do not mean whether you've installed Git, but rather
+whether you've given Git basic authorship information.
+If you're not sure, you can run the following:
+
+```r
+gert::git_config_global()
+```
+
+I am not exactly sure what it looks like if you've not set up Git authorship information,
+but the key thing is that it will not have a row where the first column is `user.name` and the second column is your name, and a row where the first column is `user.email` and the second column is your email address.
+
+If you can see you've not set `user.name` and `user.email`, then run the following, 
+swopping `NULL` with your name and email address:
+
+```r
+# set your username and your email address
+username <- NULL  # replace NULL with e.g. "Miguel Rodo" (be sure to include the quotes)
+email <- NULL # replace NULL with e.g. "miguel.rodo@uct.ac.za"
+stopifnot(!is.null(username)) # just checking you set this
+stopifnot(!is.null(email))
+gert::git_config_global_set("user.name",  username)
+gert::git_config_global_set("user.email", email)
+```
+
+#### Initialise Git for the project
+
+Finally, you are ready to initialise `git` for that project:
+
+```r
+usethis::use_git()
+```
+
+When it asks you whether you want to commit the extra files, say yes.
+Be aware that you don't type "Absolutely" or "Definitely" or whatever corresponds to "yes", you just type the number that corresponds to `yes`.
+
+After running the above, to get the `Git` pane to appear in the top right corner (alongside `Environment` and `History`), you need to close and re-open `RStudio`.
+
+You will not need to install `usethis` and set `Git` authorship information for each project, but you will need to initialise `Git` for each project.
+
+#### Connect Git to GitHub
+
+Run the following code:
+
+```r
+usethis::create_github_token()
+```
+
+Name the token, set the expiry date and click on `Create`.
+Then copy the token (it looks like `ghp_akerjlwk4j5qlk45j`).
+
+Then, run the following code:
+
+```r
+gitcreds::gitcreds_set()
+```
+
+and paste your token.
+
+## Further resources
+
+- Happy Git with R:
+  - Set up guidance:
+    - [Why Git? Why GitHub?](https://happygitwithr.com/big-picture)
+    - [Register a GitHub account](https://happygitwithr.com/github-acct)
+    - [Install Git](https://happygitwithr.com/install-git)
+    - [Introduce Yourself to Git](https://happygitwithr.com/hello-git)
+    - [Personal Access tokens for HTTPS](https://happygitwithr.com/https-pat)
+  - Description of how Git works and how to use it:
+    - [Some Git Basics](https://happygitwithr.com/git-intro), and then the next few sections
+
+
+### handin1.qmd ###
+# First peer-reviewed hand-in
+
+This is your first peer-reviewed assignment for the course.
+
+## Couse mark contribution
+
+This hand-in counts 2.5% towards your final mark for the course.
+
+## Due date
+
+Next week Tuesday (11 February), MIDNIGHT.
+
+## Required practicals
+
+It consists of three practical exercises:
+
+1. **Prac 1:** (available [here](https://miguelrodo.github.io/Slides25HonsStatsComp/prac1.html))  
+2. **Prac 2:** (uploaded to Amathuba under the `Day Two / Three` section)  
+3. **Practical Day Four:** (available [here](https://miguelrodo.github.io/Slides25HonsStatsComp/prac-day-four.html))
+
+## Submission instructions
+
+1. **Render Your Quarter Site:**  
+   Ensure your site is correctly generated in the `_site` (or `_book`) folder.
+
+2. **Zip the Rendered Site:**  
+   Compress the rendered site into one zip file.
+
+3. **Upload:**  
+   Submit the zip file via the assignment page on Amathuba.
+
+4. **Include GitHub URL:**  
+   In your submission, clearly state the URL to your GitHub repository (i.e, `github.com/yourusername/yourrepo`, e.g. `github.com/MiguelRodo/Slides25HonsStatsComp`) where your assignment code can be viewed.
+
+## Recommended Format for QMD Files  
+
+Make your submission easy to review by:  
+
+- **Using clear headings** (`#`, `##`, `###`, etc.) for structure.  
+- **Echoing key code chunks** (`#| echo: true`) so code is visible in the rendered document.  
+
+This helps your peers navigate and assess your work quickly.
+
+## Rubric (/100)
+
+The rubric below is not necessarily final and may be adjusted, but this is the basic structure:
+
+### 1. Rendered Quarter Site (/20)
+
+- **Full (0.5%):** The rendered document is a Quarto project (i.e. a `_site`/`_book` folder).
+- **Partial (0.25%):** The practicals have been rendered using some literate programming approach (individual Quarto files, RMarkdown files or a `bookdown` project), but not a `Quarto` project.
+- **None (0%):** The site fails to render.
+
+### 2. GitHub Repository URL (/20)
+
+- **Full (0.5%):** A correct and accessible GitHub URL is provided that seems to have all the code.
+- **Partial (0.25%):** A correct and accessible GitHub URL is provided but it seems to be incomplete.
+- **None (0%):** No GitHub URL is provided or it is completely incorrect.
+
+### 3. Prac day 1, prac 2 and prac day 5 (/20 each)
+
+For each practical:
+
+- **Full (0.5%):** Practical is completed correctly with all required components.
+- **Partial (0.25%):** Some components are completed, but noticeable issues or omissions exist.
+- **None (0%):** Practical is not attempted or is entirely incorrect.
+
+## FAQs
+
+- How many Git/GitHub repos does this involve?
+  - One. Your project should contain something like the following files and folders, which is what you should see locally and on GitHub:
+
+```plaintext
+_site/
+prac-day-1.qmd
+prac2.qmd
+prac-day-four.qmd
+_quarto.yml
+```
+
+- Should each question in each prac be answered in a separate qmd?
+  - No, as per above, each prac should be in one qmd file exactly. So all questions from each practical should be answered in just one file.
+
+- I cannot get Quarto projects to work. Can I just submit them as separate rendered HTML files?
+  - You can, but you'll get part marks for that part of the rubric.
+
+## Marking Guidelines
+
+- We do not expect you to mark each question individually in the practicals. Instead, try assess more quickly whether it appears correct or not. 
+
+## Marking queries
+
+- Firstly, please remember this only 2.5%!
+- Secondly, bring them to us, and we will have a look at them.
+
+### handin2.qmd ###
+
+
+### handins.qmd ###
+# Peer-reviewed assessments {#sec-handins .unnumbered}
+
+### index.qmd ###
+# Welcome {-}
+
+We have a lot to cover in this bootcamp-style course. By the end, you should be able to **write acceptable assignments faster**. One of the biggest time sinks in Honours statistics is the process of writing up your analyses, which is often slowed down by two major issues:
+
+1. Poor structure in R files and projects.
+2. Slowness in reading and writing R code.
+
+Our goal is to address both of these challenges. This course focuses on statistical computing, so many tasks will be statistical in nature.
+
+## What About Assignments?
+
+I won't detail all the assignments, but before term "starts", you will have:
+
+- **Peer-reviewed assessment:**
+  - Date: towards the end of next week
+  - Format:
+    - Collate selected practical work from the first two weeks into a Quarto project, with the code available on GitHub (Quarto and GitHub to be explained later).
+    - You will each anonymously mark one other person's work.
+    - We will provide a marking rubric.
+
+- **First practical test:**  
+  - Date: 13 February, 9–11 AM.
+  - Format:
+    - In-class test, I believe open-book but no internet.
+    - Will center on writing `R` code and interpreting results. 
+
+
+
+### prac1.qmd ###
+# Practical One {#sec-day1-prac1}
+
+**NOTE**: the answers to the questions below should be placed into their own qmd file in a Quarto project on GitHub.
+This Quarto project (the rendered document itself, as well as the source code on GitHub) will be peer-assessed next week.
+
+1. Find all rows in “airquality” that have missing values. Note that the `airquality` dataset in `R` is always available (just type `airquality` in the console to see it).
+2. Find mean, sd, min, max for each of temperature and ozone
+level.
+3. For linear regression, parameter estimates can be found as
+follows.
+$\hat{\beta} = (X^TX)^{-1}X^TY$
+Here, Y is the response variable, and X is the design matrix.
+The cars data (an R data set, also always available in `R`) contains two variables: speed and
+distance to stop. Fit a simple linear regression model to these data,
+i.e. find the $\beta$ estimates, using the equation above, and matrix
+calcuations in R.
+4. Check that you get the same $\beta$ estimates as when fitting the
+linear regression model using lm() in R.
+
+
+### prac-day-five.qmd ###
+# Practical Day Five {#sec-day5-prac}
+
+Excellent practice is all of the questions in the [R4DS Data Visualisation introduction](https://r4ds.had.co.nz/data-visualisation.html#data-visualisation), so I suggest you do them (probably skipping the non-coding questions, so as to get through the content faster).
+
+In addition, most (if not all) of Birgit's uploaded questions involve plots, so you can use those as practice too.
+They also have the advantage that they will involve learning relevant statistical and mathematical functions.
+
+However, for this practical, here are the questions you will need to answer:
+
+## Question One
+
+1. Simulate 100 random numbers from a normal distribution with mean 3 and standard deviation 1. Use `ggplot2` to plot the empirical density of these, and format the plot according to best practice (e.g. with axis titles, caption, etc.).
+2. Make a reference to the plot in the text (e.g. using `@fig-dens-plot`).
+3. Overlay the true density of the normal distribution on the plot (hint: use `geom_line`).
+
+## Question Two
+
+Calculate a two-way frequency table of species of penguins and island location (from the `palmerpenguins` package's dataset), and display it according to best practices (e.g. table caption, appropriate lines, etc.).
+
+## Question Three
+
+Plot the distribution of the flipper length of penguins, separated by species. Create three plots:
+
+1. All species in the same plot, using the `geom_boxplot` function.
+2. All species in the same plot, and use the `geom_density` function (hint: use the `alpha` parameter to make overlapping densities more visible).
+3. Each species in a separate facet.
+
+These plots need not include captions or be referenced in the text, but should follow other best practices.
+
+### prac-day-four.qmd ###
+# Practical Day Four {#sec-day4-prac}
+
+**Note**: this *was* `Practical Day Five`, but I realised I got my days wrong.
+
+## Introduction
+
+Data analysis is not only about reshaping tables or filtering rows; it’s about drawing insight through rigorous statistics. In this tutorial, we’ll use the tidyverse to load and transform data, then compute interesting statistics such as means, variances, correlations, and even fit a simple regression model. We’ll work with the [nycflights13](https://cran.r-project.org/web/packages/nycflights13/index.html) dataset (which contains information on over 300,000 flights from New York City in 2013) and touch on a case study using baseball batting averages from the Lahman package.
+
+To set up, run the code below:
+
+```{r}
+#| warning: false
+#| results: hide
+#| message: false
+# Install tidyverse if not already installed
+if (!requireNamespace("tidyverse", quietly = TRUE)) {
+  install.packages("tidyverse")
+}
+library(tidyverse)
+
+# Install and load nycflights13 for flight data
+if (!requireNamespace("nycflights13", quietly = TRUE)) {
+  install.packages("nycflights13")
+}
+library(nycflights13)
+```
+
+## Questions
+
+Use `tidyr` and `dplyr` wherever appropriate below.
+In other words, do not use base R functions unless necessary or otherwise instructed.
+
+Using the `flights` dataset:
+
+1. Display the `flights` dataset in an alternative format to simply printing it (i.e. running `flights`).
+2. Rewrite this code using `dplyr` and the pipe:
+
+```r
+flight1 <- flights[flights$month == 1, ]
+carrier_vec <- unique(flight1$carrier)
+carrier_dist_vec_mean <- numeric(length(carrier_vec))
+carrier_dist_vec_sd <- numeric(length(carrier_vec))
+for (i in seq_along(carrier_vec)) {
+  carrier_dist_vec_mean[i] <- mean(
+    flight1$distance[flight1$carrier == carrier_vec[i]]
+   )
+  carrier_dist_vec_sd[i] <- sd(
+    flight1$distance[flight1$carrier == carrier_vec[i]]
+  )
+}
+dist_tbl <- tibble(
+  carrier = carrier_vec,
+  mean_distance = carrier_dist_vec_mean,
+  sd_distance = carrier_dist_vec_sd
+)
+dist_tbl[order(dist_tbl$mean_distance), ]
+```
+
+```{r}
+#| include: false
+flights |>
+  filter(month == 1) |>
+  group_by(carrier) |>
+  summarise(
+    mean_distance = mean(distance),
+    sd_distance = sd(distance)
+  ) |>
+  arrange(mean_distance)
+```
+
+3. Explain why the standard deviation is `NA` for one carrier, and why it is `0` for others. Demonstrate your answer using code.
+
+<!--
+- NA: only one flight
+- 0: all flights have the same distance
+!-->
+
+4. Using `tidyr` and `dplyr` where appropriate, construct a dataframe where the carriers are along the columns, and the rows are the average departure delay (`dep_delay`) flown by each carrier (`carrier`) in each month.
+
+```{r}
+#| include: false
+flights |>
+  group_by(carrier, month) |>
+  summarise(
+    mean_dep_delay = mean(dep_delay)
+  ) |>
+  pivot_wider(names_from = carrier, values_from = mean_dep_delay)
+```
+
+5. Calculate the proportion of flights that were delayed (`dep_delay` greater than 0) but arrived on or before time (`arr_delay` less than or equal to 0).
+
+```{r}
+#| include: false
+flights |>
+  dplyr::mutate(
+    n_flight = n(),
+  ) |>
+  dplyr::filter(
+    dep_delay > 0 & arr_delay <= 0
+  ) |>
+  dplyr::summarise(
+    prop_delayed = n() / n_flight[1]
+  )
+```
+
+6. Using the `airlines` and `flights` datasets, do the following, showing the output from each step:
+
+- Identify routes that more than one airline flies
+- For each such route, calculate the average arrival delay for each airline (exclude NAs). Find the names of these airlines.
+- For each such route, identify the airline with the worst and best average arrival delay.
+- Identify the route with the greatest difference between the best and worst performing airlines
+- Determine the reason for this difference
+
+```{r}
+#| include: false
+routes_tbl_mult <- flights |>
+  group_by(origin, dest) |>
+  summarise(
+    n_carrier = n_distinct(carrier),
+    .groups = "drop"
+  ) |>
+  filter(n_carrier > 1)
+routes_tbl_mult
+avg_delay_tbl <- flights |>
+  semi_join(routes_tbl_mult, by = c("origin", "dest")) |>
+  group_by(origin, dest, carrier) |>
+  summarise(
+    mean_arr_delay = mean(arr_delay, na.rm = TRUE),
+    .groups = "drop"
+  ) |>
+  left_join(
+    airlines, by = c("carrier" = "carrier")
+  )
+avg_delay_tbl
+diff_delay_tbl <- avg_delay_tbl |>
+  dplyr::group_by(origin, dest) |>
+  dplyr::arrange(origin, dest, mean_arr_delay) |>
+  dplyr::slice(c(1, n())) |>
+  dplyr::summarise(
+    diff = diff(mean_arr_delay),
+    slowest_carrier = carrier[2],
+    fastest_carrier = carrier[1],
+    .groups = "drop"
+  )
+diff_delay_tbl
+max_diff_delay_tbl <- diff_delay_tbl |>
+  arrange(desc(diff)) |>
+  slice(1)
+max_diff_delay_tbl
+
+carrier_slow <- max_diff_delay_tbl$slowest_carrier
+carrier_fast <- max_diff_delay_tbl$fastest_carrier
+origin <- max_diff_delay_tbl$origin
+dest <- max_diff_delay_tbl$dest
+
+flights_route <- flights |>
+  semi_join(routes_tbl_mult, by = c("origin", "dest"))
+flights_route
+# EV only took one such flight
+flights_route |>
+  filter(carrier %in% c(carrier_slow, carrier_fast)) |>
+  dplyr::filter(
+    origin == .env$origin[1] &
+      dest == .env$dest[1]
+  ) |>
+  dplyr::group_by(carrier) |>
+  dplyr::summarise(count = dplyr::n())
+
+# so, EV's only flight was
+# delayed by two hours and arrived 
+# about that long after the scheduled time
+flights |>
+  dplyr::filter(
+    origin == .env$origin[1] &
+      dest == .env$dest[1] &
+      carrier %in% c(carrier_slow, carrier_fast)
+  ) |>
+  dplyr::arrange(desc(carrier))
+  
+route_info <- flights |>
+  dplyr::mutate(
+    speed = distance / (hour + minute / 60),
+  ) |>
+  group_by(origin, dest) |>
+  summarise(
+    distance = mean(distance, na.rm = TRUE),
+    time = mean(hour * 60 + minute, na.rm = TRUE),
+    speed = mean(speed, na.rm = TRUE),
+    dep_delay = mean(dep_delay, na.rm = TRUE),
+    arr_delay = mean(arr_delay, na.rm = TRUE),
+    .groups = "drop"
+  )
+route_info
+n_route <- nrow(route_info)
+n_route
+route_info_diff <- route_info |>
+  inner_join(max_diff_delay_tbl, by = c("origin", "dest"))
+route_info_diff
+
+route_info_diff |>
+  dplyr::mutate(
+    distance = ecdf(route_info$distance)(distance),
+    time = ecdf(route_info$time)(time),
+    speed = ecdf(route_info$speed)(speed),
+    dep_delay = ecdf(route_info$dep_delay)(dep_delay),
+    arr_delay = ecdf(route_info$arr_delay)(arr_delay)
+  )
+
+
+```
+
+7. Identify all columns with missing entries, typos and any other inconsistencies in the dataset below (load it just by running the code, which creates the `health_df` object; created using `dput` command, FYI):
+
+```{r}
+#| include: false
+set.seed(123)  # for reproducibility
+
+# Create the dataset with 50 rows and 15 columns
+my_df <- tibble(
+  id             = paste0("id_", 1:50),
+  age            = sample(20:80, 50, replace = TRUE),
+  gender         = sample(c("male", "female"), 50, replace = TRUE),
+  height         = round(runif(50, 150, 200), 1),            # in cm
+  weight         = round(runif(50, 50, 100), 1),              # in kg
+  blood_type     = sample(c("A", "B", "AB", "O"), 50, replace = TRUE),
+  disease_status = sample(c("healthy", "diseased"), 50, replace = TRUE),
+  cholesterol    = round(runif(50, 150, 250)),                # mg/dL
+  glucose        = round(runif(50, 70, 120)),                 # mg/dL
+  smoker         = sample(c("yes", "no"), 50, replace = TRUE),
+  exercise       = sample(c("regular", "occasional", "none"), 50, replace = TRUE),
+  income         = sample(20000:100000, 50, replace = TRUE),    # annual income in USD
+  education      = sample(c("highschool", "bachelor", "master", "PhD"), 50, replace = TRUE),
+  region         = sample(c("North", "South", "East", "West"), 50, replace = TRUE),
+  marital_status = sample(c("single", "married", "divorced", "widowed"), 50, replace = TRUE)
+)
+
+# Introduce some missing entries:
+my_df$height[c(5, 20)] <- NA       # missing height in row 5 and 20
+my_df$glucose[c(8, 15, 40)] <- NA   # missing glucose values
+
+# Introduce typos for demonstration:
+my_df$disease_status[10] <- "Healthy"  # typo: capital H
+my_df$gender[25] <- "femal"              # typo: missing 'e' at the end
+```
+
+```r
+health_df <- structure(list(id = c("id_1", "id_2", "id_3", "id_4", "id_5", 
+"id_6", "id_7", "id_8", "id_9", "id_10", "id_11", "id_12", "id_13", 
+"id_14", "id_15", "id_16", "id_17", "id_18", "id_19", "id_20", 
+"id_21", "id_22", "id_23", "id_24", "id_25", "id_26", "id_27", 
+"id_28", "id_29", "id_30", "id_31", "id_32", "id_33", "id_34", 
+"id_35", "id_36", "id_37", "id_38", "id_39", "id_40", "id_41", 
+"id_42", "id_43", "id_44", "id_45", "id_46", "id_47", "id_48", 
+"id_49", "id_50"), age = c(50L, 34L, 70L, 33L, 22L, 61L, 69L, 
+73L, 62L, 56L, 71L, 33L, 73L, 44L, 45L, 46L, 24L, 70L, 46L, 76L, 
+47L, 76L, 28L, 48L, 54L, 27L, 45L, 26L, 61L, 28L, 38L, 55L, 33L, 
+36L, 62L, 58L, 72L, 31L, 34L, 51L, 61L, 64L, 26L, 28L, 60L, 29L, 
+42L, 46L, 79L, 72L), gender = c("male", "male", "male", "female", 
+"female", "male", "female", "male", "male", "female", "female", 
+"male", "male", "female", "male", "male", "male", "male", "female", 
+"male", "male", "male", "male", "female", "femal", "male", "female", 
+"female", "female", "female", "male", "female", "female", "female", 
+"male", "male", "female", "male", "female", "female", "male", 
+"female", "female", "male", "male", "female", "male", "male", 
+"male", "female"), height = c(174.4, 197.7, 174.1, 194.5, NA, 
+180.4, 170.5, 157.4, 196.8, 165.1, 153, 197.4, 186, 157.1, 177.5, 
+197.7, 179.3, 170.2, 182.4, NA, 165.4, 161, 168.5, 199.2, 157.7, 
+154.6, 157.1, 184.5, 181, 194.6, 183.6, 186.9, 176.1, 183, 191.1, 
+189.3, 199, 172, 165.6, 170.5, 150.5, 159.2, 192.1, 161.6, 162, 
+153.8, 162.3, 186.6, 192.4, 174.9), weight = c(69.4, 62.3, 55.6, 
+69.5, 78.6, 60.8, 72.2, 60.9, 75.1, 67.7, 82.5, 68.7, 67.8, 76.7, 
+87, 61.1, 70.6, 63.3, 81.5, 59.2, 93.2, 87.3, 83.4, 80.9, 68.6, 
+76.5, 93.7, 79.1, 92, 65.6, 85.4, 63.3, 79.7, 74.1, 63.3, 78.2, 
+95.7, 95.1, 63.7, 66.1, 99.3, 81, 96.9, 73.3, 70.3, 83, 57.6, 
+78.6, 61.9, 98.1), blood_type = c("O", "A", "O", "O", "B", "AB", 
+"O", "O", "O", "AB", "A", "O", "O", "O", "B", "A", "B", "AB", 
+"O", "AB", "A", "AB", "O", "B", "A", "A", "B", "AB", "A", "B", 
+"B", "A", "O", "O", "O", "B", "O", "A", "A", "B", "A", "O", "AB", 
+"A", "A", "O", "O", "B", "A", "O"), disease_status = c("diseased", 
+"healthy", "healthy", "healthy", "healthy", "healthy", "diseased", 
+"healthy", "diseased", "Healthy", "diseased", "healthy", "diseased", 
+"healthy", "diseased", "healthy", "healthy", "healthy", "healthy", 
+"healthy", "healthy", "diseased", "healthy", "diseased", "healthy", 
+"healthy", "healthy", "healthy", "diseased", "diseased", "healthy", 
+"healthy", "healthy", "diseased", "diseased", "diseased", "healthy", 
+"diseased", "healthy", "healthy", "healthy", "healthy", "healthy", 
+"diseased", "diseased", "diseased", "healthy", "healthy", "diseased", 
+"diseased"), cholesterol = c(228, 223, 213, 198, 166, 151, 195, 
+199, 189, 196, 221, 156, 185, 230, 234, 174, 185, 236, 235, 180, 
+165, 220, 160, 153, 250, 153, 184, 242, 212, 179, 224, 233, 181, 
+199, 220, 214, 214, 248, 191, 162, 203, 173, 199, 187, 248, 189, 
+173, 212, 164, 247), glucose = c(96, 78, 101, 119, 103, 91, 86, 
+NA, 77, 80, 115, 85, 88, 109, NA, 71, 90, 94, 91, 87, 113, 93, 
+97, 118, 109, 80, 85, 119, 99, 108, 89, 108, 97, 116, 79, 84, 
+75, 81, 119, NA, 106, 109, 75, 82, 84, 75, 76, 120, 119, 77), 
+    smoker = c("yes", "yes", "yes", "yes", "no", "yes", "no", 
+    "yes", "no", "no", "no", "no", "no", "yes", "no", "yes", 
+    "yes", "yes", "yes", "yes", "yes", "yes", "yes", "yes", "no", 
+    "no", "yes", "yes", "yes", "no", "no", "yes", "no", "yes", 
+    "no", "yes", "no", "yes", "yes", "yes", "no", "no", "yes", 
+    "no", "no", "no", "no", "no", "no", "yes"), exercise = c("occasional", 
+    "regular", "occasional", "regular", "none", "occasional", 
+    "regular", "none", "occasional", "none", "occasional", "none", 
+    "none", "regular", "occasional", "none", "regular", "regular", 
+    "none", "occasional", "none", "occasional", "occasional", 
+    "occasional", "regular", "occasional", "regular", "regular", 
+    "regular", "occasional", "occasional", "none", "none", "regular", 
+    "occasional", "occasional", "none", "none", "none", "none", 
+    "occasional", "regular", "regular", "none", "regular", "occasional", 
+    "occasional", "none", "occasional", "regular"), income = c(84820L, 
+    81547L, 22588L, 72490L, 74533L, 25338L, 41469L, 57315L, 63629L, 
+    88662L, 62615L, 56261L, 58499L, 82232L, 77584L, 77275L, 38468L, 
+    54510L, 91326L, 78611L, 31402L, 29586L, 21441L, 58269L, 84173L, 
+    88295L, 37940L, 43750L, 69750L, 92356L, 82518L, 91455L, 68866L, 
+    51178L, 68275L, 27689L, 35418L, 81318L, 62405L, 86851L, 25654L, 
+    47553L, 74474L, 51409L, 22607L, 55360L, 96351L, 21516L, 41927L, 
+    55810L), education = c("master", "bachelor", "PhD", "master", 
+    "bachelor", "highschool", "PhD", "highschool", "PhD", "PhD", 
+    "bachelor", "highschool", "master", "bachelor", "PhD", "PhD", 
+    "PhD", "bachelor", "master", "highschool", "PhD", "highschool", 
+    "bachelor", "master", "highschool", "highschool", "master", 
+    "master", "bachelor", "PhD", "highschool", "PhD", "master", 
+    "master", "master", "PhD", "highschool", "master", "master", 
+    "highschool", "bachelor", "highschool", "bachelor", "PhD", 
+    "bachelor", "highschool", "master", "highschool", "bachelor", 
+    "bachelor"), region = c("North", "South", "North", "West", 
+    "North", "West", "South", "South", "West", "South", "West", 
+    "South", "West", "East", "North", "West", "North", "North", 
+    "West", "North", "East", "West", "South", "North", "North", 
+    "East", "East", "North", "North", "West", "South", "West", 
+    "West", "East", "West", "North", "West", "North", "East", 
+    "North", "West", "South", "South", "East", "North", "West", 
+    "West", "East", "North", "East"), marital_status = c("divorced", 
+    "single", "divorced", "divorced", "divorced", "divorced", 
+    "divorced", "married", "divorced", "married", "divorced", 
+    "widowed", "married", "single", "widowed", "widowed", "single", 
+    "divorced", "widowed", "widowed", "single", "married", "single", 
+    "married", "widowed", "married", "single", "single", "widowed", 
+    "married", "widowed", "divorced", "single", "married", "single", 
+    "widowed", "widowed", "married", "widowed", "divorced", "married", 
+    "married", "divorced", "single", "married", "widowed", "divorced", 
+    "divorced", "single", "divorced")), row.names = c(NA, -50L
+), class = c("tbl_df", "tbl", "data.frame"))
+```
+
+
+
+### projects.qmd ###
+# Tackling Projects in RStudio {#sec-day1-projects}
+
+Refer to the video `projects.mp4` for an overview of working on projects. Here are some principles for keeping your work organized and reproducible.
+
+## Using RStudio Projects
+
+- Click on **New Project** in the top-right corner of RStudio to create an RStudio Project.
+- This creates a directory containing all the code, data, and outputs for your analysis.
+- When you open a project, the working directory is automatically set to that project folder.
+
+**Benefits:**
+
+- **Consistent relative paths:** Avoids issues with absolute paths that vary across devices.
+- **Easier collaboration:** Consistent paths make sharing scripts seamless.
+- **Quick access:** Recently opened projects are available in the top-right dropdown menu.
+
+## Organizing Project Files and Directories
+
+A well-structured project prevents clutter and helps you locate files easily. A common folder structure might include:
+
+| Folder Name   | Purpose                                                       |
+|---------------|---------------------------------------------------------------|
+| `_raw_data/`  | Stores unmodified datasets                                   |
+| `_output/`    | Contains figures, reports, and final documents                |
+| `_tmp/`       | Holds intermediate files not intended for sharing             |
+| `_reference/` | Keeps supplementary materials such as papers and assignment details |
+
+*Note:* Keep scripts (e.g., `.R`, `.Rmd`, `.qmd`) in the main project directory to avoid issues with relative paths.
+
+## Structuring R Scripts for Readability
+
+Good script structure improves maintainability and reduces errors. Consider these guidelines:
+
+1. **Organize Scripts Logically**
+   - Begin with a setup section (load libraries and data).
+   - Follow with analysis and processing steps, grouped logically.
+
+2. **Improve Readability**
+   - Keep lines at a reasonable length (even with word wrapping).
+   - Use informative variable names instead of generic ones like `x` or `y`.
+   - Avoid reusing variable names to prevent confusion.
+
+3. **Use Section Headings**
+   - Separate your code into sections with comment dividers (e.g., `# ---- Setup ----`).
+   - RStudio recognizes these dividers and allows for code folding.
+
+**Example of a Structured Script:**
+
+```r
+# ============================
+# Setup
+# ============================
+library(ggplot2)              # Load required packages
+data_raw <- read.csv("_raw_data/air_pollution.csv")  # Load dataset
+
+# ============================
+# Data Cleaning
+# ============================
+data_cleaned <- data_raw |>
+  dplyr::filter(!is.na(pm2.5)) |>
+  dplyr::mutate(log_pm = log(pm2.5))
+
+# ============================
+# Visualization
+# ============================
+ggplot(data_cleaned, aes(x = temperature, y = log_pm)) +
+  geom_point() +
+  geom_smooth(method = "lm")
+
+# ============================
+# Model Fitting
+# ============================
+model <- lm(log_pm ~ temperature + humidity, data = data_cleaned)
+```
+
+## Summary of Best Practices
+
+- Use RStudio Projects for consistent working directories and collaboration.
+- Organize files into clearly named directories to avoid clutter.
+- Structure your R scripts with a logical order, clear variable names, and well-defined sections.
+
+
+
+### projrsimple.qmd ###
+# `projrsimple` {#sec-day1-projrsimple}
+
+I've written a simple package to help you:
+
+- initialise your projects (directories, Git, GitHub and a README), and
+- build your projects (Quarto, R Markdown, and R scripts) in a clean and easy way.
+
+There are only two functions in this package:
+
+- `projr_init`: Initialises a project with relevant directories, Git and GitHub.
+- `projr_run`: Runs all scripts in the project (`.R`, `.Rmd`, `.qmd` or `Quarto` projects).
+
+What problems does it help solve?
+
+- Avoiding having to remember the commands to initialise a project.
+- Running all the scripts in a project in the correct order.
+- Copies all rendered documents to a `docs` directory.
+- (Optionally) ensuring a clean `output` directory before running the scripts.
+
+
+## Installation
+
+You can install the package from GitHub using the following code:
+
+```r
+if (!requireNamespace("remotes", quietly = TRUE)) {
+  install.packages("remotes")
+}
+remotes::install_github("MiguelRodo/projrsimple")
+```
+
+## Usage
+
+1. Install `projrsimple` (see above).
+2. Open an R session in your project directory (folder where you want to work).
+3. Run `projr_init()` to initialise your project (set up Git, GitHub, project directories and a README; simpler than the other instructions for doing this).
+4. Write code in scripts (`.R`, `.Rmd`, `.qmd` and/or Quarto projects) in the project directory.
+5. Run `projr_run` to execute all scripts. Within those scripts, save outputs to `_output` directory.
+6. View rendered documents in the `docs` directory.
+
+See the package website for more information: [projrsimple](https://miguelrodo.github.io/projrsimple/).
+
+
+### quarto.qmd ###
+# Literate Programming {#sec-day1-quarto}
+
+See the video `quarto.mp4` for a visual explanation of this document.
+
+## What is Literate Programming? 
+
+LIterate programming combines **code** (e.g., R or Python) with **text** to create documents that are both readable and executable. The text itself is written in **Markdown**, a lightweight formatting language that allows us to structure documents with headings, bullet points, bold and italic text, and more.  
+
+Two key tools for literate programming in R are `R Markdown` and `Quarto`.  
+
+---
+
+# R Markdown  
+
+## What is R Markdown?
+
+`R Markdown` was the original tool for embedding code within documents. It allows users to write reports, create presentations, and generate formatted documents that include both text and code outputs.  
+
+## Structure of an R Markdown File 
+
+An **R Markdown file (`.Rmd`)** consists of three main components:  
+
+### 1. YAML Front Matter  
+The **YAML front matter** is the metadata at the top of the document. It controls the output format (e.g., HTML, PDF, Word).  
+
+Example:  
+```yaml
+---
+title: "My Report"
+output: html_document
+---
+```
+This tells R Markdown to generate an **HTML** document. Other options include `pdf_document` and `word_document`.  
+
+### 2. Code Chunks
+
+Code chunks are sections of executable code, enclosed by triple backticks (```) with a specified language. In our case, it will be **R**:  
+
+> ```{r, eval=FALSE}
+> summary(cars)
+> ```  
+
+- Backticks (`) are usually found next to the number 1 key on the keyboard.
+- By default, all code in chunks is executed when the document is rendered.  
+
+**Chunk Options:**  
+- **`echo = FALSE`** → Hides the code but still runs it.  
+- **`echo = TRUE`** → Displays both the code and its output.  
+- **Other options** can control figure size, message display, and more.  
+
+Example:
+
+> ```{r, echo=FALSE}
+> summary(cars)
+> ```
+
+The summary will appear in the final document, but the code itself won’t be displayed.  
+
+### 3. Markdown Formatting  
+
+Markdown is used for structuring text.  
+
+- **Headings:** Use `#` for headings (`##` for subheadings, `###` for deeper levels).  
+- **Bullet points:** Use `-` or `*`.  
+- **Numbered lists:** Use `1.`, `2.`, etc.  
+- **Bold text:** `**bold**` → **bold**  
+- **Italic text:** `*italic*` → *italic*  
+
+## Output  
+R Markdown can **embed plots, tables, and formatted text** into a document. When you include code that generates a plot, the plot will be displayed in the final output.  
+
+---
+
+# Quarto  
+
+## What is Quarto? 
+
+Quarto is the **successor to R Markdown**. It is very similar but:  
+- Has a different YAML front matter structure.  
+- Supports more programming languages (via Jupyter).  
+- Provides a **more unified** workflow for reports, websites, and books.  
+
+## Differences in YAML
+
+Instead of specifying `output: html_document` like in R Markdown, Quarto uses:  
+
+```yaml
+---
+title: "My Report"
+format: html
+---
+```
+
+Quarto uses `format` instead of `output`, making it more flexible.  
+
+## Code Chunks in Quarto  
+Quarto code chunks function similarly to R Markdown, but chunk options can be specified in a cleaner way:
+  
+```{r}
+#| echo: fenced
+#| eval: false
+summary(cars)
+```
+
+Using `#| option: value` inside the chunk makes options easier to read and manage.  
+
+---
+
+# Quarto Projects  
+
+## Why Use Quarto Projects? 
+
+One limitation of R Markdown was that while you could generate individual reports (`.html`, `.pdf`, etc.), managing multiple files in a project (e.g., a website) required extra tools like `bookdown`.  
+
+**Quarto solves this by providing built-in support for project structures.**  
+
+## Starting a Quarto Project
+
+### Via `RStudio` GUI
+
+Unfortunately, in `RStudio` one cannot start a Quart project via the `New File` menu.
+Instead, you have to start a new `RStudio` project entirely.
+The change is that you must select `Quarto Project` from the `New Project` menu.
+
+### By adding a `quarto.yml` file
+
+Alternatively, what you can do is simply add a `_quarto.yml` file.
+Here is an example `_quarto.yml` file:
+
+```yml
+project:
+  type: book
+  render:
+  - index.qmd
+  output-dir: docs
+book:
+  title: Statistical Computing
+  sidebar:
+    border: true
+    background: light
+    position: right
+  navbar:
+    search: true
+    background: light
+  chapters:
+  - index.qmd
+format:
+  html:
+    theme: cosmo
+    toc: true
+    toc-depth: 3
+    toc-location: left
+```
+
+A brief explanation of this file:
+
+- `index.qmd` is the "base" `qmd`. It is the first file that will be rendered. Always include it.
+  - If you want to include other files, then specify them in the `chapters` and `render` keys.
+- `output-dir` specifies where the output will be saved. In this case, it will be saved in a `docs` folder.
+- `book` specifies the title of the book, the sidebar, the navbar, and the chapters.
+- `format` specifies specific formatting options for the `html` outputL
+  - The `theme` defines the overall appearance of the website.
+  - `toc` specifies whether a table of contents should be generated, and the `toc-depth` specifies how many levels of headings should be included.
+
+## Defining a Quarto Project 
+
+A **Quarto project** is defined by a `quarto.yml` file, which specifies how multiple `.qmd` files should be compiled together.  
+
+Example of a `quarto.yml` file for a website:  
+```yaml
+project:
+  type: website
+
+format:
+  html:
+    toc: true
+    toc-depth: 3
+```
+
+This tells Quarto:  
+- The project is a **website**.  .  
+- A **table of contents** should be generated (`toc: true`) for headings up to level 3 (`toc-depth: 3`).
+
+## Website vs. Book
+
+- **Website (`type: website`)**  
+  - Only outputs HTML.  
+  - Has a navigation bar linking different pages.  
+- **Book (`type: book`)**  
+  - Can output HTML, PDF, or Word.  
+  - Uses a `chapters:` key to define sections.  
+
+Example `quarto.yml` for a book:  
+```yaml
+project:
+  type: book
+
+book:
+  chapters:
+    - index.qmd
+    - intro.qmd
+    - analysis.qmd
+
+format:
+  pdf: 
+    documentclass: book
+```
+
+Here:  
+- The **chapters** define the book structure.  
+- The **format** section customizes the outputs.
+
+## Rendering a Quarto Project
+
+To build the entire project, use the **`quarto` R package**:  
+
+```r
+install.packages("quarto")
+quarto::quarto_render()
+```
+
+- This **renders all files** in the project according to `quarto.yml`.  
+- For **websites**, output is saved in `_site/`.  
+- For **books**, output is saved in `_book/`.  
+
+## Important Notes
+ 
+- To start a new Quarto project, go to **RStudio → New Project → Quarto Project**.  
+- If creating a website, ensure you have an `index.qmd` file—websites require an `index.html` as the main entry point.
+- Clicking the `Knit` button in RStudio will render the current `.qmd` file, but **`quarto::quarto_render()` is needed for the entire project**.
+
+---
+
+# Summary
+
+- `R Markdown` is an older tool for combining code and text, using `.Rmd` files.  
+- `Quarto` is the modern alternative, offering more flexibility and better multi-file management.  
+- **Quarto Projects** allow multiple `.qmd` files to be rendered together, creating websites or books.  
+
+By using Quarto, we can **write reports, build websites, and generate books—all from the same toolset!**
+
+### r.qmd ###
+# Fundamental R Objects and Functions {#sec-day1-r}
+
+See the video `r.mp4` for a visual explanation of this document.
+
+R is a powerful statistical computing language designed for efficient data analysis. It is free, open-source, and operates primarily on objects, which makes it flexible for data manipulation.
+
+R can be downloaded from [CRAN](https://cran.r-project.org/), and RStudio, the recommended integrated development environment (IDE), can be obtained from [RStudio](https://www.rstudio.com/). Once installed, open RStudio to explore its interface.
+
+## Getting Help
+
+To view the help documentation for a function, use either the `?` operator or the `help()` function:
+
+```r
+?setwd     # Opens help for setwd()
+help("lm")  # Alternative way to get help for lm()
+```
+
+
+
+## Libraries
+
+Libraries in R provide additional functions and features. For example:
+
+- **Syntax:** `library(packageName)`
+- **Example:**  
+  ```r
+  library(ggplot2)  # Loads the ggplot2 package for data visualization
+  ```
+
+
+
+## Reading in Data
+
+There are many ways to read data into R. For example, to read data from a CSV file:
+
+```r
+data <- read.csv("data/yourfile.csv")
+```
+
+Other packages such as `readr`, `readxl`, and `openxlsx` offer additional methods and options for reading various data formats.
+
+
+
+## Assigning Values to Objects
+
+In R, you assign values to objects using `<-` (preferred) or `=`:
+
+```r
+x <- 1               # Assigns the value 1 to x
+msg <- "Hello, world!"  # Assigns a character string to msg
+print(x)            # Prints the value of x
+```
+
+To check an object's type, use the `class()` function:
+
+```r
+class(x)   # Returns "numeric"
+class(msg) # Returns "character"
+```
+
+
+
+## Basic Computations
+
+R supports basic arithmetic following standard mathematical precedence:
+
+```r
+2 + 3 * 5      # Multiplication happens before addition
+log(10)        # Natural logarithm of 10
+4^2            # Exponentiation: 4 squared
+sqrt(16)       # Square root of 16
+abs(-7)        # Absolute value of -7
+```
+
+For integer division and modulus operations:
+
+```r
+15 %/% 4  # Integer division: returns 3
+15 %% 4   # Modulus: returns 3
+```
+
+
+
+## Working with Vectors
+
+Vectors store multiple values of the same type and are a fundamental data structure in R:
+
+```r
+x <- c(1, 3, 2, 10, 5)  # Creates a numeric vector
+y <- 1:5                # Creates a sequence from 1 to 5
+```
+
+Mathematical operations can be applied directly to vectors:
+
+```r
+y + 2   # Adds 2 to each element
+2 * y   # Multiplies each element by 2
+x + y   # Adds corresponding elements of x and y
+x * y   # Multiplies corresponding elements of x and y
+x^y     # Raises each element of x to the power given in y
+```
+
+To extract specific elements from a vector:
+
+```r
+x[2]      # Returns the second element
+x[3:5]    # Returns elements from index 3 to 5
+x[-2]     # Returns all elements except the second one
+x[x > 3]  # Returns elements greater than 3
+```
+
+## Working with Character Vectors
+
+Character vectors store text data:
+
+```r
+colours <- c("green", "blue", "orange", "yellow", "red")
+colours[2]  # Returns "blue"
+colours[5]  # Returns "red"
+```
+
+Note that character vectors do not support arithmetic operations.
+
+
+
+## Matrices
+
+Matrices are two-dimensional arrays where all elements are of the same type:
+
+```r
+x <- c(1, 3, 2, 10, 5)
+y <- 1:5
+
+m1 <- cbind(x, y)  # Column-binding creates a matrix
+m2 <- rbind(x, y)  # Row-binding creates a matrix
+```
+
+Matrix operations include:
+
+```r
+t(m1)       # Transposes the matrix
+m1 + m2     # Adds corresponding elements
+m1 %*% m2   # Matrix multiplication
+solve(m1)   # Computes the inverse of a square matrix (if possible)
+```
+
+
+
+## Lists
+
+Lists can store elements of different types, making them flexible for various data:
+
+```r
+my_list <- list(num = 1, vec = c(1, 2, 3), mat = matrix(1:6, nrow = 2))
+```
+
+Access elements of a list using the `$` operator:
+
+```r
+my_list$num  # Retrieves the numeric element
+my_list$vec  # Retrieves the vector
+my_list$mat  # Retrieves the matrix
+```
+
+
+
+## Data Frames
+
+Data frames store tabular data, similar to spreadsheets:
+
+```r
+df <- data.frame(name = c("Alice", "Bob"), age = c(25, 30))
+```
+
+Extract data from a data frame:
+
+```r
+df$name           # Extracts the "name" column
+df[1, ]           # Returns the first row
+df[df$age > 25, ] # Filters rows where age is greater than 25
+```
+
+
+
+## Working with File Paths
+
+R provides several functions to work with file paths, allowing you to build, explore, and manipulate directories and files in a platform-independent way. Here are some common functions along with examples and explanations:
+
+### Constructing File Paths with `file.path()`
+
+- Purpose:  
+  `file.path()` constructs file paths by combining directory and file names. It automatically uses the correct file separator for the operating system.
+- Example:  
+  ```r
+  # Combine folder, subfolder, and file name
+  full_path <- file.path("data", "raw", "myfile.txt")
+  print(full_path)
+  ```
+  This will produce a path like `"data/raw/myfile.txt"` on Unix-like systems or `"data\\raw\\myfile.txt"` on Windows.
+
+### Listing Files with `list.files()`
+
+- Purpose:  
+  `list.files()` returns a character vector of the file names in a specified directory. It can also be used to filter files by pattern.
+- Example:  
+  ```r
+  # List all files in the "data" directory
+  files <- list.files(path = "data")
+  print(files)
+  
+  # List only CSV files in the "data" directory
+  csv_files <- list.files(path = "data", pattern = "\\.csv$")
+  print(csv_files)
+  ```
+  This function is useful for dynamically accessing the contents of a directory.
+
+
+#### Listing Directories with `list.dirs()`
+
+- Purpose:  
+  `list.dirs()` provides a recursive list of directories (subdirectories included) within a specified path.
+- Example:  
+  ```r
+  # List all directories within the "data" folder, including subdirectories
+  directories <- list.dirs(path = "data")
+  print(directories)
+  ```
+  This function helps you understand the structure of your file system under a particular directory.
+
+#### Creating Directories with `dir.create()`
+
+- Purpose:  
+  `dir.create()` is used to create new directories. When creating nested directories (sub-directories that do not yet exist), you must set the `recursive` argument to `TRUE`.
+- Example:  
+  ```r
+  # Create a nested directory structure "data/raw"
+  dir.create(path = file.path("data", "raw"), recursive = TRUE)
+  ```
+  Setting `recursive = TRUE` ensures that if the parent directory `"data"` does not exist, it will be created along with `"raw"`.
+
+#### Reading and Writing Text Files with `readLines()` and `writeLines()`
+
+- `readLines()`:  
+  - Purpose:  
+    Reads text files line by line into a character vector, which is useful for processing or analyzing text.
+  - Example:  
+    ```r
+    # Read the content of a text file into a vector of lines
+    lines <- readLines("data/raw/myfile.txt")
+    print(lines)
+    ```
+- `writeLines()`:  
+  - Purpose:  
+    Writes a character vector to a text file, with each element being written as a separate line.
+  - Example:  
+    ```r
+    # Create a vector of text lines
+    output_lines <- c("This is the first line.", "This is the second line.")
+    
+    # Write the vector to a file called "output.txt"
+    writeLines(output_lines, con = "data/output/output.txt")
+    ```
+  These functions are ideal for simple text processing, such as reading logs, configuration files, or exporting simple reports.
+
+## Writing Functions
+
+Functions in R allow you to encapsulate operations and reuse code. Define a function using `function()`:
+
+```r
+increment <- function(x) {
+  x + 1  # Adds 1 to the input value and returns it
+}
+
+increment(3)  # Returns 4
+```
+
+Note that functions always return the last value computed:
+```r
+increment <- function(x) {
+  x + 2
+  x + 1
+}
+
+increment(3)  # Returns 4
+```
+
+Functions can also take multiple arguments:
+
+```r
+add_numbers <- function(x, y) {
+  return(x + y)
+}
+
+add_numbers(2, 5)  # Returns 7
+```
+
+A common example is a function to calculate the hypotenuse of a right triangle (you will use this daily):
+
+```r
+hypotenuse <- function(a, b) {
+  sqrt(a^2 + b^2)  # Uses the Pythagorean theorem
+}
+
+hypotenuse(3, 4)  # Returns 5
+```
+
+## Basic Statistical Functions
+
+R includes built-in functions for summary statistics:
+
+```r
+mean(df$age)     # Computes the mean
+sd(df$age)       # Computes the standard deviation
+summary(df)      # Provides a summary of the data frame
+```
+
+To create frequency tables:
+
+```r
+table(df$name)  # Counts occurrences of each name
+```
+
+
+
+### rstudio.qmd ###
+# Setting Up Your Computer
+
+Before diving into R, make sure your system is set up properly:
+
+1. **Install the Latest Version of R**  
+   Download the most current release from [CRAN](https://cran.r-project.org/).  
+   **_IMPORTANT:_** Ensure you update to the latest version before starting this course—even if R is already installed—as older versions may cause unexpected issues when using newer `R` packages (like this [^longnote])
+
+2. **Install RStudio (Recommended IDE for R)**  
+   Get RStudio from [here](https://posit.co/download/rstudio-desktop/).
+
+3. **Launch RStudio**  
+   Open RStudio, and you're all set to begin!
+
+## Configure RStudio Settings
+
+Refer to the video `rstudio_settings.mp4` for a visual guide. Follow these steps to configure your RStudio settings:
+
+### 1. General Settings
+
+Navigate to **Tools → Global Options → General**.
+
+- **Workspace subsection:**
+  - **Uncheck** `Restore .RData into workspace at startup`  
+    Prevents old objects from automatically loading when opening RStudio, ensuring a clean and reproducible environment.
+  - **Set** `Save workspace to .RData on exit` to **Never**  
+    This avoids saving hidden dependencies that can make your scripts less reproducible.
+
+### 2. Code Editing Settings
+
+Go to **Tools → Global Options → Code → Editing**.
+
+- **Enable "Use Native Pipe Operator (`|>`)":**  
+  Since you’ll be using a later version of R, this setting improves readability and reduces dependency on packages like `{magrittr}`.
+- **Enable "Soft-wrap R source files":**  
+  This ensures that long lines wrap within the editor, so you don’t have to scroll horizontally even if the code line is long.
+
+### 3. Code Display Settings
+
+Under **Tools → Global Options → Code → Display**:
+
+- **Enable "Rainbow Parentheses":**  
+  Displays matching parentheses in different colors, making nested expressions easier to read and reducing errors.
+
+### 4. Appearance Settings
+
+Finally, go to **Tools → Global Options → Appearance**.
+
+- **Editor Font:** Change to a monospaced font (for example, JetBrains Mono). A monospaced font ensures each character takes up the same width, improving alignment and readability.
+- **Editor Theme:** Choose a dark theme instead of the default light theme to reduce eye strain. Good options include:
+  - Cobalt (recommended)
+  - Monokai
+  - Solarized Dark
+  - Twilight
+
+These settings help improve usability, maintainability, and comfort while coding in RStudio.
+
+# Overview of the RStudio Interface
+
+Refer to the video `rstudio_interface.mp4` for a detailed overview. RStudio is divided into four main panes:
+
+## 1. Script Editor (Top Left)
+
+This is where you write and edit your scripts (files ending in `.R`, `.Rmd`, or `.qmd`). A script is essentially a record of instructions that R executes. Use `Ctrl + Enter` (Windows/Linux) or `Cmd + Enter` (Mac) to run code from the script; the command output will appear in the Console.
+
+## 2. Console and Terminal (Bottom Left)
+
+- **Console:**  
+  Where R executes commands. You can run code from your script or type directly into the Console to test ideas.
+- **Terminal:**  
+  Adjacent to the Console, this pane runs system shell commands. It shares the same working directory as R but interprets commands using your system shell (PowerShell on Windows, Bash on Linux, or Zsh/Bash on Mac).
+
+## 3. Environment and History (Top Right)
+
+- **Environment Tab:**  
+  Lists all objects (variables, data, functions) currently loaded in your R session.
+- **History Tab:**  
+  Displays a record of all commands you have executed.
+
+## 4. Files, Plots, Packages, and Help (Bottom Right)
+
+- **Files Tab:**  
+  Shows files and folders in your current working directory.
+- **Plots Tab:**  
+  Displays any generated plots; you can zoom in, export (to PNG, PDF, JPEG, etc.), and clear old plots.
+- **Packages Tab:**  
+  Lists installed R packages and offers management options.
+- **Help Tab:**  
+  Provides documentation for functions and packages. You can search for help topics here or use the `?function_name` command in the Console.
+
+This interface layout makes it easy to write, test, and manage your R code.
+
+[^longnote]: The packages we ask you to install are usually *easy* to install, so if you have errors like this, it might be because your `R` is out of date:
+
+* installing *source* package 'httr2' ...
+
+** package 'httr2' successfully unpacked and MD5 sums checked
+** using staged installation
+
+Warning in system("sh ./configure.win") : 'sh' not found
+
+ERROR: configuration failed for package 'httr2'
+
+* removing 'C:/Users/Wang/AppData/Local/R/win-Library/4.2/httr2'
+Warning in install.packages :
+
+```
+
+### tables.qmd ###
+# Tables {#sec-day5-tables}
+
+When it comes to tables in academic writing or reports, clear and consistent formatting is essential.
+
+## General Guidelines
+
+- **Table Styling:**
+
+  - **Avoid Vertical Lines:**
+    Most good style guides recommend that tables do not include vertical lines. Horizontal lines should typically only appear above and below the header row and at the bottom of the table.
+  - **Minimal Horizontal Lines:**
+    Use only as many horizontal lines as necessary to separate the header from the data.
+  - **Rounding and Significant Figures:**
+    Present numerical data with a limited, preferrably consistent number of decimal/significant places (usually 2 or 3) to enhance readability. Use a functions like or `round()` or `signif()`.
+  - **Headings**:
+    Headings should consistently be either title or sentence case, and should not contain punctuation or programming syntax/formatting (e.g. `Participant_ID`). Headings can be bold or not, but should be consistent throughout the document.
+
+- **Captions and Cross-Referencing:**
+
+  Every table should have a concise caption that includes a title and a descriptive sentence. Abbreviations or symbols used within the table must be defined in the caption. In Quarto, assign a label (e.g., `tab-summary`) so that you can cross-reference the table in your text with `@tab-summary`.
+  _Note:_ All tables should be referenced in your text before they appear.
+
+- **Self-contained:**:
+  
+  Tables should be self-contained in the sense that the reader can understand the table without refering to the main text.
+  This is achieved by including a caption that has an informative detail, uses sentences to describe any important details, and closes with abbreviations or symbols used in the table.
+
+## Generating a table from `R`
+
+Typically, it is convenient to create the table in `R` in the relevant output format.
+
+To run the following code, attach the following packages:
+
+```{r}
+#| results: hide
+#| warning: false
+#| message: false
+pkg_vec <- c("dplyr", "palmerpenguins", "knitr")
+for (x in pkg_vec) {
+  if (!requireNamespace(x, quietly = TRUE)) {
+    install.packages(x, dependencies = TRUE)
+  }
+  # if you want to programmatically attach
+  # libraries, this is the way to to do it
+  library(x, character.only = TRUE)
+}
+```
+
+### Computed table
+
+```{r}
+#| echo: fenced
+#| results: asis
+# Create a summary table of key statistics by species
+penguin_summary <- penguins |>
+  group_by(species) |>
+  summarise(
+    `Flipper length` = round(mean(flipper_length_mm, na.rm = TRUE), 2),
+    `Body Mass` = round(mean(body_mass_g, na.rm = TRUE), 2),
+    Count = n(),
+    .groups = "drop"
+  ) |>
+  rename(Species = species)
+
+# Display the table using knitr::kable
+kable(
+  penguin_summary,
+  caption = "Summary statistics for penguin easurements. Values are rounded to 2 decimal places. Abbreviations: FL = Flipper Length (mm), BM = Body Mass (g)."
+)
+```
+
+- The column names were formatted using `dplyr`.
+- The table styling (no vertical lines, placement of horizontal lines, bold headings) was set using `knitr::kable()`.
+- The table caption was set using `knitr::kable()` as well.
+- Note that the `results: asis` chunk option is *essential* to this displaying correctly.
+
+### Copied into a Quarto document
+
+I find getting labels and cross-referencing to work well when directly computing the table is a bit tricky.
+
+So, I prefer to do the following:
+
+1. Run the code to compute the table in the `R` console.
+
+In the example above, that means running the `kable()` call.
+Depending on your desired output format, you will get Markdown or LaTeX output (typically).
+Here is what the Markdown output looks like, running the following code:
+
+```{r}
+#| eval: false
+kable(penguin_summary)
+```
+
+```plaintext
+|Species   |   FL   |   BM    | Count |
+|:---------|:------:|:-------:|:-----:|
+|Adelie    | 189.95 | 3700.66 |  152  |
+|Chinstrap | 195.82 | 3733.09 |  68   |
+|Gentoo    | 217.19 | 5076.02 |  124  |
+```
+
+2. Copy the output into your Quarto document.
+
+3. If you are working within Quarto, then you can use the Quarto cross-referencing syntax (details [here](https://quarto.org/docs/authoring/cross-references.html)), which looks like this:
+
+```markdown
+::: {#tbl-summary}
+
+|Species   |   FL   |   BM    | Count |
+|:---------|:------:|:-------:|:-----:|
+|Adelie    | 189.95 | 3700.66 |  152  |
+|Chinstrap | 195.82 | 3733.09 |  68   |
+|Gentoo    | 217.19 | 5076.02 |  124  |
+
+Summary statistics for penguin easurements. Values are rounded to 2 decimal places. Abbreviations: FL = Flipper Length (mm), BM = Body Mass (g).
+
+:::
+```
+
+and produces this, which can be cross referenced (`@tbl-summary` produces @tbl-summary):
+
+::: {#tbl-summary}
+
+|Species   |   FL   |   BM    | Count |
+|:---------|:------:|:-------:|:-----:|
+|Adelie    | 189.95 | 3700.66 |  152  |
+|Chinstrap | 195.82 | 3733.09 |  68   |
+|Gentoo    | 217.19 | 5076.02 |  124  |
+
+Summary statistics for penguin easurements. Values are rounded to 2 decimal places. Abbreviations: FL = Flipper Length (mm), BM = Body Mass (g).
+
+:::
+
+- Key elements of Quarto table cross-referencing syntax:
+  - Opening line:
+    - Begin with `:::`
+    - Open curly braces
+    - Write label:
+      - Demarcate it with `#`
+      - No spaces between `#` and label
+      - Label begins with `tbl-`.
+      - Write remainder of label
+      - Close curly braces
+  - Place table content (copied from previous line)
+  - Write caption
+  - Close with `:::`
+  - To cross-reference, write `@<label>` where `<label>` is the part immediately following the `#` in the opening of the `:::` block and *includes* the `tbl-` prefix.
+
+4. Reference the table using the syntax `@<label>`, where `<label>` is the part immediately following the `#` in the opening of the `:::` block: `@tbl-summary` produces @tbl-summary.
+
+### `LaTeX` 
+
+Using `LaTeX`: If you are using `LaTex` (e.g. working in OverLeaf, which you cover in the `LaTeX` lecture later this week), then you would run the `knitr::kable` command with `format = "latex"`.
+This will give you a LaTeX table that you can copy into your document.
+You can then use `LaTeX`-specific labelling and cross-referencing syntax to reference the table (not covered here).
+
+But the basic idea of using `R` to generate the table contents and overall styling, and then using your document format's specific syntax for labelling and cross-referencing, remains the same.
+
+This approach is *much* easier than writing out the contents of the table by hand (though manual editing may still be necessary for fine-tuning, e.g. for formatting).
+
+There are many other `R` packages than `knitr` with the `kable` function that can generate formatted tables from `R` objects (e.g. `pandoc`, `gt`), so you can choose the one that best fits your needs.
+`knitr::kable`'s advantage is simplicity.
+
+### targets.qmd ###
+# targets
+
+**NOTE: THIS IS A DRAFT**
+
+### tidyverse.qmd ###
+# Working with dataframes {#sec-day4-tidyverse}
+
+For an accompanying video, see `df.mp4`.
+
+## Motivation
+
+While base R is powerful, its syntax can be verbose and inconsistent for everyday data manipulation. The tidyverse offers a suite of packages that work seamlessly together, providing a coherent and intuitive framework for your workflow.
+
+Instead of installing individual packages like **dplyr** or **tidyr** separately, the tidyverse metapackage installs the core packages and recommended dependencies all at once:
+
+```{r}
+if (!requireNamespace("tidyverse", quietly = TRUE)) {
+  install.packages("tidyverse")
+}
+library(tidyverse)
+```
+
+**Key Advantages:**
+
+- **Readable Syntax:** Tidyverse functions replace cumbersome expressions (e.g., `test_df[test_df[["column"]] == "value", ]`) with cleaner, more intuitive code.
+- **Pipe-Friendly:** Designed with the data object as the first argument, these functions work seamlessly with the pipe operator for streamlined chaining.
+- **Consistent Interfaces:** Uniform parameter names and positions across functions reduce confusion and help prevent errors.
+- **Predictable Behavior:** Standardized return types and design make outcomes more reliable and debugging easier.
+
+At the heart of many analyses is the dataframe, and the tidyverse is built to simplify working with and transforming dataframes effectively.
+
+## Displaying Dataframes in R
+
+Working with large dataframes can be challenging if you inadvertently print all rows to the console.
+Consider the following example:
+
+```{r}
+example_df <- data.frame(
+  id = rep(paste0("id_", 1:500), each = 20),
+  timepoint = rep(1:20, 500),
+  disease_status = rep(
+    sample(c("healthy", "diseased"), 20, replace = TRUE),
+    each = 500
+  ),
+  blood_pressure = c(
+    runif(20, 120, 140) |> round(),
+    sample(c(NA, runif(19, 120, 140)), 9980, replace = TRUE)
+  )
+)
+# Introduce a typo for demonstration
+example_df[50, "disease_status"] <- "Healthy"
+```
+
+This dataframe contains 10,000 rows:
+
+```{r}
+nrow(example_df)
+```
+
+Printing the entire dataframe (e.g., simply typing `example_df`) would display all rows, which is both inconvenient and time-consuming. Instead, we typically use the `head()` function to preview just the first few rows:
+
+```{r}
+head(example_df)
+```
+
+However, constantly having to call `head()` is not ideal. A better solution is to convert the dataframe into a tibble.
+
+### Enhancing Dataframe Display with `tibble`
+
+The `tibble` package (a core part of the tidyverse) offers a more concise and informative display. When you print a tibble, it only shows the first 10 rows and includes data type information for each column. This is particularly useful because it lets you quickly verify, for example, whether `timepoint` is numeric or character—information that can be obscured in the default dataframe printout.
+
+#### Installation and Conversion
+
+First, ensure that the `tibble` package is installed and loaded:
+
+```{r}
+if (!requireNamespace("tibble", quietly = TRUE)) {
+  install.packages("tibble")
+}
+library(tibble)
+```
+
+Convert your dataframe to a tibble using `as_tibble()`:
+
+```{r}
+# Check the class before conversion
+class(example_df)
+
+# Convert to tibble
+example_df <- as_tibble(example_df)
+
+# Check the class after conversion
+class(example_df)
+```
+
+Now, simply typing `example_df` will display a neat summary of your data:
+
+```{r}
+example_df
+```
+
+This tidy display helps you catch issues like typos or unexpected data types early on. I generally load both `tibble` and `ggplot2` at the top of my scripts, and you can also create new dataframes directly as tibbles:
+
+```{r}
+new_tbl <- tibble(x = 1:5, y = rnorm(5))
+new_tbl
+```
+
+Note that for a `tibble` object (i.e. a dataframe that has class `tbl_df`) to display as a tibble, the `tibble` package needs to be attached.
+So always add `library(tibble)` to the top of your script.
+
+A final, very nice feature of `tibbles` is that selecting one column using `df[, "column"]` will return a tibble, rather than a vector.
+This is typically what we would expect:
+
+```{r}
+example_df[, "id"]
+```
+
+```{r}
+class(example_df[, "id"])
+```
+
+### Exploring Data Columns with `view_cols`
+
+Whilst `tibble`s provide a more informative display, they still only show the first few rows of each column.
+
+Another useful tool is the `view_cols` function from the `UtilsDataRSV` package.
+This function displays unique entries for each column—always showing any missing values (NAs)—so you can quickly identify anomalies such as typos or unexpected values.
+
+To install the `UtilsDataRSV` package, use the following code:
+
+```{r}
+#| eval: false
+if (!requireNamespace("remotes", quietly = TRUE)) {
+  install.packages("remotes")
+}
+remotes::install_github("SATVILab/UtilsDataRSV")
+```
+
+Once installed, you can apply `view_cols` to your tibble to inspect the unique values in each column:
+
+```{r}
+UtilsDataRSV::view_cols(example_df)
+```
+
+`view_cols` is particularly helpful when you cannot easily inspect all the rows or columns of a dataframe.
+For example, with 10,000 rows, it’s impractical to scroll through the entire dataset to:
+
+- **Identify Typos:** In our example, the first ten rows may not reveal that `disease_status` contains three unique entries (e.g., `"healthy"`, `"diseased"`, and the typo `"Healthy"`).
+- **Detect Missing Data:** It's easy to overlook missing values (NAs).
+- **Verify Expected Values:** For instance, the `id` column should have 500 unique entries, and `view_cols` can help you confirm th
+
+For a possibly more polished alternative, consider exploring the `skimr` package, which (I think) offers similar functionality.
+
+You can also display the dataframe on its side, using `dplyr::glimpse()`:
+
+```{r}
+dplyr::glimpse(example_df)
+```
+
+## Pipe
+
+- Essentially, the pipe is a rewrite of code, from
+
+```{r}
+#| eval: false
+f(x,y)
+```
+
+to 
+
+```{r}
+#| eval: false
+x |> f(y)
+```
+
+In other words, the object to the left of the pipe (`x`) becomes the first argument to the function on the right (`f`) and `y` becomes its second parameter.
+
+As as silly example, this:
+
+```{r}
+test_vec <- 1:5
+mean(test_vec[test_vec > 3], trim = 0.5)
+```
+
+is equivalent to this:
+
+```{r}
+test_vec[test_vec > 3] |>
+  mean(trim = 0.5)
+```
+
+In terms of `f(x,y)`, `f` is `mean`, `x` is `test_vec[test_vec > 3]` and `y` is `trim = 0.5`.
+
+The above examples are simply, and there is no great advantage to the pipe operator.
+
+However, when you have chained operations, the pipe operator can make the code more readable.
+For a realistic example, see [R4DS on the pipe](https://r4ds.hadley.nz/data-transform.html#sec-the-pipe), where they show a dramatic gain in readability from using the pipe.
+To run their example, you will need to have the `flights` dataset from the `nycflights13` package and the `tidyverse` package attached.
+
+To ensure this, first run the chunk below before running their example:
+
+```{r}
+pkg_vec <- c("tidyverse", "nycflights13", "tibble")
+for (x in pkg_vec) {
+  if (!requireNamespace(x, quietly = TRUE)) {
+    install.packages(x)
+  }
+}
+library(nycflights13)
+library(tidyverse)
+library(tibble)
+data(flights, package = "nycflights13")
+```
+
+Their example involves many functions that we'll discuss in the rest of this chapter.
+
+## Working with rows and columns
+
+The `dplyr` package provides a suite of functions for manipulating dataframes, including selecting rows and columns, creating new columns, and summarizing data.
+
+There is little point in re-writing excellent content, so I refer you to the [R4DS chapter on `dplyr`](https://r4ds.hadley.nz/data-transform) for a comprehensive introduction to the package.
+
+### Summary
+
+Here is a concise summary of the content on the `dplyr` section of R4DS.
+For more examples, refer the excellent examples within each function's help file (e.g. `?filter`).
+
+To run the examples below, you will need to attach the `nycflights13` package and the `tidyverse` package (or just the `dplyr` package).
+
+```{r}
+if (!requireNamespace("dplyr", quietly = TRUE)) {
+  install.packages("dplyr")
+}
+library(dplyr)
+data(flights, package = "nycflights13")
+flights
+```
+
+#### Rows
+
+The rows functions select rows (`filter`), order rows (`arrange`), and select distinct rows (`distinct`).
+
+- **filter()**: Keeps rows that meet specified conditions.
+
+  ```{r}
+  flights |> filter(month == 1)
+  ```
+
+- **arrange()**: Reorders rows based on column values.
+
+  ```{r}
+  flights |> arrange(dep_delay)
+  ```
+
+- **distinct()**: Returns unique rows or unique combinations of specified columns.
+
+  ```{r}
+  flights |> distinct(origin, dest)
+  ```
+
+#### Columns
+
+The columns functions create new columns (`mutate`), select columns (`select`), rename columns (`rename`), and relocate columns (`relocate`).
+
+- **select()**: Chooses and reorders specific columns.
+
+  ```{r}
+  flights |> select(year, month, day, dep_delay)
+  ```
+
+  - Selecting a range:
+            
+    ```{r}
+    flights |> select(year:day)
+    ```
+
+  - Selecting all columns except some:
+
+    ```{r}
+    flights |> select(!year:arr_delay)
+    ```
+
+- **mutate()**: Creates new columns derived from existing ones.
+
+  ```{r}
+  flights |>
+    mutate(speed = distance / air_time * 60) |>
+    select(distance, air_time, speed)
+  ```
+
+
+- **rename()**: Changes column names without removing other columns.
+
+  ```{r}
+  flights |> rename(YEAR = year)
+  ```
+
+- **relocate()**: Moves columns to a new position within the data frame.
+
+  ```{r}
+  flights |> relocate(carrier, flight)
+  ```
+
+  - Moving the columns before a specified column:
+
+    ```{r}
+    flights |> relocate(carrier, flight, .before = year)
+    ```
+
+#### Groups & Summaries
+
+The groups and summaries functions group data (`group_by`) and summarise data within groups (`summarise`).
+
+- **group_by()**: Splits the data into groups based on one or more columns. The grouping is not visible, and does not create multiple dataframes. See `summarise` below for how to use the groups.
+
+  ```{r}
+  flights |> group_by(month)
+  ```
+  
+
+- **summarise()**: Computes summary statistics for each group.
+
+  ```{r}
+  flights |> group_by(month) |> summarise(avg_delay = mean(dep_delay, na.rm = TRUE))
+  ```
+
+## Changing the shape of data
+
+A key concept in data analysis is that of "tidy data".
+A dataset is tidy when:
+
+- Each variable is in its own column.
+- Each observation is in its own row.
+- Each cell contains a single value.
+
+Consistent data structure simplifies analysis, leverages vectorized operations, and makes it easier to use tidyverse functions.
+
+The `tidyr` package provides convenient tools for tidying data, such as `pivot_longer()` and `pivot_wider()`.
+
+As before, I refer you to the [R4DS chapter on `tidyr`](https://r4ds.hadley.nz/data-tidy) for a comprehensive introduction to the package.
+
+### Summary
+
+Here is a concise summary of the key content on the `tidyr` section of R4DS.
+For more examples, refer the excellent examples within each function's help file (e.g. `?pivot_longer`).
+
+To run the examples below, you will need to attach the `tidyr` package and load the `billboard` and `cms_patient_experience` datasets.
+
+```{r}
+#| message: false
+#| warning: false
+#| results: hide
+#| echo: true
+if (!requireNamespace("tidyr", quietly = TRUE)) {
+  install.packages("tidyr")
+}
+library(tidyr)
+data(billboard, package = "tidyr")
+data(cms_patient_experience, package = "tidyr")
+```
+
+- **pivot_longer():**  
+
+  Converts data from wide to long format by gathering multiple columns into key-value pairs (results in fewer columns, more rows).
+
+  Here is the `billboard` data before the transformation:
+
+  ```{r}
+  billboard
+  ```
+
+  Here is the `billboard` data after the transformation:
+
+  ```{r}
+  billboard |> 
+    pivot_longer(
+      cols = starts_with("wk"), # columns to pivot (display along rows)
+      names_to = "week",  # new column for the column names
+      values_to = "rank", # new column for the values
+      values_drop_na = TRUE # drop rows with NA values
+    )
+  ```
+
+- **pivot_wider():** 
+
+  Transforms long data to wide format by spreading key-value pairs across columns (results in more columns, fewer rows).
+
+  Here is the `cms_patient_experience` data before the transformation:
+
+  ```{r}
+  cms_patient_experience
+  ```
+
+  Here is the `cms_patient_experience` data after the transformation:
+
+  ```{r}
+  cms_patient_experience |> 
+    pivot_wider(
+      id_cols = c("org_pac_id", "org_nm"), # columns to keep as identifiers
+      names_from = measure_cd, # column to spread (unique entries become columns)
+      values_from = prf_rate # column to use for values (values become cell contents)
+    )
+  ```
+
+  - Columns not specified in `id_cols`, `names_from`, or `values_from` are dropped (such as `measure_nm` in this example).
+
+## Joining dataframes
+
+The `dplyr` package also provides functions for joining dataframes, such as `left_join()` and `inner_join()`.
+
+The full-length notes are in the [R4DS chapter on `joins`](https://r4ds.hadley.nz/joins).
+
+### Key Joining Concepts in dplyr
+
+Data analysis typically involves combining multiple data frames. Joins let you connect tables using shared keys, which can be primary keys (unique identifiers in one table) and foreign keys (variables that reference primary keys in another).
+
+### Summary
+
+Again, here is a concise summary of the R4DS content on the `joins` section.
+More examples are available in the help files for each function (e.g. `?left_join`).
+
+To run the examples below, attach the `dplyr` package and create and load the following datasets:
+
+```{r}
+library(dplyr)
+data("flights", package = "nycflights13")
+flights2 <- flights |> 
+  select(year, time_hour, origin, dest, tailnum, carrier)
+data("airlines", package = "nycflights13")
+data("planes", package = "nycflights13")
+df1 <- tibble(key = c(1, 2, 2), val_x = c("x1", "x2", "x3"))
+df2 <- tibble(key = c(1, 2, 2), val_y = c("y1", "y2", "y3"))
+```
+
+Here is what these datasets look like:
+
+```{r}
+flights2
+```
+
+```{r}
+airlines
+```
+
+```{r}
+planes
+```
+
+```{r}
+df1
+```
+
+```{r}
+df2
+```
+
+#### Mutating Joins
+
+Mutating joins add new columns from one data frame to another based on matching key values.
+They share a common interface:
+
+- **left_join()**: Keeps all rows from the left table and adds matching columns from the right table.  
+
+  ```{r}
+  # Add full airline names to flights2 data
+  flights2 |> left_join(airlines)
+  ```
+
+- **inner_join()**: Keeps only rows with matching keys in both tables. 
+
+  ```{r}
+  # Only keep rows where both x and y have a matching key
+  df1 |> inner_join(df2)
+  ```
+
+  - In the example above, `dplyr` emits a warning as two rows in `df1` (those with `key` value `2`) have two matches in `df2` (those with `key` value `2`). Often, this is an error (your data isn't what you expect it to be), but that is the example they showed.
+
+- **Specifying Keys:**  
+
+  By default, join functions match on columns with the same name. Use `join_by()` to specify different keys:
+
+  ```{r}
+  flights2 |> left_join(planes, join_by(tailnum))
+  ```
+
+#### Filtering Joins
+
+Filtering joins select rows from one table based solely on whether they have a match in another table.
+
+- **semi_join()**: Keeps rows in `x` that have at least one match in `y` (does not add columns from `y`).
+
+  ```{r}
+  # Keep only origin airports that appear in flights2
+  airports |> semi_join(flights2, join_by(faa == origin))
+  ```
+
+- **anti_join()**: Keeps rows in `x` that have no match in `y`.
+
+  ```{r}
+  # Find tail numbers in flights2 that are missing from planes
+  flights2 |> anti_join(planes, join_by(tailnum)) |> distinct(tailnum)
+  ```
+
+These joining functions provide a powerful and flexible way to integrate data from different sources, ensuring that your analyses are both comprehensive and accurate.
+
+### _quarto.yml ###
+project:
+  type: book
+  render:
+  - index.qmd
+  - day1.qmd
+  - rstudio.qmd
+  - r.qmd
+  - projects.qmd
+  - quarto.qmd
+  - git.qmd
+  - projrsimple.qmd
+  - prac1.qmd
+  - day4.qmd
+  - tidyverse.qmd
+  - prac-day-four.qmd
+  - ggplot2.qmd
+  - tables.qmd
+  - prac-day-five.qm
+  - handins.qmd
+  - handin1.qmd
+  output-dir: docs
+book:
+  title: Statistical Computing
+  sidebar:
+    border: true
+    background: light
+  navbar:
+    search: true
+    background: light
+  chapters:
+  - index.qmd
+  - part: day1.qmd
+    chapters:
+    - rstudio.qmd
+    - r.qmd
+    - projects.qmd
+    - quarto.qmd
+    - git.qmd
+    - projrsimple.qmd
+    - prac1.qmd
+  - part: day4.qmd
+    chapters:
+    - tidyverse.qmd
+    - prac-day-four.qmd
+  - part: day5.qmd
+    chapters:
+    - ggplot2.qmd
+    - tables.qmd
+    - prac-day-five.qmd
+  - part: handins.qmd
+    chapters:
+    - handin1.qmd
+    - handin2.qmd
+format:
+  html:
+    theme: cosmo
+    toc: true
+    toc-depth: 3
+    toc-location: right
+
+
+
