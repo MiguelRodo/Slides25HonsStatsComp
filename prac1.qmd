@@ -4,8 +4,7 @@
 This Quarto project (the rendered document itself, as well as the source code on GitHub) will be peer-assessed next week.
 
 1. Find all rows in “airquality” that have missing values. Note that the `airquality` dataset in `R` is always available (just type `airquality` in the console to see it).
-2. Find mean, sd, min, max for each of temperature and ozone
-level.
+2. Find mean, sd, min, max for each of temperature and ozone level.
 3. For linear regression, parameter estimates can be found as
 follows.
 $\hat{\beta} = (X^TX)^{-1}X^TY$

@@ -8,7 +8,7 @@ This hand-in counts 2.5% towards your final mark for the course.
 
 ## Due date
 
-Next week Tuesday (11 February), MIDNIGHT.
+This Tuesday (11 February), MIDNIGHT.
 
 ## Required practicals
 
@@ -40,6 +40,7 @@ Make your submission easy to review by:
 - **Echoing key code chunks** (`#| echo: true`) so code is visible in the rendered document.  
 
 This helps your peers navigate and assess your work quickly.
+If they cannot really read what you did, then they can mark you incorrect.
 
 ## Rubric (/100)
 
@@ -47,23 +48,23 @@ The rubric below is not necessarily final and may be adjusted, but this is the b
 
 ### 1. Rendered Quarter Site (/20)
 
-- **Full (0.5%):** The rendered document is a Quarto project (i.e. a `_site`/`_book` folder).
-- **Partial (0.25%):** The practicals have been rendered using some literate programming approach (individual Quarto files, RMarkdown files or a `bookdown` project), but not a `Quarto` project.
-- **None (0%):** The site fails to render.
+- **Full (20/20):** The rendered document is a Quarto project (i.e. a `_site`/`_book` folder).
+- **Partial (10/20):** The practicals have been rendered using some literate programming approach (individual Quarto files, RMarkdown files or a `bookdown` project), but not a `Quarto` project.
+- **None (0/20):** The site fails to render.
 
 ### 2. GitHub Repository URL (/20)
 
-- **Full (0.5%):** A correct and accessible GitHub URL is provided that seems to have all the code.
-- **Partial (0.25%):** A correct and accessible GitHub URL is provided but it seems to be incomplete.
-- **None (0%):** No GitHub URL is provided or it is completely incorrect.
+- **Full (20/20):** A correct and accessible GitHub URL is provided that seems to have all the code.
+- **Partial (10/20):** A correct and accessible GitHub URL is provided but the code seems to be incomplete.
+- **None (0/20):** No GitHub URL is provided or it is completely incorrect or incomplete.
 
 ### 3. Prac day 1, prac 2 and prac day 5 (/20 each)
 
 For each practical:
 
-- **Full (0.5%):** Practical is completed correctly with all required components.
-- **Partial (0.25%):** Some components are completed, but noticeable issues or omissions exist.
-- **None (0%):** Practical is not attempted or is entirely incorrect.
+- **Full (20/20):** Practical is completed correctly with all required components.
+- **Partial (10/20):** Some components are completed, but noticeable issues or omissions exist.
+- **None (0/20):** Practical is not attempted or is entirely incorrect.
 
 ## FAQs
 
