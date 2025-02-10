@@ -1,5 +1,7 @@
 # CHANGELOG
 
+- Patch (v1.0.64): Miguel Rodo (2025-02-10 11:01:50)
+  - Update dput instructions
 - Patch (v1.0.63): Miguel Rodo (2025-02-09 13:35:01)
   - 
 - Patch (v1.0.62): Miguel Rodo (2025-02-09 13:32:02)
