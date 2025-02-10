@@ -58,13 +58,15 @@ The rubric below is not necessarily final and may be adjusted, but this is the b
 - **Partial (10/20):** A correct and accessible GitHub URL is provided but the code seems to be incomplete.
 - **None (0/20):** No GitHub URL is provided or it is completely incorrect or incomplete.
 
-### 3. Prac day 1, prac 2 and prac day 5 (/20 each)
+### 3. Prac day 1, prac 2 and prac day 4 (/20 each)
 
 For each practical:
 
 - **Full (20/20):** Practical is completed correctly with all required components.
 - **Partial (10/20):** Some components are completed, but noticeable issues or omissions exist.
 - **None (0/20):** Practical is not attempted or is entirely incorrect.
+
+Note that `prac day 4` was previously `prac day 5`, but the numbering was changed.
 
 ## FAQs
 
