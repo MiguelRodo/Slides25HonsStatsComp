@@ -1,5 +1,7 @@
 # CHANGELOG
 
+- Patch (v1.0.67): Miguel Rodo (2025-02-11 05:18:18)
+  - Adjust handin one instructions
 - Patch (v1.0.66): Miguel Rodo (2025-02-10 14:22:22)
   - Change numbering
 - Patch (v1.0.65): Miguel Rodo (2025-02-10 14:20:35)
