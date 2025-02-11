@@ -20,7 +20,7 @@ It consists of three practical exercises:
 
 ## Submission instructions
 
-1. **Render Your Quarter Site:**  
+1. **Render Your Quarto Site:**  
    Ensure your site is correctly generated in the `_site` (or `_book`) folder.
 
 2. **Zip the Rendered Site:**  
@@ -42,31 +42,29 @@ Make your submission easy to review by:
 This helps your peers navigate and assess your work quickly.
 If they cannot really read what you did, then they can mark you incorrect.
 
-## Rubric (/100)
+## Rubric (/10)
 
 The rubric below is not necessarily final and may be adjusted, but this is the basic structure:
 
-### 1. Rendered Quarter Site (/20)
+### 1. Rendered Quarto Site (/2)
 
-- **Full (20/20):** The rendered document is a Quarto project (i.e. a `_site`/`_book` folder).
-- **Partial (10/20):** The practicals have been rendered using some literate programming approach (individual Quarto files, RMarkdown files or a `bookdown` project), but not a `Quarto` project.
-- **None (0/20):** The site fails to render.
+- **Full (2/2):** The rendered document is a Quarto project (i.e. a `_site`/`_book` folder).
+- **Partial (1/2):** The practicals have been rendered using some literate programming approach (individual Quarto files, RMarkdown files or a `bookdown` project), but not a `Quarto` project.
+- **None (0/2):** The site fails to render.
 
-### 2. GitHub Repository URL (/20)
+### 2. GitHub Repository URL (/2)
 
-- **Full (20/20):** A correct and accessible GitHub URL is provided that seems to have all the code.
-- **Partial (10/20):** A correct and accessible GitHub URL is provided but the code seems to be incomplete.
-- **None (0/20):** No GitHub URL is provided or it is completely incorrect or incomplete.
+- **Full (2/2):** A correct and accessible GitHub URL is provided that seems to have all the code.
+- **Partial (1/2):** A correct and accessible GitHub URL is provided but the code seems to be incomplete.
+- **None (0/2):** No GitHub URL is provided or it is completely incorrect or incomplete.
 
 ### 3. Prac day 1, prac 2 and prac day 4 (/20 each)
 
 For each practical:
 
-- **Full (20/20):** Practical is completed correctly with all required components.
-- **Partial (10/20):** Some components are completed, but noticeable issues or omissions exist.
-- **None (0/20):** Practical is not attempted or is entirely incorrect.
-
-Note that `prac day 4` was previously `prac day 5`, but the numbering was changed.
+- **Full (2/2):** Practical is completed correctly with all required components.
+- **Partial (1/2):** Some components are completed, but noticeable issues or omissions exist.
+- **None (0/2):** Practical is not attempted or is entirely incorrect.
 
 ## FAQs
 
