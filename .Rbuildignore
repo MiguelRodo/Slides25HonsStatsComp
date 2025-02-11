@@ -37,10 +37,15 @@
 ^tables\.qmd$
 ^targets\.qmd$
 ^tidyverse\.qmd$
+^index\.tex$
 ^_dependencies\.R$
 ^CHANGELOG\.md$
 ^codemeta\.json$
 ^combined_output\.txt$
+^index\.aux$
+^index\.log$
+^index\.pdf$
+^index\.toc$
 ^LICENSE\.md$
 ^manifest\.csv$
 ^Rplots\.pdf$
